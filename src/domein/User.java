@@ -19,6 +19,6 @@ public class User {
 	}
 
 	public User(String username, String password, boolean admin) {
-		throw new UnsupportedOperationException();
+		
 	}
 }
