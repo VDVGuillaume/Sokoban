@@ -1,5 +1,7 @@
 package domein;
 
+import exceptions.PasswordException;
+
 public class User {
 
 	private boolean admin;
@@ -11,7 +13,13 @@ public class User {
 	}
 
 	public boolean validatePassword(String password) {
-		throw new UnsupportedOperationException();
+		/*GVDV probably needs to throw an exception*/
+		
+		 if(this.password == password) {
+			 return true;
+		 }else {
+			 throw new PasswordException("Still needs an appropriate error message");
+		 }		 
 	}
 
 	public boolean isAdmin() {
@@ -19,6 +27,9 @@ public class User {
 	}
 
 	public User(String username, String password, boolean admin) {
+		this.username = username;
+		this.password = password;
+		this.admin = admin;
 		
 	}
 }
