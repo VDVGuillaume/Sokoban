@@ -15,7 +15,7 @@ public class User {
 	public boolean validatePassword(String password) {
 		/*GVDV probably needs to throw an exception*/
 		
-		 if(this.password == password) {
+		 if(this.password.equals(password)) {
 			 return true;
 		 }else {
 			 throw new PasswordException("Still needs an appropriate error message");

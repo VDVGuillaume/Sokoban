@@ -8,7 +8,9 @@ public class UserRepository {
 	private Collection<User> users;
 
 	public boolean validatePassword(String username, String password) {
-		return userMapper.search(username).validatePassword(password);
+		userMapper = new UserMapper();
+		User user = userMapper.search(username);
+		return user.validatePassword(password);
 	
 			
 	}

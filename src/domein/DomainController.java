@@ -18,7 +18,7 @@ public class DomainController {
 		 * Something to look at, do we need to throw exceptions for this one?
 		 * Because i did not know what to do after successful login i now just for the example show a message*/
 		
-	
+	userRepository = new UserRepository();
 		
 		if(userRepository.validatePassword(username, password)) {
 			userRepository.retrieveUser(username);
