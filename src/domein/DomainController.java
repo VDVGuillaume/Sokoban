@@ -4,7 +4,7 @@ import data.UserCatalog;
 
 public class DomainController {
 
-	private UserCatalog userMapper;
+	private UserCatalog userMapper = new UserCatalog();
 	private User selectedUser;
 
 	/* UC1 */
@@ -19,7 +19,6 @@ public class DomainController {
 		 * Something to look at, do we need to throw exceptions for this one?
 		 * Because i did not know what to do after successful login i now just for the example show a message*/
 		
-		userMapper = new UserCatalog();
 		User user = userMapper.login(username, password);
 		if(user != null) {
 			System.out.print("Successful login");
