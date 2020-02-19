@@ -2,13 +2,13 @@ package domein;
 
 import java.util.Scanner;
 
+import data.UserCatalog;
+
 
 public class UC1Applicatie {
-	
-	
 	public UC1Applicatie() {
-		
-	DomainController controller = new DomainController();	
+
+		DomainController controller = new DomainController();	
 	Scanner input = new Scanner(System.in);
 	
 	String 	username;

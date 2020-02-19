@@ -1,8 +1,10 @@
 package domein;
 
+import data.UserCatalog;
+
 public class DomainController {
 
-	private UserRepository userRepository;
+	private UserCatalog userMapper;
 	private User selectedUser;
 
 	/* UC1 */
@@ -10,7 +12,6 @@ public class DomainController {
 		
 	}
 
-	
 	/* UC1 */
 	public void logIn(String username, String password) {
 		/*GVDV LogIn method has to use the validatePasword method to retrieve the user
@@ -18,14 +19,12 @@ public class DomainController {
 		 * Something to look at, do we need to throw exceptions for this one?
 		 * Because i did not know what to do after successful login i now just for the example show a message*/
 		
-	userRepository = new UserRepository();
-		
-		if(userRepository.validatePassword(username, password)) {
-			userRepository.retrieveUser(username);
+		userMapper = new UserCatalog();
+		User user = userMapper.login(username, password);
+		if(user != null) {
 			System.out.print("Successful login");
 		}else {
 			System.out.print("Login failed");
 		}
-	
 	}
 }
