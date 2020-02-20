@@ -9,7 +9,7 @@ public class UserCatalog
 	public void createUser(String username, String password, boolean is_admin) 
 	{
 		String salt = Security.getNextSalt();
-		String passwordHashed = Security.Hash(password, salt.getBytes());
+		String passwordHashed = Security.hash(password, salt.getBytes());
 		
 		DbUser dbUser = new DbUser(username, passwordHashed, salt, is_admin);
 		
@@ -27,7 +27,7 @@ public class UserCatalog
 		}
 		
 		String salt = dbUser.getSalt();
-		String passwordHashed = Security.Hash(password, salt.getBytes());
+		String passwordHashed = Security.hash(password, salt.getBytes());
 		
 		if(passwordHashed.equals(dbUser.getPasswordHashed())) 
 		{

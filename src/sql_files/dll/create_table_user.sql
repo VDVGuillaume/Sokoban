@@ -1,6 +1,6 @@
-create table user
+create table USER
 (
-id int not null primary key,
+id int not null primary key auto_increment,
 username varchar(50) unique,
 password_hashed varchar(500),
 salt varchar(16),

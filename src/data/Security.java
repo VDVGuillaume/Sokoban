@@ -15,7 +15,7 @@ public class Security
 		return salt.toString();
 	}
 	
-	public static String Hash(String key, byte[] salt) 
+	public static String hash(String key, byte[] salt) 
 	{
 		String keyHashed = null;
 		try 

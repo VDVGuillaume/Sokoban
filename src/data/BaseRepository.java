@@ -5,15 +5,13 @@ import java.sql.DriverManager;
 
 public abstract class BaseRepository 
 {	
-	protected String connString = "jdbc:mysql://localhost:3306/sokoban";
-	protected String username = "sokoban_user";
-	protected String password = "sokoban";
-	
+	protected String connString = "jdbc:mysql://ID222177_g88.db.webhosting.be:3306/ID222177_g88?serverTimezone=UTC&useLegacyDatetimeCode=false&user=ID222177_g88&password=RisEnu9s";
+
 	protected Connection createConnection()
 	{
 		try 
 		{
-			Connection conn = DriverManager.getConnection(connString, username, password);
+			Connection conn = DriverManager.getConnection(connString);
 			return conn;
 		}catch(Exception e) 
 		{
