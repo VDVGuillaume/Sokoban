@@ -17,15 +17,15 @@ public class UserRepository extends BaseRepository
 		
 		try 
 		{
-		conn = createConnection(); 
-		stmt = conn.prepareStatement(sql);
-		
-		stmt.setString(1, user.getUsername());
-		stmt.setString(2, user.getPasswordHashed());
-		stmt.setString(3, user.getSalt());
-		stmt.setBoolean(4, user.getIsAdmin());
-		
-		stmt.executeUpdate();
+			conn = createConnection(); 
+			stmt = conn.prepareStatement(sql);
+			
+			stmt.setString(1, user.getUsername());
+			stmt.setString(2, user.getPasswordHashed());
+			stmt.setString(3, user.getSalt());
+			stmt.setBoolean(4, user.getIsAdmin());
+			
+			stmt.executeUpdate();
 		
 		} catch (SQLException e) 
 		{
