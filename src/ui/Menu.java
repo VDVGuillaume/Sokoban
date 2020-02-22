@@ -11,15 +11,16 @@ public class Menu {
 
 		int selection;
 	    Scanner input = new Scanner(System.in);
-
+	    int menuItem = 0;
 	   
-	    System.out.println("1. Speel spel");	
+	    System.out.printf(++menuItem+". Speel spel%n");	
 	    if (user.isAdmin()) {
-	    System.out.println("2. Maak nieuw spel");
-	    System.out.println("3. Wijzig een spel");
+	    System.out.printf(++menuItem+". Maak nieuw spel%n");
+	    System.out.printf(++menuItem+". Wijzig een spel%n");
 	    }
-	    System.out.println("4. Afsluiten");
-
+	    System.out.printf(++menuItem+". Afsluiten%n");
+	  
+	    
 	    selection = input.nextInt();
 	    return selection; 
 	}
