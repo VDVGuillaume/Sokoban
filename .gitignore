@@ -25,3 +25,4 @@ hs_err_pid*
 /.classpath
 /.project
 /vpproject/
+/mysql-connector-java-8.0.19.jar

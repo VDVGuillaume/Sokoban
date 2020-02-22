@@ -1,6 +1,8 @@
 package domein;
 
 import data.UserCatalog;
+import exceptions.PasswordException;
+import ui.Menu;
 
 public class DomainController {
 
@@ -13,7 +15,7 @@ public class DomainController {
 	}
 
 	/* UC1 */
-	public void logIn(String username, String password) {
+	public void logIn(String username, String password) throws Exception {
 		/*GVDV LogIn method has to use the validatePasword method to retrieve the user
 		 * Not sure but i assume that we use the method in the UserRepository
 		 * Something to look at, do we need to throw exceptions for this one?
@@ -21,9 +23,9 @@ public class DomainController {
 		
 		User user = userCatalog.login(username, password);
 		if(user != null) {
-			System.out.print("Successful login");
+			Menu.menu();
 		}else {
-			System.out.print("Login failed");
+			throw new PasswordException("Login failed");
 		}
 	}
 }
