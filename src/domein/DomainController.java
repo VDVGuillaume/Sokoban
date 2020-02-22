@@ -23,7 +23,7 @@ public class DomainController {
 		
 		User user = userCatalog.login(username, password);
 		if(user != null) {
-			Menu.menu();
+			Menu.menu(user);
 		}else {
 			throw new PasswordException("Login failed");
 		}
