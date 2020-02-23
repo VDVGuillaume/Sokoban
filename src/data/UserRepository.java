@@ -13,7 +13,7 @@ public class UserRepository extends BaseRepository
 	{
 		PreparedStatement stmt = null;
 		Connection conn = null;
-		final String sql = "INSERT INTO USER(username, password_hashed, salt, is_admin) VALUES (?, ?, ?, ?)";
+		final String sql = "INSERT INTO USER(username, password_hashed, salt, is_admin, naam, voornaam) VALUES (?, ?, ?, ?, ?, ?)"; // UC2: updated with new attributes
 		
 		try 
 		{
@@ -24,6 +24,8 @@ public class UserRepository extends BaseRepository
 			stmt.setString(2, user.getPasswordHashed());
 			stmt.setString(3, user.getSalt());
 			stmt.setBoolean(4, user.getIsAdmin());
+			stmt.setString(5, user.getName()); //UC2 : Added new attribute
+			stmt.setString(6, user.getFirstName()); //UC2 : Added new attribute
 			
 			stmt.executeUpdate();
 		
@@ -57,7 +59,7 @@ public class UserRepository extends BaseRepository
 	{
 		PreparedStatement stmt = null;
 		Connection conn = null;
-		final String sql = "SELECT password_hashed, salt, is_admin FROM USER WHERE username = ?";
+		final String sql = "SELECT password_hashed, salt, is_admin, naam, voornaam FROM USER WHERE username = ?";
 		
 		try 
 		{
@@ -70,7 +72,7 @@ public class UserRepository extends BaseRepository
 			
 			if(rs.next()) 
 			{
-				return new DbUser(username, rs.getString(1), rs.getString(2), rs.getBoolean(3));
+				return new DbUser(username, rs.getString(1), rs.getString(2), rs.getBoolean(3), rs.getString(4), rs.getString(5)); //updated in UC2 to match added attributes in user
 			}
 		} catch (SQLException e) 
 		{

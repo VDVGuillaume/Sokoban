@@ -1,13 +1,15 @@
 package domein;
 
 import data.UserCatalog;
+import data.UserRepository;
 import exceptions.PasswordException;
 import ui.Menu;
 
 public class DomainController {
-
+	
 	private UserCatalog userCatalog = new UserCatalog();
 	private User selectedUser;
+	private UserRepository userRepo = new UserRepository();
 
 	/* UC1 */
 	public void startLogIn() {
@@ -27,5 +29,24 @@ public class DomainController {
 		}else {
 			throw new PasswordException("Login failed");
 		}
+	}
+	
+	/* UC2 */
+	public void register(String name, String firstName, String username, String password) {
+		if ((userRepo.getUser(username)) != null) {
+			throw new PasswordException("Username already exists");
+		}else {
+			String passwordRequirement = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}$";
+			if(password.matches(passwordRequirement)) {
+				boolean is_admin = false; //default value until we know how attribute can be defined with system interaction
+				userCatalog.createUser(username, password, is_admin, name, firstName);
+
+			}else {
+				throw new PasswordException("Password doesn't meet the complexity requirements");
+			}
+
+		}
+		
+		
 	}
 }

@@ -10,8 +10,10 @@ public class InitConsole
 	 * */
 	public static void main(String[] args) 
 	{
+		/*
 		var userCatalog = new UserCatalog();
-		userCatalog.createUser("player", "player", false);
-		userCatalog.createUser("admin", "admin", true);
+		userCatalog.createUser("player", "player", false, "player", "player");
+		userCatalog.createUser("admin", "admin", true , "admin" , "admin");
+		*/
 	}
 }

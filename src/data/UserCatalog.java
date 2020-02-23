@@ -6,12 +6,12 @@ public class UserCatalog
 {
 	private UserRepository userRepo = new UserRepository(); 
 	
-	public void createUser(String username, String password, boolean is_admin) 
+	public void createUser(String username, String password, boolean is_admin, String name, String firstName) // added name, firstName in UC2
 	{
 		String salt = Security.getNextSalt();
 		String passwordHashed = Security.hash(password, salt.getBytes());
 		
-		DbUser dbUser = new DbUser(username, passwordHashed, salt, is_admin);
+		DbUser dbUser = new DbUser(username, passwordHashed, salt, is_admin, name, firstName); 
 		
 		userRepo.createUser(dbUser);
 	}
@@ -31,7 +31,7 @@ public class UserCatalog
 		
 		if(passwordHashed.equals(dbUser.getPasswordHashed())) 
 		{
-			return new User(username, passwordHashed, dbUser.getIsAdmin());
+			return new User(username, passwordHashed, dbUser.getIsAdmin(), dbUser.getName(), dbUser.getFirstName());
 		}
 		
 		return null;
