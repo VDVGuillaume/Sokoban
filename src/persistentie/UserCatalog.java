@@ -1,6 +1,7 @@
-package data;
+package persistentie;
 
 import domein.User;
+import domein.UserRepository;
 
 public class UserCatalog 
 {

@@ -1,16 +1,22 @@
 package domein;
 
-import data.UserCatalog;
-import data.UserRepository;
 import exceptions.PasswordException;
+import persistentie.UserCatalog;
 import ui.Menu;
 
 public class DomainController {
 	
-	private UserCatalog userCatalog = new UserCatalog();
+	private UserCatalog userCatalog;
 	private User selectedUser;
-	private UserRepository userRepo = new UserRepository();
+	private UserRepository userRepo;
 
+	
+	public DomainController() {
+		
+		this.userRepo = new UserRepository();
+		this.userCatalog = new UserCatalog();
+	}
+	
 	/* UC1 */
 	public void startLogIn() {
 		

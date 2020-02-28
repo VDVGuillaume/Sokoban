@@ -1,6 +1,6 @@
 package init;
 
-import data.UserCatalog;
+import persistentie.UserCatalog;
 
 public class InitConsole 
 {
