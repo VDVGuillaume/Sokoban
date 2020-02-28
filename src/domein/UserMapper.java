@@ -1,9 +1,9 @@
-package persistentie;
+package domein;
 
-import domein.User;
-import domein.UserRepository;
+import persistentie.DbUser;
+import persistentie.Security;
 
-public class UserCatalog 
+public class UserMapper 
 {
 	private UserRepository userRepo = new UserRepository(); 
 	
