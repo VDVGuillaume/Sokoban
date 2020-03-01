@@ -1,20 +1,20 @@
 package domein;
 
 import exceptions.PasswordException;
+import persistentie.UserRepository;
+import persistentie.UserMapper;
 import ui.Menu;
 
 public class DomainController {
 	
-	private UserMapper userMapper;
+	private UserRepository userMapper;
 	private User selectedUser;
-	private UserRepository userRepo;
+	private UserMapper userRepo;
 	
 	/** UC1 Constructor*/
 	
 	public DomainController() {
-		
-		this.userRepo = new UserRepository();
-		this.userMapper = new UserMapper();
+				this.userMapper = new UserRepository();
 	}
 	
 	/** UC1  */

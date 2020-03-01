@@ -1,15 +1,14 @@
-package domein;
+package persistentie;
 
+import domein.User;
 import exceptions.PasswordException;
-import persistentie.DbUser;
-import persistentie.Security;
 
-public class UserMapper 
+public class UserRepository 
 {
-	private UserRepository userRepo = new UserRepository();
+	private UserMapper userMapper = new UserMapper();
 	
 	public boolean userExists(String username) {
-		DbUser dbUser = userRepo.getUser(username);
+		DbUser dbUser = userMapper.getUser(username);
 		if (dbUser == null)
 		{
 			return false;
@@ -38,13 +37,13 @@ public class UserMapper
 		
 		DbUser dbUser = new DbUser(username, passwordHashed, salt, is_admin, name, firstName); 
 		
-		userRepo.createUser(dbUser);
+		userMapper.createUser(dbUser);
 	}
 	
 	public User login(String username, String password) 
 	{
 		//get user in db
-		DbUser dbUser = userRepo.getUser(username);
+		DbUser dbUser = userMapper.getUser(username);
 		
 		if(dbUser == null) 
 		{

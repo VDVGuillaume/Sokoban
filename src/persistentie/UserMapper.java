@@ -1,4 +1,4 @@
-package domein;
+package persistentie;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -7,10 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
 
-import persistentie.BaseRepository;
-import persistentie.DbUser;
-
-public class UserRepository extends BaseRepository 
+public class UserMapper extends BaseMapper 
 {	
 	public void createUser(DbUser user) 
 	{
