@@ -13,7 +13,7 @@ public class UserMapper extends BaseMapper
 	{
 		PreparedStatement stmt = null;
 		Connection conn = null;
-		final String sql = "INSERT INTO USER(username, password_hashed, salt, is_admin, naam, voornaam) VALUES (?, ?, ?, ?, ?, ?)"; // UC2: updated with new attributes
+		final String sql = "INSERT INTO USER(username, password_hashed, salt, is_admin, name, firstname) VALUES (?, ?, ?, ?, ?, ?)"; // UC2: updated with new attributes
 		
 		try 
 		{
@@ -59,7 +59,7 @@ public class UserMapper extends BaseMapper
 	{
 		PreparedStatement stmt = null;
 		Connection conn = null;
-		final String sql = "SELECT password_hashed, salt, is_admin, naam, voornaam FROM USER WHERE username = ?";
+		final String sql = "SELECT password_hashed, salt, is_admin, name, firstname FROM USER WHERE username = ?";
 		
 		try 
 		{

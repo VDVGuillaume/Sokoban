@@ -1,4 +1,4 @@
-package persistentie;
+package domein;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

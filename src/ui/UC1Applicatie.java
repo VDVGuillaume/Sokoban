@@ -15,16 +15,11 @@ public class UC1Applicatie {
 		this.controller = controller;
 	}
 	
-	public void UI() {
-		
-			
+	public void UI() {	
 	Scanner input = new Scanner(System.in);
 	String 	username;
 	String  password;
-	
-	
-
-		
+			
 		try {
 		
 		System.out.println("Give username: ");
@@ -38,11 +33,6 @@ public class UC1Applicatie {
 		}catch (Exception e) {
 			System.out.printf("%s%n",e.getMessage());		
 			UI();		
-		}
-		
-	}
-	
-	
-	
-		
+		}	
+	}	
 }

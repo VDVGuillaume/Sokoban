@@ -2,7 +2,6 @@ package domein;
 
 import exceptions.PasswordException;
 import persistentie.DbUser;
-import persistentie.Security;
 import persistentie.UserMapper;
 
 public class UserRepository 
@@ -23,10 +22,10 @@ public class UserRepository
 		
 	}
 	
-	public void createUser(String username, String password, boolean is_admin, String name, String firstName) // added name, firstName in UC2
+	public void createUser(User user) // added name, firstName in UC2
 	{	
 		String passwordRequirement = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}$";
-		if(password.matches(passwordRequirement)) {
+		if(user.getPassword().matches(passwordRequirement)) {
 
 
 		}else {
@@ -34,10 +33,10 @@ public class UserRepository
 		}
 
 		String salt = Security.getNextSalt();
-		String passwordHashed = Security.hash(password, salt.getBytes());
+		String passwordHashed = Security.hash(user.getPassword(), salt.getBytes());
 		
 		
-		DbUser dbUser = new DbUser(username, passwordHashed, salt, is_admin, name, firstName); 
+		DbUser dbUser = new DbUser(user.getUsername(), passwordHashed, salt, user.getAdmin(), user.getName(), user.getFirstName()); 
 		
 		userMapper.createUser(dbUser);
 	}
@@ -57,7 +56,7 @@ public class UserRepository
 		
 		if(passwordHashed.equals(dbUser.getPasswordHashed())) 
 		{
-			return new User(username, passwordHashed, dbUser.getIsAdmin(), dbUser.getName(), dbUser.getFirstName());
+			return new User(username, password, dbUser.getIsAdmin(), dbUser.getName(), dbUser.getFirstName());
 		}
 		
 		return null;

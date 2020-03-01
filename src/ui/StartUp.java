@@ -1,9 +1,8 @@
-package domein;
-
-import ui.UC1Applicatie;
-import ui.UC2Applicatie;
+package ui;
 
 import java.util.Scanner;
+
+import domein.DomainController;
 
 public class StartUp {
 	

@@ -6,14 +6,13 @@ import ui.Menu;
 
 public class DomainController {
 	
-	private UserRepository userMapper;
+	private UserRepository userRepository;
 	private User selectedUser;
-	private UserMapper userRepo;
 	
 	/** UC1 Constructor*/
 	
 	public DomainController() {
-				this.userMapper = new UserRepository();
+				this.userRepository = new UserRepository();
 	}
 	
 	/** UC1  */
@@ -31,7 +30,7 @@ If correct, it displays the menu. */
 		 * Something to look at, do we need to throw exceptions for this one?
 		 * Because i did not know what to do after successful login i now just for the example show a message*/
 		
-		User user = userMapper.login(username, password);
+		User user = userRepository.login(username, password);
 		if(user != null) {
 			Menu.menu(user);
 		}else {
@@ -40,15 +39,17 @@ If correct, it displays the menu. */
 	}
 	
 	/* UC2 */
-	public void register(String name, String firstName, String username, String password) throws Exception {
-		if (userMapper.userExists(username)) {
+	public void register(String name, String firstName, String username, String password) throws Exception 
+	{	
+		boolean admin = false; //default value until we know how attribute can be defined with system interaction
+		User user = new User(username, password, admin, username, firstName);
+		
+		if (userRepository.userExists(username)) 
+		{
 			throw new PasswordException("Username already exists");
-		}else {
-				boolean is_admin = false; //default value until we know how attribute can be defined with system interaction
-				userMapper.createUser(username, password, is_admin, name, firstName);
-
-		}
-		
-		
+		}else 
+		{
+				userRepository.createUser(user);
+		}		
 	}
 }
