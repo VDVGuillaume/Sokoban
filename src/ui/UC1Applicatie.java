@@ -2,17 +2,22 @@ package ui;
 
 import java.util.Scanner;
 
-import data.UserCatalog;
 import domein.DomainController;
+import domein.UserMapper;
 import exceptions.PasswordException;
 
 
 public class UC1Applicatie {
+	
+	private DomainController controller;
+	
+	public UC1Applicatie(DomainController controller) {
+		this.controller = controller;
+	}
+	
 	public void UI() {
 		
-		
-
-	DomainController controller = new DomainController();	
+			
 	Scanner input = new Scanner(System.in);
 	String 	username;
 	String  password;

@@ -1,4 +1,4 @@
-package data;
+package persistentie;
 
 public class DbUser 
 {
