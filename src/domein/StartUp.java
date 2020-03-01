@@ -4,7 +4,7 @@ import ui.UC1Applicatie;
 
 public class StartUp {
 	
-	
+	/** UC1 StartUp class containing main method; creation of DomainController domeincontroller & UC1Applicatie app*/
 	
 	public static void main(String[] args) {
 		
