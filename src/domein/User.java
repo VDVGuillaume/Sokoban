@@ -1,6 +1,7 @@
 package domein;
 
 import exceptions.PasswordException;
+import exceptions.UsernameException;
 
 public class User {
 
@@ -39,6 +40,27 @@ public class User {
 			throw new PasswordException("Password doesn't meet the complexity requirements");
 		}
 	}
+	
+	private void setUsername(String username){
+		if(username.length() < 8) {
+			throw new UsernameException("Username needs to be at least 8 characters");
+		}
+		
+		this.username = username;
+	}
+	
+	private void setAdmin(boolean admin) {
+		this.admin = admin;
+	}
+	
+	private void setName(String name) {
+		this.name = name;
+	}
+	
+	private void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	
 
 	public boolean validatePassword(String password) 
 	{
@@ -51,26 +73,14 @@ public class User {
 			 throw new PasswordException("Still needs an appropriate error message");
 		 }		 
 	}
-
-	public boolean isAdmin() {
-		return this.admin;
-	}
-	
-	/*
-	public User(String username, String password, boolean admin) {
-		this.username = username;
-		this.password = password;
-		this.admin = admin;
-		
-	} /*
 	
 	/* UC2 */
 	public User(String username, String password, boolean admin, String name, String firstName) 
 	{
-		this.username = username;
+		setUsername(username);
 		setPassword(password);
-		this.admin = admin;
-		this.name = name;
-		this.firstName = firstName;		
+		setAdmin(admin);
+		setName(name);
+		setFirstName(firstName);		
 	}
 }

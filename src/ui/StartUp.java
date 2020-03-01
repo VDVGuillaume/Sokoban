@@ -5,9 +5,6 @@ import java.util.Scanner;
 import domein.DomainController;
 
 public class StartUp {
-	
-	
-	
 	public static void main(String[] args) {
 		
 		DomainController domeincontroller = new DomainController();
