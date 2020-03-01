@@ -36,7 +36,7 @@ public class DomainController {
 		if ((userRepo.getUser(username)) != null) {
 			throw new PasswordException("Username already exists");
 		}else {
-			String passwordRequirement = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}$";
+			String passwordRequirement = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}$"; // minimum 8 characters, minimum 1 number, 1 lower case letter, 1 upper case letter
 			if(password.matches(passwordRequirement)) {
 				boolean is_admin = false; //default value until we know how attribute can be defined with system interaction
 				userCatalog.createUser(username, password, is_admin, name, firstName);
