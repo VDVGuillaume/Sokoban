@@ -61,19 +61,6 @@ public class User {
 		this.firstName = firstName;
 	}
 	
-
-	public boolean validatePassword(String password) 
-	{
-		/*GVDV probably needs to throw an exception*/
-		 if(this.password.equals(password)) 
-		 {
-			 return true;
-		 }else 
-		 {
-			 throw new PasswordException("Still needs an appropriate error message");
-		 }		 
-	}
-	
 	/* UC2 */
 	public User(String username, String password, boolean admin, String name, String firstName) 
 	{
