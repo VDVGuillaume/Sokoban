@@ -1,7 +1,6 @@
 package domein;
 
 import exceptions.PasswordException;
-import persistentie.UserRepository;
 import persistentie.UserMapper;
 import ui.Menu;
 

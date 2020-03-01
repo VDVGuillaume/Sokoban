@@ -3,8 +3,8 @@ package ui;
 import java.util.Scanner;
 
 import domein.DomainController;
+import domein.UserRepository;
 import exceptions.PasswordException;
-import persistentie.UserRepository;
 
 public class UC2Applicatie {
 	private DomainController controller;

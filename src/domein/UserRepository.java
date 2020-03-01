@@ -1,7 +1,9 @@
-package persistentie;
+package domein;
 
-import domein.User;
 import exceptions.PasswordException;
+import persistentie.DbUser;
+import persistentie.Security;
+import persistentie.UserMapper;
 
 public class UserRepository 
 {
