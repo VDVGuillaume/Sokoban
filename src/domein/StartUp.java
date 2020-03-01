@@ -22,18 +22,13 @@ public class StartUp {
 		int userSelection = input.nextInt();
 		switch (userSelection) { /*Added selection menu in UC2*/
 		case 1:
-			
 			UC1Applicatie app = new UC1Applicatie(domeincontroller);
 			app.UI();
 			break;
 		case 2:
-			
 			UC2Applicatie app2 = new UC2Applicatie(domeincontroller);
-			app.UI();
-			
+			app2.UI();			
 			break;
-		
-
+		}
 	}
-
 }
