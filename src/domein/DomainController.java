@@ -15,10 +15,6 @@ public class DomainController {
 				this.userRepository = new UserRepository();
 	}
 	
-	/** UC1  */
-	public void startLogIn() {
-		
-	}
 
 	/** UC1 logIn 
 login checks the entered data against those in the database. 
