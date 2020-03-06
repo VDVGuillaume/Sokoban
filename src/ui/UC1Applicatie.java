@@ -23,7 +23,6 @@ public class UC1Applicatie {
 		try {
 		
 		System.out.println("Give username: ");
-		input.nextLine(); //empty scanner method required to make selection screen work
 		username = input.nextLine();
 		System.out.println("Give password: ");
 		password = input.nextLine();
