@@ -37,5 +37,8 @@ public class UC2Applicatie {
 				System.out.printf("%s%n",e.getMessage());
 				UI();
 			}
+			finally {
+				input.close();
+			}
 		}
 }

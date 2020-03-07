@@ -32,6 +32,9 @@ public class UC1Applicatie {
 		}catch (Exception e) {
 			System.out.printf("%s%n",e.getMessage());		
 			UI();		
-		}	
+		}
+		finally {
+			input.close();
+		}
 	}	
 }
