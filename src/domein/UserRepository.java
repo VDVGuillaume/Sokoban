@@ -6,7 +6,11 @@ import persistentie.UserMapper;
 
 public class UserRepository 
 {
-	private UserMapper userMapper = new UserMapper();
+	private UserMapper userMapper;
+	
+	public UserRepository(){
+		this.userMapper = new UserMapper();
+	}
 	
 	public boolean userExists(String username) {
 		DbUser dbUser = userMapper.getUser(username);
