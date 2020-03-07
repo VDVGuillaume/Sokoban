@@ -21,10 +21,8 @@ public class UC2Applicatie {
 		String 	name;
 			
 			try {
-				System.out.println("Give name: ");
-				input.nextLine(); //empty scanner method required to make selection screen work
-				name = input.nextLine();
-				
+				System.out.println("Give name: ");			
+				name = input.nextLine();				
 				System.out.println("Give firstName: ");
 				firstName = input.nextLine();
 				System.out.println("Give username: ");
