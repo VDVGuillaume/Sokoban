@@ -1,8 +1,10 @@
-package ui;
+package main;
 
 import java.util.Scanner;
 
 import domein.DomainController;
+import ui.UC1Applicatie;
+import ui.UC2Applicatie;
 
 public class StartUp {
 	public static void main(String[] args) {
