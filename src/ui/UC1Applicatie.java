@@ -30,7 +30,7 @@ public class UC1Applicatie {
 		controller.logIn(username, password);
 		
 		}catch (Exception e) {
-			System.out.printf("%s%n",e.getMessage());		
+			System.out.println(e.getMessage());		
 			UI();		
 		}
 		finally {
