@@ -21,8 +21,15 @@ public class UC2Applicatie {
 		String 	name;
 			
 			try {
+<<<<<<< Upstream, based on branch 'master' of https://github.com/HoGentTIProjecten1/sokoban-g88
 				System.out.println("Give name: ");			
 				name = input.nextLine();				
+=======
+				System.out.println("Give name: ");
+				//input.nextLine(); //empty scanner method required to make selection screen work
+				name = input.nextLine();
+				
+>>>>>>> ed23405 Pushing of Language class & fix of error message around UC2Applicatie errormessage
 				System.out.println("Give firstName: ");
 				firstName = input.nextLine();
 				System.out.println("Give username: ");
@@ -34,7 +41,7 @@ public class UC2Applicatie {
 				controller.logIn(username, password);
 			
 			}catch (Exception e) {
-				System.out.printf("%s%n",e.getMessage());
+				System.out.println(e.getMessage());
 				UI();
 			}
 			finally {
