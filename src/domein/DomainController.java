@@ -1,5 +1,7 @@
 package domein;
 
+import java.util.List;
+
 import exceptions.PasswordException;
 import persistentie.UserMapper;
 import ui.Menu;
@@ -47,5 +49,19 @@ If correct, it displays the menu. */
 		{
 				userRepository.createUser(user);
 		}		
+	}
+
+	public GameChoices[] getGameList()
+	{
+		return GameChoices.values();
+	}
+	
+	public Game chooseGame(GameChoices gameChoice) throws Exception 
+	{
+		if(gameChoice == GameChoices.Level1) {
+			return new Game(/*TODO insert some test data into game based on gameChoice*/);
+		}
+		
+		throw new Exception("not implemented");
 	}
 }

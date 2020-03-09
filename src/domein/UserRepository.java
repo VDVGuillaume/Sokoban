@@ -3,6 +3,7 @@ package domein;
 import exceptions.PasswordException;
 import persistentie.DbUser;
 import persistentie.UserMapper;
+import util.Security;
 
 public class UserRepository 
 {
