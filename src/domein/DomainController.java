@@ -3,6 +3,9 @@ package domein;
 import java.util.List;
 
 import exceptions.PasswordException;
+import util.Language;
+import java.util.ResourceBundle;
+import java.util.Locale;
 import persistentie.UserMapper;
 import ui.Menu;
 
@@ -12,8 +15,16 @@ public class DomainController {
 	private GameBoardRepository gameBoardRepository;
 	private GameChoices[] gamesList;
 	private User selectedUser;
+<<<<<<< Upstream, based on branch 'master' of https://github.com/HoGentTIProjecten1/sokoban-g88
 		
+=======
+	private ResourceBundle messages;
+	/** UC1 Constructor*/
+	
+>>>>>>> ac59c44 Push language class, properties files & changes code
 	public DomainController() {
+				
+				messages = ResourceBundle.getBundle("resources/MessagesBundle", Locale.getDefault(Locale.Category.DISPLAY));
 				this.userRepository = new UserRepository();
 				this.gameBoardRepository = new GameBoardRepository();
 				this.gamesList = GameChoices.values();

@@ -1,6 +1,8 @@
 package ui;
 
 import java.util.Scanner;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import domein.DomainController;
 import domein.UserRepository;
@@ -22,13 +24,13 @@ public class UC2Applicatie {
 			
 			try {
 
-				System.out.println("Give name: ");			
+				System.out.println(ResourceBundle.getBundle("resources/MessagesBundle", Locale.getDefault()).getString("GiveName"));			
 				name = input.nextLine();				
-				System.out.println("Give firstName: ");
+				System.out.println(ResourceBundle.getBundle("resources/MessagesBundle", Locale.getDefault()).getString("GiveFirstName"));
 				firstName = input.nextLine();
-				System.out.println("Give username: ");
+				System.out.println(ResourceBundle.getBundle("resources/MessagesBundle", Locale.getDefault()).getString("GiveUsername"));
 				username = input.nextLine();
-				System.out.println("Give password: ");
+				System.out.println(ResourceBundle.getBundle("resources/MessagesBundle", Locale.getDefault()).getString("GivePassword"));
 				password = input.nextLine();
 			
 				controller.register(name, firstName, username, password);

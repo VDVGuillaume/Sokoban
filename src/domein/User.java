@@ -1,7 +1,10 @@
 package domein;
 
+import java.util.ResourceBundle;
+
 import exceptions.PasswordException;
 import exceptions.UsernameException;
+import util.Language;
 
 public class User {
 
@@ -37,13 +40,13 @@ public class User {
 		if(password.matches(passwordRequirement)) {
 			this.password = password;
 		}else {
-			throw new PasswordException("Password doesn't meet the complexity requirements");
+			throw new PasswordException(ResourceBundle.getBundle("resources/MessagesBundle", Language.getLanguage()).getString("PasswordNotComplexityRequirements"));
 		}
 	}
 	
 	private void setUsername(String username){
 		if(username.length() < 8) {
-			throw new UsernameException("Username needs to be at least 8 characters");
+			throw new UsernameException(ResourceBundle.getBundle("resources/MessagesBundle", Language.getLanguage()).getString("PasswordValidationFailed"));
 		}
 		
 		this.username = username;

@@ -5,12 +5,14 @@ import java.util.Scanner;
 import domein.DomainController;
 import domein.UserRepository;
 import exceptions.PasswordException;
+import util.Language;
 
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class UC1Applicatie {
 	
 	private DomainController controller;
-	
 	public UC1Applicatie(DomainController controller) {
 		this.controller = controller;
 	}
@@ -22,9 +24,9 @@ public class UC1Applicatie {
 			
 		try {
 		
-		System.out.println("Give username: ");
+		System.out.println(ResourceBundle.getBundle("resources/MessagesBundle", Locale.getDefault()).getString("GiveUsername"));
 		username = input.nextLine();
-		System.out.println("Give password: ");
+		System.out.println(ResourceBundle.getBundle("resources/MessagesBundle", Locale.getDefault()).getString("GivePassword"));
 		password = input.nextLine();
 		
 		controller.logIn(username, password);

@@ -1,10 +1,25 @@
 package util;
 
+import java.util.Locale;
+import java.util.ResourceBundle;
+
 public class Language {
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+	static Locale aLocale;
+	
+	public static void setLanguage(String language) {
+	aLocale = new Locale(language);	
+	}
+	
+	public static Locale getLanguage() {
+		return aLocale;	
+		}
+		
+	
+	public String translate(String word) {
+	ResourceBundle bundle = ResourceBundle.getBundle("MessageBundle",aLocale);
+	String msg = bundle.getString(word);
+	return msg;
 	}
 
 }
