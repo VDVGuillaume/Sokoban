@@ -15,13 +15,11 @@ public class DomainController {
 	private GameBoardRepository gameBoardRepository;
 	private GameChoices[] gamesList;
 	private User selectedUser;
-<<<<<<< Upstream, based on branch 'master' of https://github.com/HoGentTIProjecten1/sokoban-g88
-		
-=======
+
 	private ResourceBundle messages;
 	/** UC1 Constructor*/
 	
->>>>>>> ac59c44 Push language class, properties files & changes code
+
 	public DomainController() {
 				
 				messages = ResourceBundle.getBundle("resources/MessagesBundle", Locale.getDefault(Locale.Category.DISPLAY));
@@ -45,7 +43,7 @@ If correct, it displays the menu. */
 		if(user != null) {
 			Menu.menu(user);
 		}else {
-			throw new PasswordException("Login failed");
+			throw new PasswordException(ResourceBundle.getBundle("resources/MessagesBundle", Language.getLanguage()).getString("LoginFailed"));
 		}
 	}
 	
@@ -57,7 +55,7 @@ If correct, it displays the menu. */
 		
 		if (userRepository.userExists(username)) 
 		{
-			throw new PasswordException("Username already exists");
+			throw new PasswordException(ResourceBundle.getBundle("resources/MessagesBundle", Language.getLanguage()).getString("UsernameAlreadyExists"));
 		}else 
 		{
 				userRepository.createUser(user);
