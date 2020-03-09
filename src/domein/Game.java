@@ -5,8 +5,8 @@ import java.util.List;
 public class Game {
 	private List<GameBoard> gameBoards;
 	
-	public Game(/*List<GameBoard> gameBoards*/) {
-		//TODO get gameBoards from constructor as parameter -> domainController gets gameBoards from Repository
+	public Game(List<GameBoard> gameBoards) {
+		setGameBoards(gameBoards);
 	}
 	
 	private void setGameBoards(List<GameBoard> gameBoards) {

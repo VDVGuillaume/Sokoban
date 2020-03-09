@@ -9,12 +9,14 @@ import ui.Menu;
 public class DomainController {
 	
 	private UserRepository userRepository;
+	private GameBoardRepository gameBoardRepository;
+	private GameChoices[] gamesList;
 	private User selectedUser;
-	
-	/** UC1 Constructor*/
-	
+		
 	public DomainController() {
 				this.userRepository = new UserRepository();
+				this.gameBoardRepository = new GameBoardRepository();
+				this.gamesList = GameChoices.values();
 	}
 	
 
@@ -51,15 +53,16 @@ If correct, it displays the menu. */
 		}		
 	}
 
-	public GameChoices[] getGameList()
+	public GameChoices[] getGamesList()
 	{
-		return GameChoices.values();
+		return gamesList;
 	}
 	
 	public Game chooseGame(GameChoices gameChoice) throws Exception 
 	{
 		if(gameChoice == GameChoices.Level1) {
-			return new Game(/*TODO insert some test data into game based on gameChoice*/);
+			var gameBoards = gameBoardRepository.getGameBoards(gameChoice);
+			return new Game(gameBoards);
 		}
 		
 		throw new Exception("not implemented");
