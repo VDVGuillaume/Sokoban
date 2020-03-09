@@ -2,12 +2,12 @@ package domein;
 
 public class GameBoard 
 {
-	private Cell[][] cells;
+	private Tile[][] tiles;
 	private boolean completed;
 	
 	//TODO EDIT EXCEPTION TYPE TO CUSTOM EXCEPTION
-	private void setCells(Cell[][] cells) throws Exception {
-		if(cells.length != 10 || cells[0].length != 10) 
+	private void setTiles(Tile[][] tiles) throws Exception {
+		if(tiles.length != 10 || tiles[0].length != 10) 
 		{
 			throw new Exception("Dimensions of gameboard has to be 10x10");
 		}
@@ -18,11 +18,11 @@ public class GameBoard
 		
 		//TODO VALIDATE IF AMOUNT OF GOALS == AMOUNT OF CHESTS IN CELLS  
 		
-		this.cells = cells;
+		this.tiles = tiles;
 	}
 	
-	private Cell[][] getCells(){
-		return cells;
+	private Tile[][] getTiles(){
+		return tiles;
 	}
 	
 	public void setCompleted(boolean completed) {

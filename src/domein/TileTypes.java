@@ -1,7 +1,8 @@
 package domein;
 
-public enum CellContents {
+public enum TileTypes {
 	None,
+	Wall,
 	Goal,
 	Character,
 	Chest	
