@@ -41,7 +41,7 @@ If correct, it displays the menu. */
 		
 		User user = userRepository.login(username, password);
 		if(user != null) {
-			Menu.menu(user);
+			Menu.menu(user.getAdmin());
 		}else {
 			throw new PasswordException(ResourceBundle.getBundle("resources/MessagesBundle", Language.getLanguage()).getString("LoginFailed"));
 		}
