@@ -1,9 +1,29 @@
 package domein;
 
+import java.util.ArrayList;
+
 public class GameBoard 
 {
 	private Tile[][] tiles;
 	private boolean completed;
+	private ArrayList<Wall> walls;// represented by 'X'
+	private ArrayList<Goal> goals;// represented by '.' (dot)
+	private ArrayList<Box> boxs;// represented by 'B'
+	private ArrayList<Field> fields;// empty field represented by ' ' (space)
+	private Pawn pawn;//represented by P
+	private int levelNr;
+
+	private String level
+	="XXXXXXXXXX\n"
+	+"XXXXX.XXXX\n"
+	+"XXXXX XXXX\n"
+	+"XXXXXBPB.X\n"
+	+"X.   B XXX\n"
+	+"XXXXXXBXXX\n"
+	+"XXXXXX XXX\n"
+	+"XXXXXX XXX\n"
+	+"XXXXXX.XXX\n"
+	="XXXXXXXXXX\n"
 	
 	//TODO EDIT EXCEPTION TYPE TO CUSTOM EXCEPTION
 	private void setTiles(Tile[][] tiles) throws Exception {
