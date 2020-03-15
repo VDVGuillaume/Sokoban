@@ -1,5 +1,6 @@
 package domein;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import exceptions.PasswordException;
@@ -12,8 +13,8 @@ import ui.Menu;
 public class DomainController {
 	
 	private UserRepository userRepository;
-	private GameBoardRepository gameBoardRepository;
-	private GameChoices[] gamesList;
+	private GameRepository gameRepository;
+	private List<Game> gamesList;
 	private User selectedUser;
 
 	private ResourceBundle messages;
@@ -24,8 +25,7 @@ public class DomainController {
 				
 				messages = ResourceBundle.getBundle("resources/MessagesBundle", Locale.getDefault(Locale.Category.DISPLAY));
 				this.userRepository = new UserRepository();
-				this.gameBoardRepository = new GameBoardRepository();
-				this.gamesList = GameChoices.values();
+				this.gameRepository = new GameRepository();
 	}
 	
 
@@ -62,18 +62,28 @@ If correct, it displays the menu. */
 		}		
 	}
 
-	public GameChoices[] getGamesList()
+	public List<String> getGamesList()
 	{
-		return gamesList;
-	}
-	
-	public Game chooseGame(GameChoices gameChoice) throws Exception 
-	{
-		if(gameChoice == GameChoices.Level1) {
-			var gameBoards = gameBoardRepository.getGameBoards(gameChoice);
-			return new Game(gameBoards);
+		this.gamesList = gameRepository.getGames();
+		var names = new ArrayList<String>();
+		
+		for(Game game : gamesList){
+			names.add(game.getName());
 		}
 		
-		throw new Exception("not implemented");
+		return names;
 	}
+	
+	public Game chooseGame(String gameName) throws Exception 
+	{
+		for(Game game: gamesList) 
+		{
+			if(game.getName() == gameName) 
+			{
+				return game;
+			}
+		}
+		
+		throw new Exception("game not found");
+	}		
 }

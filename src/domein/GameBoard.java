@@ -23,7 +23,7 @@ public class GameBoard
 	+"XXXXXX XXX\n"
 	+"XXXXXX XXX\n"
 	+"XXXXXX.XXX\n"
-	="XXXXXXXXXX\n"
+	+ "XXXXXXXXXX\n";
 	
 	//TODO EDIT EXCEPTION TYPE TO CUSTOM EXCEPTION
 	private void setTiles(Tile[][] tiles) throws Exception {

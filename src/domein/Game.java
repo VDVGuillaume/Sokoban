@@ -4,13 +4,23 @@ import java.util.List;
 
 public class Game {
 	private List<GameBoard> gameBoards;
+	private String name;
 	
-	public Game(List<GameBoard> gameBoards) {
+	public Game(List<GameBoard> gameBoards, String name) {
 		setGameBoards(gameBoards);
 	}
 	
 	private void setGameBoards(List<GameBoard> gameBoards) {
 		this.gameBoards = gameBoards;
+	}
+	
+	private void setName(String name) 
+	{
+		this.name = name;
+	}
+	
+	public String getName() {
+		return this.name;
 	}
 	
 	public List<GameBoard> getGameBoards() {
