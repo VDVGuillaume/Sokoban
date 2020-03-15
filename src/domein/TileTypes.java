@@ -4,6 +4,6 @@ public enum TileTypes {
 	None,
 	Wall,
 	Goal,
-	Character,
-	Chest	
+	Pawn,
+	Box	
 }

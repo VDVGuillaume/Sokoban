@@ -6,12 +6,13 @@ public class GameBoard
 {
 	private Tile[][] tiles;
 	private boolean completed;
-	private ArrayList<Wall> walls;// represented by 'X'
-	private ArrayList<Goal> goals;// represented by '.' (dot)
-	private ArrayList<Box> boxs;// represented by 'B'
-	private ArrayList<Field> fields;// empty field represented by ' ' (space)
-	private Pawn pawn;//represented by P
-	private int levelNr;
+	//private ArrayList<Wall> walls;// represented by 'X'
+	//private ArrayList<Goal> goals;// represented by '.' (dot)
+	//private ArrayList<Box> boxs;// represented by 'B'
+	//private ArrayList<Field> fields;// empty field represented by ' ' (space)
+	//private Pawn pawn;//represented by P
+	private int gameBoardId;
+	
 
 	private String level
 	="XXXXXXXXXX\n"
@@ -25,6 +26,7 @@ public class GameBoard
 	+"XXXXXX.XXX\n"
 	+ "XXXXXXXXXX\n";
 	
+	
 	//TODO EDIT EXCEPTION TYPE TO CUSTOM EXCEPTION
 	private void setTiles(Tile[][] tiles) throws Exception 
 	{
@@ -33,9 +35,9 @@ public class GameBoard
 			throw new Exception("Dimensions of gameboard has to be 10x10");
 		}
 		
-		int characterCount = 0;
+		int pawnCount = 0;
 		int goalCount = 0;
-		int chestCount = 0;
+		int boxCount = 0;
 		
 		for(Tile[] tileRow : tiles) 
 		{
@@ -44,25 +46,25 @@ public class GameBoard
 				TileTypes tileType = tile.getTileType();
 				switch(tileType) 
 				{
-				case Character:
-					characterCount++;
+				case Pawn:
+					pawnCount++;
 					break;
 				case Goal:
 					goalCount ++;
 					break;
-				case Chest:
-					chestCount++;
+				case Box:
+					boxCount++;
 					break;
 				}
 			}
 		}
 		
-		if(characterCount != 1) 
+		if(pawnCount != 1) 
 		{
 			throw new Exception("Only one character is allowed on a gameboard");
 		}
 		
-		if(goalCount != chestCount) 
+		if(goalCount != boxCount) 
 		{
 			throw new Exception("amount of goals has to be equal to amount of chests");
 		}
@@ -82,5 +84,13 @@ public class GameBoard
 	
 	public boolean getCompleted(boolean completed) {
 		return completed;
+	}
+	
+	private void setgameBoardId(int gameBoardId) {
+		this.gameBoardId=gameBoardId;
+	}
+	
+	public int getgameBoardId() {
+		return gameBoardId;
 	}
 }

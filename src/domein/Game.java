@@ -6,6 +6,10 @@ public class Game {
 	private List<GameBoard> gameBoards;
 	private String name;
 	
+	public Game(String name) {
+		this.name=name;
+	}
+	
 	public Game(List<GameBoard> gameBoards, String name) {
 		setGameBoards(gameBoards);
 	}
