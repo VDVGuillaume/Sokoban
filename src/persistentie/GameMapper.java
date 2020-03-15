@@ -8,6 +8,7 @@ public class GameMapper extends BaseMapper
 {
 	public List<Game> getGames()
 	{
+		return null;
 		//TODO
 	}
 }

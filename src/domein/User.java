@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 import exceptions.PasswordException;
 import exceptions.UsernameException;
 import util.Language;
+import util.Security;
 
 public class User {
 
@@ -13,6 +14,9 @@ public class User {
 	private String password;
 	private String name;
 	private String firstName;
+
+	private String passwordHashed;
+	private String salt; 
 
 	public boolean getAdmin() {
 		return admin;
@@ -64,13 +68,50 @@ public class User {
 		this.firstName = firstName;
 	}
 	
+	private void setSalt(String salt) 
+	{
+		this.salt = salt;
+	}
+	
+	private void setPasswordHashed(String passwordHashed) 
+	{
+		this.passwordHashed = passwordHashed;
+	}
+	
+	public String getSalt() 
+	{
+		return this.salt;
+	}
+	
+	public String getPasswordHashed() 
+	{
+		return this.passwordHashed;
+	}
+	
 	/* UC2 */
 	public User(String username, String password, boolean admin, String name, String firstName) 
 	{
 		setUsername(username);
 		setPassword(password);
 		setAdmin(admin);
+		setName(name);	
+		setFirstName(firstName);
+		
+		String salt = Security.getNextSalt();
+		String passwordHashed = Security.hash(password, salt);
+		
+		setSalt(salt);
+		setPasswordHashed(passwordHashed);
+	}
+	
+	public User(String username, boolean admin, String name, String firstName, String passwordHashed, String salt) 
+	{
+		setUsername(username);
+		setAdmin(admin);
 		setName(name);
-		setFirstName(firstName);		
+		setFirstName(firstName);
+		
+		setSalt(salt);
+		setPasswordHashed(passwordHashed);
 	}
 }

@@ -7,9 +7,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
 
+import domein.User;
+
 public class UserMapper extends BaseMapper 
 {	
-	public void createUser(DbUser user) 
+	public void createUser(User user) 
 	{
 		PreparedStatement stmt = null;
 		Connection conn = null;
@@ -23,7 +25,7 @@ public class UserMapper extends BaseMapper
 			stmt.setString(1, user.getUsername());
 			stmt.setString(2, user.getPasswordHashed());
 			stmt.setString(3, user.getSalt());
-			stmt.setBoolean(4, user.getIsAdmin());
+			stmt.setBoolean(4, user.getAdmin());
 			stmt.setString(5, user.getName()); //UC2 : Added new attribute
 			stmt.setString(6, user.getFirstName()); //UC2 : Added new attribute
 			
@@ -55,11 +57,11 @@ public class UserMapper extends BaseMapper
 		}
 	}
 	
-	public DbUser getUser(String username) 
+	public User getUser(String username) 
 	{
 		PreparedStatement stmt = null;
 		Connection conn = null;
-		final String sql = "SELECT password_hashed, salt, is_admin, name, firstname FROM USER WHERE username = ?";
+		final String sql = "SELECT is_admin, name, firstname, password_hashed, salt FROM USER WHERE username = ?";
 		
 		try 
 		{
@@ -71,8 +73,8 @@ public class UserMapper extends BaseMapper
 			ResultSet rs = stmt.executeQuery();
 			
 			if(rs.next()) 
-			{
-				return new DbUser(username, rs.getString(1), rs.getString(2), rs.getBoolean(3), rs.getString(4), rs.getString(5)); //updated in UC2 to match added attributes in user
+			{	
+				return new User(username, rs.getBoolean(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)); //updated in UC2 to match added attributes in user
 			}
 		} catch (SQLException e) 
 		{

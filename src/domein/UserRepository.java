@@ -1,7 +1,5 @@
 package domein;
 
-import exceptions.PasswordException;
-import persistentie.DbUser;
 import persistentie.UserMapper;
 import util.Security;
 
@@ -14,8 +12,8 @@ public class UserRepository
 	}
 	
 	public boolean userExists(String username) {
-		DbUser dbUser = userMapper.getUser(username);
-		if (dbUser == null)
+		User user = userMapper.getUser(username);
+		if (user == null)
 		{
 			return false;
 		}
@@ -26,31 +24,26 @@ public class UserRepository
 	}
 	
 	public void createUser(User user) // added name, firstName in UC2
-	{	
-		String salt = Security.getNextSalt();
-		String passwordHashed = Security.hash(user.getPassword(), salt.getBytes());
-		
-		DbUser dbUser = new DbUser(user.getUsername(), passwordHashed, salt, user.getAdmin(), user.getName(), user.getFirstName()); 
-		
-		userMapper.createUser(dbUser);
+	{
+		userMapper.createUser(user);
 	}
 	
 	public User login(String username, String password) 
 	{
 		//get user in db
-		DbUser dbUser = userMapper.getUser(username);
+		User user = userMapper.getUser(username);
 		
-		if(dbUser == null) 
+		if(user == null) 
 		{
 			return null;
 		}
 		
-		String salt = dbUser.getSalt();
+		String salt = user.getSalt();
 		String passwordHashed = Security.hash(password, salt.getBytes());
 		
-		if(passwordHashed.equals(dbUser.getPasswordHashed())) 
+		if(passwordHashed.equals(user.getPasswordHashed())) 
 		{
-			return new User(username, password, dbUser.getIsAdmin(), dbUser.getName(), dbUser.getFirstName());
+			return new User(username, password, user.getAdmin(), user.getName(), user.getFirstName());
 		}
 		
 		return null;
