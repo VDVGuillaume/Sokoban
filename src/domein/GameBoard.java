@@ -26,17 +26,48 @@ public class GameBoard
 	+ "XXXXXXXXXX\n";
 	
 	//TODO EDIT EXCEPTION TYPE TO CUSTOM EXCEPTION
-	private void setTiles(Tile[][] tiles) throws Exception {
+	private void setTiles(Tile[][] tiles) throws Exception 
+	{
 		if(tiles.length != 10 || tiles[0].length != 10) 
 		{
 			throw new Exception("Dimensions of gameboard has to be 10x10");
 		}
 		
-		//TODO VALIDATE IF THERE IS ONLY ONE CHARACTER IN CELLS
+		int characterCount = 0;
+		int goalCount = 0;
+		int chestCount = 0;
 		
-		//TODO VALIDATE IF ALL FIELDS ARE ACCESSIBLE IN CELLS
+		for(Tile[] tileRow : tiles) 
+		{
+			for(Tile tile : tileRow) 
+			{
+				TileTypes tileType = tile.getTileType();
+				switch(tileType) 
+				{
+				case Character:
+					characterCount++;
+					break;
+				case Goal:
+					goalCount ++;
+					break;
+				case Chest:
+					chestCount++;
+					break;
+				}
+			}
+		}
 		
-		//TODO VALIDATE IF AMOUNT OF GOALS == AMOUNT OF CHESTS IN CELLS  
+		if(characterCount != 1) 
+		{
+			throw new Exception("Only one character is allowed on a gameboard");
+		}
+		
+		if(goalCount != chestCount) 
+		{
+			throw new Exception("amount of goals has to be equal to amount of chests");
+		}
+		
+		//TODO VALIDATE IF ALL FIELDS ARE ACCESSIBLE IN CELLS  
 		
 		this.tiles = tiles;
 	}

@@ -12,7 +12,7 @@ public class Tile
 		this.tileType = tileType;
 	}
 	
-	private TileTypes getTileType() {
+	public TileTypes getTileType() {
 		return tileType;
 	}
 }

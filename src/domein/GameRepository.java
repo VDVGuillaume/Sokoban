@@ -2,9 +2,19 @@ package domein;
 
 import java.util.List;
 
-public class GameRepository {
-	public List<Game> getGames(){
-		//TODO mock some test data for the meantime
-		return null;
+import persistentie.GameMapper;
+
+public class GameRepository 
+{
+	private GameMapper mapper;
+	
+	public GameRepository() 
+	{
+		mapper = new GameMapper();
+	}
+	
+	public List<Game> getGames()
+	{
+		return mapper.getGames();
 	}
 }
