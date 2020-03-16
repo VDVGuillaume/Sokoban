@@ -12,6 +12,8 @@ public class GameBoardRepository {
 	
 	public List<GameBoard> getGameBoards()
 	{
-		return mapper.getGameBoards();
+		//TODO still necessary?
+		return null;
+		//return mapper.getGameBoards();
 	}
 }

@@ -4,44 +4,37 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
-import domein.Game;
-import domein.GameBoard;
-import domein.User;
+import domein.Tile;
+import domein.TileTypes;
 
-public class GameBoardMapper extends BaseMapper {
-	
-	private TileMapper tileMapper;
-	
-	public GameBoardMapper() 
+public class TileMapper extends BaseMapper 
+{
+	public Tile[][] getTiles(int gameBoardId)
 	{
-		tileMapper = new TileMapper();
-	}
-	
-	public List<GameBoard> getGameBoards(int gameId)
-	{
-		List<GameBoard> gameBoards = new ArrayList<GameBoard>();
+		Tile[][] tiles = new Tile[10][10];
+		
 		PreparedStatement stmt = null;
 		Connection conn = null;
-		final String sql = "select id from GAMEBOARD where game_id = ?";
+		final String sql = "select row_index, column_index, type from TILE where gameboard_id = ? order by row_index, column_index;";
 		
 		try 
 		{
 			conn = createConnection(); 
 			stmt = conn.prepareStatement(sql);
 			
-			stmt.setInt(1, gameId);
+			stmt.setInt(1, gameBoardId);
 			
 			ResultSet rs = stmt.executeQuery();
 			
 			while(rs.next()) 
 			{	
-				var gameBoardId = rs.getInt(1);
-				var tiles = tileMapper.getTiles(gameBoardId);
-				gameBoards.add(new GameBoard(tiles));
-			}
+				var rowIndex = rs.getInt(1);
+				var columnIndex = rs.getInt(2);
+				TileTypes type = TileTypes.valueOf(rs.getString(3));
+				
+				tiles[rowIndex][columnIndex] = new Tile(type);
+			}		
 		} catch (SQLException e) 
 		{
 			// java...
@@ -67,6 +60,6 @@ public class GameBoardMapper extends BaseMapper {
 			}
 		}
 		
-		return gameBoards;	
-	}		
+		return tiles;
+	}
 }

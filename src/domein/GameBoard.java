@@ -26,6 +26,15 @@ public class GameBoard
 	+"XXXXXX.XXX\n"
 	+ "XXXXXXXXXX\n";
 	
+	public GameBoard(Tile[][] tiles) 
+	{
+		try {
+			setTiles(tiles);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	
 	//TODO EDIT EXCEPTION TYPE TO CUSTOM EXCEPTION
 	private void setTiles(Tile[][] tiles) throws Exception 

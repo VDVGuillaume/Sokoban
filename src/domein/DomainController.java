@@ -26,8 +26,9 @@ public class DomainController {
 				messages = ResourceBundle.getBundle("resources/MessagesBundle", Locale.getDefault(Locale.Category.DISPLAY));
 				this.userRepository = new UserRepository();
 				this.gameRepository = new GameRepository();
+				
+				this.gamesList = gameRepository.getGames();
 	}
-	
 
 	/** UC1 logIn 
 login checks the entered data against those in the database. 
@@ -70,7 +71,6 @@ If correct, it displays the menu. */
 
 	public List<String> getGamesList()
 	{
-		this.gamesList = gameRepository.getGames();
 		var names = new ArrayList<String>();
 		
 		for(Game game : gamesList){
