@@ -39,12 +39,24 @@ public class Game {
 		return -1;
 	}
 	
-	public GameBoard getNextGameBoard() {
-		//TODO
+	public GameBoard getNextGameBoard() 
+	{
+		for(GameBoard gameBoard : gameBoards) 
+		{
+			if(gameBoard.getCompleted()) 
+			{
+				continue;
+			}else 
+			{
+				return gameBoard;
+			}
+		}
+		
 		return null;
 	}
 	
-	public void completeGameBoard(GameBoard gameBoard) {
+	public void completeGameBoard(GameBoard gameBoard) 
+	{
 		gameBoard.setCompleted(true);
 	}
 }

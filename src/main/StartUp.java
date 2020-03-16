@@ -9,6 +9,7 @@ import java.util.ResourceBundle;
 import domein.DomainController;
 import ui.UC1Applicatie;
 import ui.UC2Applicatie;
+import ui.UC4Applicatie;
 
 public class StartUp {
 	public static void main(String[] args) {
@@ -44,6 +45,8 @@ public class StartUp {
 		System.out.println(messages.getString("StartUp_LogIn"));
 		System.out.println(messages.getString("StartUp_Register"));
 		
+		System.out.println("4. test UC4");
+
 		userSelection = input.nextInt();
 		switch (userSelection) { /*Added selection menu in UC2*/
 		case 1:
@@ -53,6 +56,10 @@ public class StartUp {
 		case 2:
 			UC2Applicatie app2 = new UC2Applicatie(domeincontroller);
 			app2.UI();			
+			break;
+		case 4:
+			UC4Applicatie app4 = new UC4Applicatie(domeincontroller);
+			app4.UI();
 			break;
 		}
 	}

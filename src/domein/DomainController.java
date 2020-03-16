@@ -84,7 +84,7 @@ If correct, it displays the menu. */
 	{
 		for(Game game: gamesList) 
 		{
-			if(game.getName() == gameName) 
+			if(game.getName().equals(gameName)) 
 			{
 				return game;
 			}

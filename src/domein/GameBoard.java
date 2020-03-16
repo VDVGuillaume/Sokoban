@@ -91,7 +91,7 @@ public class GameBoard
 		this.completed = completed;
 	}
 	
-	public boolean getCompleted(boolean completed) {
+	public boolean getCompleted() {
 		return completed;
 	}
 	
