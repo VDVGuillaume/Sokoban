@@ -15,4 +15,3 @@ public class GameBoardRepository {
 		return mapper.getGameBoards();
 	}
 }
-}
