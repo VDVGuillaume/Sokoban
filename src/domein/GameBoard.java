@@ -83,7 +83,7 @@ public class GameBoard
 		this.tiles = tiles;
 	}
 	
-	private Tile[][] getTiles(){
+	public Tile[][] getTiles(){
 		return tiles;
 	}
 	
