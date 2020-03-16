@@ -30,6 +30,9 @@ public class UiGameBoard
 	public void drawConsole() 
 	{
 		int rowIndex = 0;
+		
+		StringBuilder sb = new StringBuilder();
+		
 		for(Tile[] tileRow : gameBoard.getTiles()) 
 		{
 			int columnIndex = 0;
@@ -65,22 +68,26 @@ public class UiGameBoard
 					break;
 				}
 				
-				System.out.print(String.format("%c[%d;%df",outputString,rowIndex,columnIndex));
+				sb.append(outputString);
+				//TODO investigate how to create a fixed canvas on a cmd window
+				//System.out.print(String.format("%s[%d;%df",outputString,rowIndex,columnIndex));
 				columnIndex++;
 			}
+			sb.append("\n");
 			rowIndex++;
 		}
+		
+		System.out.println(sb.toString());
 	}
 	
 	private boolean checkWallCollision(Tile[][] tiles, int rowIndex, int columnIndex) 
 	{
-		
-		for(int i = rowIndex -1; i <= rowIndex + 1; rowIndex++) 
+		for(int i = rowIndex -1; i <= rowIndex + 1; i++) 
 		{
-			for(int j = columnIndex - 1; i <= columnIndex + 1;columnIndex++) 
+			for(int j = columnIndex - 1; j <= columnIndex + 1;j++) 
 			{
 				//skip not accessible spaces
-				if(rowIndex < 0 || columnIndex < 0 || rowIndex > 9 || columnIndex > 9) 
+				if(i < 0 || j < 0 || i > 9 || j > 9) 
 				{
 					continue;
 				}

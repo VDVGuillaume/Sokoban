@@ -14,7 +14,7 @@ public class UC4Applicatie
 	}
 	
 	public void UI() 
-	{
+	{	
 		try 
 		{
 			GameBoard gameBoard = domainController.chooseGame("test_dbol").getNextGameBoard();
