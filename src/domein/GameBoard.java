@@ -113,8 +113,73 @@ public class GameBoard
 		return gameBoardId;
 	}
 	
-	private void move() 
+	
+	public void moveLeft() 
 	{
-		// TODO UC4
+		//TODO UC4
+	}
+	
+	public void moveRight() 
+	{
+		//TODO UC4
+	}
+	
+	public void moveUp() 
+	{
+		//TODO UC4
+	}
+	
+	public void moveDown() 
+	{
+		//TODO UC4
+	}
+	
+	private void move(GameBoardMoves move) 
+	{
+		int rowIndexPawn = pawn.getRowIndex();
+		int columnIndexPawn = pawn.getColumnIndex();
+		
+		switch(move) 
+		{
+			case Left:
+				break;
+			case Right:
+				break;
+			case Down:
+				break;
+			case Up:
+				break;
+		}
+	}
+	
+	private Tile getTile(int rowIndex, int columnIndex) 
+	{
+		if(rowIndex < 0 || columnIndex < 0 || rowIndex > 9 || columnIndex > 9) 
+		{
+			return null;
+		}
+		
+		return tiles[rowIndex][columnIndex];
+	}
+	
+	private boolean validateMove(Tile moveLocation, Tile moveLocationExtended) 
+	{
+		if(moveLocation == null || moveLocation.getTileType() == TileTypes.Wall) 
+		{
+			return false;
+		}
+		
+		if(moveLocation.getTileType() == TileTypes.Box &&
+					(
+						moveLocationExtended == null || 
+						moveLocationExtended.getTileType() == TileTypes.Wall || 
+						moveLocationExtended.getTileType() == TileTypes.Box
+					)
+				) 
+		{
+			return false;
+		}
+		
+		return true;
 	}
 }
