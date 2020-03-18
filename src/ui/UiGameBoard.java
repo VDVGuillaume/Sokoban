@@ -17,12 +17,12 @@ public class UiGameBoard
 	
 	public UiGameBoard(GameBoard gameBoard) 
 	{
-		wallNoBorder = "/";
-		wallBorder = "X";
-		goal = ".";
-		box = "B";
-		none = " ";
-		pawn = "P";
+		wallNoBorder = "/ ";
+		wallBorder = "X ";
+		goal = ". ";
+		box = "B ";
+		none = "  ";
+		pawn = "P ";
 		
 		this.gameBoard = gameBoard;
 	}
