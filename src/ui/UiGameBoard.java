@@ -8,8 +8,8 @@ public class UiGameBoard
 {
 	private GameBoard gameBoard;
 	
-	private String wallNoCollision;
-	private String wallCollision;
+	private String wallNoBorder;
+	private String wallBorder;
 	private String none;
 	private String box;
 	private String goal;
@@ -17,8 +17,8 @@ public class UiGameBoard
 	
 	public UiGameBoard(GameBoard gameBoard) 
 	{
-		wallNoCollision = "/";
-		wallCollision = "X";
+		wallNoBorder = "/";
+		wallBorder = "X";
 		goal = ".";
 		box = "B";
 		none = " ";
@@ -46,11 +46,11 @@ public class UiGameBoard
 					boolean collision = checkWallCollision(gameBoard.getTiles(), rowIndex, columnIndex);
 					if(collision) 
 					{
-						outputString = wallCollision;
+						outputString = wallBorder;
 					}
 					else 
 					{
-						outputString = wallNoCollision;
+						outputString = wallNoBorder;
 					}
 					break;
 				case Goal:
@@ -96,8 +96,7 @@ public class UiGameBoard
 				if(tile.getTileType() != TileTypes.Wall) 
 				{
 					return true;
-				}
-				
+				}	
 			}
 		}
 		return false;
