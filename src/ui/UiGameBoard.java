@@ -56,15 +56,18 @@ public class UiGameBoard
 				case Goal:
 					outputString = goal;
 					break;
-				case Pawn:
-					outputString = pawn;
-					break;
 				case Box:
 					outputString = box;
 					break;
 				case None:
 				default:
-					outputString = none;
+					if(tile.getContainsPlayer()) 
+					{
+						outputString = pawn;
+					}else 
+					{
+						outputString = none;	
+					}
 					break;
 				}
 				

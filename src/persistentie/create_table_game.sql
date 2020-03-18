@@ -18,7 +18,8 @@ id	int not null primary key auto_increment,
 gameboard_id int not null,
 row_index	int not null,
 column_index int not null,
-type varchar(50) not null
+type varchar(50) not null,
+contains_player boolean not null
 );
 
 alter table TILE add foreign key(gameboard_id) references GAMEBOARD(id);

@@ -60,11 +60,15 @@ public class GameBoard
 			for(Tile tile : tileRow) 
 			{
 				TileTypes tileType = tile.getTileType();
+				
 				switch(tileType) 
 				{
-				case Pawn:
-					setPawn(tile, rowIndex, columnIndex);
-					pawnCount++;
+				case None:
+					if(tile.getContainsPlayer()) 
+					{
+						setPawn(tile, rowIndex, columnIndex);
+						pawnCount++;	
+					}
 					break;
 				case Goal:
 					goalCount ++;

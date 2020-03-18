@@ -16,7 +16,7 @@ public class TileMapper extends BaseMapper
 		
 		PreparedStatement stmt = null;
 		Connection conn = null;
-		final String sql = "select row_index, column_index, type from TILE where gameboard_id = ? order by row_index, column_index;";
+		final String sql = "select row_index, column_index, type, contains_player from TILE where gameboard_id = ? order by row_index, column_index;";
 		
 		try 
 		{
@@ -32,8 +32,9 @@ public class TileMapper extends BaseMapper
 				var rowIndex = rs.getInt(1);
 				var columnIndex = rs.getInt(2);
 				TileTypes type = TileTypes.valueOf(rs.getString(3));
+				var containsPlayer = rs.getBoolean(4);
 				
-				tiles[rowIndex][columnIndex] = new Tile(type);
+				tiles[rowIndex][columnIndex] = new Tile(type, containsPlayer);
 			}		
 		} catch (SQLException e) 
 		{
