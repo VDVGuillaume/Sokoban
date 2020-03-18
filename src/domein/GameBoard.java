@@ -10,7 +10,7 @@ public class GameBoard
 	//private ArrayList<Goal> goals;// represented by '.' (dot)
 	//private ArrayList<Box> boxs;// represented by 'B'
 	//private ArrayList<Field> fields;// empty field represented by ' ' (space)
-	//private Pawn pawn;//represented by P
+	private Pawn pawn;//represented by P
 	private int gameBoardId;
 	
 
@@ -36,7 +36,11 @@ public class GameBoard
 		}
 	}
 	
-	//TODO EDIT EXCEPTION TYPE TO CUSTOM EXCEPTION
+	private void setPawn(Tile tile, int rowIndex, int columnIndex) 
+	{
+		this.pawn = new Pawn(tile, rowIndex, columnIndex);
+	}
+	
 	private void setTiles(Tile[][] tiles) throws Exception 
 	{
 		if(tiles.length != 10 || tiles[0].length != 10) 
@@ -48,14 +52,18 @@ public class GameBoard
 		int goalCount = 0;
 		int boxCount = 0;
 		
+		int rowIndex = 0;
+		
 		for(Tile[] tileRow : tiles) 
 		{
+			int columnIndex = 0;
 			for(Tile tile : tileRow) 
 			{
 				TileTypes tileType = tile.getTileType();
 				switch(tileType) 
 				{
 				case Pawn:
+					setPawn(tile, rowIndex, columnIndex);
 					pawnCount++;
 					break;
 				case Goal:
@@ -65,7 +73,9 @@ public class GameBoard
 					boxCount++;
 					break;
 				}
+				columnIndex++;
 			}
+			rowIndex++;
 		}
 		
 		if(pawnCount != 1) 
@@ -101,5 +111,10 @@ public class GameBoard
 	
 	public int getgameBoardId() {
 		return gameBoardId;
+	}
+	
+	private void move() 
+	{
+		// TODO UC4
 	}
 }
