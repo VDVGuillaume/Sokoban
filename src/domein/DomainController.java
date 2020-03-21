@@ -54,6 +54,23 @@ If correct, it displays the menu. */
 		}
 	}
 	
+	
+	public String[] getInfoUser() {
+		
+		String[] userInfo = new String[2];
+		
+		userInfo[0] = selectedUser.getUsername();
+		if(selectedUser.getAdmin()) {
+			userInfo[1] = "True";
+		}else {
+			userInfo[1] = "False";
+		}
+		return userInfo;
+		
+	}
+	
+	
+	
 	/* UC2 */
 	public void register(String name, String firstName, String username, String password) throws Exception 
 	{	
