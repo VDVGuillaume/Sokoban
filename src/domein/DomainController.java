@@ -39,18 +39,20 @@ If correct, it displays the menu. */
 		 * Not sure but i assume that we use the method in the UserRepository
 		 * Something to look at, do we need to throw exceptions for this one?
 		 * Because i did not know what to do after successful login i now just for the example show a message*/
-		int userSelectionMenu;
-		User user = userRepository.login(username, password);
-		if(user != null) {
-			userSelectionMenu= Menu.menu(user.getAdmin());
+		
+		selectedUser = userRepository.login(username, password);
+		if(selectedUser == null) {
+			throw new PasswordException(ResourceBundle.getBundle("resources/MessagesBundle", Language.getLanguage()).getString("LoginFailed"));
 			
+		/*	
+		 * int userSelectionMenu;
+		 	userSelectionMenu= Menu.menu(user.getAdmin());
 			if(Integer.compare(userSelectionMenu,1)==0 &&  Boolean.compare(user.getAdmin(),false)==0) {
 				System.out.println("Choose one of the following games:");
-				getGamesList();
-				
-			}
+				getGamesList();}
+			*/					
 		}else {
-			throw new PasswordException(ResourceBundle.getBundle("resources/MessagesBundle", Language.getLanguage()).getString("LoginFailed"));
+			
 		}
 	}
 	

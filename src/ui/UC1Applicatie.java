@@ -30,9 +30,13 @@ public class UC1Applicatie {
 		password = input.nextLine();
 		
 		controller.logIn(username, password);
+		String[] info = controller.getInfoUser();
+		System.out.println("gebruikersnaam = " + info[0]);
+		Menu.menu(info[1]);
+
 		
 		}catch (Exception e) {
-			System.out.println(e.getMessage());		
+			e.printStackTrace();		
 			UI();		
 		}
 		finally {

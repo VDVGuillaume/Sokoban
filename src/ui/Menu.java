@@ -8,13 +8,13 @@ import util.Language;
 
 public class Menu {
 	
-	public static int menu(boolean admin) {
+	public static int menu(String admin) {
 		int selection;
 	    Scanner input = new Scanner(System.in);
 	    int menuItem = 0;
 	   
 	    System.out.println(++menuItem+ ResourceBundle.getBundle("resources/MessagesBundle", Language.getLanguage()).getString("Menu_PlayGame"));	
-	    if (admin) {
+	    if (admin == "True") {
 	    System.out.println(++menuItem+ ResourceBundle.getBundle("resources/MessagesBundle", Language.getLanguage()).getString("Menu_CreateNewGame"));
 	    System.out.println(++menuItem+ ResourceBundle.getBundle("resources/MessagesBundle", Language.getLanguage()).getString("Menu_EditGame"));
 	    }
