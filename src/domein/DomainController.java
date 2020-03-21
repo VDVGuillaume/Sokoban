@@ -54,6 +54,7 @@ If correct, it displays the menu. */
 		}
 	}
 	
+	/** UC1 getInfoUser string representation of admin and username value */
 	
 	public String[] getInfoUser() {
 		
