@@ -33,8 +33,7 @@ public class UC2Applicatie {
 				System.out.println(ResourceBundle.getBundle("resources/MessagesBundle", Locale.getDefault()).getString("GivePassword"));
 				password = input.nextLine();
 			
-				controller.register(name, firstName, username, password);
-				controller.logIn(username, password);
+				controller.register(name, firstName, username, password);				
 				
 				String[] info = controller.getInfoUser();
 				System.out.println("gebruikersnaam = " + info[0]);

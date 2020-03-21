@@ -86,6 +86,7 @@ If correct, it displays the menu. */
 		}else 
 		{
 				userRepository.createUser(user);
+				this.logIn(username, password);
 		}		
 	}
 
