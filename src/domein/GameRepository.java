@@ -13,8 +13,13 @@ public class GameRepository
 		mapper = new GameMapper();
 	}
 	
-	public List<Game> getGames()
+	public List<String> getGames()
 	{
 		return mapper.getGames();
+	}
+	
+	public Game getGame(String gameName) 
+	{
+		return mapper.getGame(gameName);
 	}
 }

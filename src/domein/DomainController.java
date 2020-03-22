@@ -14,8 +14,8 @@ public class DomainController {
 	
 	private UserRepository userRepository;
 	private GameRepository gameRepository;
-	private List<Game> gamesList;
 	private User selectedUser;
+	private Game selectedGame;
 	private Language language;
 	private ResourceBundle messages;
 	/** UC1 Constructor*/
@@ -26,7 +26,6 @@ public class DomainController {
 				language.setLanguage();
 				this.userRepository = new UserRepository();
 				this.gameRepository = new GameRepository();			
-				this.gamesList = gameRepository.getGames();
 	}
 
 	/** UC1 logIn 
@@ -92,25 +91,18 @@ If correct, it displays the menu. */
 	/*UC3*/
 	public List<String> getGamesList()
 	{
-		var names = new ArrayList<String>();
-		
-		for(Game game : gamesList){
-			names.add(game.getName());
-		}
-		
-		return names;
+		return gameRepository.getGames();
 	}
 	
 	public Game chooseGame(String gameName) throws Exception 
 	{
-		for(Game game: gamesList) 
-		{
-			if(game.getName().equals(gameName)) 
-			{
-				return game;
-			}
-		}
+		Game game = gameRepository.getGame(gameName);
 		
-		throw new Exception("game not found");
+		if(game == null) 
+		{
+			throw new Exception("game not found");	
+		}
+		//TODO edit this method to void, and use selectedGame for storing the selected game
+		return game;
 	}		
 }

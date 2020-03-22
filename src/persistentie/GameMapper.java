@@ -20,12 +20,12 @@ public class GameMapper extends BaseMapper
 		gameBoardMapper = new GameBoardMapper();
 	}
 	
-	public List<Game> getGames()
+	public List<String> getGames()
 	{
-		List<Game> games = new ArrayList<Game>();
+		List<String> games = new ArrayList<String>();
 		PreparedStatement stmt = null;
 		Connection conn = null;
-		final String sql = "select id, name from GAME order by id";
+		final String sql = "select name from GAME order by id";
 		
 		try 
 		{
@@ -36,14 +36,11 @@ public class GameMapper extends BaseMapper
 			
 			while(rs.next()) 
 			{	
-				var gameId = rs.getInt(1);
-				var gameName = rs.getString(2);
-				var gameBoards = gameBoardMapper.getGameBoards(gameId);
-				games.add(new Game(gameName, gameBoards));
+				var gameName = rs.getString(1);
+				games.add(gameName);
 			}
 		} catch (SQLException e) 
 		{
-			// java...
 			e.printStackTrace();
 		}finally 
 		{
@@ -52,7 +49,6 @@ public class GameMapper extends BaseMapper
 				if(stmt != null) stmt.close();
 			}catch(SQLException e) 
 			{
-				// java...
 				e.printStackTrace();
 			}
 			try 
@@ -61,12 +57,59 @@ public class GameMapper extends BaseMapper
 			}
 			catch(SQLException e) 
 			{
-				// java...
 				e.printStackTrace();
 			}
 		}
 		
 		return games;	
+	}
+	
+	
+	public Game getGame(String gameName)
+	{
+		PreparedStatement stmt = null;
+		Connection conn = null;
+		final String sql = "select id from GAME where name = ?";
+		Game game = null;
+		
+		try 
+		{
+			conn = createConnection(); 
+			stmt = conn.prepareStatement(sql);
+			
+			stmt.setString(1, gameName);
+						
+			ResultSet rs = stmt.executeQuery();
+			
+			if(rs.next()) 
+			{	
+				var gameId = rs.getInt(1);
+				var gameBoards = gameBoardMapper.getGameBoards(gameId);
+				game = new Game(gameName, gameBoards);
+			}
+		} catch (SQLException e) 
+		{
+			e.printStackTrace();
+		}finally 
+		{
+			try 
+			{
+				if(stmt != null) stmt.close();
+			}catch(SQLException e) 
+			{
+				e.printStackTrace();
+			}
+			try 
+			{
+				if(conn != null) conn.close();
+			}
+			catch(SQLException e) 
+			{
+				e.printStackTrace();
+			}
+		}
+		
+		return game;	
 	}
 	
 	public void createGame(Game game) 
