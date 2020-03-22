@@ -2,7 +2,6 @@ package domein;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import exceptions.PasswordException;
 import util.Language;
 import java.util.ResourceBundle;
@@ -10,23 +9,23 @@ import java.util.Locale;
 import persistentie.UserMapper;
 import ui.Menu;
 
+
 public class DomainController {
 	
 	private UserRepository userRepository;
 	private GameRepository gameRepository;
 	private List<Game> gamesList;
 	private User selectedUser;
-
+	private Language language;
 	private ResourceBundle messages;
 	/** UC1 Constructor*/
 	
 
 	public DomainController() {
-				
-				messages = ResourceBundle.getBundle("resources/MessagesBundle", Locale.getDefault(Locale.Category.DISPLAY));
+				language = new Language();
+				language.setLanguage();
 				this.userRepository = new UserRepository();
-				this.gameRepository = new GameRepository();
-				
+				this.gameRepository = new GameRepository();			
 				this.gamesList = gameRepository.getGames();
 	}
 
@@ -42,7 +41,7 @@ If correct, it displays the menu. */
 		
 		selectedUser = userRepository.login(username, password);
 		if(selectedUser == null) {
-			throw new PasswordException(ResourceBundle.getBundle("resources/MessagesBundle", Language.getLanguage()).getString("LoginFailed"));
+			throw new PasswordException(Language.translate("LoginFailed"));
 			
 		/*	
 		 * int userSelectionMenu;
@@ -82,7 +81,7 @@ If correct, it displays the menu. */
 		
 		if (userRepository.userExists(username)) 
 		{
-			throw new PasswordException(ResourceBundle.getBundle("resources/MessagesBundle", Language.getLanguage()).getString("UsernameAlreadyExists"));
+			throw new PasswordException(Language.translate("UsernameAlreadyExists"));
 		}else 
 		{
 				userRepository.createUser(user);

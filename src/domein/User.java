@@ -44,13 +44,13 @@ public class User {
 		if(password.matches(passwordRequirement)) {
 			this.password = password;
 		}else {
-			throw new PasswordException(ResourceBundle.getBundle("resources/MessagesBundle", Language.getLanguage()).getString("PasswordNotComplexityRequirements"));
+			throw new PasswordException(Language.translate("PasswordNotComplexityRequirements"));
 		}
 	}
 	
 	private void setUsername(String username){
 		if(username.length() < 8) {
-			throw new UsernameException(ResourceBundle.getBundle("resources/MessagesBundle", Language.getLanguage()).getString("PasswordValidationFailed"));
+			throw new UsernameException(Language.translate("PasswordValidationFailed"));
 		}
 		
 		this.username = username;

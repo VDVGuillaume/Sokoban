@@ -13,12 +13,12 @@ public class Menu {
 	    Scanner input = new Scanner(System.in);
 	    int menuItem = 0;
 	   
-	    System.out.println(++menuItem+ ResourceBundle.getBundle("resources/MessagesBundle", Language.getLanguage()).getString("Menu_PlayGame"));	
+	    System.out.println(++menuItem+ Language.translate("Menu_PlayGame"));	
 	    if (admin == "True") {
-	    System.out.println(++menuItem+ ResourceBundle.getBundle("resources/MessagesBundle", Language.getLanguage()).getString("Menu_CreateNewGame"));
-	    System.out.println(++menuItem+ ResourceBundle.getBundle("resources/MessagesBundle", Language.getLanguage()).getString("Menu_EditGame"));
+	    System.out.println(++menuItem+ Language.translate("Menu_CreateNewGame"));
+	    System.out.println(++menuItem+ Language.translate("Menu_EditGame"));
 	    }
-	    System.out.println(++menuItem+ ResourceBundle.getBundle("resources/MessagesBundle", Language.getLanguage()).getString("Menu_Quit"));
+	    System.out.println(++menuItem+ Language.translate("Menu_Quit"));
 	    
 	    selection = input.nextInt();
 	    return selection; 

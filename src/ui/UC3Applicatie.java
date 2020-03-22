@@ -7,7 +7,7 @@ import java.util.ResourceBundle;
 import java.util.Scanner;
 import domein.Game;
 import domein.GameBoard;
-
+import util.Language;
 import domein.DomainController;
 
 public class UC3Applicatie {
@@ -28,7 +28,7 @@ public class UC3Applicatie {
 		try {
 		List <String> names = new ArrayList<String>();
 		names= controller.getGamesList();
-		System.out.println(ResourceBundle.getBundle("resources/MessagesBundle", Locale.getDefault()).getString("GiveGameName"));
+		System.out.println(Language.translate("GiveGameName"));
 		for(int i=0; i<names.size();i++) {
 			String gamename =(i+1) + ". " + names.get(i);
 			System.out.println(gamename);	
@@ -37,10 +37,10 @@ public class UC3Applicatie {
 		game=controller.chooseGame(names.get(gameNumber-1));
 		
 		while(game.getAmountBoardsCompleted()<game.getAmountBoardsTotal()) {
-		System.out.println(ResourceBundle.getBundle("resources/MessagesBundle", Locale.getDefault()).getString("GiveGameboardAction"));
-		String option1 ="1." + ResourceBundle.getBundle("resources/MessagesBundle", Locale.getDefault()).getString("CompleteNextGameboard");
+		System.out.println(Language.translate("GiveGameboardAction"));
+		String option1 ="1." + Language.translate("CompleteNextGameboard");
 		System.out.println(option1);
-		String option2 ="2." + ResourceBundle.getBundle("resources/MessagesBundle", Locale.getDefault()).getString("QuitGame");
+		String option2 ="2." + Language.translate("QuitGame");
 		System.out.println(option2);
 		gameboardActionNumber=input.nextInt();
 		
@@ -55,7 +55,7 @@ public class UC3Applicatie {
 
 		}
 		
-		System.out.println(game.getAmountBoardsCompleted() + " " + ResourceBundle.getBundle("resources/MessagesBundle", Locale.getDefault()).getString("NumberGameboardsCompletedOutofTotal") + " " + game.getAmountBoardsTotal());
+		System.out.println(game.getAmountBoardsCompleted() + " " + Language.translate("NumberGameboardsCompletedOutofTotal") + " " + game.getAmountBoardsTotal());
 		}
 		}catch (Exception e) {
 			System.out.println(e.getMessage());

@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 import domein.DomainController;
 import domein.UserRepository;
 import exceptions.PasswordException;
+import util.Language;
 
 public class UC2Applicatie {
 	private DomainController controller;
@@ -24,13 +25,13 @@ public class UC2Applicatie {
 			
 			try {
 
-				System.out.println(ResourceBundle.getBundle("resources/MessagesBundle", Locale.getDefault()).getString("GiveName"));			
+				System.out.println(Language.translate("GiveName"));			
 				name = input.nextLine();				
-				System.out.println(ResourceBundle.getBundle("resources/MessagesBundle", Locale.getDefault()).getString("GiveFirstName"));
+				System.out.println(Language.translate("GiveFirstName"));
 				firstName = input.nextLine();
-				System.out.println(ResourceBundle.getBundle("resources/MessagesBundle", Locale.getDefault()).getString("GiveUsername"));
+				System.out.println(Language.translate("GiveUsername"));
 				username = input.nextLine();
-				System.out.println(ResourceBundle.getBundle("resources/MessagesBundle", Locale.getDefault()).getString("GivePassword"));
+				System.out.println(Language.translate("GivePassword"));
 				password = input.nextLine();
 			
 				controller.register(name, firstName, username, password);				

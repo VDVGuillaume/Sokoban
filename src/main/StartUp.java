@@ -15,36 +15,17 @@ import ui.UC4Applicatie;
 public class StartUp {
 	public static void main(String[] args) {
 		ResourceBundle messages;
+		String 	username;
+		String  password;
+		int userSelection;
+		
+		
+		
 		DomainController domeincontroller = new DomainController();
 		
 		Scanner input = new Scanner(System.in);
-		String 	username;
-		String  password;
-		// Selection language
-		System.out.println("Choose your language");
-		System.out.println("Enter 1 for English");
-		System.out.println("Enter 2 for Dutch");
-		System.out.println("Enter 3 for French");
-		int userSelection = input.nextInt();
-		switch(userSelection) {
-		case 1:
-			Language.setLanguage("en");
-			Locale.setDefault(Language.getLanguage());
-			break;
-		case 2:
-			Language.setLanguage("nl");
-			Locale.setDefault(Language.getLanguage());
-			break;
-		case 3:
-			Language.setLanguage("fr");
-			Locale.setDefault(Language.getLanguage());
-			break;
-		}
-		
-		System.out.println(Language.getLanguage());
-		messages = ResourceBundle.getBundle("resources/MessagesBundle", Language.getLanguage());
-		System.out.println(messages.getString("StartUp_LogIn"));
-		System.out.println(messages.getString("StartUp_Register"));
+		System.out.println(Language.translate("StartUp_LogIn"));
+		System.out.println(Language.translate("StartUp_Register"));
 		System.out.println("3. test UC3");
 		System.out.println("4. test UC4");
 
@@ -67,5 +48,6 @@ public class StartUp {
 			app4.UI();
 			break;
 		}
+		input.close();
 	}
 }
