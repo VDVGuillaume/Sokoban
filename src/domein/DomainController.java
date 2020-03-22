@@ -38,7 +38,7 @@ If correct, it displays the menu. */
 		
 		selectedUser = userRepository.login(username, password);
 		if(selectedUser == null) {
-			throw new PasswordException(Language.translate("LoginFailed"));
+			throw new PasswordException(translate("LoginFailed"));
 			
 		/*	
 		 * int userSelectionMenu;
@@ -78,7 +78,7 @@ If correct, it displays the menu. */
 		
 		if (userRepository.userExists(username)) 
 		{
-			throw new PasswordException(Language.translate("UsernameAlreadyExists"));
+			throw new PasswordException(translate("UsernameAlreadyExists"));
 		}else 
 		{
 				userRepository.createUser(user);
@@ -124,5 +124,10 @@ If correct, it displays the menu. */
 	{
 		Language language = new Language();
 		language.setLanguage(languageSelection);
+	}
+	
+	public String translate(String translationKey) 
+	{
+		return language.translate(translationKey);
 	}
 }

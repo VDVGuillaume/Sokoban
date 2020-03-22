@@ -6,8 +6,6 @@ import domein.TileTypes;
 
 public class UiGameBoard 
 {
-	private GameBoard gameBoard;
-	
 	private String wallNoBorder;
 	private String wallBorder;
 	private String none;
@@ -15,7 +13,7 @@ public class UiGameBoard
 	private String goal;
 	private String pawn;
 	
-	public UiGameBoard(GameBoard gameBoard) 
+	public UiGameBoard() 
 	{
 		wallNoBorder = "/ ";
 		wallBorder = "X ";
@@ -23,10 +21,10 @@ public class UiGameBoard
 		box = "B ";
 		none = "  ";
 		pawn = "P ";
-		
-		this.gameBoard = gameBoard;
 	}
 	
+	// TODO REWORK WITHOUT DOMAIN CLASSES
+	/*
 	public void drawConsole() 
 	{
 		int rowIndex = 0;
@@ -104,4 +102,5 @@ public class UiGameBoard
 		}
 		return false;
 	}
+	*/
 }

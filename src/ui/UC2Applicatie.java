@@ -26,13 +26,13 @@ public class UC2Applicatie {
 
 		try {
 
-			System.out.println(Language.translate("GiveName"));
+			System.out.println(controller.translate("GiveName"));
 			name = input.nextLine();
-			System.out.println(Language.translate("GiveFirstName"));
+			System.out.println(controller.translate("GiveFirstName"));
 			firstName = input.nextLine();
-			System.out.println(Language.translate("GiveUsername"));
+			System.out.println(controller.translate("GiveUsername"));
 			username = input.nextLine();
-			System.out.println(Language.translate("GivePassword"));
+			System.out.println(controller.translate("GivePassword"));
 			password = input.nextLine();
 
 			controller.register(name, firstName, username, password);
