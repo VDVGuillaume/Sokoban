@@ -7,8 +7,6 @@ import util.Language;
 import java.util.ResourceBundle;
 import java.util.Locale;
 import persistentie.UserMapper;
-import ui.Menu;
-
 
 public class DomainController {
 	
