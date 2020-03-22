@@ -94,7 +94,7 @@ If correct, it displays the menu. */
 		return gameRepository.getGames();
 	}
 	
-	public Game chooseGame(String gameName) throws Exception 
+	public void chooseGame(String gameName) throws Exception 
 	{
 		Game game = gameRepository.getGame(gameName);
 		
@@ -102,7 +102,7 @@ If correct, it displays the menu. */
 		{
 			throw new Exception("game not found");	
 		}
-		//TODO edit this method to void, and use selectedGame for storing the selected game
-		return game;
+		
+		selectedGame = game;
 	}		
 }

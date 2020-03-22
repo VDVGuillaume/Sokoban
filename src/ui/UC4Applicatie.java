@@ -17,10 +17,12 @@ public class UC4Applicatie
 	{	
 		try 
 		{
+			/*
 			GameBoard gameBoard = domainController.chooseGame("test_dbol").getNextGameBoard();
 			
 			UiGameBoard uiGameBoard = new UiGameBoard(gameBoard);
 			uiGameBoard.drawConsole();
+			*/
 		}
 		 catch (Exception e) 
 		{
