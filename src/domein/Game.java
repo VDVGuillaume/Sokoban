@@ -30,13 +30,19 @@ public class Game {
 	}	
 	
 	public int getAmountBoardsCompleted() {
-		//TODO
-		return -1;
+		int amountBoardsCompleted=0;
+		for(GameBoard gameBoard : gameBoards) 
+		{
+			if(gameBoard.getCompleted()) 
+			{
+				amountBoardsCompleted++;
+			}
+		}
+		return amountBoardsCompleted;
 	}
 	
 	public int getAmountBoardsTotal() {
-		//TODO
-		return -1;
+		return gameBoards.size();
 	}
 	
 	public GameBoard getNextGameBoard() 

@@ -36,6 +36,7 @@ public class UC3Applicatie {
 		gameNumber=input.nextInt();
 		game=controller.chooseGame(names.get(gameNumber-1));
 		
+		while(game.getAmountBoardsCompleted()<game.getAmountBoardsTotal()) {
 		System.out.println(ResourceBundle.getBundle("resources/MessagesBundle", Locale.getDefault()).getString("GiveGameboardAction"));
 		String option1 ="1." + ResourceBundle.getBundle("resources/MessagesBundle", Locale.getDefault()).getString("CompleteNextGameboard");
 		System.out.println(option1);
@@ -51,9 +52,11 @@ public class UC3Applicatie {
 		case 2:
 		System.exit(0);
 		break;
+
 		}
 		
 		System.out.println(game.getAmountBoardsCompleted() + " " + ResourceBundle.getBundle("resources/MessagesBundle", Locale.getDefault()).getString("NumberGameboardsCompletedOutofTotal") + " " + game.getAmountBoardsTotal());
+		}
 		}catch (Exception e) {
 			System.out.println(e.getMessage());
 			UI();
