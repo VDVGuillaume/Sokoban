@@ -104,4 +104,20 @@ If correct, it displays the menu. */
 		
 		selectedGame = game;
 	}		
+	
+	public void leaveGame() 
+	{
+		// TODO
+	}
+	
+	public String getSelectedGameInfo() 
+	{
+		// TODO get info from selectedGame 
+		return null;
+	}
+	
+	public void completeGameBoard() 
+	{
+		// TODO complete game board
+	}
 }
