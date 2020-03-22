@@ -7,7 +7,6 @@ import util.Language;
 import java.util.ResourceBundle;
 import java.util.Locale;
 import persistentie.UserMapper;
-import ui.Menu;
 
 
 public class DomainController {
@@ -22,7 +21,7 @@ public class DomainController {
 	
 
 	public DomainController() {
-				language.getLanguage();
+				
 				this.userRepository = new UserRepository();
 				this.gameRepository = new GameRepository();			
 	}
@@ -119,5 +118,11 @@ If correct, it displays the menu. */
 	public void completeGameBoard() 
 	{
 		// TODO complete game board
+	}
+	
+	public void setLanguage(int languageSelection)
+	{
+		Language language = new Language();
+		language.setLanguage(languageSelection);
 	}
 }

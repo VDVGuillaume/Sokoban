@@ -5,7 +5,7 @@ import java.util.ResourceBundle;
 import java.util.Scanner;
 
 public class Language {
-	String language;
+	static String language;
 	static ResourceBundle bundle;
 	
 	public void setLanguage() {
@@ -35,7 +35,7 @@ public class Language {
 	}
 	}
 	
-	public String getLanguage() {
+	public static String getLanguage() {
 		return language;	
 	}
 		

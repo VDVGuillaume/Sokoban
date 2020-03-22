@@ -18,14 +18,20 @@ public class StartUp {
 		String username;
 		String password;
 		int userSelection;
+		int selection;
 		Language language;
-
-		language = new Language();
-		language.setLanguage();
-
-		DomainController domeincontroller = new DomainController();
-
+		
 		Scanner input = new Scanner(System.in);
+		System.out.println("Choose your language");
+		System.out.println("Enter 1 for English");
+		System.out.println("Enter 2 for Dutch");
+		System.out.println("Enter 3 for French");
+		int languageSelection = input.nextInt();
+	
+		DomainController domeincontroller = new DomainController();
+		domeincontroller.setLanguage(languageSelection);
+		
+		
 		System.out.println(Language.translate("StartUp_LogIn"));
 		System.out.println(Language.translate("StartUp_Register"));
 
@@ -51,7 +57,7 @@ public class StartUp {
 		}
 		System.out.println(++menuItem + Language.translate("Menu_Quit"));
 
-		int selection = input.nextInt();
+		selection = input.nextInt();
 
 		switch (selection) {
 		case 1:
@@ -60,6 +66,7 @@ public class StartUp {
 			break;
 		}
 
-		input.close();
+		input.close();	
 	}
+	
 }
