@@ -90,6 +90,7 @@ If correct, it displays the menu. */
 		}		
 	}
 
+	/*UC3*/
 	public List<String> getGamesList()
 	{
 		var names = new ArrayList<String>();
