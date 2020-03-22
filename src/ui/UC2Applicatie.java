@@ -11,42 +11,41 @@ import util.Language;
 
 public class UC2Applicatie {
 	private DomainController controller;
-		
-		public UC2Applicatie(DomainController controller) {
-			this.controller = controller;
-		}
-		
-		public void UI() {	
+
+	public UC2Applicatie(DomainController controller) {
+		this.controller = controller;
+	}
+
+	public String[] UI() {
 		Scanner input = new Scanner(System.in);
-		String 	username;
-		String  password;
-		String 	firstName;
-		String 	name;
-			
-			try {
+		String username;
+		String password;
+		String firstName;
+		String name;
+		String[] info = new String[0];
 
-				System.out.println(Language.translate("GiveName"));			
-				name = input.nextLine();				
-				System.out.println(Language.translate("GiveFirstName"));
-				firstName = input.nextLine();
-				System.out.println(Language.translate("GiveUsername"));
-				username = input.nextLine();
-				System.out.println(Language.translate("GivePassword"));
-				password = input.nextLine();
-			
-				controller.register(name, firstName, username, password);				
-				
-				String[] info = controller.getInfoUser();
-				System.out.println("gebruikersnaam = " + info[0]);
-				Menu.menu(info[1]);
+		try {
 
-			
-			}catch (Exception e) {
-				System.out.println(e.getMessage());
-				UI();
-			}
-			finally {
-				input.close();
-			}
+			System.out.println(Language.translate("GiveName"));
+			name = input.nextLine();
+			System.out.println(Language.translate("GiveFirstName"));
+			firstName = input.nextLine();
+			System.out.println(Language.translate("GiveUsername"));
+			username = input.nextLine();
+			System.out.println(Language.translate("GivePassword"));
+			password = input.nextLine();
+
+			controller.register(name, firstName, username, password);
+
+			info = controller.getInfoUser();
+			System.out.println("gebruikersnaam = " + info[0]);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			UI();
+		} finally {
+			input.close();
 		}
+
+		return info;
+	}
 }
