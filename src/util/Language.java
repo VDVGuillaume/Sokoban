@@ -30,12 +30,12 @@ public class Language {
 	}
 	}
 	
-	public static String getLanguage() {
+	public String getLanguage() {
 		return language;	
 	}
 		
 	
-	public static String translate(String word) {
+	public String translate(String word) {
 	String msg = bundle.getString(word);
 	return msg;
 	}

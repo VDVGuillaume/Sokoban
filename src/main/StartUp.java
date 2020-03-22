@@ -32,8 +32,8 @@ public class StartUp {
 		domeincontroller.setLanguage(languageSelection);
 		
 		
-		System.out.println(Language.translate("StartUp_LogIn"));
-		System.out.println(Language.translate("StartUp_Register"));
+		System.out.println(domeincontroller.translate("StartUp_LogIn"));
+		System.out.println(domeincontroller.translate("StartUp_Register"));
 
 		userSelection = input.nextInt();
 		String[] userInfo = new String[2];
@@ -50,12 +50,12 @@ public class StartUp {
 		}
 
 		int menuItem = 0;
-		System.out.println(++menuItem + Language.translate("Menu_PlayGame"));
+		System.out.println(++menuItem + domeincontroller.translate("Menu_PlayGame"));
 		if (userInfo[1] == "True") {
-			System.out.println(++menuItem + Language.translate("Menu_CreateNewGame"));
-			System.out.println(++menuItem + Language.translate("Menu_EditGame"));
+			System.out.println(++menuItem + domeincontroller.translate("Menu_CreateNewGame"));
+			System.out.println(++menuItem + domeincontroller.translate("Menu_EditGame"));
 		}
-		System.out.println(++menuItem + Language.translate("Menu_Quit"));
+		System.out.println(++menuItem + domeincontroller.translate("Menu_Quit"));
 
 		selection = input.nextInt();
 
