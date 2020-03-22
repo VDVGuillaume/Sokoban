@@ -36,9 +36,9 @@ public class GameBoard
 		}
 	}
 	
-	private void setPawn(Tile tile, int rowIndex, int columnIndex) 
+	private void setPawn(int rowIndex, int columnIndex) 
 	{
-		this.pawn = new Pawn(tile, rowIndex, columnIndex);
+		this.pawn = new Pawn(rowIndex, columnIndex);
 	}
 	
 	private void setTiles(Tile[][] tiles) throws Exception 
@@ -66,7 +66,7 @@ public class GameBoard
 				case None:
 					if(tile.getContainsPlayer()) 
 					{
-						setPawn(tile, rowIndex, columnIndex);
+						setPawn(rowIndex, columnIndex);
 						pawnCount++;	
 					}
 					break;

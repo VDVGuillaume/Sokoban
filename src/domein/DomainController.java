@@ -21,7 +21,7 @@ public class DomainController {
 	
 
 	public DomainController() {
-				
+				language.getLanguage();
 				this.userRepository = new UserRepository();
 				this.gameRepository = new GameRepository();			
 	}
