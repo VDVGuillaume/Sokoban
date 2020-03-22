@@ -18,8 +18,10 @@ public class StartUp {
 		String 	username;
 		String  password;
 		int userSelection;
+		Language language;
 		
-		
+		language = new Language();
+		language.setLanguage();
 		
 		DomainController domeincontroller = new DomainController();
 		
