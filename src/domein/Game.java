@@ -45,6 +45,16 @@ public class Game {
 		return gameBoards.size();
 	}
 	
+	public boolean allBoardsGameCompleted() {
+		if(getAmountBoardsCompleted()<getAmountBoardsTotal())
+		{
+			return false;
+		}else {
+			return true;
+		}
+		
+	}
+	
 	public GameBoard getNextGameBoard() 
 	{
 		for(GameBoard gameBoard : gameBoards) 

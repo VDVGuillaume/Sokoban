@@ -92,8 +92,9 @@ If correct, it displays the menu. */
 		return gameRepository.getGames();
 	}
 	
-	public void chooseGame(String gameName) throws Exception 
+	public String chooseGame(String gameName) throws Exception 
 	{
+		
 		Game game = gameRepository.getGame(gameName);
 		
 		if(game == null) 
@@ -130,4 +131,7 @@ If correct, it displays the menu. */
 	{
 		return language.translate(translationKey);
 	}
+	
+	
+	
 }
