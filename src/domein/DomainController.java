@@ -131,7 +131,6 @@ public class DomainController {
 	}
 
 	public void setLanguage(int languageSelection) {
-		Language language = new Language();
 		language.setLanguage(languageSelection);
 	}
 
