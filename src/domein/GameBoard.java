@@ -59,6 +59,10 @@ public class GameBoard
 			int columnIndex = 0;
 			for(Tile tile : tileRow) 
 			{
+				if(tile == null) 
+				{
+					boolean stopHere = true;
+				}
 				TileTypes tileType = tile.getTileType();
 				
 				switch(tileType) 

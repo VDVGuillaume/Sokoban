@@ -17,12 +17,11 @@ public class UC1Applicatie {
 		this.controller = controller;
 	}
 	
-	public String[] UI() {	
-	Scanner input = new Scanner(System.in);
+	public String[] UI(Scanner input) {
 	String 	username;
 	String  password;
 	int userSelection;
-	String[] info = new String[0];
+	String[] info = new String[2];
 	
 		try {
 		
@@ -36,10 +35,9 @@ public class UC1Applicatie {
 		System.out.println("gebruikersnaam = " + info[0]);
 		}catch (Exception e) {
 			e.printStackTrace();		
-			UI();		
+			UI(input);		
 		}
 		finally {
-			input.close();
 		}
 		
 		return info;

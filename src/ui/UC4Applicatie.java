@@ -1,5 +1,7 @@
 package ui;
 
+import java.util.Scanner;
+
 import domein.DomainController;
 import domein.GameBoard;
 
@@ -13,7 +15,7 @@ public class UC4Applicatie
 
 	}
 	
-	public void UI() 
+	public void UI(Scanner input) 
 	{	
 		try 
 		{

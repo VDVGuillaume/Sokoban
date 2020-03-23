@@ -16,13 +16,12 @@ public class UC2Applicatie {
 		this.controller = controller;
 	}
 
-	public String[] UI() {
-		Scanner input = new Scanner(System.in);
+	public String[] UI(Scanner input) {
 		String username;
 		String password;
 		String firstName;
 		String name;
-		String[] info = new String[0];
+		String[] info = new String[2];
 
 		try {
 
@@ -41,9 +40,8 @@ public class UC2Applicatie {
 			System.out.println("gebruikersnaam = " + info[0]);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
-			UI();
+			UI(input);
 		} finally {
-			input.close();
 		}
 
 		return info;

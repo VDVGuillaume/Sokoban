@@ -41,11 +41,11 @@ public class StartUp {
 		switch (userSelection) { /* Added selection menu in UC2 */
 		case 1:
 			UC1Applicatie app = new UC1Applicatie(domeincontroller);
-			userInfo = app.UI();
+			userInfo = app.UI(input);
 			break;
 		case 2:
 			UC2Applicatie app2 = new UC2Applicatie(domeincontroller);
-			userInfo = app2.UI();
+			userInfo = app2.UI(input);
 			break;
 		}
 
@@ -62,7 +62,7 @@ public class StartUp {
 		switch (selection) {
 		case 1:
 			UC3Applicatie app = new UC3Applicatie(domeincontroller);
-			app.UI();
+			app.UI(input);
 			break;
 		}
 

@@ -17,8 +17,7 @@ public class UC3Applicatie {
 		this.controller = controller;
 	}
 
-	public void UI() {
-		Scanner input = new Scanner(System.in);
+	public void UI(Scanner input) {
 		int gameNumber;
 		int gameboardActionNumber;
 		String gameName;
@@ -41,6 +40,9 @@ public class UC3Applicatie {
 				int totalAmountGameBoards = gameInfo[0];
 				int completedAmountGameBoards = gameInfo[1];
 
+				System.out.println(completedAmountGameBoards + " "
+						+ controller.translate("NumberGameboardsCompletedOutofTotal") + " " + totalAmountGameBoards);
+				
 				if (totalAmountGameBoards == completedAmountGameBoards) {
 					break;
 				}
@@ -58,15 +60,11 @@ public class UC3Applicatie {
 					controller.leaveGame();
 					break;
 				}
-
-				System.out.println(completedAmountGameBoards + " "
-						+ controller.translate("NumberGameboardsCompletedOutofTotal") + " " + totalAmountGameBoards);
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
-			UI();
+			UI(input);
 		} finally {
-			input.close();
 		}
 
 	}
