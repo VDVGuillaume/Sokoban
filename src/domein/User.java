@@ -44,13 +44,13 @@ public class User {
 		if(password.matches(passwordRequirement)) {
 			this.password = password;
 		}else {
-			throw new PasswordException(Language.translate("PasswordNotComplexityRequirements"));
+			throw new PasswordException("PasswordNotComplexityRequirements");
 		}
 	}
 	
 	private void setUsername(String username){
 		if(username.length() < 8) {
-			throw new UsernameException(Language.translate("PasswordValidationFailed"));
+			throw new UsernameException("PasswordValidationFailed");
 		}
 		
 		this.username = username;
