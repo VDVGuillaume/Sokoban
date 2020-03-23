@@ -75,4 +75,14 @@ public class Game {
 	{
 		gameBoard.setCompleted(true);
 	}
+	
+	public void completeNextGameBoard() 
+	{
+		GameBoard gameBoard = getNextGameBoard();
+		
+		if(gameBoard != null) 
+		{
+			completeGameBoard(gameBoard);
+		}
+	}
 }

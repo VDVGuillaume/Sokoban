@@ -2,6 +2,8 @@ package domein;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import exceptions.GameException;
 import exceptions.PasswordException;
 import exceptions.UsernameException;
 import util.Language;
@@ -84,15 +86,14 @@ public class DomainController {
 			throw new UsernameException(language.translate(ex.getMessage()));
 		}
 
-	if(userRepository.userExists(username))
+		if (userRepository.userExists(username))
 
-	{
-		throw new PasswordException(translate("UsernameAlreadyExists"));
-	}else
-	{
-		userRepository.createUser(user);
-		this.logIn(username, password);
-	}
+		{
+			throw new PasswordException(translate("UsernameAlreadyExists"));
+		} else {
+			userRepository.createUser(user);
+			this.logIn(username, password);
+		}
 	}
 
 	/* UC3 */
@@ -104,23 +105,30 @@ public class DomainController {
 		Game game = gameRepository.getGame(gameName);
 
 		if (game == null) {
-			throw new Exception("game not found");
+			throw new GameException(language.translate("ErrorGameNotFound"));
 		}
 
 		selectedGame = game;
 	}
 
 	public void leaveGame() {
-		// TODO
+		selectedGame = null;
 	}
 
-	public String getSelectedGameInfo() {
-		// TODO get info from selectedGame
-		return null;
+	public int[] getSelectedGameInfo() {
+		if (selectedGame == null) {
+			throw new GameException(language.translate("ErrorGameNotFound"));
+		}
+
+		return new int[] { selectedGame.getAmountBoardsTotal(), selectedGame.getAmountBoardsCompleted() };
 	}
 
 	public void completeGameBoard() {
-		// TODO complete game board
+		if (selectedGame == null) {
+			throw new GameException(language.translate("ErrorGameNotFound"));
+		}
+
+		selectedGame.completeNextGameBoard();
 	}
 
 	public void setLanguage(int languageSelection) {
