@@ -23,6 +23,7 @@ public class DomainController {
 	/** UC1 Constructor */
 
 	public DomainController() {
+		language = new Language();
 		this.userRepository = new UserRepository();
 		this.gameRepository = new GameRepository();
 	}
