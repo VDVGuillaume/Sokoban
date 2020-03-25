@@ -55,9 +55,8 @@ public class UC3Applicatie {
 				gameboardActionNumber = input.nextInt();
 
 				if (gameboardActionNumber == 1) {
-					controller.completeGameBoard();
+					controller.completeNextGameBoard();
 				} else if (gameboardActionNumber == 2) {
-					controller.leaveGame();
 					break;
 				}
 			}
