@@ -2,38 +2,17 @@ package domein;
 
 import java.util.ArrayList;
 
+import exceptions.GameException;
+
 public class GameBoard 
 {
 	private Tile[][] tiles;
 	private boolean completed;
-	//private ArrayList<Wall> walls;// represented by 'X'
-	//private ArrayList<Goal> goals;// represented by '.' (dot)
-	//private ArrayList<Box> boxs;// represented by 'B'
-	//private ArrayList<Field> fields;// empty field represented by ' ' (space)
-	private Pawn pawn;//represented by P
-	private int gameBoardId;
-	
+	private Pawn pawn;
 
-	private String level
-	="XXXXXXXXXX\n"
-	+"XXXXX.XXXX\n"
-	+"XXXXX XXXX\n"
-	+"XXXXXBPB.X\n"
-	+"X.   B XXX\n"
-	+"XXXXXXBXXX\n"
-	+"XXXXXX XXX\n"
-	+"XXXXXX XXX\n"
-	+"XXXXXX.XXX\n"
-	+ "XXXXXXXXXX\n";
-	
 	public GameBoard(Tile[][] tiles) 
 	{
-		try {
-			setTiles(tiles);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		setTiles(tiles);
 	}
 	
 	private void setPawn(int rowIndex, int columnIndex) 
@@ -41,11 +20,11 @@ public class GameBoard
 		this.pawn = new Pawn(rowIndex, columnIndex);
 	}
 	
-	private void setTiles(Tile[][] tiles) throws Exception 
+	private void setTiles(Tile[][] tiles) throws GameException 
 	{
 		if(tiles.length != 10 || tiles[0].length != 10) 
 		{
-			throw new Exception("Dimensions of gameboard has to be 10x10");
+			throw new GameException("ErrorGameBoardTilesDimension");
 		}
 		
 		int pawnCount = 0;
@@ -90,12 +69,12 @@ public class GameBoard
 		
 		if(pawnCount != 1) 
 		{
-			throw new Exception("Only one character is allowed on a gameboard");
+			throw new GameException("ErrorGameBoardPawnLimit");
 		}
 		
 		if(goalCount != boxCount) 
 		{
-			throw new Exception("amount of goals has to be equal to amount of chests");
+			throw new GameException("ErrorGameBoardGoalBoxCount");
 		}
 		
 		//TODO VALIDATE IF ALL FIELDS ARE ACCESSIBLE IN CELLS  
@@ -113,14 +92,6 @@ public class GameBoard
 	
 	public boolean getCompleted() {
 		return completed;
-	}
-	
-	private void setgameBoardId(int gameBoardId) {
-		this.gameBoardId=gameBoardId;
-	}
-	
-	public int getgameBoardId() {
-		return gameBoardId;
 	}
 	
 	public String[][] getCurrentState()
