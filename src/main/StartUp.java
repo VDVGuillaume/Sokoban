@@ -49,21 +49,26 @@ public class StartUp {
 			break;
 		}
 
-		int menuItem = 0;
-		System.out.println(++menuItem + domeincontroller.translate("Menu_PlayGame"));
-		if (userInfo[1].equals("True")) {
-			System.out.println(++menuItem + domeincontroller.translate("Menu_CreateNewGame"));
-			System.out.println(++menuItem + domeincontroller.translate("Menu_EditGame"));
-		}
-		System.out.println(++menuItem + domeincontroller.translate("Menu_Quit"));
+		while(true) 
+		{
+			int menuItem = 0;
+			
+			System.out.println(++menuItem + domeincontroller.translate("Menu_PlayGame"));
+			System.out.println(++menuItem + domeincontroller.translate("Menu_Quit"));
+			if (userInfo[1].equals("True")) {
+				System.out.println(++menuItem + domeincontroller.translate("Menu_CreateNewGame"));
+				System.out.println(++menuItem + domeincontroller.translate("Menu_EditGame"));
+			}
 
-		selection = input.nextInt();
-
-		switch (selection) {
-		case 1:
-			UC3Applicatie app = new UC3Applicatie(domeincontroller);
-			app.UI(input);
-			break;
+			selection = input.nextInt();
+			if(selection == 1) 
+			{
+				UC3Applicatie app = new UC3Applicatie(domeincontroller);
+				app.UI(input);				
+			}else if(selection == 2) 
+			{
+				break;	
+			}	
 		}
 
 		input.close();	

@@ -44,10 +44,11 @@ public class UC3Applicatie {
 				System.out.println(completedAmountGameBoards + " "
 						+ controller.translate("NumberGameboardsCompletedOutofTotal") + " " + totalAmountGameBoards);
 				
-				if (totalAmountGameBoards == completedAmountGameBoards) {
+				if(controller.getGameIsComplete()) 
+				{
 					break;
 				}
-
+				
 				System.out.println(controller.translate("GiveGameboardAction"));
 				String option1 = "1." + controller.translate("PlayNextGameboard");
 				System.out.println(option1);
