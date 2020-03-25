@@ -92,7 +92,7 @@ public class DomainController {
 			throw new PasswordException(translate("UsernameAlreadyExists"));
 		} else {
 			userRepository.createUser(user);
-			this.logIn(username, password);
+			selectedUser = user;
 		}
 	}
 
