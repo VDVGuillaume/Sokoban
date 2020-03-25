@@ -111,10 +111,6 @@ public class DomainController {
 		selectedGame = game;
 	}
 
-	public void leaveGame() {
-		selectedGame = null;
-	}
-
 	public int[] getSelectedGameInfo() {
 		if (selectedGame == null) {
 			throw new GameException(language.translate("ErrorGameNotFound"));
@@ -123,13 +119,67 @@ public class DomainController {
 		return new int[] { selectedGame.getAmountBoardsTotal(), selectedGame.getAmountBoardsCompleted() };
 	}
 
-	public void completeGameBoard() {
+	public void completeNextGameBoard() {
 		if (selectedGame == null) {
 			throw new GameException(language.translate("ErrorGameNotFound"));
 		}
 
-		selectedGame.completeNextGameBoard();
+		try 
+		{
+			selectedGame.completeNextGameBoard();
+		}catch(GameException ex) 
+		{
+			throw new GameException(language.translate(ex.getMessage()));
+		}
 	}
+	
+	public void playNextGameBoard() 
+	{
+		if(selectedGame == null) 
+		{
+			throw new GameException(language.translate("ErrorGameNotFound"));
+		}
+		
+		try 
+		{
+			selectedGame.playNextGameBoard();
+		}catch(GameException ex) 
+		{
+			throw new GameException(language.translate(ex.getMessage()));
+		}
+	}
+	
+	public boolean getGameIsComplete() 
+	{
+		if(selectedGame == null) 
+		{
+			throw new GameException(language.translate("ErrorGameNotFound"));
+		}
+		
+		try 
+		{
+			return selectedGame.getComplete();
+		}catch(GameException ex) 
+		{
+			throw new GameException(language.translate(ex.getMessage()));
+		}
+	}
+	
+	public String[][] getCurrentGameBoardState()
+	{
+		if(selectedGame == null) 
+		{
+			throw new GameException(language.translate("ErrorGameNotFound"));
+		}
+		
+		try 
+		{
+			return selectedGame.getCurrentGameBoardState();
+		}catch(GameException ex) 
+		{
+			throw new GameException(language.translate(ex.getMessage()));
+		}
+	}	
 
 	public void setLanguage(int languageSelection) {
 		language.setLanguage(languageSelection);
@@ -138,5 +188,4 @@ public class DomainController {
 	public String translate(String translationKey) {
 		return language.translate(translationKey);
 	}
-
 }

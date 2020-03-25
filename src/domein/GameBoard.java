@@ -59,10 +59,12 @@ public class GameBoard
 			int columnIndex = 0;
 			for(Tile tile : tileRow) 
 			{
-				if(tile == null) 
+				// TODO REMOVE THIS JUNK CODE
+				/*if(tile == null) 
 				{
+					
 					boolean stopHere = true;
-				}
+				}*/
 				TileTypes tileType = tile.getTileType();
 				
 				switch(tileType) 
@@ -121,6 +123,33 @@ public class GameBoard
 		return gameBoardId;
 	}
 	
+	public String[][] getCurrentState()
+	{
+		String[][] gameBoardState = new String[10][10];
+		int rowIndex = 0;
+		
+		for(Tile[] tileRow : tiles) 
+		{
+			int columnIndex = 0;
+			for(Tile tile : tileRow) 
+			{
+				if(tile.getContainsPlayer()) 
+				{
+					gameBoardState[rowIndex][columnIndex] = "Player";
+				}else 
+				{
+					gameBoardState[rowIndex][columnIndex] = tile.getTileType().toString();
+				}
+				
+				columnIndex++;
+			}
+			
+			rowIndex++;
+		}
+		
+		return gameBoardState;
+	}
+	
 	private void move(GameBoardMoves move) 
 	{
 		int rowIndexPawn = pawn.getRowIndex();
@@ -138,7 +167,7 @@ public class GameBoard
 				break;
 		}
 	}
-	
+		
 	private Tile getTile(int rowIndex, int columnIndex) 
 	{
 		if(rowIndex < 0 || columnIndex < 0 || rowIndex > 9 || columnIndex > 9) 

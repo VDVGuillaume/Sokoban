@@ -2,8 +2,11 @@ package domein;
 
 import java.util.List;
 
+import exceptions.GameException;
+
 public class Game {
 	private List<GameBoard> gameBoards;
+	private GameBoard selectedGameBoard;
 	private String name;
 	
 	public Game(String name, List<GameBoard> gameBoards) 
@@ -45,17 +48,7 @@ public class Game {
 		return gameBoards.size();
 	}
 	
-	public boolean allBoardsGameCompleted() {
-		if(getAmountBoardsCompleted()<getAmountBoardsTotal())
-		{
-			return false;
-		}else {
-			return true;
-		}
-		
-	}
-	
-	public GameBoard getNextGameBoard() 
+	private GameBoard getNextGameBoard() 
 	{
 		for(GameBoard gameBoard : gameBoards) 
 		{
@@ -71,18 +64,38 @@ public class Game {
 		return null;
 	}
 	
-	public void completeGameBoard(GameBoard gameBoard) 
-	{
-		gameBoard.setCompleted(true);
-	}
-	
 	public void completeNextGameBoard() 
 	{
-		GameBoard gameBoard = getNextGameBoard();
-		
-		if(gameBoard != null) 
+		if(selectedGameBoard == null) 
 		{
-			completeGameBoard(gameBoard);
+			throw new GameException("ErrorGameBoardNotFound");
 		}
+		
+		selectedGameBoard.setCompleted(true);
+	}
+	
+	public void playNextGameBoard()
+	{
+		selectedGameBoard = getNextGameBoard();
+		
+		if(selectedGameBoard == null) 
+		{
+			throw new GameException("ErrorGameBoardNotFound");
+		}
+	}
+	
+	public boolean getComplete() 
+	{
+		return getAmountBoardsCompleted() == getAmountBoardsTotal();
+	}
+	
+	public String[][] getCurrentGameBoardState()
+	{
+		if(selectedGameBoard == null) 
+		{
+			throw new GameException("ErrorGameBoardNotFound");
+		}
+		
+		return selectedGameBoard.getCurrentState();
 	}
 }
