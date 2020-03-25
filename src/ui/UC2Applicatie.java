@@ -40,7 +40,7 @@ public class UC2Applicatie {
 			System.out.println("gebruikersnaam = " + info[0]);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
-			UI(input);
+			info = UI(input);
 		} finally {
 		}
 

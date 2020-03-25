@@ -25,9 +25,9 @@ public class UC1Applicatie {
 	
 		try {
 		
-		System.out.println(controller.translate("GiveUsername"));
+		System.out.printf(controller.translate("GiveUsername") + "%n");
 		username = input.nextLine();
-		System.out.println(controller.translate("GivePassword"));
+		System.out.printf(controller.translate("GivePassword") + "%n");
 		password = input.nextLine();
 		
 		controller.logIn(username, password);
@@ -35,7 +35,7 @@ public class UC1Applicatie {
 		System.out.println("gebruikersnaam = " + info[0]);
 		}catch (Exception e) {
 			e.printStackTrace();		
-			UI(input);		
+			info = UI(input);		
 		}
 		finally {
 		}
