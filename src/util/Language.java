@@ -5,8 +5,8 @@ import java.util.ResourceBundle;
 import java.util.Scanner;
 
 public class Language {
-	static String language;
-	static ResourceBundle bundle;
+	private String language;
+	private ResourceBundle bundle;
 	
 	public void setLanguage(int userSelection) {
 	Locale locale;
