@@ -38,12 +38,6 @@ public class GameBoard
 			int columnIndex = 0;
 			for(Tile tile : tileRow) 
 			{
-				// TODO REMOVE THIS JUNK CODE
-				/*if(tile == null) 
-				{
-					
-					boolean stopHere = true;
-				}*/
 				TileTypes tileType = tile.getTileType();
 				
 				switch(tileType) 
