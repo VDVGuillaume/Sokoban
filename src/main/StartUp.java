@@ -51,7 +51,7 @@ public class StartUp {
 
 		int menuItem = 0;
 		System.out.println(++menuItem + domeincontroller.translate("Menu_PlayGame"));
-		if (userInfo[1] == "True") {
+		if (userInfo[1].equals("True")) {
 			System.out.println(++menuItem + domeincontroller.translate("Menu_CreateNewGame"));
 			System.out.println(++menuItem + domeincontroller.translate("Menu_EditGame"));
 		}
