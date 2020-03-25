@@ -121,27 +121,6 @@ public class GameBoard
 		return gameBoardId;
 	}
 	
-	
-	public void moveLeft() 
-	{
-		//TODO UC4
-	}
-	
-	public void moveRight() 
-	{
-		//TODO UC4
-	}
-	
-	public void moveUp() 
-	{
-		//TODO UC4
-	}
-	
-	public void moveDown() 
-	{
-		//TODO UC4
-	}
-	
 	private void move(GameBoardMoves move) 
 	{
 		int rowIndexPawn = pawn.getRowIndex();
