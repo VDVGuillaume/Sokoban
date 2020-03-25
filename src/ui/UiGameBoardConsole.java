@@ -4,7 +4,7 @@ import domein.GameBoard;
 import domein.Tile;
 import domein.TileTypes;
 
-public class UiGameBoard 
+public class UiGameBoardConsole 
 {
 	private String wallNoBorder;
 	private String wallBorder;
@@ -13,7 +13,7 @@ public class UiGameBoard
 	private String goal;
 	private String pawn;
 	
-	public UiGameBoard() 
+	public UiGameBoardConsole() 
 	{
 		wallNoBorder = "/ ";
 		wallBorder = "X ";
@@ -23,84 +23,46 @@ public class UiGameBoard
 		pawn = "P ";
 	}
 	
-	// TODO REWORK WITHOUT DOMAIN CLASSES
-	/*
-	public void drawConsole() 
-	{
-		int rowIndex = 0;
-		
+	
+	public void drawConsole(String[][] tiles) 
+	{		
 		StringBuilder sb = new StringBuilder();
 		
-		for(Tile[] tileRow : gameBoard.getTiles()) 
+		for(String[] tileRow : tiles) 
 		{
-			int columnIndex = 0;
-			for(Tile tile : tileRow) 
+			for(String tile : tileRow) 
 			{
-				TileTypes tileType = tile.getTileType();
 				String outputString;
-				switch(tileType) 
+				switch(tile) 
 				{
-				case Wall:
-					boolean collision = checkWallCollision(gameBoard.getTiles(), rowIndex, columnIndex);
-					if(collision) 
-					{
-						outputString = wallBorder;
-					}
-					else 
-					{
-						outputString = wallNoBorder;
-					}
+				case "Wall":
+					outputString = wallNoBorder;
 					break;
-				case Goal:
+				case "WallBorder":
+					outputString = wallBorder;
+					break;
+				case "Goal":
 					outputString = goal;
 					break;
-				case Box:
+				case "Box":
 					outputString = box;
 					break;
-				case None:
+				case "Pawn":
+					outputString = pawn;
+					break;
+				case "None":
 				default:
-					if(tile.getContainsPlayer()) 
-					{
-						outputString = pawn;
-					}else 
-					{
-						outputString = none;	
-					}
+					outputString = none;
 					break;
 				}
 				
 				sb.append(outputString);
 				//TODO investigate how to create a fixed canvas on a cmd window
 				//System.out.print(String.format("%s[%d;%df",outputString,rowIndex,columnIndex));
-				columnIndex++;
 			}
 			sb.append("\n");
-			rowIndex++;
 		}
 		
 		System.out.println(sb.toString());
 	}
-	
-	private boolean checkWallCollision(Tile[][] tiles, int rowIndex, int columnIndex) 
-	{
-		for(int i = rowIndex -1; i <= rowIndex + 1; i++) 
-		{
-			for(int j = columnIndex - 1; j <= columnIndex + 1;j++) 
-			{
-				//skip not accessible spaces
-				if(i < 0 || j < 0 || i > 9 || j > 9) 
-				{
-					continue;
-				}
-				
-				Tile tile = tiles[i][j];
-				if(tile.getTileType() != TileTypes.Wall) 
-				{
-					return true;
-				}	
-			}
-		}
-		return false;
-	}
-	*/
 }

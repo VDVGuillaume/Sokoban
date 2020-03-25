@@ -22,6 +22,7 @@ public class UC3Applicatie {
 		int gameboardActionNumber;
 		String gameName;
 		boolean gameboardCompleted;
+		UiGameBoardConsole gameBoardConsole = new UiGameBoardConsole();
 
 		try {
 			List<String> names = controller.getGamesList();
@@ -48,13 +49,15 @@ public class UC3Applicatie {
 				}
 
 				System.out.println(controller.translate("GiveGameboardAction"));
-				String option1 = "1." + controller.translate("CompleteNextGameboard");
+				String option1 = "1." + controller.translate("PlayNextGameboard");
 				System.out.println(option1);
 				String option2 = "2." + controller.translate("QuitGame");
 				System.out.println(option2);
 				gameboardActionNumber = input.nextInt();
 
 				if (gameboardActionNumber == 1) {
+					controller.playNextGameBoard();
+					gameBoardConsole.drawConsole(controller.getCurrentGameBoardState());
 					controller.completeNextGameBoard();
 				} else if (gameboardActionNumber == 2) {
 					break;

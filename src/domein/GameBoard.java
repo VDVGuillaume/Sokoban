@@ -104,9 +104,14 @@ public class GameBoard
 			int columnIndex = 0;
 			for(Tile tile : tileRow) 
 			{
+				TileTypes tileType = tile.getTileType();
+				
 				if(tile.getContainsPlayer()) 
 				{
-					gameBoardState[rowIndex][columnIndex] = "Player";
+					gameBoardState[rowIndex][columnIndex] = "Pawn";
+				}else if(tileType == TileTypes.Wall && checkWallBorder(rowIndex, columnIndex)) 
+				{
+					gameBoardState[rowIndex][columnIndex] = "WallBorder";
 				}else 
 				{
 					gameBoardState[rowIndex][columnIndex] = tile.getTileType().toString();
@@ -119,6 +124,28 @@ public class GameBoard
 		}
 		
 		return gameBoardState;
+	}
+	
+	private boolean checkWallBorder(int rowIndex, int columnIndex) 
+	{
+		for(int i = rowIndex -1; i <= rowIndex + 1; i++) 
+		{
+			for(int j = columnIndex - 1; j <= columnIndex + 1;j++) 
+			{
+				//skip not accessible spaces
+				if(i < 0 || j < 0 || i > 9 || j > 9) 
+				{
+					continue;
+				}
+				
+				Tile tile = tiles[i][j];
+				if(tile.getTileType() != TileTypes.Wall) 
+				{
+					return true;
+				}	
+			}
+		}
+		return false;
 	}
 	
 	private void move(GameBoardMoves move) 
