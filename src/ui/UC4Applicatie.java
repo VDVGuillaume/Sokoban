@@ -54,6 +54,9 @@ public class UC4Applicatie
 				return;
 			}
 		}
+
+		gameBoardConsole.drawConsole(controller.getCurrentGameBoardState());
+
 	}
 	
 	public void UI(Scanner input) {
