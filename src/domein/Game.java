@@ -89,7 +89,7 @@ public class Game {
 		return getAmountBoardsCompleted() == getAmountBoardsTotal();
 	}
 	
-	public String[][] getCurrentGameBoardState()
+	public String[][] getSelectedGameBoardState()
 	{
 		if(selectedGameBoard == null) 
 		{
@@ -109,7 +109,7 @@ public class Game {
 		selectedGameBoard.move(direction);
 	}
 	
-	public void resetCurrentGameBoard() 
+	public void resetSelectedGameBoard() 
 	{
 		if(selectedGameBoard == null) 
 		{
@@ -117,5 +117,15 @@ public class Game {
 		}
 		
 		selectedGameBoard.resetGameBoard();	
+	}
+	
+	public int getSelectedGameBoardAmountMoves() 
+	{
+		if(selectedGameBoard == null) 
+		{
+			throw new GameException("ErrorGameBoardNotFound");
+		}
+		
+		return selectedGameBoard.getAmountMoves();	
 	}
 }

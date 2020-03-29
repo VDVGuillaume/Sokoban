@@ -58,7 +58,7 @@ public class UC3Applicatie {
 
 				if (gameboardActionNumber == 1) {
 					controller.playNextGameBoard();
-					gameBoardConsole.drawConsole(controller.getCurrentGameBoardState());					
+					gameBoardConsole.drawConsole(controller.getSelectedGameBoardState());					
 				} else if (gameboardActionNumber == 2) {
 					break;
 				}

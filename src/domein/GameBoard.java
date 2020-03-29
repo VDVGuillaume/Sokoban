@@ -10,10 +10,12 @@ public class GameBoard
 	private Tile[][] tiles;
 	private boolean completed;
 	private Pawn pawn;
+	private int amountMoves;
 
 	public GameBoard(Tile[][] tiles) 
 	{
 		originalTiles = tiles;
+		amountMoves = 0;
 		setTiles(cloneTiles(originalTiles));
 	}
 	
@@ -223,8 +225,11 @@ public class GameBoard
 			// remove player from original location
 			tilePawn.setContainsPlayer(false);
 			
-			// set gameboard completed
+			// check if gameboard is completed
 			setCompleted();
+			
+			// update amount of moves
+			setAmountMoves(getAmountMoves() + 1);
 		}
 	}
 		
@@ -280,7 +285,18 @@ public class GameBoard
 	
 	public void resetGameBoard() 
 	{
+		setAmountMoves(0);
 		setTiles(cloneTiles(originalTiles));
 		setCompleted();
+	}
+	
+	private void setAmountMoves(int amountMoves) 
+	{
+		this.amountMoves = amountMoves;
+	}
+	
+	public int getAmountMoves() 
+	{
+		return this.amountMoves;
 	}
 }

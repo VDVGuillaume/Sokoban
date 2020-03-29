@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import domein.DomainController;
 import domein.GameBoard;
+import domein.GameBoardMoves;
 
 public class UC4Applicatie 
 {
@@ -19,13 +20,16 @@ public class UC4Applicatie
 	private void playNextGameBoard(Scanner input) 
 	{
 		UiGameBoardConsole gameBoardConsole = new UiGameBoardConsole();
+		int gameBoardMoves; 
 		
 		controller.playNextGameBoard();
 		
 		while(!controller.getSelectedGameBoardComplete()) 
 		{
-			gameBoardConsole.drawConsole(controller.getCurrentGameBoardState());
-			System.out.println("Make a move: Q(left), Z(up), S(down), D(right), R(reset), T(quit)");
+			gameBoardMoves = controller.getSelectedGameBoardAmountMoves();
+			gameBoardConsole.drawConsole(controller.getSelectedGameBoardState());
+			System.out.println(controller.translate("GameBoardMovesMade") + gameBoardMoves);
+			System.out.println(controller.translate("GameBoardPossibleMoves"));
 			char c = input.next().charAt(0);
 			
 			switch(c) 
@@ -57,9 +61,9 @@ public class UC4Applicatie
 				break;
 			}
 		}
-
-		gameBoardConsole.drawConsole(controller.getCurrentGameBoardState());
-
+		gameBoardMoves = controller.getSelectedGameBoardAmountMoves();
+		gameBoardConsole.drawConsole(controller.getSelectedGameBoardState());
+		System.out.println(controller.translate("GameBoardCompleted").replace("$param1", Integer.toString(gameBoardMoves)));
 	}
 	
 	public void UI(Scanner input) {

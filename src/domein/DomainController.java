@@ -165,7 +165,7 @@ public class DomainController {
 		}
 	}
 	
-	public String[][] getCurrentGameBoardState()
+	public String[][] getSelectedGameBoardState()
 	{
 		if(selectedGame == null) 
 		{
@@ -174,7 +174,7 @@ public class DomainController {
 		
 		try 
 		{
-			return selectedGame.getCurrentGameBoardState();
+			return selectedGame.getSelectedGameBoardState();
 		}catch(GameException ex) 
 		{
 			throw new GameException(language.translate(ex.getMessage()));
@@ -215,7 +215,23 @@ public class DomainController {
 		
 		try 
 		{
-			selectedGame.resetCurrentGameBoard();
+			selectedGame.resetSelectedGameBoard();
+		}catch(GameException ex) 
+		{
+			throw new GameException(language.translate(ex.getMessage()));
+		}	
+	}
+	
+	public int getSelectedGameBoardAmountMoves() 
+	{
+		if(selectedGame == null) 
+		{
+			throw new GameException(language.translate("ErrorGameNotFound"));
+		}
+		
+		try 
+		{
+			return selectedGame.getSelectedGameBoardAmountMoves();
 		}catch(GameException ex) 
 		{
 			throw new GameException(language.translate(ex.getMessage()));
