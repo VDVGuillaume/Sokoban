@@ -84,7 +84,7 @@ public class UC4Applicatie
 			gameName = names.get(gameNumber - 1);
 			controller.chooseGame(gameName);
 
-			while (true) {
+			while (!controller.getGameIsComplete()) {
 				int[] gameInfo = controller.getSelectedGameInfo();
 				int totalAmountGameBoards = gameInfo[0];
 				int completedAmountGameBoards = gameInfo[1];
