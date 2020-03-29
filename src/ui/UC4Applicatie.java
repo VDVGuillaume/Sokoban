@@ -24,7 +24,7 @@ public class UC4Applicatie
 		
 		controller.playNextGameBoard();
 		
-		while(!controller.getSelectedGameBoardComplete()) 
+		while(!controller.getSelectedGameBoardCompleted()) 
 		{
 			gameBoardMoves = controller.getSelectedGameBoardAmountMoves();
 			gameBoardConsole.drawConsole(controller.getSelectedGameBoardState());
