@@ -63,7 +63,7 @@ public class StartUp {
 			selection = input.nextInt();
 			if(selection == 1) 
 			{
-				UC3Applicatie app = new UC3Applicatie(domeincontroller);
+				UC4Applicatie app = new UC4Applicatie(domeincontroller);
 				app.UI(input);				
 			}else if(selection == 2) 
 			{

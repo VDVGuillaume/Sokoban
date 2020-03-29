@@ -64,14 +64,14 @@ public class Game {
 		return null;
 	}
 	
-	public void completeNextGameBoard() 
+	public boolean getSelectedGameBoardComplete() 
 	{
 		if(selectedGameBoard == null) 
 		{
 			throw new GameException("ErrorGameBoardNotFound");
 		}
 		
-		selectedGameBoard.setCompleted(true);
+		return selectedGameBoard.getCompleted();
 	}
 	
 	public void playNextGameBoard()
@@ -97,5 +97,15 @@ public class Game {
 		}
 		
 		return selectedGameBoard.getCurrentState();
+	}
+	
+	public void move(String direction) 
+	{
+		if(selectedGameBoard == null) 
+		{
+			throw new GameException("ErrorGameBoardNotFound");
+		}
+		
+		selectedGameBoard.move(direction);
 	}
 }

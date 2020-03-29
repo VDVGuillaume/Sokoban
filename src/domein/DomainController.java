@@ -119,20 +119,6 @@ public class DomainController {
 		return new int[] { selectedGame.getAmountBoardsTotal(), selectedGame.getAmountBoardsCompleted() };
 	}
 
-	public void completeNextGameBoard() {
-		if (selectedGame == null) {
-			throw new GameException(language.translate("ErrorGameNotFound"));
-		}
-
-		try 
-		{
-			selectedGame.completeNextGameBoard();
-		}catch(GameException ex) 
-		{
-			throw new GameException(language.translate(ex.getMessage()));
-		}
-	}
-	
 	public void playNextGameBoard() 
 	{
 		if(selectedGame == null) 
@@ -143,6 +129,20 @@ public class DomainController {
 		try 
 		{
 			selectedGame.playNextGameBoard();
+		}catch(GameException ex) 
+		{
+			throw new GameException(language.translate(ex.getMessage()));
+		}
+	}
+	
+	public boolean getSelectedGameBoardComplete() {
+		if (selectedGame == null) {
+			throw new GameException(language.translate("ErrorGameNotFound"));
+		}
+
+		try 
+		{
+			return selectedGame.getSelectedGameBoardComplete();
 		}catch(GameException ex) 
 		{
 			throw new GameException(language.translate(ex.getMessage()));
@@ -187,5 +187,27 @@ public class DomainController {
 
 	public String translate(String translationKey) {
 		return language.translate(translationKey);
+	}
+	
+	/* UC4 */
+	public void move(String direction) 
+	{
+		if(selectedGame == null) 
+		{
+			throw new GameException(language.translate("ErrorGameNotFound"));
+		}
+		
+		try 
+		{
+			selectedGame.move(direction);
+		}catch(GameException ex) 
+		{
+			throw new GameException(language.translate(ex.getMessage()));
+		}	
+	}
+	
+	public void resetSelectedGameBoard() 
+	{
+		// TODO
 	}
 }

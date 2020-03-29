@@ -80,9 +80,20 @@ public class GameBoard
 		return tiles;
 	}
 	
-	public void setCompleted(boolean completed) {
-		this.completed = completed;
-	}
+	public void setCompleted() {
+		for(Tile[] tileRow : tiles) 
+		{
+			for(Tile tile : tileRow) 
+			{
+				if(tile.getTileType() == TileTypes.Goal) 
+				{
+					this.completed = false;
+					return;
+				}
+			}
+		}
+		this.completed = true;
+		}
 	
 	public boolean getCompleted() {
 		return completed;
@@ -142,21 +153,76 @@ public class GameBoard
 		return false;
 	}
 	
+	public void move(String direction) 
+	{
+		GameBoardMoves gameBoardMove;
+		try 
+		{
+			gameBoardMove = GameBoardMoves.valueOf(direction);
+		}catch(IllegalArgumentException ex) 
+		{
+			return;
+		}catch(NullPointerException ex) 
+		{
+			return;
+		}
+		
+		move(gameBoardMove);
+	}
+	
 	private void move(GameBoardMoves move) 
 	{
 		int rowIndexPawn = pawn.getRowIndex();
 		int columnIndexPawn = pawn.getColumnIndex();
 		
+		int rowIndexMoveLocation = rowIndexPawn;
+		int columnIndexMoveLocation = columnIndexPawn;
+		int rowIndexMoveLocationExtended = rowIndexPawn;
+		int columnIndexMoveLocationExtended = columnIndexPawn;	
+				
 		switch(move) 
 		{
 			case Left:
+				columnIndexMoveLocation --;
+				columnIndexMoveLocationExtended -= 2;
 				break;
 			case Right:
+				columnIndexMoveLocation ++;
+				columnIndexMoveLocationExtended += 2;
 				break;
 			case Down:
+				rowIndexMoveLocation ++;
+				rowIndexMoveLocationExtended += 2;
 				break;
 			case Up:
+				rowIndexMoveLocation --;
+				rowIndexMoveLocationExtended -= 2;
 				break;
+		}
+		
+		Tile tilePawn = getTile(rowIndexPawn, columnIndexPawn);
+		Tile tileMoveLocation = getTile(rowIndexMoveLocation, columnIndexMoveLocation);
+		Tile tileMoveLocationExtended = getTile(rowIndexMoveLocationExtended, columnIndexMoveLocationExtended);
+		
+		// if move is valid
+		if(validateMove(tileMoveLocation, tileMoveLocationExtended)) 
+		{
+			// if box exists in move location, move box
+			if(tileMoveLocation.getTileType() == TileTypes.Box) 
+			{
+				tileMoveLocationExtended.setTileType(tileMoveLocation.getTileType());				
+			}
+			
+			// move player to location
+			tileMoveLocation.setTileType(TileTypes.None);
+			tileMoveLocation.setContainsPlayer(true);
+			pawn.movePawn(rowIndexMoveLocation, columnIndexMoveLocation);
+			
+			// remove player from original location
+			tilePawn.setContainsPlayer(false);
+			
+			// set gameboard completed
+			setCompleted();
 		}
 	}
 		

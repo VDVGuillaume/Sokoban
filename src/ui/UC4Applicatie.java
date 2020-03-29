@@ -1,5 +1,6 @@
 package ui;
 
+import java.util.List;
 import java.util.Scanner;
 
 import domein.DomainController;
@@ -7,28 +8,103 @@ import domein.GameBoard;
 
 public class UC4Applicatie 
 {
-	private DomainController domainController;
+	private DomainController controller;
 	
-	public UC4Applicatie(DomainController domainController) {
-		this.domainController = domainController;
+	public UC4Applicatie(DomainController controller) {
+		this.controller = controller;
 		
 
 	}
 	
-	public void UI(Scanner input) 
-	{	
-		try 
+	private void playNextGameBoard(Scanner input) 
+	{
+		UiGameBoardConsole gameBoardConsole = new UiGameBoardConsole();
+		
+		controller.playNextGameBoard();
+		
+		while(!controller.getSelectedGameBoardComplete()) 
 		{
-			/*
-			GameBoard gameBoard = domainController.chooseGame("test_dbol").getNextGameBoard();
+			gameBoardConsole.drawConsole(controller.getCurrentGameBoardState());
+			System.out.println("Make a move: Q(left), Z(up), S(down), D(right), R(reset), T(quit)");
+			char c = input.next().charAt(0);
 			
-			UiGameBoard uiGameBoard = new UiGameBoard(gameBoard);
-			uiGameBoard.drawConsole();
-			*/
+			switch(c) 
+			{
+			case 'Q':
+			case 'q':
+				controller.move("Left");
+				break;
+			case 'Z':
+			case 'z':
+				controller.move("Up");
+				break;
+			case 'S':
+			case 's':
+				controller.move("Down");
+				break;
+			case 'D':
+			case 'd':
+				controller.move("Right");
+			case 'R':
+			case 'r':
+				controller.resetSelectedGameBoard();
+				break;
+			case 'T':
+			case 't':
+				return;
+			}
 		}
-		 catch (Exception e) 
-		{
-			e.printStackTrace();
+	}
+	
+	public void UI(Scanner input) {
+		int gameNumber;
+		int gameboardActionNumber;
+		String gameName;
+		boolean gameboardCompleted;
+
+		try {
+			List<String> names = controller.getGamesList();
+			System.out.println(controller.translate("GiveGameName"));
+			for (int i = 0; i < names.size(); i++) {
+				String gamename = (i + 1) + ". " + names.get(i);
+				System.out.println(gamename);
+			}
+
+			gameNumber = input.nextInt();
+			gameName = names.get(gameNumber - 1);
+			controller.chooseGame(gameName);
+
+			while (true) {
+				int[] gameInfo = controller.getSelectedGameInfo();
+				int totalAmountGameBoards = gameInfo[0];
+				int completedAmountGameBoards = gameInfo[1];
+
+				System.out.println(completedAmountGameBoards + " "
+						+ controller.translate("NumberGameboardsCompletedOutofTotal") + " " + totalAmountGameBoards);
+				
+				if(controller.getGameIsComplete()) 
+				{
+					break;
+				}
+				
+				System.out.println(controller.translate("GiveGameboardAction"));
+				String option1 = "1." + controller.translate("PlayNextGameboard");
+				System.out.println(option1);
+				String option2 = "2." + controller.translate("QuitGame");
+				System.out.println(option2);
+				gameboardActionNumber = input.nextInt();
+
+				if (gameboardActionNumber == 1) {
+					playNextGameBoard(input);
+				} else if (gameboardActionNumber == 2) {
+					break;
+				}
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			UI(input);
+		} finally {
 		}
+
 	}
 }
