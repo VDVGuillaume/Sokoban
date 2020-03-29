@@ -280,7 +280,7 @@ public class GameBoard
 	
 	public void resetGameBoard() 
 	{
-		setTiles(originalTiles);
+		setTiles(cloneTiles(originalTiles));
 		setCompleted();
 	}
 }

@@ -45,6 +45,7 @@ public class UC4Applicatie
 			case 'D':
 			case 'd':
 				controller.move("Right");
+				break;
 			case 'R':
 			case 'r':
 				controller.resetSelectedGameBoard();
@@ -52,6 +53,8 @@ public class UC4Applicatie
 			case 'T':
 			case 't':
 				return;
+			default:
+				break;
 			}
 		}
 
