@@ -11,7 +11,7 @@ public class Tile
 		setContainsPlayer(containsPlayer);
 	}
 	
-	private void setTileType(TileTypes tileType) 
+	public void setTileType(TileTypes tileType) 
 	{
 		this.tileType = tileType;
 	}
