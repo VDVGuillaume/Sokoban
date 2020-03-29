@@ -208,6 +208,17 @@ public class DomainController {
 	
 	public void resetSelectedGameBoard() 
 	{
-		// TODO
+		if(selectedGame == null) 
+		{
+			throw new GameException(language.translate("ErrorGameNotFound"));
+		}
+		
+		try 
+		{
+			selectedGame.resetCurrentGameBoard();
+		}catch(GameException ex) 
+		{
+			throw new GameException(language.translate(ex.getMessage()));
+		}	
 	}
 }

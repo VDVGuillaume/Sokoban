@@ -29,4 +29,9 @@ public class Tile
 	public TileTypes getTileType() {
 		return tileType;
 	}
+	
+	public Tile clone() 
+	{
+		return new Tile(tileType, containsPlayer);
+	}
 }

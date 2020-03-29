@@ -108,4 +108,14 @@ public class Game {
 		
 		selectedGameBoard.move(direction);
 	}
+	
+	public void resetCurrentGameBoard() 
+	{
+		if(selectedGameBoard == null) 
+		{
+			throw new GameException("ErrorGameBoardNotFound");
+		}
+		
+		selectedGameBoard.resetGameBoard();	
+	}
 }

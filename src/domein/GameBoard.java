@@ -6,13 +6,15 @@ import exceptions.GameException;
 
 public class GameBoard 
 {
+	private Tile[][] originalTiles;
 	private Tile[][] tiles;
 	private boolean completed;
 	private Pawn pawn;
 
 	public GameBoard(Tile[][] tiles) 
 	{
-		setTiles(tiles);
+		originalTiles = tiles;
+		setTiles(cloneTiles(originalTiles));
 	}
 	
 	private void setPawn(int rowIndex, int columnIndex) 
@@ -255,5 +257,30 @@ public class GameBoard
 		}
 		
 		return true;
+	}
+	
+	private Tile[][] cloneTiles(Tile[][] tiles) 
+	{
+		Tile[][] clonedTiles = new Tile[10][10];
+		
+		int rowIndex = 0;
+		for(Tile[] tileRow : tiles) 
+		{
+			int columnIndex = 0;
+			for(Tile tile : tileRow) 
+			{
+				clonedTiles[rowIndex][columnIndex] = tile.clone();
+				columnIndex++;
+			}
+			rowIndex++;
+		}
+		
+		return clonedTiles;
+	}
+	
+	public void resetGameBoard() 
+	{
+		setTiles(originalTiles);
+		setCompleted();
 	}
 }
