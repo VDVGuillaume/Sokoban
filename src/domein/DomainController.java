@@ -135,14 +135,14 @@ public class DomainController {
 		}
 	}
 	
-	public boolean getSelectedGameBoardComplete() {
+	public boolean getSelectedGameBoardCompleted() {
 		if (selectedGame == null) {
 			throw new GameException(language.translate("ErrorGameNotFound"));
 		}
 
 		try 
 		{
-			return selectedGame.getSelectedGameBoardComplete();
+			return selectedGame.getSelectedGameBoardCompleted();
 		}catch(GameException ex) 
 		{
 			throw new GameException(language.translate(ex.getMessage()));

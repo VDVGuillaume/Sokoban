@@ -25,9 +25,10 @@ public class UC1Applicatie {
 	
 		try {
 		
-		System.out.printf(controller.translate("GiveUsername") + "%n");
-		username = input.nextLine();
-		System.out.printf(controller.translate("GivePassword") + "%n");
+		System.out.println(controller.translate("GiveUsername"));
+		String tmpText = input.nextLine();
+		username = tmpText;
+		System.out.println(controller.translate("GivePassword"));
 		password = input.nextLine();
 		
 		controller.logIn(username, password);

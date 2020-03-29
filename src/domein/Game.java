@@ -64,7 +64,7 @@ public class Game {
 		return null;
 	}
 	
-	public boolean getSelectedGameBoardComplete() 
+	public boolean getSelectedGameBoardCompleted() 
 	{
 		if(selectedGameBoard == null) 
 		{
