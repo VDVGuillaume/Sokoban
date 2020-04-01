@@ -229,7 +229,7 @@ public class GameBoard
 			setCompleted();
 			
 			// update amount of moves
-			setAmountMoves(getAmountMoves() + 1);
+			setMoves(getMoves() + 1);
 		}
 	}
 		
