@@ -116,7 +116,7 @@ public class DomainController {
 			throw new GameException(language.translate("ErrorGameNotFound"));
 		}
 
-		return new int[] { selectedGame.getAmountBoardsTotal(), selectedGame.getAmountBoardsCompleted() };
+		return new int[] { selectedGame.getNumberBoardsTotal(), selectedGame.getNumberBoardsCompleted()};
 	}
 
 	public void playNextGameBoard() 
