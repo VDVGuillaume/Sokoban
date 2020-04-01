@@ -26,7 +26,7 @@ public class UC4Applicatie
 		
 		while(!controller.getSelectedGameBoardCompleted()) 
 		{
-			gameBoardMoves = controller.getSelectedGameBoardAmountMoves();
+			gameBoardMoves = controller.getSelectedGameBoardMoves();
 			gameBoardConsole.drawConsole(controller.getSelectedGameBoardState());
 			System.out.println(controller.translate("GameBoardMovesMade") + gameBoardMoves);
 			System.out.println(controller.translate("GameBoardPossibleMoves"));
@@ -61,7 +61,7 @@ public class UC4Applicatie
 				break;
 			}
 		}
-		gameBoardMoves = controller.getSelectedGameBoardAmountMoves();
+		gameBoardMoves = controller.getSelectedGameBoardMoves();
 		gameBoardConsole.drawConsole(controller.getSelectedGameBoardState());
 		System.out.println(controller.translate("GameBoardCompleted").replace("$param1", Integer.toString(gameBoardMoves)));
 	}
