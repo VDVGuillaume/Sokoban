@@ -222,7 +222,7 @@ public class DomainController {
 		}	
 	}
 	
-	public int getSelectedGameBoardAmountMoves() 
+	public int getSelectedGameBoardMoves() 
 	{
 		if(selectedGame == null) 
 		{
@@ -231,7 +231,7 @@ public class DomainController {
 		
 		try 
 		{
-			return selectedGame.getSelectedGameBoardAmountMoves();
+			return selectedGame.getSelectedGameBoardMoves();
 		}catch(GameException ex) 
 		{
 			throw new GameException(language.translate(ex.getMessage()));

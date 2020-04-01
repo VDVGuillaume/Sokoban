@@ -119,13 +119,13 @@ public class Game {
 		selectedGameBoard.resetGameBoard();	
 	}
 	
-	public int getSelectedGameBoardAmountMoves() 
+	public int getSelectedGameBoardMoves() 
 	{
 		if(selectedGameBoard == null) 
 		{
 			throw new GameException("ErrorGameBoardNotFound");
 		}
 		
-		return selectedGameBoard.getAmountMoves();	
+		return selectedGameBoard.getMoves();	
 	}
 }
