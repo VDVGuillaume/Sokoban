@@ -10,12 +10,12 @@ public class GameBoard
 	private Tile[][] tiles;
 	private boolean completed;
 	private Pawn pawn;
-	private int amountMoves;
+	private int Moves;
 
 	public GameBoard(Tile[][] tiles) 
 	{
 		originalTiles = tiles;
-		amountMoves = 0;
+		Moves = 0;
 		setTiles(cloneTiles(originalTiles));
 	}
 	
@@ -285,18 +285,18 @@ public class GameBoard
 	
 	public void resetGameBoard() 
 	{
-		setAmountMoves(0);
+		setMoves(0);
 		setTiles(cloneTiles(originalTiles));
 		setCompleted();
 	}
 	
-	private void setAmountMoves(int amountMoves) 
+	private void setMoves(int Moves) 
 	{
-		this.amountMoves = amountMoves;
+		this.Moves = Moves;
 	}
 	
-	public int getAmountMoves() 
+	public int getMoves() 
 	{
-		return this.amountMoves;
+		return this.Moves;
 	}
 }
