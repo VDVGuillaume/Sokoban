@@ -33,7 +33,7 @@ public class DomainController {
 	 * correct, it displays the menu.
 	 */
 
-	public void logIn(String username, String password) throws Exception {
+	public void login(String username, String password) throws Exception {
 		/*
 		 * GVDV LogIn method has to use the validatePasword method to retrieve the user
 		 * Not sure but i assume that we use the method in the UserRepository Something
@@ -42,8 +42,9 @@ public class DomainController {
 		 * message
 		 */
 
-		selectedUser = userRepository.login(username, password);
-		if (selectedUser == null) {
+		boolean userCheck = userRepository.checkUser(username, password);
+		
+		if (userCheck == false) {
 			throw new PasswordException(translate("LoginFailed"));
 
 			/*
@@ -53,6 +54,8 @@ public class DomainController {
 			 * System.out.println("Choose one of the following games:"); getGamesList();}
 			 */
 		} else {
+			
+			selectedUser = userRepository.getUser(username);
 
 		}
 	}
@@ -62,6 +65,7 @@ public class DomainController {
 	public String[] getInfoUser() {
 
 		String[] userInfo = new String[2];
+		
 
 		userInfo[0] = selectedUser.getUsername();
 		if (selectedUser.getAdmin()) {

@@ -6,6 +6,7 @@ import util.Security;
 public class UserRepository 
 {
 	private UserMapper userMapper;
+	private User selectedUser;
 	
 	public UserRepository(){
 		this.userMapper = new UserMapper();
@@ -28,14 +29,14 @@ public class UserRepository
 		userMapper.createUser(user);
 	}
 	
-	public User login(String username, String password) 
+	public boolean checkUser(String username, String password) 
 	{
 		//get user in db
 		User user = userMapper.getUser(username);
 		
 		if(user == null) 
 		{
-			return null;
+			return false;
 		}
 		
 		String salt = user.getSalt();
@@ -43,9 +44,25 @@ public class UserRepository
 		
 		if(passwordHashed.equals(user.getPasswordHashed())) 
 		{
-			return new User(username, password, user.getAdmin(), user.getName(), user.getFirstName());
+			return true;
+			
+			
+			
+			
 		}
 		
-		return null;
+		return false;
+	}
+	
+	public User getUser(String username)
+	{
+		//get user in db
+		User user = userMapper.getUser(username);
+		
+	
+			return user;
+		
+			
+		
 	}
 }

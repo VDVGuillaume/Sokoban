@@ -31,7 +31,7 @@ public class UC1Applicatie {
 		System.out.println(controller.translate("GivePassword"));
 		password = input.nextLine();
 		
-		controller.logIn(username, password);
+		controller.login(username, password);
 		info = controller.getInfoUser();
 		System.out.println("gebruikersnaam = " + info[0]);
 		}catch (Exception e) {
