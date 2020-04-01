@@ -228,7 +228,7 @@ public class GameBoard
 			// check if gameboard is completed
 			setCompleted();
 			
-			// update amount of moves
+			// update number of moves
 			setMoves(getMoves() + 1);
 		}
 	}

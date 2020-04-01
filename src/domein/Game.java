@@ -32,19 +32,19 @@ public class Game {
 		return gameBoards;
 	}	
 	
-	public int getAmountBoardsCompleted() {
-		int amountBoardsCompleted=0;
+	public int getNumberBoardsCompleted() {
+		int numberBoardsCompleted=0;
 		for(GameBoard gameBoard : gameBoards) 
 		{
 			if(gameBoard.getCompleted()) 
 			{
-				amountBoardsCompleted++;
+				numberBoardsCompleted++;
 			}
 		}
-		return amountBoardsCompleted;
+		return numberBoardsCompleted;
 	}
 	
-	public int getAmountBoardsTotal() {
+	public int getNumberBoardsTotal() {
 		return gameBoards.size();
 	}
 	
@@ -86,7 +86,7 @@ public class Game {
 	
 	public boolean getComplete() 
 	{
-		return getAmountBoardsCompleted() == getAmountBoardsTotal();
+		return getNumberBoardsCompleted() == getNumberBoardsTotal();
 	}
 	
 	public String[][] getSelectedGameBoardState()
