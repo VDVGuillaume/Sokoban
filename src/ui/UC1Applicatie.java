@@ -39,7 +39,7 @@ public class UC1Applicatie {
 			UI();		
 		}
 		finally {
-			input.close();
+			
 		}
 		
 		return info;
