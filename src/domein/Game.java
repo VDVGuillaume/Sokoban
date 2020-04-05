@@ -8,6 +8,7 @@ public class Game {
 	private List<GameBoard> gameBoards;
 	private GameBoard selectedGameBoard;
 	private String name;
+	private String createdByUser;
 	
 	public Game(String name, List<GameBoard> gameBoards) 
 	{

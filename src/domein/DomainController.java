@@ -1,6 +1,7 @@
 package domein;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import exceptions.GameException;
@@ -9,7 +10,7 @@ import exceptions.UsernameException;
 import util.Language;
 import java.util.ResourceBundle;
 import java.util.Locale;
-import persistentie.UserMapper;
+
 
 public class DomainController {
 
@@ -241,4 +242,22 @@ public class DomainController {
 			throw new GameException(language.translate(ex.getMessage()));
 		}	
 	}
-}
+
+
+/* UC5 */
+
+	public void createGame(String gameName) {
+		
+		if(gameRepository.getGame(gameName) == null) {		
+		
+		try {			
+			new Game(gameName,(selectedUser.getFirstName()+" "+selectedUser.getName()));
+		}catch(GameException ex)
+		{
+			throw new GameException(language.translate(ex.getMessage()));
+		}
+		}else {
+			throw new GameException(language.translate("ErrorGameNameAlreadyUsed"));
+		}
+		
+	}}
