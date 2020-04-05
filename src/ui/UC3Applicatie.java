@@ -44,7 +44,7 @@ public class UC3Applicatie {
 				System.out.println(completedAmountGameBoards + " "
 						+ controller.translate("NumberGameboardsCompletedOutofTotal") + " " + totalAmountGameBoards);
 				
-				if(controller.getGameIsComplete()) 
+				if(controller.isGameCompleted()) 
 				{
 					break;
 				}
