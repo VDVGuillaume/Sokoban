@@ -16,13 +16,31 @@ public class Game {
 		setGameBoards(gameBoards);
 	}
 	
+	public Game(String name, String user) {
+		
+		setName(name);
+		setCreatedByUser(user);
+		
+	}
+	
 	private void setGameBoards(List<GameBoard> gameBoards) {
 		this.gameBoards = gameBoards;
 	}
 	
+	private void setCreatedByUser(String user) {
+		this.createdByUser = user;
+	}
+	
+	private String getCreatedByUser() {
+		return this.createdByUser;
+	}
+	
 	private void setName(String name) 
 	{
-		this.name = name;
+		if(!name.contains(" ")) {
+		this.name = name;}else {
+			throw new GameException("ErrorSpacesInGameName");
+		}
 	}
 	
 	public String getName() {
