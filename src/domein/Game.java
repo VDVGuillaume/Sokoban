@@ -48,22 +48,6 @@ public class Game {
 		return gameBoards.size();
 	}
 	
-	private GameBoard getNextGameBoard() 
-	{
-		for(GameBoard gameBoard : gameBoards) 
-		{
-			if(gameBoard.getCompleted()) 
-			{
-				continue;
-			}else 
-			{
-				return gameBoard;
-			}
-		}
-		
-		return null;
-	}
-	
 	public boolean getSelectedGameBoardCompleted() 
 	{
 		if(selectedGameBoard == null) 
@@ -76,7 +60,19 @@ public class Game {
 	
 	public void playNextGameBoard()
 	{
-		selectedGameBoard = getNextGameBoard();
+		GameBoard tempGameBoard = null;
+		for(GameBoard gameBoard : gameBoards) 
+		{
+			if(gameBoard.getCompleted()) 
+			{
+				continue;
+			}
+			
+			tempGameBoard = gameBoard;
+			break;
+		}
+		
+		selectedGameBoard = tempGameBoard;
 		
 		if(selectedGameBoard == null) 
 		{

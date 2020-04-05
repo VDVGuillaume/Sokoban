@@ -153,7 +153,7 @@ public class DomainController {
 		}
 	}
 	
-	public boolean getGameIsComplete() 
+	public boolean isGameCompleted() 
 	{
 		if(selectedGame == null) 
 		{
