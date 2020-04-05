@@ -11,6 +11,7 @@ import ui.UC1Applicatie;
 import ui.UC2Applicatie;
 import ui.UC3Applicatie;
 import ui.UC4Applicatie;
+import ui.UC5Applicatie;
 
 public class StartUp {
 	public static void main(String[] args) {
@@ -69,6 +70,10 @@ public class StartUp {
 			{
 				break;	
 			}	
+			else if(selection ==3) {
+				UC5Applicatie app = new UC5Applicatie(domeincontroller);
+				app.UI();
+			}
 		}
 
 		input.close();	
