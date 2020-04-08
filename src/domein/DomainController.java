@@ -244,7 +244,9 @@ public class DomainController {
 	}
 
 
-/* UC5 */
+
+	/**UC5 Create game :  create's a new game object linked to the current user. 
+	 * The object is send through the repository to the mapper */
 
 	public void createGame(String gameName) {
 		
@@ -260,5 +262,18 @@ public class DomainController {
 		}else {
 			throw new GameException(language.translate("ErrorGameNameAlreadyUsed"));
 		}
+	}
+	
+	public String[] getGameInfo() {
 		
-	}}
+		String gameInfo[] = new String[2];
+		
+		gameInfo[0] = selectedGame.getCreatedByUser();
+		gameInfo[1] = selectedGame.getNrOfBoards();
+		
+		return gameInfo;
+		
+	}
+
+	
+}

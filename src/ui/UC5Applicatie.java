@@ -21,6 +21,8 @@ public class UC5Applicatie {
 		System.out.println(controller.translate("GiveGameName"));
 		String gameName = input.nextLine();		
 		controller.createGame(gameName);
+		
+		System.out.printf("", controller.getGameInfo())
 		}catch(Exception e) {
 			System.out.println(e.getMessage());
 			UI(input);		

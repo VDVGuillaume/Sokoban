@@ -7,6 +7,7 @@ import exceptions.GameException;
 public class Game {
 	private List<GameBoard> gameBoards;
 	private GameBoard selectedGameBoard;
+	private GameBoardRepository gameBoardRepository;
 	private String name;
 	private String createdByUser;
 	
@@ -31,8 +32,12 @@ public class Game {
 		this.createdByUser = user;
 	}
 	
-	private String getCreatedByUser() {
+	public String getCreatedByUser() {
 		return this.createdByUser;
+	}
+	
+	public String getNrOfBoards() {		
+		return String.format("%d",gameBoards.size());				
 	}
 	
 	private void setName(String name) 
@@ -142,5 +147,10 @@ public class Game {
 		}
 		
 		return selectedGameBoard.getMoves();	
+	}
+	
+	public void addGameBoard(GameBoard gameboard) {		
+			
+		gameBoardRepository.addGameboard(this,gameboard);
 	}
 }

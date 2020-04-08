@@ -69,4 +69,51 @@ public class GameBoardMapper extends BaseMapper {
 		
 		return gameBoards;	
 	}		
+	
+	
+	public void addGameBoard(Game game,GameBoard gameboard) {
+		
+
+		PreparedStatement stmt = null;
+		Connection conn = null;
+		final String sql = "INSERT INTO GAMEBOARD (Gameid) VALUES (?)";
+		
+		try 
+		{
+			conn = createConnection(); 
+			stmt = conn.prepareStatement(sql);
+			
+			stmt.setString(1, game.getName());
+			
+			stmt.executeUpdate();
+		
+		} catch (SQLException e) 
+		{
+			// java...
+			e.printStackTrace();
+		}finally 
+		{
+			try 
+			{
+				if(stmt != null) stmt.close();
+			}catch(SQLException e) 
+			{
+				// java...
+				e.printStackTrace();
+			}
+			try 
+			{
+				if(conn != null) conn.close();
+			}
+			catch(SQLException e) 
+			{
+				// java...
+				e.printStackTrace();
+			}
+		}
+	
+	
+	}
+	
+	
 }

@@ -73,7 +73,9 @@ public class StartUp {
 			else if(selection == 3) {
 				UC5Applicatie app = new UC5Applicatie(domeincontroller);
 				input.nextLine();
-				app.UI(input);
+				app.UI(input);	
+				
+				
 			}
 		}
 
