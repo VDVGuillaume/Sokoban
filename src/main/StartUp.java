@@ -70,9 +70,10 @@ public class StartUp {
 			{
 				break;	
 			}	
-			else if(selection ==3) {
+			else if(selection == 3) {
 				UC5Applicatie app = new UC5Applicatie(domeincontroller);
-				app.UI();
+				input.nextLine();
+				app.UI(input);
 			}
 		}
 

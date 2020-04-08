@@ -14,16 +14,19 @@ public class UC5Applicatie {
 		
 	}
 
-	public void UI(Scanner input) {
+	public void UI(Scanner input) {	
 		
-		
-		
+				
+		try {
 		System.out.println(controller.translate("GiveGameName"));
-		String gameName = input.next();
+		String gameName = input.nextLine();		
 		controller.createGame(gameName);
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+			UI(input);		
 		
 	}
 	
 	
 	
-}
+}}

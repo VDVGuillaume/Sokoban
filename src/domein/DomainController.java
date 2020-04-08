@@ -251,7 +251,8 @@ public class DomainController {
 		if(gameRepository.getGame(gameName) == null) {		
 		
 		try {			
-			new Game(gameName,(selectedUser.getFirstName()+" "+selectedUser.getName()));
+		Game game = new Game(gameName,(selectedUser.getFirstName()+" "+selectedUser.getName()));
+		gameRepository.createGame(game);
 		}catch(GameException ex)
 		{
 			throw new GameException(language.translate(ex.getMessage()));

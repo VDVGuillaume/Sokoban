@@ -22,4 +22,8 @@ public class GameRepository
 	{
 		return mapper.getGame(gameName);
 	}
+	
+	public void createGame(Game game) {
+		mapper.createGame(game);
+	}
 }
