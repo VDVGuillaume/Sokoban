@@ -35,6 +35,26 @@ public class WelcomeScreenController extends GridPane {
 	private TextField txtUsername;
 	@FXML
 	private PasswordField txtPassword;
+	
+	@FXML
+	private Button btnLogin;
+	@FXML
+	private Label lblUsernameRegister;
+	@FXML
+	private Label lblPasswordRegister;
+	@FXML
+	private Label lblFirstName;
+	@FXML
+	private Label lblName;
+	@FXML
+	private TextField txtUsernameRegister;
+	@FXML
+	private TextField txtPasswordRegister;
+	@FXML
+	private TextField txtFirstName;
+	@FXML
+	private TextField txtName;
+	
 
 	public WelcomeScreenController(DomainController domainController) {
 		this.domainController = domainController;
@@ -61,7 +81,20 @@ public class WelcomeScreenController extends GridPane {
 		lblUsername.setText(domainController.translate("Username"));
 		lblPassword.setText(domainController.translate("Password"));
 		lblLogin.setText(domainController.translate("Login"));
+		btnLogin.setText(domainController.translate("Login"));
+		
+		lblUsernameRegister.setText(domainController.translate("Username"));
+		lblPasswordRegister.setText(domainController.translate("Password"));
+		lblFirstName.setText(domainController.translate("FirstName"));
+		lblName.setText(domainController.translate("Name"));
 		btnRegister.setText(domainController.translate("Register"));
+		
+	}
+
+	@FXML
+	private void btnRegisterOnAction(ActionEvent event) {
+		var username = txtUsername.getText();
+		var password = txtPassword.getText();
 	}
 
 	@FXML
@@ -71,13 +104,7 @@ public class WelcomeScreenController extends GridPane {
 		comboBoxLanguage.getItems().addAll(languages);
 		comboBoxLanguage.setValue(languages.get(domainLanguage).toString());
 	}
-
-	@FXML
-	private void btnCalculateOnAction(ActionEvent event) {
-		var username = txtUsername.getText();
-		var password = txtPassword.getText();
-	}
-
+	
 	@FXML
 	private void languageChoiceChanged(ActionEvent event) {
 		int domainLanguage = domainController.getLanguage();
