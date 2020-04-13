@@ -28,7 +28,7 @@ public class UC5Applicatie {
 			answer = input.nextInt();
 		}while(answer == 1);
 		String gameInfo[] = controller.getSelectedGameInfo();
-		System.out.printf("%s %s",gameInfo[2],gameInfo[1]);
+		System.out.printf("%s %s%n",gameInfo[2],gameInfo[0]);
 		}
 		catch(Exception e) {
 			

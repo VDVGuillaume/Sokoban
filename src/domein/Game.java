@@ -141,4 +141,10 @@ public class Game {
 		return selectedGameBoard.getMoves();	
 	}
 	
+	public void addGameBoard() {
+		GameBoard gameBoard = new GameBoard();
+		gameBoards.add(gameBoard);
+		
+	}
+	
 }

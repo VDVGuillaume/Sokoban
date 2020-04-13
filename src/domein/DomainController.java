@@ -124,7 +124,7 @@ public class DomainController {
 			throw new GameException(language.translate("ErrorGameNotFound"));
 		}
 
-		return new String[] { selectedGame.getNumberBoardsTotal(), selectedGame.getNumberBoardsCompleted()};
+		return new String[] { selectedGame.getNumberBoardsTotal(), selectedGame.getNumberBoardsCompleted(),selectedGame.getCreatedByUser().getUsername()};
 	}
 
 	public void playNextGameBoard() 
@@ -271,8 +271,9 @@ public class DomainController {
 	}
 
 	/** method addGameboard calls addGameboard in game class to add a new gameboard */
-	public void addGameboard() {		
+	public void addGameboard() {
 		
+		selectedGame.addGameBoard();
 	 gameBoardRepository.addGameboard(selectedGame);
 	}
 
