@@ -6,11 +6,12 @@ import java.util.Scanner;
 
 public class Language {
 	private String language;
+	private int languageSelection;
 	private ResourceBundle bundle;
 	
 	public void setLanguage(int userSelection) {
 	Locale locale;
-	
+	languageSelection = userSelection;
 	switch(userSelection) {
 	case 1:
 		language="en";
@@ -30,10 +31,9 @@ public class Language {
 	}
 	}
 	
-	public String getLanguage() {
-		return language;	
-	}
-		
+	public int getLanguage() {
+		return languageSelection;	
+	}	
 	
 	public String translate(String word) {
 	String msg = bundle.getString(word);

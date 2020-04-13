@@ -192,6 +192,15 @@ public class DomainController {
 	public void setLanguage(int languageSelection) {
 		language.setLanguage(languageSelection);
 	}
+	
+	/*
+	* return language selection
+	* possible returnvalues: { 1(english), 2(dutch), 3(french) }
+	*/
+	public int getLanguage() 
+	{
+		return language.getLanguage();
+	}
 
 	public String translate(String translationKey) {
 		return language.translate(translationKey);
