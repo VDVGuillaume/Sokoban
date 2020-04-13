@@ -70,6 +70,6 @@
          </GridPane.margin>
       </Button>
       <Button fx:id="btnRegister" mnemonicParsing="false" text="Register an account" GridPane.columnSpan="2" GridPane.rowIndex="5" />
-      <ComboBox id="comboBoxLanguage" fx:id="comboBoxLanguage" prefWidth="150.0" promptText="languageChoice" GridPane.columnIndex="3" />
+      <ComboBox id="comboBoxLanguage" fx:id="comboBoxLanguage" onAction="#languageChoiceChanged" prefWidth="150.0" promptText="languageChoice" GridPane.columnIndex="3" />
    </children>
 </fx:root>

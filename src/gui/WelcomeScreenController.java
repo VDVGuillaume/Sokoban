@@ -19,7 +19,7 @@ import javafx.scene.layout.GridPane;
 public class WelcomeScreenController extends GridPane {
 	private DomainController domainController;
 	private ObservableList languages;
-	
+
 	@FXML
 	private Label lblLogin;
 	@FXML
@@ -28,16 +28,17 @@ public class WelcomeScreenController extends GridPane {
 	private Label lblPassword;
 	@FXML
 	private Button btnRegister;
-	
+
 	@FXML
 	private ComboBox<String> comboBoxLanguage;
 	@FXML
 	private TextField txtUsername;
 	@FXML
 	private PasswordField txtPassword;
-	
+
 	public WelcomeScreenController(DomainController domainController) {
 		this.domainController = domainController;
+
 		languages = FXCollections.observableArrayList();
 		languages.addAll("English", "Nederlands", "Français");
 
@@ -45,39 +46,47 @@ public class WelcomeScreenController extends GridPane {
 		loader.setController(this);
 		loader.setRoot(this);
 
-		
 		try {
 			loader.load();
+			loadLanguageChoices();
 			loadData();
-
 		} catch (IOException ex) {
 			throw new RuntimeException(ex);
 		}
 	}
-	
+
 	@FXML
-	private void loadData() 
-	{
-		//clear data
-		comboBoxLanguage.getItems().clear();
-		
-		//get needed information
-		int selectedLanguage = domainController.getLanguage();
-		
-		comboBoxLanguage.setValue(languages.get(selectedLanguage - 1).toString());
-		
-		//fill data
-		comboBoxLanguage.getItems().addAll(languages);
+	private void loadData() {
+		// set translations
 		lblUsername.setText(domainController.translate("Username"));
 		lblPassword.setText(domainController.translate("Password"));
 		lblLogin.setText(domainController.translate("Login"));
 		btnRegister.setText(domainController.translate("Register"));
 	}
-	
+
 	@FXML
-	private void btnCalculateOnAction(ActionEvent event) 
-	{
+	private void loadLanguageChoices() {
+		int domainLanguage = domainController.getLanguage() - 1;
+		comboBoxLanguage.getItems().clear();
+		comboBoxLanguage.getItems().addAll(languages);
+		comboBoxLanguage.setValue(languages.get(domainLanguage).toString());
+	}
+
+	@FXML
+	private void btnCalculateOnAction(ActionEvent event) {
 		var username = txtUsername.getText();
 		var password = txtPassword.getText();
+	}
+
+	@FXML
+	private void languageChoiceChanged(ActionEvent event) {
+		int domainLanguage = domainController.getLanguage();
+		int selectedLanguage = languages.indexOf(comboBoxLanguage.getValue()) + 1;
+
+		if (domainLanguage != selectedLanguage) {
+			domainController.setLanguage(selectedLanguage);
+			loadData();
+			event.consume();
+		}
 	}
 }
