@@ -75,7 +75,10 @@
             <Insets />
          </GridPane.margin>
       </Button>
-      <ComboBox id="comboBoxLanguage" fx:id="comboBoxLanguage" onAction="#languageChoiceChanged" prefWidth="150.0" promptText="languageChoice" GridPane.columnIndex="3" />
+      <ComboBox id="comboBoxLanguage" fx:id="comboBoxLanguage" onAction="#languageChoiceChanged" prefWidth="150.0" promptText="languageChoice" GridPane.columnIndex="3">
+         <GridPane.margin>
+            <Insets right="10.0" top="10.0" />
+         </GridPane.margin></ComboBox>
       <Label fx:id="lblLogin1" text="Register" GridPane.rowIndex="5">
          <font>
             <Font size="24.0" />
