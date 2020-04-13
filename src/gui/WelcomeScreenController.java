@@ -39,9 +39,8 @@ public class WelcomeScreenController extends GridPane {
 	public WelcomeScreenController(DomainController domainController) {
 		this.domainController = domainController;
 		languages = FXCollections.observableArrayList();
-		languages.addAll("English", "Français", "Nederlands");
+		languages.addAll("English", "Nederlands", "Français");
 
-		
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("WelcomeScreen.fxml"));
 		loader.setController(this);
 		loader.setRoot(this);
@@ -62,6 +61,10 @@ public class WelcomeScreenController extends GridPane {
 		//clear data
 		comboBoxLanguage.getItems().clear();
 		
+		//get needed information
+		int selectedLanguage = domainController.getLanguage();
+		
+		comboBoxLanguage.setValue(languages.get(selectedLanguage - 1).toString());
 		
 		//fill data
 		comboBoxLanguage.getItems().addAll(languages);
