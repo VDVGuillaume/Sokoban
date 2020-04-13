@@ -70,7 +70,7 @@
             <Insets left="5.0" top="5.0" />
          </GridPane.margin>
       </PasswordField>
-      <Button id="btnLogin" fx:id="btnLogin" alignment="CENTER" mnemonicParsing="false" prefHeight="26.0" prefWidth="150.0" text="Log in" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="TOP">
+      <Button id="btnLogin" fx:id="btnLogin" alignment="CENTER" mnemonicParsing="false" onAction="#btnLoginOnAction" prefHeight="26.0" prefWidth="150.0" text="Log in" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="TOP">
          <GridPane.margin>
             <Insets />
          </GridPane.margin>
