@@ -7,7 +7,7 @@ import exceptions.GameException;
 public class Game {
 	private List<GameBoard> gameBoards;
 	private GameBoard selectedGameBoard;
-	private GameBoardRepository gameBoardRepository;
+	
 	private String name;
 	private User createdByUser;
 	
@@ -141,9 +141,4 @@ public class Game {
 		return selectedGameBoard.getMoves();	
 	}
 	
-	public void addGameBoard(Game game){		
-		
-		selectedGameBoard = new GameBoard();
-		gameBoardRepository.addGameboard(game);
-	}
 }

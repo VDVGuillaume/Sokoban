@@ -76,7 +76,7 @@ public class GameBoardMapper extends BaseMapper {
 
 		PreparedStatement stmt = null;
 		Connection conn = null;
-		final String sql = "INSERT INTO GAMEBOARD (id,GameName) VALUES (?,?)";
+		final String sql = "INSERT INTO GAMEBOARD (GameName) VALUES (?)";
 		
 		try 
 		{

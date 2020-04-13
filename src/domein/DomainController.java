@@ -16,6 +16,7 @@ public class DomainController {
 
 	private UserRepository userRepository;
 	private GameRepository gameRepository;
+	private GameBoardRepository gameBoardRepository;
 	private User selectedUser;
 	private Game selectedGame;
 	private Language language;
@@ -27,6 +28,7 @@ public class DomainController {
 		language = new Language();
 		this.userRepository = new UserRepository();
 		this.gameRepository = new GameRepository();
+		this.gameBoardRepository = new GameBoardRepository();
 	}
 
 	/**
@@ -271,7 +273,7 @@ public class DomainController {
 	/** method addGameboard calls addGameboard in game class to add a new gameboard */
 	public void addGameboard() {		
 		
-		selectedGame.addGameBoard(selectedGame);;;
+	 gameBoardRepository.addGameboard(selectedGame);
 	}
 
 	
