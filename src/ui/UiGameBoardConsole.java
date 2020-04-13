@@ -57,8 +57,6 @@ public class UiGameBoardConsole
 				}
 				
 				sb.append(outputString);
-				//TODO investigate how to create a fixed canvas on a cmd window
-				//System.out.print(String.format("%s[%d;%df",outputString,rowIndex,columnIndex));
 			}
 			sb.append("\n");
 		}
