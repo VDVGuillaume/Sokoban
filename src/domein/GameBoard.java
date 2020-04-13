@@ -19,6 +19,10 @@ public class GameBoard
 		setTiles(cloneTiles(originalTiles));
 	}
 	
+	public GameBoard() {
+		//empty constructor for testing UC5
+	}
+	
 	private void setPawn(int rowIndex, int columnIndex) 
 	{
 		this.pawn = new Pawn(rowIndex, columnIndex);

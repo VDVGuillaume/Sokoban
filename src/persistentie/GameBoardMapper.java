@@ -20,19 +20,19 @@ public class GameBoardMapper extends BaseMapper {
 		tileMapper = new TileMapper();
 	}
 	
-	public List<GameBoard> getGameBoards(int gameId)
+	public List<GameBoard> getGameBoards(String gameName)
 	{
 		List<GameBoard> gameBoards = new ArrayList<GameBoard>();
 		PreparedStatement stmt = null;
 		Connection conn = null;
-		final String sql = "select id from GAMEBOARD where game_id = ?";
+		final String sql = "select id from GAMEBOARD where GameName = ?";
 		
 		try 
 		{
 			conn = createConnection(); 
 			stmt = conn.prepareStatement(sql);
 			
-			stmt.setInt(1, gameId);
+			stmt.setString(1, gameName);
 			
 			ResultSet rs = stmt.executeQuery();
 			
@@ -71,12 +71,12 @@ public class GameBoardMapper extends BaseMapper {
 	}		
 	
 	
-	public void addGameBoard(Game game,GameBoard gameboard) {
+	public void addGameBoard(Game game) {
 		
 
 		PreparedStatement stmt = null;
 		Connection conn = null;
-		final String sql = "INSERT INTO GAMEBOARD (Gameid) VALUES (?)";
+		final String sql = "INSERT INTO GAMEBOARD (id,GameName) VALUES (?,?)";
 		
 		try 
 		{

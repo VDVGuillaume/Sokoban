@@ -21,10 +21,18 @@ public class UC5Applicatie {
 		System.out.println(controller.translate("GiveGameName"));
 		String gameName = input.nextLine();		
 		controller.createGame(gameName);
-		
-		System.out.printf("", controller.getGameInfo())
-		}catch(Exception e) {
-			System.out.println(e.getMessage());
+		int answer = 0;
+		do{
+			controller.addGameboard();
+			System.out.println(controller.translate("addGameBoard"));
+			answer = input.nextInt();
+		}while(answer == 1);
+		String gameInfo[] = controller.getSelectedGameInfo();
+		System.out.printf("%s %s",gameInfo[2],gameInfo[1]);
+		}
+		catch(Exception e) {
+			
+			e.printStackTrace();
 			UI(input);		
 		
 	}

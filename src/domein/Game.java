@@ -9,36 +9,28 @@ public class Game {
 	private GameBoard selectedGameBoard;
 	private GameBoardRepository gameBoardRepository;
 	private String name;
-	private String createdByUser;
+	private User createdByUser;
 	
-	public Game(String name, List<GameBoard> gameBoards) 
+	public Game(String name, List<GameBoard> gameBoards,User user) 
 	{
 		setName(name);
 		setGameBoards(gameBoards);
-	}
-	
-	public Game(String name, String user) {
-		
-		setName(name);
 		setCreatedByUser(user);
-		
 	}
+		
 	
 	private void setGameBoards(List<GameBoard> gameBoards) {
 		this.gameBoards = gameBoards;
 	}
 	
-	private void setCreatedByUser(String user) {
+	private void setCreatedByUser(User user) {
 		this.createdByUser = user;
 	}
 	
-	public String getCreatedByUser() {
+	public User getCreatedByUser() {
 		return this.createdByUser;
-	}
+	}	
 	
-	public String getNrOfBoards() {		
-		return String.format("%d",gameBoards.size());				
-	}
 	
 	private void setName(String name) 
 	{
@@ -56,7 +48,7 @@ public class Game {
 		return gameBoards;
 	}	
 	
-	public int getNumberBoardsCompleted() {
+	public String getNumberBoardsCompleted() {
 		int numberBoardsCompleted=0;
 		for(GameBoard gameBoard : gameBoards) 
 		{
@@ -65,11 +57,11 @@ public class Game {
 				numberBoardsCompleted++;
 			}
 		}
-		return numberBoardsCompleted;
+		return  String.format("%d",numberBoardsCompleted);
 	}
 	
-	public int getNumberBoardsTotal() {
-		return gameBoards.size();
+	public String getNumberBoardsTotal() {
+		return String.format("%d",gameBoards.size());		
 	}
 	
 	public boolean getSelectedGameBoardCompleted() 
@@ -149,8 +141,9 @@ public class Game {
 		return selectedGameBoard.getMoves();	
 	}
 	
-	public void addGameBoard(GameBoard gameboard) {		
-			
-		gameBoardRepository.addGameboard(this,gameboard);
+	public void addGameBoard(Game game){		
+		
+		selectedGameBoard = new GameBoard();
+		gameBoardRepository.addGameboard(game);
 	}
 }

@@ -14,6 +14,7 @@ import domein.User;
 public class GameMapper extends BaseMapper 
 {
 	private GameBoardMapper gameBoardMapper;
+	private UserMapper userMapper;
 	
 	public GameMapper() 
 	{
@@ -25,7 +26,7 @@ public class GameMapper extends BaseMapper
 		List<String> games = new ArrayList<String>();
 		PreparedStatement stmt = null;
 		Connection conn = null;
-		final String sql = "select name from GAME order by id";
+		final String sql = "select name from GAME order by name";
 		
 		try 
 		{
@@ -65,11 +66,11 @@ public class GameMapper extends BaseMapper
 	}
 	
 	
-	public Game getGame(String gameName)
+	public Game getGame(String gameName,User user)
 	{
 		PreparedStatement stmt = null;
 		Connection conn = null;
-		final String sql = "select id from GAME where name = ?";
+		final String sql = "select name from GAME where name = ? and createdByUser = ?";
 		Game game = null;
 		
 		try 
@@ -77,15 +78,15 @@ public class GameMapper extends BaseMapper
 			conn = createConnection(); 
 			stmt = conn.prepareStatement(sql);
 			
-			stmt.setString(1, gameName);
+			stmt.setString(1,gameName);
+			stmt.setString(2,user.getUsername());
 						
 			ResultSet rs = stmt.executeQuery();
 			
 			if(rs.next()) 
 			{	
-				var gameId = rs.getInt(1);
-				var gameBoards = gameBoardMapper.getGameBoards(gameId);
-				game = new Game(gameName, gameBoards);
+				var gameBoards = gameBoardMapper.getGameBoards(gameName);
+				game = new Game(gameName, gameBoards,user);
 			}
 		} catch (SQLException e) 
 		{
@@ -116,7 +117,7 @@ public class GameMapper extends BaseMapper
 	{
 		PreparedStatement stmt = null;
 		Connection conn = null;
-		final String sql = "INSERT INTO GAME(name) VALUES (?)";
+		final String sql = "INSERT INTO GAME(name,createdByUser) VALUES (?,?)";
 		
 		try 
 		{
@@ -124,6 +125,7 @@ public class GameMapper extends BaseMapper
 			stmt = conn.prepareStatement(sql);
 			
 			stmt.setString(1, game.getName());
+			stmt.setString(2, game.getCreatedByUser().getUsername());
 			
 			stmt.executeUpdate();
 		

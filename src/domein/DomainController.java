@@ -107,7 +107,7 @@ public class DomainController {
 	}
 
 	public void chooseGame(String gameName) throws Exception {
-		Game game = gameRepository.getGame(gameName);
+		Game game = gameRepository.getGame(gameName,selectedUser);
 
 		if (game == null) {
 			throw new GameException(language.translate("ErrorGameNotFound"));
@@ -116,12 +116,13 @@ public class DomainController {
 		selectedGame = game;
 	}
 
-	public int[] getSelectedGameInfo() {
+	/**Method getSelectedGameInfo() returns a string representation of the total number of boards, completed boards, and the name of the game*/
+	public String[] getSelectedGameInfo() {
 		if (selectedGame == null) {
 			throw new GameException(language.translate("ErrorGameNotFound"));
 		}
 
-		return new int[] { selectedGame.getNumberBoardsTotal(), selectedGame.getNumberBoardsCompleted()};
+		return new String[] { selectedGame.getNumberBoardsTotal(), selectedGame.getNumberBoardsCompleted()};
 	}
 
 	public void playNextGameBoard() 
@@ -250,29 +251,27 @@ public class DomainController {
 
 	public void createGame(String gameName) {
 		
-		if(gameRepository.getGame(gameName) == null) {		
+		if(gameRepository.getGame(gameName,selectedUser) == null) {		
 		
-		try {			
-		Game game = new Game(gameName,(selectedUser.getFirstName()+" "+selectedUser.getName()));
-		gameRepository.createGame(game);
+		try {
+		List<GameBoard> gameboards = new ArrayList<GameBoard>();	
+		selectedGame = new Game(gameName,gameboards,selectedUser);
+		gameRepository.createGame(selectedGame);
 		}catch(GameException ex)
 		{
+			System.err.print(ex.getMessage());
 			throw new GameException(language.translate(ex.getMessage()));
+			
 		}
 		}else {
 			throw new GameException(language.translate("ErrorGameNameAlreadyUsed"));
 		}
 	}
-	
-	public String[] getGameInfo() {
+
+	/** method addGameboard calls addGameboard in game class to add a new gameboard */
+	public void addGameboard() {		
 		
-		String gameInfo[] = new String[2];
-		
-		gameInfo[0] = selectedGame.getCreatedByUser();
-		gameInfo[1] = selectedGame.getNrOfBoards();
-		
-		return gameInfo;
-		
+		selectedGame.addGameBoard(selectedGame);;;
 	}
 
 	
