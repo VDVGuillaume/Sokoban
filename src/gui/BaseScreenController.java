@@ -12,18 +12,16 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.layout.GridPane;
 
 public abstract class BaseScreenController extends GridPane {
-	
+
 	protected ObservableList languages;
 	protected DomainController domainController;
 
 	@FXML
 	protected ComboBox comboBoxLanguage;
-	
-	
-	protected BaseScreenController(DomainController domainController, String resource) 
-	{
+
+	protected BaseScreenController(DomainController domainController, String resource) {
 		this.domainController = domainController;
-		
+
 		languages = FXCollections.observableArrayList();
 		languages.addAll("English", "Nederlands", "Français");
 
@@ -39,13 +37,11 @@ public abstract class BaseScreenController extends GridPane {
 			throw new RuntimeException(ex);
 		}
 	}
-	
+
 	// method to override with child implementation of this class
-	protected void loadData() 
-	{
-		
+	protected void loadData() {
+
 	}
-	
 
 	// Event Listener on ComboBox[#comboBoxLanguage].onAction
 	@FXML
@@ -59,7 +55,7 @@ public abstract class BaseScreenController extends GridPane {
 			event.consume();
 		}
 	}
-	
+
 	@FXML
 	private void loadLanguageChoices() {
 		int domainLanguage = domainController.getLanguage() - 1;

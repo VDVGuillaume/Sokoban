@@ -59,7 +59,6 @@ public class WelcomeScreenController extends BaseScreenController {
 		super(domainController, "WelcomeScreen.fxml");
 	}
 
-	@FXML
 	@Override
 	protected void loadData() {
 		// set translations
