@@ -40,6 +40,7 @@ public abstract class BaseScreenController extends GridPane {
 		}
 	}
 	
+	// method to override with child implementation of this class
 	protected void loadData() 
 	{
 		
