@@ -12,6 +12,8 @@ module sokoban88 {
 	requires javafx.fxml;
 	requires javafx.graphics;
 	requires javafx.controls;
+	requires java.desktop;
+	requires javafx.swing;
 	
 	opens gui to javafx.graphics, javafx.fxml;
 }
