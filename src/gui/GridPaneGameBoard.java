@@ -17,20 +17,18 @@ public class GridPaneGameBoard extends GridPane {
 
 	// create custom ImageView for gameboard UI
 	private class ImageViewSokoban extends ImageView {
-		private String fieldType;
+		private String tileType;
 
-		public String getFieldType() {
-			return fieldType;
+		public String getTileType() {
+			return tileType;
 		};
-		
-		public void setFieldType(String fieldType) 
-		{
-			this.fieldType = fieldType;
+
+		public void setTileType(String tileType) {
+			this.tileType = tileType;
 		}
-		
-		public boolean fieldHasChanged(String newFieldType) 
-		{
-			return !fieldType.equals(newFieldType);
+
+		public boolean tileHasChanged(String newTileType) {
+			return !tileType.equals(newTileType);
 		}
 	}
 
@@ -100,13 +98,51 @@ public class GridPaneGameBoard extends GridPane {
 			for (int columnIndex = 0; columnIndex < 10; columnIndex++) {
 				imageViews[rowIndex][columnIndex] = new ImageViewSokoban();
 				ImageViewSokoban imgView = imageViews[rowIndex][columnIndex];
-				imgView.setImage(imageWallBorder);
-				imgView.setFieldType("WallBorder");
-
+				
+				
+				imgView.setTileType("WallBorder");
+				imgView.setImage(getImage("WallBorder"));
+				
 				// add ImageView object to GameBoard
 				this.add(imgView, rowIndex, columnIndex);
 			}
 		}
 		// #endregion set image views for gridPanel use
+	}
+
+	public void refreshGameBoard(String[][] tilesGrid) {
+		int rowIndex = 0;
+		for (String[] tilesrow : tilesGrid) {
+			int columnIndex = 0;
+			for (String tile : tilesrow) {
+				ImageViewSokoban imgView = imageViews[rowIndex][columnIndex];
+
+				if (imgView.tileHasChanged(tile)) {
+					imgView.setImage(getImage(tile));
+				}
+
+				columnIndex++;
+			}
+
+			rowIndex++;
+		}
+	}
+
+	private Image getImage(String tile) {
+		switch (tile) {
+		case "Wall":
+			return imageWallNoBorder;
+		case "WallBorder":
+			return imageWallBorder;
+		case "Goal":
+			return imageGoal;
+		case "Box":
+			return imageBox;
+		case "Pawn":
+			return imagePawn;
+		case "None":
+		default:
+			return imageNone;
+		}
 	}
 }

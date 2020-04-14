@@ -93,10 +93,9 @@ public class WelcomeScreenController extends BaseScreenController {
 		try {
 			domainController.register(name, firstName, username, password);
 			loggedIn();
-		} catch (Exception e) { // TODO Auto-generated catch block
+		} catch (Exception e) {
 			Alert errorAlert = new Alert(AlertType.ERROR);
 			errorAlert.setHeaderText(e.getMessage());
-			// errorAlert.setContentText(e.getMessage());
 			errorAlert.showAndWait();
 		}
 	}
