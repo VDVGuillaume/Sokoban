@@ -22,6 +22,8 @@ public abstract class BaseGameBoardScreenController extends BaseScreenController
 	private Image imageNone;
 	private Image imagePawn;
 	private boolean gameBoardIsInitialized;
+	private double itemWidth;
+	private double itemHeight;
 
 	// create custom ImageView for gameboard UI
 	private class ImageViewSokoban extends ImageView {
@@ -48,24 +50,24 @@ public abstract class BaseGameBoardScreenController extends BaseScreenController
 		// 8 items in height - height 384px
 		int fileImageWidth = 192;
 		int fileImageHeight = 384;
-		double widthPerImage = fileImageWidth / 4;
-		double heightPerImage = fileImageHeight / 8;
+		itemWidth = fileImageWidth / 4;
+		itemHeight = fileImageHeight / 8;
 		BufferedImage bigImg;
 		try {
 			bigImg = ImageIO.read(new File("src/resources/images/sokoban.png"));
 
-			BufferedImage biNone = bigImg.getSubimage((int) calculatePos(0, widthPerImage),
-					(int) calculatePos(0, heightPerImage), (int) widthPerImage, (int) heightPerImage);
-			BufferedImage biPawn = bigImg.getSubimage((int) calculatePos(1, widthPerImage),
-					(int) calculatePos(0, heightPerImage), (int) widthPerImage, (int) heightPerImage);
-			BufferedImage biGoal = bigImg.getSubimage((int) calculatePos(0, widthPerImage),
-					(int) calculatePos(1, heightPerImage), (int) widthPerImage, (int) heightPerImage);
-			BufferedImage biWallBorder = bigImg.getSubimage((int) calculatePos(0, widthPerImage),
-					(int) calculatePos(3, heightPerImage), (int) widthPerImage, (int) heightPerImage);
-			BufferedImage biWallNoBorder = bigImg.getSubimage((int) calculatePos(3, widthPerImage),
-					(int) calculatePos(2, heightPerImage), (int) widthPerImage, (int) heightPerImage);
-			BufferedImage biBox = bigImg.getSubimage((int) calculatePos(2, widthPerImage),
-					(int) calculatePos(0, heightPerImage), (int) widthPerImage, (int) heightPerImage);
+			BufferedImage biNone = bigImg.getSubimage((int) calculatePos(0, itemWidth),
+					(int) calculatePos(0, itemHeight), (int) itemWidth, (int) itemHeight);
+			BufferedImage biPawn = bigImg.getSubimage((int) calculatePos(1, itemWidth),
+					(int) calculatePos(0, itemHeight), (int) itemWidth, (int) itemHeight);
+			BufferedImage biGoal = bigImg.getSubimage((int) calculatePos(0, itemWidth),
+					(int) calculatePos(1, itemHeight), (int) itemWidth, (int) itemHeight);
+			BufferedImage biWallBorder = bigImg.getSubimage((int) calculatePos(0, itemWidth),
+					(int) calculatePos(3, itemHeight), (int) itemWidth, (int) itemHeight);
+			BufferedImage biWallNoBorder = bigImg.getSubimage((int) calculatePos(3, itemWidth),
+					(int) calculatePos(2, itemHeight), (int) itemWidth, (int) itemHeight);
+			BufferedImage biBox = bigImg.getSubimage((int) calculatePos(2, itemWidth),
+					(int) calculatePos(0, itemHeight), (int) itemWidth, (int) itemHeight);
 
 			imageWallNoBorder = SwingFXUtils.toFXImage(biWallNoBorder, null);
 			imageWallBorder = SwingFXUtils.toFXImage(biWallBorder, null);
@@ -103,6 +105,10 @@ public abstract class BaseGameBoardScreenController extends BaseScreenController
 			for (int columnIndex = 0; columnIndex < 10; columnIndex++) {
 				imageViews[rowIndex][columnIndex] = new ImageViewSokoban();
 				ImageViewSokoban imgView = imageViews[rowIndex][columnIndex];
+				imgView.minWidth(itemWidth);
+				imgView.maxWidth(itemWidth);
+				imgView.minHeight(itemHeight);
+				imgView.maxHeight(itemHeight);
 
 				imgView.setTileType("WallBorder");
 				imgView.setImage(getImage("WallBorder"));

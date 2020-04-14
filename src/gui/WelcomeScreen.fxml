@@ -70,7 +70,7 @@
             <Insets left="5.0" top="5.0" />
          </GridPane.margin>
       </PasswordField>
-      <Button id="btnLogin" fx:id="btnLogin" alignment="CENTER" mnemonicParsing="false" onAction="#btnLoginOnAction" prefHeight="26.0" prefWidth="150.0" text="Log in" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="TOP">
+      <Button id="btnLogin" fx:id="btnLogin" alignment="CENTER" mnemonicParsing="false" onAction="#btnLoginOnAction" prefHeight="26.0" prefWidth="150.0" text="Log in" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="TOP">
          <GridPane.margin>
             <Insets />
          </GridPane.margin>
@@ -111,6 +111,6 @@
       </Label>
       <TextField id="txtUsername" fx:id="txtFirstName" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="8" />
       <TextField id="txtUsername" fx:id="txtName" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="9" />
-      <Button id="btnRegister" fx:id="btnRegister" alignment="CENTER" mnemonicParsing="false" onAction="#btnRegisterOnAction" prefHeight="26.0" prefWidth="150.0" text="Register" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="TOP" />
+      <Button id="btnRegister" fx:id="btnRegister" alignment="CENTER" mnemonicParsing="false" onAction="#btnRegisterOnAction" prefHeight="26.0" prefWidth="150.0" text="Register" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="10" GridPane.valignment="TOP" />
    </children>
 </fx:root>
