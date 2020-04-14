@@ -13,7 +13,7 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 
-public class GridPaneGameBoard extends GridPane {
+public class CustomGridPaneSokoban extends GridPane {
 
 	// create custom ImageView for gameboard UI
 	private class ImageViewSokoban extends ImageView {
@@ -44,7 +44,7 @@ public class GridPaneGameBoard extends GridPane {
 		return distancePerItem * itemIndex;
 	}
 
-	public GridPaneGameBoard() {
+	public CustomGridPaneSokoban() {
 		// #region set images
 		// 4 items in width - width 192px
 		// 8 items in height - height 384px
@@ -98,11 +98,10 @@ public class GridPaneGameBoard extends GridPane {
 			for (int columnIndex = 0; columnIndex < 10; columnIndex++) {
 				imageViews[rowIndex][columnIndex] = new ImageViewSokoban();
 				ImageViewSokoban imgView = imageViews[rowIndex][columnIndex];
-				
-				
+
 				imgView.setTileType("WallBorder");
 				imgView.setImage(getImage("WallBorder"));
-				
+
 				// add ImageView object to GameBoard
 				this.add(imgView, rowIndex, columnIndex);
 			}
