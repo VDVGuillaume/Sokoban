@@ -65,12 +65,12 @@ public class GameMapper extends BaseMapper
 		return games;	
 	}
 	
-	
+	// TODO why is user being used to get game?
 	public Game getGame(String gameName,User user)
 	{
 		PreparedStatement stmt = null;
 		Connection conn = null;
-		final String sql = "select name from GAME where name = ? and createdByUser = ?";
+		final String sql = "select name from GAME where name = ?";
 		Game game = null;
 		
 		try 
