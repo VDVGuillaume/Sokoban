@@ -79,7 +79,7 @@ public class GameMapper extends BaseMapper
 			stmt = conn.prepareStatement(sql);
 			
 			stmt.setString(1,gameName);
-			stmt.setString(2,user.getUsername());
+			//stmt.setString(2,user.getUsername());
 						
 			ResultSet rs = stmt.executeQuery();
 			
