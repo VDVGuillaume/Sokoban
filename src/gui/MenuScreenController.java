@@ -16,14 +16,10 @@ import javafx.scene.control.ComboBox;
 
 import javafx.scene.control.Hyperlink;
 
-public class MenuScreenController extends GridPane {
-	private DomainController domainController;
-	private ObservableList languages;
+public class MenuScreenController extends BaseScreenController {
 
 	@FXML
 	private Label lblWelcomeUsername;
-	@FXML
-	private ComboBox comboBoxLanguage;
 	@FXML
 	private Hyperlink linkPlay;
 	@FXML
@@ -34,26 +30,11 @@ public class MenuScreenController extends GridPane {
 	private Hyperlink linkEditGame;
 
 	public MenuScreenController(DomainController domainController) {
-		this.domainController = domainController;
-
-		languages = FXCollections.observableArrayList();
-		languages.addAll("English", "Nederlands", "Français");
-
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("MenuScreen.fxml"));
-		loader.setController(this);
-		loader.setRoot(this);
-
-		try {
-			loader.load();
-			loadLanguageChoices();
-			loadData();
-		} catch (IOException ex) {
-			throw new RuntimeException(ex);
-		}
+		super(domainController, "MenuScreen.fxml");
 	}
 
-	private void loadData() {
-
+	@Override
+	protected void loadData() {
 		String[] userInfo = domainController.getInfoUser();
 		String username = userInfo[0];
 		boolean isAdmin = userInfo[1].equals("True");
@@ -75,26 +56,6 @@ public class MenuScreenController extends GridPane {
 			linkCreateNewGame.setVisible(false);
 			linkEditGame.setDisable(true);
 			linkEditGame.setVisible(false);
-		}
-	}
-
-	private void loadLanguageChoices() {
-		int domainLanguage = domainController.getLanguage() - 1;
-		comboBoxLanguage.getItems().clear();
-		comboBoxLanguage.getItems().addAll(languages);
-		comboBoxLanguage.setValue(languages.get(domainLanguage).toString());
-	}
-
-	// Event Listener on ComboBox[#comboBoxLanguage].onAction
-	@FXML
-	public void languageChoiceChanged(ActionEvent event) {
-		int domainLanguage = domainController.getLanguage();
-		int selectedLanguage = languages.indexOf(comboBoxLanguage.getValue()) + 1;
-
-		if (domainLanguage != selectedLanguage) {
-			domainController.setLanguage(selectedLanguage);
-			loadData();
-			event.consume();
 		}
 	}
 

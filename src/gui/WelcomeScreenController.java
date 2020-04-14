@@ -20,9 +20,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-public class WelcomeScreenController extends GridPane {
-	private DomainController domainController;
-	private ObservableList languages;
+public class WelcomeScreenController extends BaseScreenController {
 
 	@FXML
 	private Label lblLogin;
@@ -33,8 +31,6 @@ public class WelcomeScreenController extends GridPane {
 	@FXML
 	private Button btnRegister;
 
-	@FXML
-	private ComboBox<String> comboBoxLanguage;
 	@FXML
 	private TextField txtUsername;
 	@FXML
@@ -60,26 +56,12 @@ public class WelcomeScreenController extends GridPane {
 	private TextField txtName;
 
 	public WelcomeScreenController(DomainController domainController) {
-		this.domainController = domainController;
-
-		languages = FXCollections.observableArrayList();
-		languages.addAll("English", "Nederlands", "Français");
-
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("WelcomeScreen.fxml"));
-		loader.setController(this);
-		loader.setRoot(this);
-
-		try {
-			loader.load();
-			loadLanguageChoices();
-			loadData();
-		} catch (IOException ex) {
-			throw new RuntimeException(ex);
-		}
+		super(domainController, "WelcomeScreen.fxml");
 	}
 
 	@FXML
-	private void loadData() {
+	@Override
+	protected void loadData() {
 		// set translations
 		lblUsername.setText(domainController.translate("Username"));
 		lblPassword.setText(domainController.translate("Password"));
@@ -115,17 +97,16 @@ public class WelcomeScreenController extends GridPane {
 		} catch (Exception e) { // TODO Auto-generated catch block
 			Alert errorAlert = new Alert(AlertType.ERROR);
 			errorAlert.setHeaderText(e.getMessage());
-			//errorAlert.setContentText(e.getMessage());
+			// errorAlert.setContentText(e.getMessage());
 			errorAlert.showAndWait();
 		}
 	}
-	
+
 	@FXML
-	private void btnLoginOnAction(ActionEvent event) 
-	{
+	private void btnLoginOnAction(ActionEvent event) {
 		var username = txtUsername.getText();
 		var password = txtPassword.getText();
-		
+
 		try {
 			domainController.login(username, password);
 			loggedIn();
@@ -133,28 +114,8 @@ public class WelcomeScreenController extends GridPane {
 			e.printStackTrace();
 			Alert errorAlert = new Alert(AlertType.ERROR);
 			errorAlert.setHeaderText(e.getMessage());
-			//errorAlert.setContentText(e.getMessage());
+			// errorAlert.setContentText(e.getMessage());
 			errorAlert.showAndWait();
-			}
-	}
-	
-	@FXML
-	private void loadLanguageChoices() {
-		int domainLanguage = domainController.getLanguage() - 1;
-		comboBoxLanguage.getItems().clear();
-		comboBoxLanguage.getItems().addAll(languages);
-		comboBoxLanguage.setValue(languages.get(domainLanguage).toString());
-	}
-
-	@FXML
-	private void languageChoiceChanged(ActionEvent event) {
-		int domainLanguage = domainController.getLanguage();
-		int selectedLanguage = languages.indexOf(comboBoxLanguage.getValue()) + 1;
-
-		if (domainLanguage != selectedLanguage) {
-			domainController.setLanguage(selectedLanguage);
-			loadData();
-			event.consume();
 		}
 	}
 }
