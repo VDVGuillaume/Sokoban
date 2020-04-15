@@ -20,7 +20,6 @@ public class DomainController {
 	private User selectedUser;
 	private Game selectedGame;
 	private Language language;
-	private ResourceBundle messages;
 
 	/** UC1 Constructor */
 
