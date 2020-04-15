@@ -17,7 +17,7 @@ public class GameBoardRepository {
 		//return mapper.getGameBoards();
 	}
 	
-	public void addGameboard(Game game){
+	public void addGameBoard(Game game){
 		mapper.addGameBoard(game);
 	}
 	

@@ -283,7 +283,7 @@ public class DomainController {
 	public void addGameboard() {
 		
 		selectedGame.addGameBoard();
-	 gameBoardRepository.addGameboard(selectedGame);
+	 gameBoardRepository.addGameBoard(selectedGame);
 	}
 
 	
