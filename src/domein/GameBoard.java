@@ -15,7 +15,7 @@ public class GameBoard
 	public GameBoard(Tile[][] tiles) 
 	{
 		originalTiles = tiles;
-		Moves = 0;
+		moves = 0;
 		setTiles(cloneTiles(originalTiles));
 	}
 	
