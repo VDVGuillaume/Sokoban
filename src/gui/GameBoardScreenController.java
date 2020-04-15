@@ -48,9 +48,9 @@ public class GameBoardScreenController extends BaseGameBoardScreenController {
 		if(domainController.getSelectedGameBoardCompleted()) 
 		{
 			// show message stating that the game is won.
-			Alert errorAlert = new Alert(AlertType.INFORMATION);
-			errorAlert.setHeaderText(domainController.translate("GameBoardCompleted").replace("$param1", String.valueOf(domainController.getSelectedGameBoardMoves())));
-			errorAlert.showAndWait();
+			Alert informationAlert = new Alert(AlertType.INFORMATION);
+			informationAlert.setHeaderText(domainController.translate("GameBoardCompleted").replace("$param1", String.valueOf(domainController.getSelectedGameBoardMoves())));
+			informationAlert.showAndWait();
 			
 			quitGameBoard();
 		}
