@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
@@ -44,7 +45,8 @@ public class GameBoardScreenController extends BaseGameBoardScreenController {
 		}
 		
 		refreshGameBoard(domainController.getSelectedGameBoardState());
-		
+		lblMovesMade.setText(domainController.translate("GameBoardMovesMade") + domainController.getSelectedGameBoardMoves());
+
 		if(domainController.getSelectedGameBoardCompleted()) 
 		{
 			// show message stating that the game is won.
@@ -67,10 +69,18 @@ public class GameBoardScreenController extends BaseGameBoardScreenController {
 
 	@FXML
 	private GridPane gridPaneGameBoard;
+	@FXML
+	private Label lblPossibleMoves;
+	@FXML
+	private Label lblMovesMade;
 
 	@Override
 	protected void loadData() {
 		String[][] gameBoardState = domainController.getSelectedGameBoardState();
 		refreshGameBoard(gameBoardState);
+		int moves = domainController.getSelectedGameBoardMoves();
+		
+		lblPossibleMoves.setText(domainController.translate("GameBoardPossibleMoves"));
+		lblMovesMade.setText(domainController.translate("GameBoardMovesMade") + moves);
 	}
 }
