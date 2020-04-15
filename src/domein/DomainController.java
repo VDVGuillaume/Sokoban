@@ -79,7 +79,10 @@ public class DomainController {
 
 	}
 
-	/* UC2 */
+	/**
+	 * UC2 register checks whether a user with a certain username already exists in the database, if not a new user is added to the database
+	 */
+
 	public void register(String name, String firstName, String username, String password) throws Exception {
 		boolean admin = false; // default value until we know how attribute can be defined with system
 								// interaction
@@ -102,11 +105,17 @@ public class DomainController {
 		}
 	}
 
-	/* UC3 */
+	/**
+	 * UC3 getGamesList shows the names of games available in the database
+	 */
+
 	public List<String> getGamesList() {
 		return gameRepository.getGames();
 	}
-
+	
+	/**
+	 * UC3 chooseGame enables user to select game to play based on gamename
+	 */
 	public void chooseGame(String gameName) throws Exception {
 		Game game = gameRepository.getGame(gameName,selectedUser);
 
@@ -125,7 +134,10 @@ public class DomainController {
 
 		return new String[] { selectedGame.getNumberBoardsTotal(), selectedGame.getNumberBoardsCompleted(),selectedGame.getCreatedByUser().getUsername()};
 	}
-
+	
+	/**
+	 * playNextGameBoard calls method playNextGameBoard for a selectedGame, which returns the first non-completed gameboard for the selected game
+	 */
 	public void playNextGameBoard() 
 	{
 		if(selectedGame == null) 
@@ -142,6 +154,9 @@ public class DomainController {
 		}
 	}
 	
+	/**
+	 * getSelectedGameBoardCompleted: boolean is returned to indicate whether gameboard is completed or not
+	 */
 	public boolean getSelectedGameBoardCompleted() {
 		if (selectedGame == null) {
 			throw new GameException(language.translate("ErrorGameNotFound"));
@@ -156,6 +171,9 @@ public class DomainController {
 		}
 	}
 	
+	/**
+	 * isGameCompleted calls method getComplete for a selectedGame, which returns a boolean to indicate whether a game is completed
+	 */
 	public boolean isGameCompleted() 
 	{
 		if(selectedGame == null) 
@@ -171,7 +189,10 @@ public class DomainController {
 			throw new GameException(language.translate(ex.getMessage()));
 		}
 	}
-
+	
+	/**
+	 * getSelectedGameName returns the name of the selected game
+	 */
 	public String getSelectedGameName() 
 	{
 		if(selectedGame == null) 
@@ -188,6 +209,9 @@ public class DomainController {
 		}
 	} 
 
+	/**
+	 * getSelectedGameBoardState returns the string arrays representing the current state of the gameboard 
+	 */
 	public String[][] getSelectedGameBoardState()
 	{
 		if(selectedGame == null) 
@@ -204,6 +228,9 @@ public class DomainController {
 		}
 	}	
 	
+	/**
+	 * setLanguage is used to set the language in which the game should be displayed
+	 */
 	public void setLanguage(int languageSelection) {
 		language.setLanguage(languageSelection);
 	}
@@ -212,6 +239,10 @@ public class DomainController {
 	* return language selection
 	* possible returnvalues: { 1(english), 2(dutch), 3(french) }
 	*/
+	
+	/**
+	 * getLanguage w
+	 */
 	public int getLanguage() 
 	{
 		return language.getLanguage();
