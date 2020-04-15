@@ -33,7 +33,9 @@ public class GameScreenController extends BaseScreenController {
 		String[] gameInfo = domainController.getSelectedGameInfo();
 		int gameBoardsCount = Integer.valueOf(gameInfo[0]);
 		int gameBoardsCompletedCount = Integer.valueOf(gameInfo[1]);
-		
+		String gameName = domainController.getSelectedGameName();
+				
+		lblPlayingGame.setText(domainController.translate("PlayingGame").replace("$gameName", gameName));
 		lblCompletedGameBoardsCount.setText(gameBoardsCompletedCount + " " + domainController.translate("NumberGameboardsCompletedOutofTotal") + " " + gameBoardsCount);
 		linkPlayNextGameBoard.setText(domainController.translate("PlayNextGameboard"));
 		linkQuit.setText(domainController.translate("QuitGame"));

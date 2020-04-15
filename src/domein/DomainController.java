@@ -172,7 +172,23 @@ public class DomainController {
 			throw new GameException(language.translate(ex.getMessage()));
 		}
 	}
-	
+
+	public String getSelectedGameName() 
+	{
+		if(selectedGame == null) 
+		{
+			throw new GameException(language.translate("ErrorGameNotFound"));
+		}
+		
+		try 
+		{
+			return selectedGame.getName();
+		}catch(GameException ex) 
+		{
+			throw new GameException(language.translate(ex.getMessage()));
+		}
+	} 
+
 	public String[][] getSelectedGameBoardState()
 	{
 		if(selectedGame == null) 
@@ -188,7 +204,7 @@ public class DomainController {
 			throw new GameException(language.translate(ex.getMessage()));
 		}
 	}	
-
+	
 	public void setLanguage(int languageSelection) {
 		language.setLanguage(languageSelection);
 	}
