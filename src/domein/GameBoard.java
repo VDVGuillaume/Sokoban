@@ -10,7 +10,7 @@ public class GameBoard
 	private Tile[][] tiles;
 	private boolean completed;
 	private Pawn pawn;
-	private int Moves;
+	private int moves;
 
 	public GameBoard(Tile[][] tiles) 
 	{
