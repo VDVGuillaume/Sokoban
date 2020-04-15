@@ -241,18 +241,23 @@ public class DomainController {
 	*/
 	
 	/**
-	 * getLanguage w
+	 * getLanguage returns the number related to the selected language 
 	 */
 	public int getLanguage() 
 	{
 		return language.getLanguage();
 	}
-
+	
+	/**
+	 * translate method used to translate message to the chosen language
+	 */
 	public String translate(String translationKey) {
 		return language.translate(translationKey);
 	}
 	
-	/* UC4 */
+	/**
+	 * move is used to move the pawn across the board
+	 */
 	public void move(String direction) 
 	{
 		if(selectedGame == null) 
@@ -269,6 +274,9 @@ public class DomainController {
 		}	
 	}
 	
+	/**
+	 * method resetSelectedGameBoard is used to reset the gameboard to the initial state, before movements on the board were made
+	 */
 	public void resetSelectedGameBoard() 
 	{
 		if(selectedGame == null) 
