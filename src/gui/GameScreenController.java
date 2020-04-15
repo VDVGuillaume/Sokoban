@@ -5,6 +5,7 @@ import domein.DomainController;
 import javafx.event.ActionEvent;
 
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
@@ -47,6 +48,7 @@ public class GameScreenController extends BaseScreenController {
 			Stage stage = (Stage) linkPlayNextGameBoard.getScene().getWindow();
 			GameBoardScreenController root = new GameBoardScreenController(domainController);
 			Scene scene = new Scene(root, 1000, 500);
+			scene.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> root.handleKeyEvent(key));
 			stage.setScene(scene);
 		}
 	}

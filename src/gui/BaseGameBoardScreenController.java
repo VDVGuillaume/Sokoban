@@ -114,7 +114,7 @@ public abstract class BaseGameBoardScreenController extends BaseScreenController
 				imgView.setImage(getImage("WallBorder"));
 
 				// add ImageView object to GameBoard
-				gridPaneGameBoard.add(imgView, rowIndex, columnIndex);
+				gridPaneGameBoard.add(imgView, columnIndex, rowIndex);
 			}
 		}
 
