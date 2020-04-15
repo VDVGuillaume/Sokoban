@@ -253,7 +253,12 @@ public class DomainController {
 			throw new GameException(language.translate(ex.getMessage()));
 		}	
 	}
-	
+	/*
+	 * getSelectedGameBoardMoves
+	 * Returns moves made on selected game board
+	 * Returns: moves made on selected game board
+	 * 
+	 * */
 	public int getSelectedGameBoardMoves() 
 	{
 		if(selectedGame == null) 
