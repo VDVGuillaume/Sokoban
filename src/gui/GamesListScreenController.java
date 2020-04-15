@@ -41,6 +41,12 @@ public class GamesListScreenController extends BaseScreenController {
 
 		// select game
 		String selectedItem = (String) lstGames.getSelectionModel().getSelectedItem();
+		
+		if(selectedItem == null) 
+		{
+			return;
+		}
+		
 		try {
 			domainController.chooseGame(selectedItem);
 
