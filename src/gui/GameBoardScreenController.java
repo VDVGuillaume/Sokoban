@@ -2,9 +2,12 @@ package gui;
 
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 import domein.DomainController;
 
 public class GameBoardScreenController extends BaseGameBoardScreenController {
@@ -35,15 +38,32 @@ public class GameBoardScreenController extends BaseGameBoardScreenController {
 			domainController.resetSelectedGameBoard();
 			break;
 		case T:
-			this.getScene().getWindow().hide();
-			return;
+			quitGameBoard();
 		default:
 			break;
 		}
 		
 		refreshGameBoard(domainController.getSelectedGameBoardState());
+		
+		if(domainController.getSelectedGameBoardCompleted()) 
+		{
+			// show message stating that the game is won.
+			Alert errorAlert = new Alert(AlertType.INFORMATION);
+			errorAlert.setHeaderText(domainController.translate("GameBoardCompleted").replace("$param1", String.valueOf(domainController.getSelectedGameBoardMoves())));
+			errorAlert.showAndWait();
+			
+			quitGameBoard();
+		}
 	}
 	
+	private void quitGameBoard() 
+	{
+		// redirecting to previous screen
+		Stage stage = (Stage) gridPaneGameBoard.getScene().getWindow();
+		GameScreenController root = new GameScreenController(domainController);
+		Scene scene = new Scene(root, 1000, 500);
+		stage.setScene(scene);
+	}
 
 	@FXML
 	private GridPane gridPaneGameBoard;
