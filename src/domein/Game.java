@@ -11,11 +11,11 @@ public class Game {
 	private String name;
 	private User createdByUser;
 	
-	public Game(String name, List<GameBoard> gameBoards,User user) 
+	public Game(String name, List<GameBoard> gameBoards,User createdByUser) 
 	{
 		setName(name);
 		setGameBoards(gameBoards);
-		setCreatedByUser(user);
+		setCreatedByUser(createdByUser);
 	}
 		
 	
