@@ -294,13 +294,13 @@ public class GameBoard
 		setCompleted();
 	}
 	
-	private void setMoves(int Moves) 
+	private void setMoves(int moves) 
 	{
-		this.Moves = Moves;
+		this.moves = moves;
 	}
 	
 	public int getMoves() 
 	{
-		return this.Moves;
+		return this.moves;
 	}
 }
