@@ -40,7 +40,7 @@
 				<Insets left="10.0" top="10.0" />
 			</GridPane.margin>
 		</Label>
-		<ComboBox id="comboBoxLanguage" fx:id="comboBoxLanguage" onAction="#languageChoiceChanged" prefWidth="150.0" promptText="languageChoice" GridPane.columnIndex="3">
+		<ComboBox id="comboBoxLanguage" fx:id="comboBoxLanguage" onAction="#languageChoiceChanged" prefWidth="150.0" promptText="languageChoice" GridPane.columnIndex="3" GridPane.halignment="RIGHT">
 			<GridPane.margin>
 				<Insets right="10.0" top="10.0" />
 			</GridPane.margin>
