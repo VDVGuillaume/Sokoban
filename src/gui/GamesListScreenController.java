@@ -14,6 +14,7 @@ import javafx.scene.control.Label;
 
 import javafx.scene.control.ListView;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
@@ -26,6 +27,8 @@ public class GamesListScreenController extends BaseScreenController {
 	private Label lblChooseGame;
 	@FXML
 	private ListView lstGames;
+	@FXML
+	private Hyperlink linkReturn;
 
 	@Override
 	protected void loadData() {
@@ -33,6 +36,9 @@ public class GamesListScreenController extends BaseScreenController {
 		List<String> gameNames = domainController.getGamesList();
 		ObservableList<String> gameNamesObservLst = FXCollections.observableArrayList(gameNames);
 		lstGames.setItems(gameNamesObservLst);
+		
+		linkReturn.setText(domainController.translate("Return"));
+		lblChooseGame.setText(domainController.translate("ChooseGameToPlay"));
 	}
 
 	// Event Listener on ListView[#lstGames].onMouseClicked
