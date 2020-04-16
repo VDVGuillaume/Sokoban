@@ -80,7 +80,9 @@ public class GameBoardScreenController extends BaseGameBoardScreenController {
 		refreshGameBoard(gameBoardState);
 		int moves = domainController.getSelectedGameBoardMoves();
 		
-		lblPossibleMoves.setText(domainController.translate("GameBoardPossibleMoves"));
+		lblPossibleMoves.setText(domainController.translate("GameBoardPossibleMoves")
+				.replace(',', '\n')
+				.replace(":", ":\n"));
 		lblMovesMade.setText(domainController.translate("GameBoardMovesMade") + moves);
 	}
 }
