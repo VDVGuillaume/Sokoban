@@ -36,9 +36,18 @@ public class GamesListScreenController extends BaseScreenController {
 		List<String> gameNames = domainController.getGamesList();
 		ObservableList<String> gameNamesObservLst = FXCollections.observableArrayList(gameNames);
 		lstGames.setItems(gameNamesObservLst);
-		
+
 		linkReturn.setText(domainController.translate("Return"));
 		lblChooseGame.setText(domainController.translate("ChooseGameToPlay"));
+	}
+
+	@FXML
+	public void linkReturnOnAction() {
+		// redirecting to previous screen
+		Stage stage = (Stage) linkReturn.getScene().getWindow();
+		MenuScreenController root = new MenuScreenController(domainController);
+		Scene scene = new Scene(root, 1000, 500);
+		stage.setScene(scene);
 	}
 
 	// Event Listener on ListView[#lstGames].onMouseClicked
@@ -47,12 +56,11 @@ public class GamesListScreenController extends BaseScreenController {
 
 		// select game
 		String selectedItem = (String) lstGames.getSelectionModel().getSelectedItem();
-		
-		if(selectedItem == null) 
-		{
+
+		if (selectedItem == null) {
 			return;
 		}
-		
+
 		try {
 			domainController.chooseGame(selectedItem);
 

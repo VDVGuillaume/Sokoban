@@ -42,7 +42,7 @@
          </GridPane.margin>
       </Label>
       <ListView fx:id="lstGames" onMouseClicked="#lstGamesChooseGame" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2" GridPane.rowSpan="9" />
-      <Hyperlink fx:id="linkReturn" text="\$linkReturn" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="11" GridPane.valignment="CENTER">
+      <Hyperlink fx:id="linkReturn" onAction="#linkReturnOnAction" text="\$linkReturn" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="11" GridPane.valignment="CENTER">
          <GridPane.margin>
             <Insets />
          </GridPane.margin>
