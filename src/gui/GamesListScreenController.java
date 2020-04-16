@@ -42,7 +42,7 @@ public class GamesListScreenController extends BaseScreenController {
 	}
 
 	@FXML
-	public void linkReturnOnAction() {
+	public void linkReturnOnAction(ActionEvent event) {
 		// redirecting to previous screen
 		Stage stage = (Stage) linkReturn.getScene().getWindow();
 		MenuScreenController root = new MenuScreenController(domainController);
