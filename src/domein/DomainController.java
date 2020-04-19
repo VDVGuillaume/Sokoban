@@ -45,7 +45,9 @@ public class DomainController {
 		}
 	}
 
-	/** UC1 getInfoUser string representation of admin and username value */
+	/** 
+	 * UC1 getInfoUser string representation of admin and username value 
+	 * */
 
 	public String[] getInfoUser() {
 
@@ -109,7 +111,9 @@ public class DomainController {
 		selectedGame = game;
 	}
 
-	/**Method getSelectedGameInfo() returns a string representation of the total number of boards, completed boards, and the name of the game*/
+	/** 
+	 * UC3 Method getSelectedGameInfo() returns a string representation of the total number of boards, completed boards, and the name of the game
+	 * */
 	public String[] getSelectedGameInfo() {
 		if (selectedGame == null) {
 			throw new GameException(language.translate("ErrorGameNotFound"));
@@ -119,7 +123,7 @@ public class DomainController {
 	}
 	
 	/**
-	 * playNextGameBoard calls method playNextGameBoard for a selectedGame, which returns the first non-completed gameboard for the selected game
+	 * UC3 playNextGameBoard calls method playNextGameBoard for a selectedGame, which returns the first non-completed gameboard for the selected game
 	 */
 	public void playNextGameBoard() 
 	{
@@ -138,7 +142,7 @@ public class DomainController {
 	}
 	
 	/**
-	 * getSelectedGameBoardCompleted: boolean is returned to indicate whether gameboard is completed or not
+	 * UC4 isSelectedGameBoardCompleted: boolean is returned to indicate whether gameboard is completed or not
 	 */
 	public boolean isSelectedGameBoardCompleted() {
 		if (selectedGame == null) {
@@ -155,7 +159,7 @@ public class DomainController {
 	}
 	
 	/**
-	 * isGameCompleted calls method getComplete for a selectedGame, which returns a boolean to indicate whether a game is completed
+	 * UC4 isGameCompleted calls method getComplete for a selectedGame, which returns a boolean to indicate whether a game is completed
 	 */
 	public boolean isGameCompleted() 
 	{
@@ -174,9 +178,11 @@ public class DomainController {
 	}
 	
 	/**
-	 * getSelectedGameName returns the name of the selected game
+	 * UC4 getSelectedGameName returns the name of the selected game
 	 */
-	public String getSelectedGameName() 
+	
+	//Only found this method in the GUI, not sure it belongs to UC4. Or maybe it could be placed in the getSelectedGameInfo 
+	public String getSelectedGameName()
 	{
 		if(selectedGame == null) 
 		{
@@ -193,7 +199,7 @@ public class DomainController {
 	} 
 
 	/**
-	 * getSelectedGameBoardState returns the string arrays representing the current state of the gameboard 
+	 * UC3 getSelectedGameBoardState returns the string arrays representing the current state of the gameboard 
 	 */
 	public String[][] getSelectedGameBoardState()
 	{
@@ -212,14 +218,14 @@ public class DomainController {
 	}	
 	
 	/**
-	 * setLanguage is used to set the language in which the game should be displayed
+	 * Not bound to UC : setLanguage is used to set the language in which the game should be displayed
 	 */
 	public void setLanguage(int languageSelection) {
 		language.setLanguage(languageSelection);
 	}
 
 	/**
-	 * getLanguage returns the number related to the selected language 
+	 * Not bound to UC : getLanguage returns the number related to the selected language 
 	 * possible returnvalues: { 1(english), 2(dutch), 3(french) }
 	 */
 	public int getLanguage() 
@@ -228,14 +234,14 @@ public class DomainController {
 	}
 	
 	/**
-	 * translate method used to translate message to the chosen language
+	 * Not bound to UC : translate method used to translate message to the chosen language
 	 */
 	public String translate(String translationKey) {
 		return language.translate(translationKey);
 	}
 	
 	/**
-	 * move is used to move the pawn across the board
+	 * UC4 move is used to move the pawn across the board
 	 */
 	public void move(String direction) 
 	{
@@ -254,7 +260,8 @@ public class DomainController {
 	}
 	
 	/**
-	 * method resetSelectedGameBoard is used to reset the gameboard to the initial state, before movements on the board were made
+	 * UC4 method resetSelectedGameBoard is used to reset the gameboard to the initial state, 
+	 * before movements on the board were made.
 	 */
 	public void resetSelectedGameBoard() 
 	{
@@ -274,8 +281,7 @@ public class DomainController {
 	/**
 	 * UC4 getSelectedGameBoardMoves
 	 * Returns moves made on selected game board
-	 * 
-	 * */
+	 */
 	public int getSelectedGameBoardMoves() 
 	{
 		if(selectedGame == null) 
@@ -294,8 +300,10 @@ public class DomainController {
 
 
 
-	/**UC5 Create game :  create's a new game object linked to the current user. 
-	 * The object is send through the repository to the mapper */
+	/**
+	 * UC5 Create game :  create's a new game object linked to the current user. 
+	 * The object is send through the repository to the mapper 
+	 */
 
 	public void createGame(String gameName) {
 		
@@ -316,7 +324,9 @@ public class DomainController {
 		}
 	}
 
-	/** UC5 method addGameboard calls addGameboard in game class to add a new gameboard */
+	/** 
+	 * UC5 method addGameboard calls addGameboard in game class to add a new gameboard 
+	 */
 	public void addGameboard() {
 		
 		selectedGame.addGameBoard();
