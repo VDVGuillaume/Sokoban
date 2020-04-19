@@ -50,7 +50,7 @@ public class User {
 	
 	private void setUsername(String username){
 		if(username.length() < 8) {
-			throw new UsernameException("PasswordValidationFailed");
+			throw new UsernameException("ErrorUserNameLength");
 		}
 		
 		this.username = username;
