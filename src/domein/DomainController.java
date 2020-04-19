@@ -21,8 +21,6 @@ public class DomainController {
 	private Game selectedGame;
 	private Language language;
 
-	/** UC1 Constructor */
-
 	public DomainController() {
 		language = new Language();
 		this.userRepository = new UserRepository();
@@ -36,25 +34,10 @@ public class DomainController {
 	 */
 
 	public void login(String username, String password) throws Exception {
-		/*
-		 * GVDV LogIn method has to use the validatePasword method to retrieve the user
-		 * Not sure but i assume that we use the method in the UserRepository Something
-		 * to look at, do we need to throw exceptions for this one? Because i did not
-		 * know what to do after successful login i now just for the example show a
-		 * message
-		 */
-
 		boolean userCheck = userRepository.checkUser(username, password);
 		
 		if (userCheck == false) {
 			throw new PasswordException(translate("LoginFailed"));
-
-			/*
-			 * int userSelectionMenu; userSelectionMenu= Menu.menu(user.getAdmin());
-			 * if(Integer.compare(userSelectionMenu,1)==0 &&
-			 * Boolean.compare(user.getAdmin(),false)==0) {
-			 * System.out.println("Choose one of the following games:"); getGamesList();}
-			 */
 		} else {
 			
 			selectedUser = userRepository.getUser(username);
@@ -234,14 +217,10 @@ public class DomainController {
 	public void setLanguage(int languageSelection) {
 		language.setLanguage(languageSelection);
 	}
-	
-	/*
-	* return language selection
-	* possible returnvalues: { 1(english), 2(dutch), 3(french) }
-	*/
-	
+
 	/**
 	 * getLanguage returns the number related to the selected language 
+	 * possible returnvalues: { 1(english), 2(dutch), 3(french) }
 	 */
 	public int getLanguage() 
 	{
@@ -292,10 +271,9 @@ public class DomainController {
 			throw new GameException(language.translate(ex.getMessage()));
 		}	
 	}
-	/*
+	/**
 	 * getSelectedGameBoardMoves
 	 * Returns moves made on selected game board
-	 * Returns: moves made on selected game board
 	 * 
 	 * */
 	public int getSelectedGameBoardMoves() 
