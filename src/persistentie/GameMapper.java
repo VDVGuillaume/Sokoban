@@ -65,7 +65,6 @@ public class GameMapper extends BaseMapper
 		return games;	
 	}
 	
-	// TODO why is user being used to get game?
 	public Game getGame(String gameName,User user)
 	{
 		PreparedStatement stmt = null;
@@ -79,7 +78,6 @@ public class GameMapper extends BaseMapper
 			stmt = conn.prepareStatement(sql);
 			
 			stmt.setString(1,gameName);
-			//stmt.setString(2,user.getUsername());
 						
 			ResultSet rs = stmt.executeQuery();
 			
