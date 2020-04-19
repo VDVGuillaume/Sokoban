@@ -40,12 +40,32 @@ public class User {
 	
 	private void setPassword(String password) 
 	{
-		String passwordRequirement = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}$";
-		if(password.matches(passwordRequirement)) {
-			this.password = password;
-		}else {
-			throw new PasswordException("PasswordNotComplexityRequirements");
+		boolean hasLengthRequirement = password.length() >= 8;
+		boolean hasUppercase = !password.equals(password.toLowerCase());
+		boolean hasLowercase = !password.equals(password.toUpperCase());
+		boolean containsDigit = password.matches(".*\\d.*");
+		
+		if(!hasLengthRequirement) 
+		{
+			throw new PasswordException("ErrorPasswordLength");
 		}
+		
+		if(!hasUppercase) 
+		{
+			throw new PasswordException("ErrorPasswordAtLeast1UpperChar");
+		}
+		
+		if(!hasLowercase) 
+		{
+			throw new PasswordException("ErrorPasswordAtLeast1LowerChar");
+		}
+		
+		if(!containsDigit) 
+		{
+			throw new PasswordException("ErrorPasswordAtLeast1Number");
+		}
+		
+		this.password = password;
 	}
 	
 	private void setUsername(String username){
