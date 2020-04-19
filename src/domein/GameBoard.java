@@ -103,7 +103,7 @@ public class GameBoard
 		this.completed = true;
 		}
 	
-	public boolean getCompleted() {
+	public boolean isCompleted() {
 		return completed;
 	}
 	

@@ -52,7 +52,7 @@ public class Game {
 		int numberBoardsCompleted=0;
 		for(GameBoard gameBoard : gameBoards) 
 		{
-			if(gameBoard.getCompleted()) 
+			if(gameBoard.isCompleted()) 
 			{
 				numberBoardsCompleted++;
 			}
@@ -64,14 +64,14 @@ public class Game {
 		return String.format("%d",gameBoards.size());		
 	}
 	
-	public boolean getSelectedGameBoardCompleted() 
+	public boolean isSelectedGameBoardCompleted() 
 	{
 		if(selectedGameBoard == null) 
 		{
 			throw new GameException("ErrorGameBoardNotFound");
 		}
 		
-		return selectedGameBoard.getCompleted();
+		return selectedGameBoard.isCompleted();
 	}
 	
 	public void playNextGameBoard()
@@ -79,7 +79,7 @@ public class Game {
 		GameBoard tempGameBoard = null;
 		for(GameBoard gameBoard : gameBoards) 
 		{
-			if(gameBoard.getCompleted()) 
+			if(gameBoard.isCompleted()) 
 			{
 				continue;
 			}
@@ -96,7 +96,7 @@ public class Game {
 		}
 	}
 	
-	public boolean getComplete() 
+	public boolean isComplete() 
 	{
 		return getNumberBoardsCompleted() == getNumberBoardsTotal();
 	}

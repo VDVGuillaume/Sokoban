@@ -47,7 +47,7 @@ public class GameBoardScreenController extends BaseGameBoardScreenController {
 		refreshGameBoard(domainController.getSelectedGameBoardState());
 		lblMovesMade.setText(domainController.translate("GameBoardMovesMade") + domainController.getSelectedGameBoardMoves());
 
-		if(domainController.getSelectedGameBoardCompleted()) 
+		if(domainController.isSelectedGameBoardCompleted()) 
 		{
 			// show message stating that the game is won.
 			Alert informationAlert = new Alert(AlertType.INFORMATION);

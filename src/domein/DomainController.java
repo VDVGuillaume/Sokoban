@@ -140,14 +140,14 @@ public class DomainController {
 	/**
 	 * getSelectedGameBoardCompleted: boolean is returned to indicate whether gameboard is completed or not
 	 */
-	public boolean getSelectedGameBoardCompleted() {
+	public boolean isSelectedGameBoardCompleted() {
 		if (selectedGame == null) {
 			throw new GameException(language.translate("ErrorGameNotFound"));
 		}
 
 		try 
 		{
-			return selectedGame.getSelectedGameBoardCompleted();
+			return selectedGame.isSelectedGameBoardCompleted();
 		}catch(GameException ex) 
 		{
 			throw new GameException(language.translate(ex.getMessage()));
@@ -166,7 +166,7 @@ public class DomainController {
 		
 		try 
 		{
-			return selectedGame.getComplete();
+			return selectedGame.isComplete();
 		}catch(GameException ex) 
 		{
 			throw new GameException(language.translate(ex.getMessage()));
@@ -272,7 +272,7 @@ public class DomainController {
 		}	
 	}
 	/**
-	 * getSelectedGameBoardMoves
+	 * UC4 getSelectedGameBoardMoves
 	 * Returns moves made on selected game board
 	 * 
 	 * */
@@ -316,7 +316,7 @@ public class DomainController {
 		}
 	}
 
-	/** method addGameboard calls addGameboard in game class to add a new gameboard */
+	/** UC5 method addGameboard calls addGameboard in game class to add a new gameboard */
 	public void addGameboard() {
 		
 		selectedGame.addGameBoard();
