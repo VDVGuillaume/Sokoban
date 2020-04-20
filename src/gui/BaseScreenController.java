@@ -39,9 +39,7 @@ public abstract class BaseScreenController extends GridPane {
 	}
 
 	// method to override with child implementation of this class
-	protected void loadData() {
-
-	}
+	protected abstract void loadData();
 
 	// Event Listener on ComboBox[#comboBoxLanguage].onAction
 	@FXML
