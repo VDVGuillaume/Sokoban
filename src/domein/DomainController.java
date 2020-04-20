@@ -119,7 +119,7 @@ public class DomainController {
 			throw new GameException(language.translate("ErrorGameNotFound"));
 		}
 
-		return new String[] { selectedGame.getNumberBoardsTotal(), selectedGame.getNumberBoardsCompleted(),selectedGame.getCreatedByUser().getUsername()};
+		return new String[] { selectedGame.getNumberBoardsTotal(), selectedGame.getNumberBoardsCompleted(),selectedGame.getCreatedByUser().getUsername(), selectedGame.getName()};
 	}
 	
 	/**
@@ -176,27 +176,6 @@ public class DomainController {
 			throw new GameException(language.translate(ex.getMessage()));
 		}
 	}
-	
-	/**
-	 * UC4 getSelectedGameName returns the name of the selected game
-	 */
-	
-	//Only found this method in the GUI, not sure it belongs to UC4. Or maybe it could be placed in the getSelectedGameInfo 
-	public String getSelectedGameName()
-	{
-		if(selectedGame == null) 
-		{
-			throw new GameException(language.translate("ErrorGameNotFound"));
-		}
-		
-		try 
-		{
-			return selectedGame.getName();
-		}catch(GameException ex) 
-		{
-			throw new GameException(language.translate(ex.getMessage()));
-		}
-	} 
 
 	/**
 	 * UC3 getSelectedGameBoardState returns the string arrays representing the current state of the gameboard 
