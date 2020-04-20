@@ -101,7 +101,7 @@ public class DomainController {
 	/**
 	 * UC3 chooseGame enables user to select game to play based on gamename
 	 */
-	public void chooseGame(String gameName) throws Exception {
+	public void chooseGame(String gameName){
 		Game game = gameRepository.getGame(gameName,selectedUser);
 
 		if (game == null) {
