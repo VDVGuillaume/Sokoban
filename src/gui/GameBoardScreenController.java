@@ -13,6 +13,13 @@ import domein.DomainController;
 
 public class GameBoardScreenController extends BaseGameBoardScreenController {
 
+	@FXML
+	private GridPane gridPaneGameBoard;
+	@FXML
+	private Label lblPossibleMoves;
+	@FXML
+	private Label lblMovesMade;
+	
 	protected GameBoardScreenController(DomainController domainController) {
 		super(domainController, "GameBoardScreen.fxml");
 		initializeGameBoard(gridPaneGameBoard);
@@ -66,13 +73,6 @@ public class GameBoardScreenController extends BaseGameBoardScreenController {
 		Scene scene = new Scene(root, 1000, 500);
 		stage.setScene(scene);
 	}
-
-	@FXML
-	private GridPane gridPaneGameBoard;
-	@FXML
-	private Label lblPossibleMoves;
-	@FXML
-	private Label lblMovesMade;
 
 	@Override
 	protected void loadData() {
