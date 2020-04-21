@@ -18,9 +18,9 @@ public class GameRepository
 		return mapper.getGames();
 	}
 	
-	public Game getGame(String gameName,User user) 
+	public Game getGame(String gameName) 
 	{
-		return mapper.getGame(gameName,user);
+		return mapper.getGame(gameName);
 	}
 	
 	public void createGame(Game game) {

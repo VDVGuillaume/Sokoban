@@ -65,7 +65,7 @@ public class GameMapper extends BaseMapper
 		return games;	
 	}
 	
-	public Game getGame(String gameName,User user)
+	public Game getGame(String gameName)
 	{
 		PreparedStatement stmt = null;
 		Connection conn = null;
@@ -84,7 +84,7 @@ public class GameMapper extends BaseMapper
 			if(rs.next()) 
 			{	
 				var gameBoards = gameBoardMapper.getGameBoards(gameName);
-				game = new Game(gameName, gameBoards,user);
+				game = new Game(gameName, gameBoards);
 			}
 		} catch (SQLException e) 
 		{

@@ -11,14 +11,25 @@ public class Game {
 	private String name;
 	private User createdByUser;
 	
+	/**
+	 * UC5 Constructor
+	 */
 	public Game(String name, List<GameBoard> gameBoards,User createdByUser) 
 	{
 		setName(name);
 		setGameBoards(gameBoards);
 		setCreatedByUser(createdByUser);
 	}
-		
 	
+	/**
+	 * UC3 Constructor
+	 */
+	public Game(String name, List<GameBoard> gameBoards) 
+	{
+		setName(name);
+		setGameBoards(gameBoards);
+	}
+		
 	private void setGameBoards(List<GameBoard> gameBoards) {
 		this.gameBoards = gameBoards;
 	}

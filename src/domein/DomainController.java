@@ -102,7 +102,7 @@ public class DomainController {
 	 * UC3 chooseGame enables user to select game to play based on gamename
 	 */
 	public void chooseGame(String gameName){
-		Game game = gameRepository.getGame(gameName,selectedUser);
+		Game game = gameRepository.getGame(gameName);
 
 		if (game == null) {
 			throw new GameException(language.translate("ErrorGameNotFound"));
@@ -286,7 +286,7 @@ public class DomainController {
 
 	public void createGame(String gameName) {
 		
-		if(gameRepository.getGame(gameName,selectedUser) == null) {		
+		if(gameRepository.getGame(gameName) == null) {		
 		
 		try {
 		List<GameBoard> gameboards = new ArrayList<GameBoard>();	
