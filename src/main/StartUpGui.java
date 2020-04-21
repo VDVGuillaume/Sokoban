@@ -3,6 +3,7 @@ package main;
 import domein.DomainController;
 import gui.MenuScreenController;
 import gui.WelcomeScreenController;
+import gui.NewGameScreenController;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
