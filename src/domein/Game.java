@@ -152,10 +152,26 @@ public class Game {
 		return selectedGameBoard.getMoves();	
 	}
 	
-	public void addGameBoard() {
-		GameBoard gameBoard = new GameBoard();
-		gameBoards.add(gameBoard);
+	public void addGameBoard(GameBoard gameBoard) {
+		this.selectedGameBoard = gameBoard;
 		
+		gameBoards.add(selectedGameBoard);
+		
+	}
+	
+	public void setSelectedGameBoard(GameBoard gameBoard) {
+		this.selectedGameBoard = gameBoard;
+	}
+	
+	public void moveSelector(String direction) {
+		if(selectedGameBoard == null) {
+			throw new GameException("ErrorGameBoardNotFound");
+		}
+	selectedGameBoard.moveSelector(direction);
+	}
+	
+	public void toggle() {
+		selectedGameBoard.Toggle();
 	}
 	
 }

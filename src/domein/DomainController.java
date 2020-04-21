@@ -20,6 +20,7 @@ public class DomainController {
 	private User selectedUser;
 	private Game selectedGame;
 	private Language language;
+	private GameBoard selectedGameBoard;
 
 	public DomainController() {
 		language = new Language();
@@ -304,13 +305,46 @@ public class DomainController {
 	}
 
 	/** 
-	 * UC5 method addGameboard calls addGameboard in game class to add a new gameboard 
-	 */
+	 * UC5 method addGameboard calls addGameboard in game class to add a new gameboard
+		 */
 	public void addGameboard() {
 		
-		selectedGame.addGameBoard();
+		//selectedGame.addGameBoard(selectedGameBoard);
 	 gameBoardRepository.addGameBoard(selectedGame);
 	}
-
+	
+	/**
+	 * UC6 method createGameboard creates an empty gameboard
+	 */
+	public void createGameBoard() {
+		selectedGameBoard = new GameBoard();
+		selectedGame.setSelectedGameBoard(selectedGameBoard);
+	}
+	
+	public void setPositionAction(int xCoord, int yCoord, String action) {
+		selectedGameBoard.setPositionAction(xCoord, yCoord, action);
+		
+	}
+	
+	public void moveSelector(String direction) 
+	{
+		if(selectedGame == null) 
+		{
+			throw new GameException(language.translate("ErrorGameNotFound"));
+		}
+		
+		try 
+		{
+			selectedGame.moveSelector(direction);
+		}catch(GameException ex) 
+		{
+			throw new GameException(language.translate(ex.getMessage()));
+		}	
+	}
+	
+	public void toggle()
+	{
+		selectedGame.toggle();
+	}
 	
 }
