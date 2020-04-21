@@ -58,7 +58,7 @@ public class UC6Applicatie {
 			    controller.setPositionAction(xCoordinate,yCoordinate,action );
 			    gameboardInfo = controller.getSelectedGameBoardState();
 				console.drawConsole(gameboardInfo); */
-				
+				System.out.println(controller.translate("GameBoardCreationPossibleMoves"));
 				char c = input.next().charAt(0);
 				
 				switch(c) 
