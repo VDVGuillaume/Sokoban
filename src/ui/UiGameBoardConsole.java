@@ -12,6 +12,7 @@ public class UiGameBoardConsole
 	private String box;
 	private String goal;
 	private String pawn;
+	private String selector;
 	
 	public UiGameBoardConsole() 
 	{
@@ -21,7 +22,8 @@ public class UiGameBoardConsole
 		box = "B ";
 		none = "  ";
 		pawn = "P ";
-	}
+		selector = "* ";
+		}
 	
 	
 	public void drawConsole(String[][] tiles) 
@@ -49,6 +51,9 @@ public class UiGameBoardConsole
 					break;
 				case "Pawn":
 					outputString = pawn;
+					break;
+				case "Selector":
+					outputString = selector;
 					break;
 				case "None":
 				default:
