@@ -22,7 +22,7 @@ public class StartUpGui extends Application {
 
 			Scene scene = new Scene(root, 1000, 500);
 
-			primaryStage.setTitle("WelcomeScreen");
+			primaryStage.setTitle("Sokoban");
 			primaryStage.setResizable(false);
 			primaryStage.setScene(scene);
 			primaryStage.show();
