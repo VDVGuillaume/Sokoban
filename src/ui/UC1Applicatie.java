@@ -32,7 +32,6 @@ public class UC1Applicatie {
 		
 		controller.login(username, password);
 		info = controller.getInfoUser();
-		System.out.println("gebruikersnaam = " + info[0]);
 		}catch (Exception e) {
 			e.printStackTrace();		
 			UI();		

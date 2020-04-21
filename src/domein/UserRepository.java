@@ -59,7 +59,6 @@ public class UserRepository
 		//get user in db
 		User user = userMapper.getUser(username);
 		
-	
 			return user;
 		
 			

@@ -38,7 +38,6 @@ public class UC2Applicatie {
 			controller.register(name, firstName, username, password);
 
 			info = controller.getInfoUser();
-			System.out.println("gebruikersnaam = " + info[0]);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			info = UI();
