@@ -120,7 +120,7 @@ public class DomainController {
 			throw new GameException(language.translate("ErrorGameNotFound"));
 		}
 
-		return new String[] { selectedGame.getNumberBoardsTotal(), selectedGame.getNumberBoardsCompleted(),selectedGame.getCreatedByUser().getUsername(), selectedGame.getName()};
+		return new String[] { selectedGame.getNumberBoardsTotal(), selectedGame.getNumberBoardsCompleted(), selectedGame.getName()};
 	}
 	
 	/**
