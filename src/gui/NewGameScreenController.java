@@ -22,6 +22,8 @@ import javafx.stage.Stage;
 
 public class NewGameScreenController extends BaseScreenController{
 	@FXML
+	private Label lblCreateGame;
+	@FXML
 	private Label lblGameName;
 	
 	@FXML
@@ -38,6 +40,7 @@ public class NewGameScreenController extends BaseScreenController{
 	@Override
 	protected void loadData() {
 		// set translations
+		lblCreateGame.setText(domainController.translate("CreateGame"));
 		lblGameName.setText(domainController.translate("NameGame"));
 		btnSave.setText(domainController.translate("Save"));
 	}
