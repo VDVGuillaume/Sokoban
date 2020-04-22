@@ -109,7 +109,7 @@ public class Game {
 	
 	public boolean isComplete() 
 	{
-		return getNumberBoardsCompleted() == getNumberBoardsTotal();
+		return getNumberBoardsCompleted().equals(getNumberBoardsTotal());
 	}
 	
 	public String[][] getSelectedGameBoardState()
