@@ -265,8 +265,7 @@ public class GameBoard
 			}
 			
 			// move player to location
-			tileMoveLocation.setTileType(TileTypes.None);
-			tileMoveLocation.setContainsPlayer(true);
+			tileMoveLocation.movePlayerToTile();
 			pawn.movePawn(rowIndexMoveLocation, columnIndexMoveLocation);
 			
 			// remove player from original location
