@@ -554,7 +554,7 @@ public class GameBoard
 	
 	/**UC7 return int Id of the gameboard*/
 	public int getId() {
-		return.id=id;
+		return this.id=id;
 	}
 	
 }
