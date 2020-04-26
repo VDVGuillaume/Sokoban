@@ -124,7 +124,7 @@ public class StartUp {
 						app.UI(input);				
 					}else if(selection == 2) 
 					{
-						break;	
+						System.exit(0);;	
 					}	
 					else if(selection == 3) {
 						UC6Applicatie app = new UC6Applicatie(domeincontroller);
