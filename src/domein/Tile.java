@@ -6,6 +6,7 @@ public class Tile
 	private boolean containsPlayer;
 	private boolean isGoal;
 	
+	/**UC3 constructor Tile w/ tileType & containsplayer attributes*/
 	public Tile(TileTypes tileType, boolean containsPlayer) 
 	{
 		if(tileType == TileTypes.Goal) {
@@ -15,6 +16,7 @@ public class Tile
 		setContainsPlayer(containsPlayer);
 	}
 	
+	/**UC3 determines tileType of certain tile*/
 	public void setTileType(TileTypes tileType) 
 	{
 		this.tileType = tileType;
@@ -30,16 +32,19 @@ public class Tile
 		}
 	}
 	
+	/**UC3 determines whether certain tile contains the player*/
 	public void setContainsPlayer(boolean containsPlayer) 
 	{
 		this.containsPlayer = containsPlayer;
 	}
 	
+	/**UC3 returns true in case the pawn is present on the tile*/
 	public boolean getContainsPlayer() 
 	{
 		return this.containsPlayer;
 	}	
 	
+	/**UC3 returns the tileType of a given tile*/
 	public TileTypes getTileType() {
 		return tileType;
 	}
