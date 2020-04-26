@@ -280,7 +280,11 @@ public class DomainController {
 			}
 		} 
 			
-		
+	
+	/**
+	 * UC5 Saves the game & gameboard in the mapper.
+	 * 
+	 */
 	
 
 	public void saveGame() {
@@ -288,6 +292,11 @@ public class DomainController {
 
 	}
 
+		
+	/**
+	 * UC5 garbage collects the game object.
+	 * 
+	 */
 	public void deleteGame() {
 		selectedGame = null;
 	}
