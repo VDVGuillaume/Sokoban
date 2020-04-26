@@ -145,6 +145,7 @@ public class Game {
 		return selectedGameBoard.getMoves();	
 	}
 	
+	/**UC5 addGameBoard(GameBoard gameBoard): adding selected gameboard to the gameboards*/
 	public void addGameBoard(GameBoard gameBoard) {
 		this.selectedGameBoard = gameBoard;
 		
