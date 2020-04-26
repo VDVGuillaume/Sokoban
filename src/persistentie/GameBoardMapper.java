@@ -15,11 +15,13 @@ public class GameBoardMapper extends BaseMapper {
 	
 	private TileMapper tileMapper;
 	
+	/*constructor GameBoardMapper*/
 	public GameBoardMapper() 
 	{
 		tileMapper = new TileMapper();
 	}
 	
+	/* method getGameBoards(String gameName) return list of Gameboards related to a given gamename*/ 
 	public List<GameBoard> getGameBoards(String gameName)
 	{
 		List<GameBoard> gameBoards = new ArrayList<GameBoard>();
@@ -70,7 +72,7 @@ public class GameBoardMapper extends BaseMapper {
 		return gameBoards;	
 	}		
 	
-	
+	/*method saveGameBoard(Game game) to save GameObject in DB*/
 	public void saveGameBoard(Game game) {
 		
 

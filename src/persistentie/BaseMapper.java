@@ -7,7 +7,7 @@ public abstract class BaseMapper
 {	
 	protected String connString = "jdbc:mysql://ID222177_g88.db.webhosting.be:3306/ID222177_g88?serverTimezone=UTC&useLegacyDatetimeCode=false&user=ID222177_g88&password=RisEnu9s";
 
-	/* creation of the connection to the mysql DB*/
+	/* UC1 creation of the connection to the mysql DB*/
 	protected Connection createConnection()
 	{
 		try 
