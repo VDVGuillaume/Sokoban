@@ -9,17 +9,8 @@ public class Game {
 	private GameBoard selectedGameBoard;
 	
 	private String name;
-	private User createdByUser;
 	
-	/**
-	 * UC5 Constructor
-	 */
-	public Game(String name, List<GameBoard> gameBoards,User createdByUser) 
-	{
-		setName(name);
-		setGameBoards(gameBoards);
-		setCreatedByUser(createdByUser);
-	}
+
 	
 	/**
 	 * UC3 Constructor
@@ -34,15 +25,7 @@ public class Game {
 		this.gameBoards = gameBoards;
 	}
 	
-	private void setCreatedByUser(User user) {
-		this.createdByUser = user;
-	}
-	
-	public User getCreatedByUser() {
-		return this.createdByUser;
-	}	
-	
-	
+		
 	private void setName(String name) 
 	{
 		if(!name.contains(" ")) {

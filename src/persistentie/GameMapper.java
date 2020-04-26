@@ -156,7 +156,7 @@ public class GameMapper extends BaseMapper
 		return game;	
 	}
 	
-	public void saveGame(Game game) 
+	public void saveGame(Game game, String username) 
 	{
 		
 		
@@ -170,7 +170,7 @@ public class GameMapper extends BaseMapper
 			stmt = conn.prepareStatement(sql);
 			
 			stmt.setString(1, game.getName());
-			stmt.setString(2, game.getCreatedByUser().getUsername());
+			stmt.setString(2, username);
 			
 			stmt.executeUpdate();
 		

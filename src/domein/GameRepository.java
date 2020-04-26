@@ -28,7 +28,7 @@ public class GameRepository
 		return mapper.getGame(gameName);
 	}
 	
-	public void saveGame(Game game) {
-		mapper.saveGame(game);
+	public void saveGame(Game game, String username) {
+		mapper.saveGame(game,username);
 	}
 }
