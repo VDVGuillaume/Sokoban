@@ -20,12 +20,13 @@ public class Game {
 		setName(name);
 		setGameBoards(gameBoards);
 	}
-		
+	
+	/**UC3 setGameboards for a game based on a list of gameboards/	
 	private void setGameBoards(List<GameBoard> gameBoards) {
 		this.gameBoards = gameBoards;
 	}
 	
-		
+	/**UC3 setName of the Game*/	
 	private void setName(String name) 
 	{
 		if(!name.contains(" ")) {
@@ -34,6 +35,7 @@ public class Game {
 		}
 	}
 	
+	/**UC3 getName returns the String name of the Game*/	
 	public String getName() {
 		return this.name;
 	}
@@ -60,6 +62,7 @@ public class Game {
 		return String.format("%d",gameBoards.size());		
 	}
 	
+	/**UC3 isSelectedGameBoardCompleted returns true if gameboard is true; else false*/
 	public boolean isSelectedGameBoardCompleted() 
 	{
 		if(selectedGameBoard == null) 
@@ -110,6 +113,7 @@ public class Game {
 		return selectedGameBoard.getCurrentState();
 	}
 	
+	/**UC4 move the pawn in certain direction using Gameboard move methods*/
 	public void move(String direction) 
 	{
 		if(selectedGameBoard == null) 
@@ -120,6 +124,7 @@ public class Game {
 		selectedGameBoard.move(direction);
 	}
 	
+	/**UC4 resetSelectedGameBoard reset the gameboard using the resetSelectedGameBoard methods for GameBoard*/
 	public void resetSelectedGameBoard() 
 	{
 		if(selectedGameBoard == null) 

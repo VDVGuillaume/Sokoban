@@ -210,6 +210,7 @@ public class GameBoard
 		return false;
 	}
 	
+	/**UC4 move(String direction) checks whether direction are valid & calling move(GameBoardMoves move) */
 	public void move(String direction) 
 	{
 		GameBoardMoves gameBoardMove;
@@ -227,6 +228,7 @@ public class GameBoard
 		move(gameBoardMove);
 	}
 	
+	/**UC4 move(GameBoardMoves move) move pawn whilst checking whether move in that direction is valid*/
 	private void move(GameBoardMoves move) 
 	{
 		int rowIndexPawn = pawn.getRowIndex();
@@ -295,6 +297,7 @@ public class GameBoard
 		return tiles[rowIndex][columnIndex];
 	}
 	
+	/**UC4 validateMove returns true if pawn can be moved in that direction (no wall, etc); else return false*/
 	private boolean validateMove(Tile moveLocation, Tile moveLocationExtended) 
 	{
 		if(moveLocation == null || moveLocation.getTileType() == TileTypes.Wall) 
@@ -316,6 +319,7 @@ public class GameBoard
 		return true;
 	}
 	
+	/**UC4 cloneTiles(Tile[][] tiles): clone the 2D array tiles*/
 	private Tile[][] cloneTiles(Tile[][] tiles) 
 	{
 		Tile[][] clonedTiles = new Tile[10][10];
@@ -335,6 +339,7 @@ public class GameBoard
 		return clonedTiles;
 	}
 	
+	/**UC4 resetGameBoard set the nr of moves to 0, set the tiles back to the original tiles, setCompleted to false*/
 	public void resetGameBoard() 
 	{
 		setMoves(0);
