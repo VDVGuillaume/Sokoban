@@ -158,6 +158,8 @@ public class GameMapper extends BaseMapper
 	
 	public void saveGame(Game game) 
 	{
+		
+		
 		PreparedStatement stmt = null;
 		Connection conn = null;
 		final String sql = "INSERT INTO GAME(name,createdByUser) VALUES (?,?)";
@@ -195,6 +197,9 @@ public class GameMapper extends BaseMapper
 				// java...
 				e.printStackTrace();
 			}
+			
+			gameBoardMapper.saveGameBoard(game);
+			
 		}
 	}
 }
