@@ -11,6 +11,7 @@ public class GameBoard
 	private boolean completed;
 	private Pawn pawn;
 	private int moves;
+	private int id;
 	private ArrayList<Integer> selector;
 
 	/** UC3 constructor Gameboard w/ 2D array of tiles*/
@@ -549,6 +550,11 @@ public class GameBoard
 		this.selector.set(3, toggleType);
 		
 		
+	}
+	
+	/**UC7 return int Id of the gameboard*/
+	public int getId() {
+		return.id=id;
 	}
 	
 }

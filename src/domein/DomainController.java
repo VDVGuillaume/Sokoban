@@ -339,12 +339,34 @@ public class DomainController {
 	}
 
 	/**
-	 * UC6 method createGameboard creates an empty gameboard
+	 * UC7 method createGameboard creates an empty gameboard
 	 */
 	public List<String> getGamesListCreatedByUser() {
 		String[] userInfo = new String[1];
 		userInfo[0] = selectedUser.getUsername();
 		return gameRepository.getGames(userInfo[0]);
+	}
+	
+	/**UC7 chooseGameBoardFromGame(int gameBoardId) */
+	public void chooseGameBoardFromGame(int gameBoardId) {
+		selectedGame.chooseGameBoard(gameBoardId);
+	}
+	
+	/**
+	 * UC7 method getGameBoardIdsFromGame returns a list of int gameboardid for selected game
+	 */
+	public List<Integer> getGameBoardIdsFromGame() {
+		List<GameBoard> gameboards = new ArrayList<GameBoard>();
+		List<Integer> gameboardIds = new ArrayList<Integer>();
+		System.out.println("Game" + selectedGame.getName());
+		gameboards= selectedGame.getGameBoards();
+		
+		for(GameBoard gameboard: gameboards) {
+			gameboardIds.add(gameboard.getId());
+			System.out.println("test" + gameboard.getId());
+		}
+		
+		return gameboardIds;
 	}
 
 }

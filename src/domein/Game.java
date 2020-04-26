@@ -21,7 +21,7 @@ public class Game {
 		setGameBoards(gameBoards);
 	}
 	
-	/**UC3 setGameboards for a game based on a list of gameboards/	
+	/**UC3 setGameboards for a game based on a list of gameboards*/	
 	private void setGameBoards(List<GameBoard> gameBoards) {
 		this.gameBoards = gameBoards;
 	}
@@ -166,6 +166,16 @@ public class Game {
 	
 	public void toggle() {
 		selectedGameBoard.Toggle();
+	}
+	
+	/**UC7 chooseGameBoard(int gameBoardId) */
+	public void chooseGameBoard(int gameBoardId) {
+		List<GameBoard> gameBoards= getGameBoards();
+		for(GameBoard gameboard: gameBoards) {
+			if(gameboard.getId()==gameBoardId){
+				selectedGameBoard = gameboard;
+			}
+		}	
 	}
 	
 }

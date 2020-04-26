@@ -16,6 +16,7 @@ public class UC7Applicatie {
 		public void UI(Scanner input) {
 			String gameName;
 			int gameNumber;
+			int gameBoardIdChoice;
 			UiGameBoardConsole gameBoardConsole = new UiGameBoardConsole();
 
 			try {
@@ -29,6 +30,21 @@ public class UC7Applicatie {
 				gameNumber = input.nextInt();
 				gameName = names.get(gameNumber - 1);
 				controller.chooseGame(gameName);
+				try {
+					List<Integer> gameBoardIds= controller.getGameBoardIdsFromGame();
+					System.out.println(gameBoardIds.size());
+					System.out.println(controller.translate("GiveGameBoardName"));
+					for (int i = 0; i < gameBoardIds.size(); i++) {
+						String gameBoardId = (i + 1) + ". " + gameBoardIds.get(i);
+						System.out.println(gameBoardId);
+					}
+					gameBoardIdChoice = input.nextInt();
+					controller.chooseGameBoardFromGame(gameBoardIds.get(gameBoardIdChoice));
+					System.out.println("end");
+				}catch (Exception e){
+					System.out.println(e.getMessage());
+					input.nextLine();
+				}
 			} catch (Exception e) {
 				System.out.println(e.getMessage());
 				input.nextLine();
