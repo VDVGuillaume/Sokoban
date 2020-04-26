@@ -28,7 +28,7 @@ public class GameRepository
 		return mapper.getGame(gameName);
 	}
 	
-	public void createGame(Game game) {
-		mapper.createGame(game);
+	public void saveGame(Game game) {
+		mapper.saveGame(game);
 	}
 }

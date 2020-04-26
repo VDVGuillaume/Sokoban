@@ -71,7 +71,7 @@ public class GameBoardMapper extends BaseMapper {
 	}		
 	
 	
-	public void addGameBoard(Game game) {
+	public void saveGameBoard(Game game) {
 		
 
 		PreparedStatement stmt = null;

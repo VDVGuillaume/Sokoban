@@ -27,12 +27,20 @@ public class UC5Applicatie {
 			System.out.println(controller.translate("addGameBoard"));
 			answer = input.nextInt();
 		}while(answer == 1);
+		if(answer == 2) {
 		String gameInfo[] = controller.getSelectedGameInfo();
+		System.out.println(controller.translate("GameCreated"));
 		System.out.printf("%s %s%n",gameInfo[2],gameInfo[0]);
+		controller.saveGame();
+		}if(answer==3) {
+			System.out.println(controller.translate("GameDeleted"));
+			controller.deleteGame();
+		}
+		
 		}
 		catch(Exception e) {
 			
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 			UI(input);		
 		
 	}

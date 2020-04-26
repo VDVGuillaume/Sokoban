@@ -156,7 +156,7 @@ public class GameMapper extends BaseMapper
 		return game;	
 	}
 	
-	public void createGame(Game game) 
+	public void saveGame(Game game) 
 	{
 		PreparedStatement stmt = null;
 		Connection conn = null;

@@ -285,14 +285,13 @@ public class DomainController {
 	 * The object is send through the repository to the mapper 
 	 */
 
-	public void createGame(String gameName) {
+public void createGame(String gameName) {
 		
 		if(gameRepository.getGame(gameName) == null) {		
 		
 		try {
 		List<GameBoard> gameboards = new ArrayList<GameBoard>();	
 		selectedGame = new Game(gameName,gameboards,selectedUser);
-		gameRepository.createGame(selectedGame);
 		}catch(GameException ex)
 		{
 			System.err.print(ex.getMessage());
@@ -303,15 +302,24 @@ public class DomainController {
 			throw new GameException(language.translate("ErrorGameNameAlreadyUsed"));
 		}
 	}
+	
+	public void saveGame() {		
+		gameRepository.saveGame(selectedGame);
+		gameBoardRepository.saveGameBoard(selectedGame);
+	}
+	
+	public void deleteGame() {
+		selectedGame = null;
+	}
 
 	/** 
-	 * UC5 method addGameboard calls addGameboard in game class to add a new gameboard
-		 */
-	public void addGameboard() {
-		
-		//selectedGame.addGameBoard(selectedGameBoard);
-	 gameBoardRepository.addGameBoard(selectedGame);
+	 * UC5 method addGameboard calls addGameboard in game class to add a new gameboard 
+	 */
+	public void addGameboard() {		
+		gameBoardRepository.saveGameBoard(selectedGame);
 	}
+	
+	
 	
 	/**
 	 * UC6 method createGameboard creates an empty gameboard
