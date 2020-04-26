@@ -11,7 +11,7 @@ import domein.User;
 
 public class UserMapper extends BaseMapper 
 {	
-	/*UC2 method createUser(User user) to add new user in DB*/
+	/**UC2 method createUser(User user) to add new user in DB*/
 	public void createUser(User user) 
 	{
 		PreparedStatement stmt = null;
@@ -58,7 +58,7 @@ public class UserMapper extends BaseMapper
 		}
 	}
 	
-	/*UC1 User getUser(String username) to get relevant information (is_admin, name, firstname, password_hashed, salt) from the user from the DB*/
+	/**UC1 User getUser(String username) to get relevant information (is_admin, name, firstname, password_hashed, salt) from the user from the DB*/
 	public User getUser(String username) 
 	{
 		PreparedStatement stmt = null;
