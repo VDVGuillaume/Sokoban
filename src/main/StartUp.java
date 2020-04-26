@@ -61,19 +61,38 @@ public class StartUp {
 		System.out.println(domeincontroller.translate("StartUp_LogIn"));
 		System.out.println(domeincontroller.translate("StartUp_Register"));
 
-		userSelection = input.nextInt();
+		
+		userSelection=-1;
+		flag=true;
 		String[] userInfo = new String[2];
-
-		switch (userSelection) { /* Added selection menu in UC2 */
-		case 1:
-			UC1Applicatie app = new UC1Applicatie(domeincontroller);
-			userInfo = app.UI();
-			break;
-		case 2:
-			UC2Applicatie app2 = new UC2Applicatie(domeincontroller);
-			userInfo = app2.UI();
-			break;
-		}
+		
+		do {
+			try {
+				userSelection = input.nextInt();
+				if(userSelection <1 || userSelection >2) {
+					throw new IllegalArgumentException(domeincontroller.translate("ChoiceBetween").replace("$param1", Integer.toString(1)).replace("$param2", Integer.toString(2)));
+				}
+				flag=false;
+				switch (userSelection) { /* Added selection menu in UC2 */
+				case 1:
+					UC1Applicatie app = new UC1Applicatie(domeincontroller);
+					userInfo = app.UI();
+					break;
+				case 2:
+					UC2Applicatie app2 = new UC2Applicatie(domeincontroller);
+					userInfo = app2.UI();
+					break;
+				}
+				
+			}catch(InputMismatchException ex) {
+				System.out.println(domeincontroller.translate("GiveIntegerNumber"));
+				input.nextLine();
+			}catch(IllegalArgumentException ex) {
+				System.out.println(ex.getMessage());
+			}
+			
+		}while(flag);
+		
 
 		while(true) 
 		{
