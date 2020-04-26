@@ -347,4 +347,13 @@ public class DomainController {
 		selectedGame.toggle();
 	}
 	
+	/**
+	 * UC6 method createGameboard creates an empty gameboard
+	 */
+	public List<String> getGamesListCreatedByUser() {
+		String[] userInfo = new String[1];
+		userInfo[0] = selectedUser.getUsername();
+		return gameRepository.getGames(userInfo[0]);
+	}
+	
 }

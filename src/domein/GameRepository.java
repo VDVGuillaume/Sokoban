@@ -18,6 +18,11 @@ public class GameRepository
 		return mapper.getGames();
 	}
 	
+	public List<String> getGames(String username)
+	{
+		return mapper.getGames(username);
+	}
+	
 	public Game getGame(String gameName) 
 	{
 		return mapper.getGame(gameName);

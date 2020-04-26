@@ -15,6 +15,7 @@ import ui.UC3Applicatie;
 import ui.UC4Applicatie;
 import ui.UC5Applicatie;
 import ui.UC6Applicatie;
+import ui.UC7Applicatie;
 
 public class StartUp {
 	public static void main(String[] args) {
@@ -128,6 +129,11 @@ public class StartUp {
 					}	
 					else if(selection == 3) {
 						UC6Applicatie app = new UC6Applicatie(domeincontroller);
+						input.nextLine();
+						app.UI(input);	
+					}
+					else if(selection == 4) {
+						UC7Applicatie app = new UC7Applicatie(domeincontroller);
 						input.nextLine();
 						app.UI(input);	
 					}

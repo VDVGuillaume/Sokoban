@@ -65,6 +65,51 @@ public class GameMapper extends BaseMapper
 		return games;	
 	}
 	
+	public List<String> getGames(String username)
+	{
+		List<String> games = new ArrayList<String>();
+		PreparedStatement stmt = null;
+		Connection conn = null;
+		final String sql = "select name from GAME WHERE createdByUser=? order by name";
+		
+		try 
+		{
+			conn = createConnection(); 
+			stmt = conn.prepareStatement(sql);
+			stmt.setString(1,username);
+			
+			ResultSet rs = stmt.executeQuery();
+			
+			while(rs.next()) 
+			{	
+				var gameName = rs.getString(1);
+				games.add(gameName);
+			}
+		} catch (SQLException e) 
+		{
+			e.printStackTrace();
+		}finally 
+		{
+			try 
+			{
+				if(stmt != null) stmt.close();
+			}catch(SQLException e) 
+			{
+				e.printStackTrace();
+			}
+			try 
+			{
+				if(conn != null) conn.close();
+			}
+			catch(SQLException e) 
+			{
+				e.printStackTrace();
+			}
+		}
+		
+		return games;	
+	}
+	
 	public Game getGame(String gameName)
 	{
 		PreparedStatement stmt = null;
