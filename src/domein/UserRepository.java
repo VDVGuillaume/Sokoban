@@ -13,6 +13,7 @@ public class UserRepository
 		this.userMapper = new UserMapper();
 	}
 	
+	/*UC2 userExists(String username) returns true in case the user with that username already exists in the DB, no user with the same username should be created as username should be unique (PK); returns false if no such username is present -> new user can be registered*/
 	public boolean userExists(String username) {
 		User user = userMapper.getUser(username);
 		if (user == null)
@@ -25,6 +26,7 @@ public class UserRepository
 		}	
 	}
 	
+	/*UC2 createUser(User user) method uses createUser method from userMapper class to create a user in the DB*/
 	public void createUser(User user) // added name, firstName in UC2
 	{
 		userMapper.createUser(user);

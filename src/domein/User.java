@@ -124,7 +124,7 @@ public class User {
 		setPasswordHashed(passwordHashed);
 	}
 	
-	/* User(String username, boolean admin, String name, String firstName, String passwordHashed, String salt): constructor for user based on username, admin, name, firstname, passwordHashed & salt*/
+	/* UC2 User(String username, boolean admin, String name, String firstName, String passwordHashed, String salt): constructor for user based on username, admin, name, firstname, passwordHashed & salt*/
 	public User(String username, boolean admin, String name, String firstName, String passwordHashed, String salt) 
 	{
 		setUsername(username);

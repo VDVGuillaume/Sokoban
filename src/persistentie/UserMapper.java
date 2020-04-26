@@ -11,7 +11,7 @@ import domein.User;
 
 public class UserMapper extends BaseMapper 
 {	
-	/*UC1 method createUser(User user) to add new user in DB*/
+	/*UC2 method createUser(User user) to add new user in DB*/
 	public void createUser(User user) 
 	{
 		PreparedStatement stmt = null;
