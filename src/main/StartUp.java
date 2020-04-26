@@ -94,7 +94,7 @@ public class StartUp {
 		}while(flag);
 		
 
-		while(true) 
+		while(true)
 		{
 			int menuItem = 0;
 			
@@ -105,25 +105,42 @@ public class StartUp {
 				System.out.println(++menuItem + domeincontroller.translate("Menu_EditGame"));
 			}
 
-			selection = input.nextInt();
-			if(selection == 1) 
-			{
-				UC4Applicatie app = new UC4Applicatie(domeincontroller);
-				app.UI(input);				
-			}else if(selection == 2) 
-			{
-				break;	
-			}	
-			else if(selection == 3) {
-				UC6Applicatie app = new UC6Applicatie(domeincontroller);
-				input.nextLine();
-				app.UI(input);	
-				
-				
-			}
+			selection = -1;
+			flag=true;
+			do {
+				try {
+					selection = input.nextInt();
+					
+					if(userInfo[1].equals("True") && (selection <1 || selection>4)) {
+						throw new IllegalArgumentException(domeincontroller.translate("ChoiceBetween").replace("$param1", Integer.toString(1)).replace("$param2", Integer.toString(4)));
+					}else if(userInfo[1].equals("False") && (selection <1 || selection>2)) {
+						throw new IllegalArgumentException(domeincontroller.translate("ChoiceBetween").replace("$param1", Integer.toString(1)).replace("$param2", Integer.toString(2)));
+					}
+					flag=false;
+					
+					if(selection == 1) 
+					{
+						UC4Applicatie app = new UC4Applicatie(domeincontroller);
+						app.UI(input);				
+					}else if(selection == 2) 
+					{
+						break;	
+					}	
+					else if(selection == 3) {
+						UC6Applicatie app = new UC6Applicatie(domeincontroller);
+						input.nextLine();
+						app.UI(input);	
+					}
+				}catch(InputMismatchException ex) {
+					System.out.println(domeincontroller.translate("GiveIntegerNumber"));
+					input.nextLine();
+				}catch(IllegalArgumentException ex) {
+					System.out.println(ex.getMessage());
+				}
+			}while(flag);
+			
+			
 		}
-
-		input.close();	
 	}
 	
 }
