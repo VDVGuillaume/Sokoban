@@ -58,7 +58,7 @@ public class NewGameScreenController extends BaseScreenController{
 		var gamename = txtGameNameCreateNewGame.getText();
 
 		try {
-			//domainController.(gamename);
+			domainController.createGame(gamename);
 			saveNewGame();
 		} catch (Exception e) {
 			Alert errorAlert = new Alert(AlertType.ERROR);
