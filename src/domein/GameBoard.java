@@ -13,6 +13,7 @@ public class GameBoard
 	private int moves;
 	private ArrayList<Integer> selector;
 
+	/** UC3 constructor Gameboard w/ 2D array of tiles*/
 	public GameBoard(Tile[][] tiles) 
 	{
 		originalTiles = tiles;
@@ -66,11 +67,13 @@ public class GameBoard
 		
 	}
 	
+	/**setPawn(int rowIndex, int columnIndex) creation of a pawn on (rowindex,columnindex) coordinates*/
 	private void setPawn(int rowIndex, int columnIndex) 
 	{
 		this.pawn = new Pawn(rowIndex, columnIndex);
 	}
 	
+	/** UC3 setTiles set the Tiletypes of the gameboard and perform checks such as there should be one and only one pawn, the number of boxes should be equal to the number of goals */
 	private void setTiles(Tile[][] tiles) throws GameException 
 	{
 		if(tiles.length != 10 || tiles[0].length != 10) 
@@ -146,10 +149,12 @@ public class GameBoard
 		this.completed = true;
 		}
 	
+	/**UC3 method getCompleted returns true if complete attribute of gameboard is true; else false;*/
 	public boolean isCompleted() {
 		return completed;
 	}
 	
+	/**UC3 getCurrentState returns the 2D array representation of the current gameboard*/
 	public String[][] getCurrentState()
 	{
 		String[][] gameBoardState = new String[10][10];
@@ -182,6 +187,7 @@ public class GameBoard
 		return gameBoardState;
 	}
 	
+	/**UC3 checkWallBorder returns true if tile or surrounding tiles are of type wall*/
 	private boolean checkWallBorder(int rowIndex, int columnIndex) 
 	{
 		for(int i = rowIndex -1; i <= rowIndex + 1; i++) 

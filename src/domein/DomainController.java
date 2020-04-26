@@ -141,7 +141,7 @@ public class DomainController {
 	}
 
 	/**
-	 * UC4 isSelectedGameBoardCompleted: boolean is returned to indicate whether
+	 * UC3 isSelectedGameBoardCompleted: boolean is returned to indicate whether
 	 * gameboard is completed or not
 	 */
 	public boolean isSelectedGameBoardCompleted() {
@@ -157,7 +157,7 @@ public class DomainController {
 	}
 
 	/**
-	 * UC4 isGameCompleted calls method getComplete for a selectedGame, which
+	 * UC3 isGameCompleted calls method getComplete for a selectedGame, which
 	 * returns a boolean to indicate whether a game is completed
 	 */
 	public boolean isGameCompleted() {

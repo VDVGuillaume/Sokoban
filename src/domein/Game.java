@@ -13,7 +13,7 @@ public class Game {
 
 	
 	/**
-	 * UC3 Constructor
+	 * UC3 Constructor Game w/ name & gameboards list
 	 */
 	public Game(String name, List<GameBoard> gameBoards) 
 	{
@@ -42,6 +42,7 @@ public class Game {
 		return gameBoards;
 	}	
 	
+	/**UC3 getNumberBoardsCompleted returns the number of completed boards in String format*/
 	public String getNumberBoardsCompleted() {
 		int numberBoardsCompleted=0;
 		for(GameBoard gameBoard : gameBoards) 
@@ -54,6 +55,7 @@ public class Game {
 		return  String.format("%d",numberBoardsCompleted);
 	}
 	
+	/**UC3 getNumberBoardsTotal returns the total number of boards in String format*/
 	public String getNumberBoardsTotal() {
 		return String.format("%d",gameBoards.size());		
 	}
@@ -68,6 +70,7 @@ public class Game {
 		return selectedGameBoard.isCompleted();
 	}
 	
+	/**UC3 playNextGameBoard() sets getSelectedGameBoard to the first non-completed gameboard of the selectedGame*/
 	public void playNextGameBoard()
 	{
 		GameBoard tempGameBoard = null;
@@ -90,11 +93,13 @@ public class Game {
 		}
 	}
 	
+	/**UC3 method isComplete returns true if all gameboards for the game have been completed, which is the case if the number of boards completed is equal to the overall number of boards; otherwise return false*/
 	public boolean isComplete() 
 	{
 		return getNumberBoardsCompleted().equals(getNumberBoardsTotal());
 	}
 	
+	/**UC3 method isComplete returns true if all gameboards for the game have been completed, which is the case if the number of boards completed is equal to the overall number of boards; otherwise return false*/
 	public String[][] getSelectedGameBoardState()
 	{
 		if(selectedGameBoard == null) 
