@@ -1,8 +1,10 @@
 package main;
 
+
 import java.util.Scanner;
 import util.Language;
 
+import java.util.InputMismatchException;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -28,7 +30,29 @@ public class StartUp {
 		System.out.println("Enter 1 for English");
 		System.out.println("Enter 2 for Dutch");
 		System.out.println("Enter 3 for French");
-		int languageSelection = input.nextInt();
+		
+		int languageSelection=-1;
+		boolean flag=true;
+		do {
+			try {
+				languageSelection = input.nextInt();
+				
+				if(languageSelection <1|| languageSelection >3) {
+					throw new IllegalArgumentException("The choice should be in the interval [1,3].");
+				}
+				
+				flag=false;
+			}
+			catch(InputMismatchException ex) {
+				System.out.println("Please enter an integer.");
+				input.nextLine();
+			}
+			catch(IllegalArgumentException ex) {
+				System.out.println(ex.getMessage());
+			}
+			
+		}while(flag);
+		
 	
 		DomainController domeincontroller = new DomainController();
 		domeincontroller.setLanguage(languageSelection);
