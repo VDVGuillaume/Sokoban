@@ -1,6 +1,7 @@
 package domein;
 import java.util.List;
 import persistentie.GameBoardMapper;
+import persistentie.TileMapper;
 
 public class GameBoardRepository {
 	private GameBoardMapper mapper;
@@ -20,6 +21,12 @@ public class GameBoardRepository {
 	public int saveGameBoard(Game game){
 		System.out.println("saveGameBoard GBRepo:" + mapper.saveGameBoard(game));
 		return mapper.saveGameBoard(game);
+		
+	}
+	
+	public void addGameBoard(Game game) {
+		mapper.addGameBoard(game);
+		
 	}
 	
 

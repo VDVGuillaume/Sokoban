@@ -157,6 +157,10 @@ public class Game {
 		this.selectedGameBoard = gameBoard;
 	}
 	
+	/**UC6 retrieve selected gameboard **/
+	public GameBoard getSelectedGameBoard() {
+		return this.selectedGameBoard;
+	}
 	
 	
 	

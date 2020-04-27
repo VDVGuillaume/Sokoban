@@ -319,6 +319,12 @@ public class DomainController {
 		selectedGame.setSelectedGameBoard(selectedGameBoard);
 
 	}
+	
+	public void addGameBoardWithTiles() {
+		gameBoardRepository.addGameBoard(selectedGame);
+	}
+	
+
 
 	public void setPositionAction(int xCoord, int yCoord, String action) {
 		selectedGameBoard.setPositionAction(xCoord, yCoord, action);

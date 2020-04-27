@@ -48,25 +48,7 @@ public class UC6Applicatie {
 			
 			 
 			do{
-				/** System.out.println(controller.translate("GameBoardCreationPossibleActions"));
-				action = input.nextLine();
-				action = action.toLowerCase();
 				
-				System.out.println(controller.translate("GameBoardCreationSelectedCoordinates"));
-				String coordinates = input.nextLine();
-				String[] coordinatesArray = coordinates.split(",");
-				ArrayList<Integer> coordinatesIntArrayList = new ArrayList<Integer>();
-			    for (String a : coordinatesArray)
-			    {
-			    	int i = Integer.parseInt(a.trim());
-			    	coordinatesIntArrayList.add(i);
-		            
-			    } 
-			    int xCoordinate = coordinatesIntArrayList.get(0);
-			    int yCoordinate = coordinatesIntArrayList.get(1);
-			    controller.setPositionAction(xCoordinate,yCoordinate,action );
-			    gameboardInfo = controller.getSelectedGameBoardState();
-				console.drawConsole(gameboardInfo); */
 				System.out.println(controller.translate("GameBoardCreationPossibleMoves"));
 				char c = input.next().charAt(0);
 				
@@ -145,7 +127,7 @@ public class UC6Applicatie {
 
 			    
 			}while(!userInput.equals("save"));
-			controller.addGameboard(gameName);
+			controller.addGameBoardWithTiles();
 			System.out.println(controller.translate("addGameBoard"));
 			
 			

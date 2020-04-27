@@ -122,7 +122,7 @@ public class GameBoardMapper extends BaseMapper {
 	
 	}
 	
-public void addGameBoard(Game game, GameBoard gameBoard) {
+public void addGameBoard(Game game) {
 		
 	
 		PreparedStatement stmt1 = null;
@@ -150,7 +150,7 @@ public void addGameBoard(Game game, GameBoard gameBoard) {
 			while(rs.next()) 
 			{	
 				var gameBoardId = rs.getInt(1);
-				tileMapper.insertTiles(gameBoard, gameBoardId);
+				tileMapper.insertTiles(game.getSelectedGameBoard(), gameBoardId);
 				
 	
 			}
