@@ -1,6 +1,6 @@
 package ui;
 
-import java.util.ArrayList;
+
 import java.util.Scanner;
 
 import domein.DomainController;
@@ -9,7 +9,7 @@ public class UC6Applicatie {
 	
 	private DomainController controller;
 	private UiGameBoardConsole console;
-	
+
 	
 	public UC6Applicatie(DomainController controller) {
 		this.controller = controller;
@@ -21,20 +21,29 @@ public class UC6Applicatie {
 	
 	
 
-	public void UI(Scanner input) {	
+	public void UI(Scanner input) {
 		
+		int[] selector = {5,5,0};		
+
+		int selectorXCoordinate = selector[0];
+		int selectorYCoordinate = selector[1];
 				
 		try {
 		System.out.println(controller.translate("GiveGameName"));
 		String gameName = input.nextLine();		
 		controller.createGame(gameName);
 		int answer = 0;
-		String action = new String();
+		String[] action = {"clear","wall","pawn","goal","box"};
+		int actionIndex = 0;
+		String userInput = new String();
+		
 		do{
 			controller.createGameBoard();
-			System.out.println(controller.translate("addGameBoard"));
+			
 			String gameboardInfo[][] = controller.getSelectedGameBoardState();
-			console.drawConsole(gameboardInfo);
+			String[][] gameboardInfoWithSelector = gameboardInfo;
+			gameboardInfoWithSelector[selectorYCoordinate][selectorXCoordinate] = "Selector";
+			console.drawConsole(gameboardInfoWithSelector);
 			
 			
 			 
@@ -65,27 +74,42 @@ public class UC6Applicatie {
 				{
 				case 'Q':
 				case 'q':
-					controller.moveSelector("Left");
+					selectorYCoordinate --;
+
+					selector[2] = 0;
 					break;
 				case 'Z':
 				case 'z':
-					controller.moveSelector("Up");
+					selectorXCoordinate --;
+
+					selector[2] = 0;
 					break;
 				case 'S':
 				case 's':
-					controller.moveSelector("Down");
+					selectorXCoordinate ++;
+					selector[2] = 0;
 					break;
 				case 'D':
 				case 'd':
-					controller.moveSelector("Right");
+					selectorYCoordinate ++;
+
+					selector[2] = 0;
 					break;
 				case 'E':
 				case 'e':
-					controller.toggle();
+					String piece = new String();
+					piece = action[actionIndex];
+					controller.setPositionAction(selectorXCoordinate, selectorYCoordinate, piece);
+					actionIndex++;
+					if (actionIndex > 4) {
+						actionIndex = 0;
+					}
+					selector[2] = 1;
+					
 					break;
 				case 'A':
 				case 'a':
-					action = "save";
+					userInput = "save";
 					break;
 				case 'T':
 				case 't':
@@ -94,14 +118,35 @@ public class UC6Applicatie {
 					break;
 				}
 				
+				if (selectorYCoordinate > 9 || selectorYCoordinate < 0 || selectorXCoordinate > 9 || selectorXCoordinate < 0) {
+					selectorYCoordinate = selector[1];
+					selectorXCoordinate = selector[0];
+					continue;
+				}
+				else {
+					selector[0] = selectorXCoordinate;
+					selector[1] = selectorYCoordinate;
+				}
 				
+				gameboardInfo = controller.getSelectedGameBoardState();
 				
-			    // controller.setPositionAction(xCoordinate,yCoordinate,action );
-			    gameboardInfo = controller.getSelectedGameBoardState();
-				console.drawConsole(gameboardInfo);
+				if (selector[2] == 0) {
+					gameboardInfoWithSelector = gameboardInfo;
+					gameboardInfoWithSelector[selectorXCoordinate][selectorYCoordinate] = "Selector";
+					console.drawConsole(gameboardInfoWithSelector);
+				}
+				else {
+				    
+				    
+					console.drawConsole(gameboardInfo);
+				}
+				
+		
+
 			    
-			}while(!action.equals("save"));
-			controller.addGameboard();
+			}while(!userInput.equals("save"));
+			controller.addGameboard(gameName);
+			System.out.println(controller.translate("addGameBoard"));
 			
 			
 			

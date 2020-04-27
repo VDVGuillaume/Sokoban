@@ -1,6 +1,6 @@
 package domein;
 
-import java.util.ArrayList;
+
 
 import exceptions.GameException;
 
@@ -12,7 +12,7 @@ public class GameBoard
 	private Pawn pawn;
 	private int moves;
 	private int id = -2;
-	private ArrayList<Integer> selector;
+
 
 	/** UC3 constructor Gameboard w/ 2D array of tiles*/
 	public GameBoard(int id, Tile[][] tiles) 
@@ -28,46 +28,38 @@ public class GameBoard
 		//expanded constructor functionality for UC6. Initialises an empty starter gameboard for customization
 		this.id=id;
 		TileTypes wall = TileTypes.Wall;
-		TileTypes selector = TileTypes.Selector;
-		this.selector = new ArrayList<>(4);
-		this.selector.add(5);
-		this.selector.add(5);
-		this.selector.add(0);
-		this.selector.add(0);
+		TileTypes none = TileTypes.None;
 		
 		Tile[][] initialTiles = new Tile[10][10];
         for (int row = 0; row < initialTiles.length; row++) {
             for (int col = 0; col < initialTiles[row].length; col++) {
-            	if (!(col == 0 || col == 9 || row == 0 || row == 9)) {
-            		if (col == 5 && row ==5) {
-            			initialTiles[row][col] = new Tile (selector,false);
-                  		}
-            		else {
-            			initialTiles[row][col] = new Tile(wall, false);
-            		}
+            	if (col == 5 && row ==5) {
+        			initialTiles[row][col] = new Tile (none,false);
+              		}
+        		else {
+        			initialTiles[row][col] = new Tile(wall, false);
+        		}
+            	        		
             		
                 	
                 
             	}
 
-            	else
-            	{
-            		initialTiles[row][col] = new Tile(wall, false);
-            	}
             }
+        this.tiles = initialTiles;
         }
         
 
         
         
-        this.tiles = initialTiles;
+    
      
       
 
 
 
 		
-	}
+
 	
 	/**setPawn(int rowIndex, int columnIndex) creation of a pawn on (rowindex,columnindex) coordinates*/
 	private void setPawn(int rowIndex, int columnIndex) 
@@ -390,6 +382,7 @@ public class GameBoard
 			case "clear":
 				TileTypes none = TileTypes.None;
 				this.tiles[xCoord][yCoord] = new Tile(none,false);
+				break;
 			default:
 				throw new GameException("IncorrectAction");
 				
@@ -398,160 +391,7 @@ public class GameBoard
 		
 	}
 	
-	public void moveSelector(String direction) 
-	{
-		GameBoardMoves gameBoardMove;
-		try 
-		{
-			gameBoardMove = GameBoardMoves.valueOf(direction);
-		}catch(IllegalArgumentException ex) 
-		{
-			return;
-		}catch(NullPointerException ex) 
-		{
-			return;
-		}
-		
-		moveSelector(gameBoardMove);
-	}
 	
-	private void moveSelector(GameBoardMoves move) 
-	{
-		int rowIndexSelector = this.selector.get(0);
-		int columnIndexSelector = this.selector.get(1);
-		int selectorTileType = this.selector.get(2);
-	
-		
-		int rowIndexMoveLocation = rowIndexSelector;
-		int columnIndexMoveLocation = columnIndexSelector;
-		
-		
-		Tile selectorLocation = getTile(rowIndexSelector, columnIndexSelector);
-		
-		switch(selectorTileType)
-		{
-			case 0:
-				selectorLocation.setTileType(TileTypes.None);
-				break;
-			case 1:
-				selectorLocation.setTileType(TileTypes.Box);
-				break;
-			case 2:
-				selectorLocation.setTileType(TileTypes.Wall);
-				break;
-			case 3:
-				selectorLocation.setTileType(TileTypes.None);
-				selectorLocation.setContainsPlayer(true);
-				break;
-		}
-				
-		switch(move) 
-		{
-			case Left:
-				columnIndexMoveLocation --;
-			
-				break;
-			case Right:
-				columnIndexMoveLocation ++;
-	
-				break;
-			case Down:
-				rowIndexMoveLocation ++;
-	
-				break;
-			case Up:
-				rowIndexMoveLocation --;
-	
-				break;
-		}
-
-		
-		
-		
-		Tile tileMoveLocation = getTile(rowIndexMoveLocation, columnIndexMoveLocation);
-		
-		
-	
-		
-		TileTypes tileType = tileMoveLocation.getTileType();
-		
-		
-		switch(tileType)
-		{
-			case None:
-				if(tileMoveLocation.getContainsPlayer())
-				{
-					this.selector.set(2, 3);
-				}
-				else {
-				this.selector.set(2, 0);
-				}
-				
-				
-				
-				break;
-			case Box:
-				this.selector.set(2, 1);
-			
-				break;
-			case Wall:
-				this.selector.set(2, 2);
-		
-				break;
-		default:
-			break;
-		
-		}
-		
-			
-			// move player to location
-			tileMoveLocation.setTileType(TileTypes.Selector);
-			tileMoveLocation.setContainsPlayer(false);
-			this.selector.set(0, rowIndexMoveLocation);
-			this.selector.set(1, columnIndexMoveLocation);
-			this.selector.set(3, 0);
-			
-		
-	}
-	
-	public void Toggle(){
-		int rowIndexSelector = this.selector.get(0);
-		int columnIndexSelector = this.selector.get(1);
-		int toggleType = this.selector.get(3);
-		int rowIndexLocation = rowIndexSelector;
-		int columnIndexLocation = columnIndexSelector;
-		Tile tileLocation = getTile(rowIndexLocation, columnIndexLocation);
-		if (toggleType > 3) {
-			toggleType = 0;
-		}
-		switch(toggleType)
-		{
-			case 0:
-				tileLocation.setTileType(TileTypes.None);
-				tileLocation.setContainsPlayer(false);
-				this.selector.set(2, 0);
-				break;
-			case 1:
-				tileLocation.setTileType(TileTypes.Box);
-				tileLocation.setContainsPlayer(false);
-				this.selector.set(2, 1);
-				break;
-			case 2:
-				tileLocation.setTileType(TileTypes.Wall);
-				tileLocation.setContainsPlayer(false);
-				this.selector.set(2, 2);
-				break;
-			case 3:
-				tileLocation.setTileType(TileTypes.None);
-				tileLocation.setContainsPlayer(true);
-				this.selector.set(2, 3);
-				break;
-		}
-		toggleType++;
-		this.selector.set(3, toggleType);
-		
-		
-	}
 	
 	/**UC7 set Id of the gameboard*/
 	public void setId(int id) {

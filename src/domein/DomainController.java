@@ -73,7 +73,7 @@ public class DomainController {
 								// interaction
 		User user;
 		try {
-			user = new User(username, password, admin, username, firstName);
+			user = new User(username, password, admin, name, firstName);
 		} catch (PasswordException ex) {
 			throw new PasswordException(language.translate(ex.getMessage()));
 		} catch (UsernameException ex) {
@@ -315,8 +315,9 @@ public class DomainController {
 	 * UC6 method createGameboard creates an empty gameboard
 	 */
 	public void createGameBoard() {
-		selectedGameBoard = new GameBoard();
+		this.selectedGameBoard = new GameBoard();
 		selectedGame.setSelectedGameBoard(selectedGameBoard);
+
 	}
 
 	public void setPositionAction(int xCoord, int yCoord, String action) {
@@ -324,21 +325,7 @@ public class DomainController {
 
 	}
 
-	public void moveSelector(String direction) {
-		if (selectedGame == null) {
-			throw new GameException(language.translate("ErrorGameNotFound"));
-		}
-
-		try {
-			selectedGame.moveSelector(direction);
-		} catch (GameException ex) {
-			throw new GameException(language.translate(ex.getMessage()));
-		}
-	}
-
-	public void toggle() {
-		selectedGame.toggle();
-	}
+	
 
 	/**
 	 * UC7 method getGamesListCreatedByUser returns the list of games created by a certain user

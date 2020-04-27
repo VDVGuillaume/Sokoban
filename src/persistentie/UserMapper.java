@@ -23,6 +23,8 @@ public class UserMapper extends BaseMapper
 			conn = createConnection(); 
 			stmt = conn.prepareStatement(sql);
 			
+			
+			
 			stmt.setString(1, user.getUsername());
 			stmt.setString(2, user.getPasswordHashed());
 			stmt.setString(3, user.getSalt());

@@ -147,7 +147,7 @@ public class Game {
 	
 	/**UC5 addGameBoard(GameBoard gameBoard): adding selected gameboard to the gameboards*/
 	public void addGameBoard(GameBoard gameBoard) {
-		this.selectedGameBoard = gameBoard;
+		selectedGameBoard = gameBoard;
 		
 		gameBoards.add(selectedGameBoard);
 		
@@ -157,16 +157,9 @@ public class Game {
 		this.selectedGameBoard = gameBoard;
 	}
 	
-	public void moveSelector(String direction) {
-		if(selectedGameBoard == null) {
-			throw new GameException("ErrorGameBoardNotFound");
-		}
-	selectedGameBoard.moveSelector(direction);
-	}
 	
-	public void toggle() {
-		selectedGameBoard.Toggle();
-	}
+	
+	
 	
 	/**UC7 chooseGameBoard(int gameBoardId) */
 	public void chooseGameBoard(int gameBoardId) {
