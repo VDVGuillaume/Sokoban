@@ -306,7 +306,9 @@ public class DomainController {
 	 * gameboard
 	 */
 	public void addGameboard() {
-		gameBoardRepository.saveGameBoard(selectedGame);
+		int gameboardId = gameBoardRepository.saveGameBoard(selectedGame);
+		System.out.println("addGameBoard DC: " + gameboardId);
+		selectedGameBoard.setId(gameboardId);
 	}
 
 	/**
@@ -339,7 +341,7 @@ public class DomainController {
 	}
 
 	/**
-	 * UC7 method createGameboard creates an empty gameboard
+	 * UC7 method getGamesListCreatedByUser returns the list of games created by a certain user
 	 */
 	public List<String> getGamesListCreatedByUser() {
 		String[] userInfo = new String[1];
@@ -358,7 +360,7 @@ public class DomainController {
 	public List<Integer> getGameBoardIdsFromGame() {
 		List<GameBoard> gameboards = new ArrayList<GameBoard>();
 		List<Integer> gameboardIds = new ArrayList<Integer>();
-		System.out.println("Game" + selectedGame.getName());
+		System.out.println("Game " + selectedGame.getName());
 		gameboards= selectedGame.getGameBoards();
 		
 		for(GameBoard gameboard: gameboards) {
@@ -368,5 +370,7 @@ public class DomainController {
 		
 		return gameboardIds;
 	}
+	
+	
 
 }

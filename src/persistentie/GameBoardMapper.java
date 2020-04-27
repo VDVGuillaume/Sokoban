@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,7 +43,7 @@ public class GameBoardMapper extends BaseMapper {
 			{	
 				var gameBoardId = rs.getInt(1);
 				var tiles = tileMapper.getTiles(gameBoardId);
-				gameBoards.add(new GameBoard(tiles));
+				gameBoards.add(new GameBoard(gameBoardId, tiles));
 			}
 		} catch (SQLException e) 
 		{
@@ -73,9 +74,9 @@ public class GameBoardMapper extends BaseMapper {
 	}		
 	
 	/** method saveGameBoard(Game game) to save GameObject in DB*/
-	public void saveGameBoard(Game game) {
+	public int saveGameBoard(Game game) {
 		
-
+		int generatedKey=-1;
 		PreparedStatement stmt = null;
 		Connection conn = null;
 		final String sql = "INSERT INTO GAMEBOARD (GameName) VALUES (?)";
@@ -83,12 +84,15 @@ public class GameBoardMapper extends BaseMapper {
 		try 
 		{
 			conn = createConnection(); 
-			stmt = conn.prepareStatement(sql);
+			stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			
 			stmt.setString(1, game.getName());
 			
 			stmt.executeUpdate();
-		
+			ResultSet rs = stmt.getGeneratedKeys();
+			generatedKey = rs.getInt(1);
+			
+			
 		} catch (SQLException e) 
 		{
 			// java...
@@ -112,6 +116,7 @@ public class GameBoardMapper extends BaseMapper {
 				// java...
 				e.printStackTrace();
 			}
+			return generatedKey;
 		}
 	
 	

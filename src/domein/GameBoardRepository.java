@@ -17,8 +17,9 @@ public class GameBoardRepository {
 		//return mapper.getGameBoards();
 	}
 	
-	public void saveGameBoard(Game game){
-		mapper.saveGameBoard(game);
+	public int saveGameBoard(Game game){
+		System.out.println("saveGameBoard GBRepo:" + mapper.saveGameBoard(game));
+		return mapper.saveGameBoard(game);
 	}
 	
 }

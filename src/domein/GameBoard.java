@@ -11,12 +11,13 @@ public class GameBoard
 	private boolean completed;
 	private Pawn pawn;
 	private int moves;
-	private int id;
+	private int id = -2;
 	private ArrayList<Integer> selector;
 
 	/** UC3 constructor Gameboard w/ 2D array of tiles*/
-	public GameBoard(Tile[][] tiles) 
+	public GameBoard(int id, Tile[][] tiles) 
 	{
+		this.id=id;
 		originalTiles = tiles;
 		moves = 0;
 		setTiles(cloneTiles(originalTiles));
@@ -25,7 +26,7 @@ public class GameBoard
 	public GameBoard() {
 		//empty constructor for testing UC5
 		//expanded constructor functionality for UC6. Initialises an empty starter gameboard for customization
-		
+		this.id=id;
 		TileTypes wall = TileTypes.Wall;
 		TileTypes selector = TileTypes.Selector;
 		this.selector = new ArrayList<>(4);
@@ -552,9 +553,17 @@ public class GameBoard
 		
 	}
 	
+	/**UC7 set Id of the gameboard*/
+	public void setId(int id) {
+		this.id=id;
+	}
+	
+	
 	/**UC7 return int Id of the gameboard*/
 	public int getId() {
-		return this.id=id;
+		return id;
 	}
+	
+	
 	
 }
