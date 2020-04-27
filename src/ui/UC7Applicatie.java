@@ -39,7 +39,9 @@ public class UC7Applicatie {
 						System.out.println(gameBoardId);
 					}
 					gameBoardIdChoice = input.nextInt();
-					controller.chooseGameBoardFromGame(gameBoardIds.get(gameBoardIdChoice));
+					System.out.println("gameBoardIdChoice" + gameBoardIdChoice);
+					controller.chooseGameBoardFromGame(gameBoardIds.get(gameBoardIdChoice-1));
+					//controller.deleteSelectedGameBoard();
 					System.out.println("end");
 				}catch (Exception e){
 					System.out.println(e.getMessage());

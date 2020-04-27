@@ -371,6 +371,14 @@ public class DomainController {
 		return gameboardIds;
 	}
 	
+	public void updateGame() {
+		
+	}
 	
+	public void deleteSelectedGameBoard() {
+		System.out.println(selectedGameBoard.getId());
+		selectedGame.deleteSelectedGameBoard();
+		gameRepository.deleteSelectedGameBoard(selectedGame.getName(), selectedGameBoard.getId());
+	}
 
 }

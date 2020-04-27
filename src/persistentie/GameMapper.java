@@ -202,4 +202,48 @@ public class GameMapper extends BaseMapper
 			
 		}
 	}
+	
+	public void deleteSelectedGameBoard(String gamename, int gameboardId) 
+	{
+		
+		
+		PreparedStatement stmt = null;
+		Connection conn = null;
+		final String sql = "DELETE FROM GAMEBOARD WHERE GameName=gamename AND id=gameboardId";
+		
+		try 
+		{
+			conn = createConnection(); 
+			stmt = conn.prepareStatement(sql);
+			
+			
+			stmt.executeUpdate();
+		
+		} catch (SQLException e) 
+		{
+			// java...
+			e.printStackTrace();
+		}finally 
+		{
+			try 
+			{
+				if(stmt != null) stmt.close();
+			}catch(SQLException e) 
+			{
+				// java...
+				e.printStackTrace();
+			}
+			try 
+			{
+				if(conn != null) conn.close();
+			}
+			catch(SQLException e) 
+			{
+				// java...
+				e.printStackTrace();
+			}
+			
+			
+		}
+	}
 }

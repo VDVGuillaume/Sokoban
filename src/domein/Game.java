@@ -178,4 +178,8 @@ public class Game {
 		}	
 	}
 	
+	public void deleteSelectedGameBoard() {
+		gameBoards.remove(selectedGameBoard);
+	}
+	
 }
