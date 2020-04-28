@@ -306,6 +306,7 @@ public class DomainController {
 	 * gameboard
 	 */
 	public void addGameboard() {
+		// TODO is this method obsolete?
 		int gameboardId = gameBoardRepository.saveGameBoard(selectedGame);
 		System.out.println("addGameBoard DC: " + gameboardId);
 		selectedGameBoard.setId(gameboardId);
