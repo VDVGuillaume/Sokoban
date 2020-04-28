@@ -324,10 +324,7 @@ public class DomainController {
 
 	}
 	
-	public void addGameBoardTiles() {
-		gameBoardRepository.addGameBoardTiles(selectedGame);
-	}
-	
+
 
 
 	public void setPositionAction(int xCoord, int yCoord, String action) {
