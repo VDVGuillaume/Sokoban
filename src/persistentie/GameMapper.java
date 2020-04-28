@@ -204,10 +204,13 @@ public class GameMapper extends BaseMapper {
 	}
 	
 	public void insertGame(Game game) {
-		// TODO actually saveGame but renamed
+		// TODO this should also call GameBoardMapper recursively
+		// Same functionality as saveGame but renamed to reflect action
+		
+		
 	}
 	
 	public void updateGame(Game game) {
-		// TODO
+		// TODO this should also call GameBoardMapper recursively
 	}
 }
