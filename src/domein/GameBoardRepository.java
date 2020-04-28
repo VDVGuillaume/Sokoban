@@ -24,6 +24,14 @@ public class GameBoardRepository {
 		
 	}
 	
+	public void insertGame(Game game) {
+		//TODO actually saveGame but renamed
+	}
+	
+	public void updateGame(Game game) {
+		//TODO
+	}
+	
 	public void addGameBoardTiles(Game game) {
 		mapper.addGameBoardTiles(game);
 		

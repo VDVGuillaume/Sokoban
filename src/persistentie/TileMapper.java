@@ -100,5 +100,12 @@ public class TileMapper extends BaseMapper {
 		}
 
 	}
-
+	
+	public void insertTile() {
+		//TODO 
+	}
+	
+	public void updateTile() {
+		//TODO 
+	}
 }
