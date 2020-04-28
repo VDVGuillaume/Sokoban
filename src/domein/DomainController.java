@@ -320,8 +320,8 @@ public class DomainController {
 
 	}
 	
-	public void addGameBoardWithTiles() {
-		gameBoardRepository.addGameBoard(selectedGame);
+	public void addGameBoardTiles() {
+		gameBoardRepository.addGameBoardTiles(selectedGame);
 	}
 	
 

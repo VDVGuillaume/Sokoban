@@ -24,8 +24,8 @@ public class GameBoardRepository {
 		
 	}
 	
-	public void addGameBoard(Game game) {
-		mapper.addGameBoard(game);
+	public void addGameBoardTiles(Game game) {
+		mapper.addGameBoardTiles(game);
 		
 	}
 	

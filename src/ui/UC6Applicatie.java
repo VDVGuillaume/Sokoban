@@ -127,7 +127,10 @@ public class UC6Applicatie {
 
 			    
 			}while(!userInput.equals("save"));
-			controller.addGameBoardWithTiles();
+			
+			controller.saveGame();
+			
+			
 			System.out.println(controller.translate("addGameBoard"));
 			
 			

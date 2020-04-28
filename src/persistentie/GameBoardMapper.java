@@ -118,35 +118,35 @@ public class GameBoardMapper extends BaseMapper {
 			}
 			return generatedKey;
 		}
+
 	
 	
 	}
 	
-public void addGameBoard(Game game) {
+public void addGameBoardTiles(Game game) {
 		
 	
-		PreparedStatement stmt1 = null;
-		PreparedStatement stmt2 = null;
+		PreparedStatement stmt = null;
+
 		Connection conn = null;
-		Connection conn2 = null;
-		final String sql = "INSERT INTO GAMEBOARD (GameName) VALUES (?)";
-		final String sql2 =  "select id from GAMEBOARD where GameName = ?";
+
+		final String sql =  "select id from GAMEBOARD where GameName = ?";
 	
 		
 		try 
 		{
 			conn = createConnection();
-			conn2 = createConnection();
-			stmt1 = conn.prepareStatement(sql);
-			stmt2 = conn2.prepareStatement(sql2);
+
+			stmt = conn.prepareStatement(sql);
+
 			
 		
-			stmt1.setString(1, game.getName());
-			stmt2.setString(1, game.getName());
+			stmt.setString(1, game.getName());
+
 			
-			stmt1.executeUpdate();
+	
 			
-			ResultSet rs = stmt2.executeQuery();
+			ResultSet rs = stmt.executeQuery();
 			while(rs.next()) 
 			{	
 				var gameBoardId = rs.getInt(1);
@@ -166,8 +166,8 @@ public void addGameBoard(Game game) {
 		{
 			try 
 			{
-				if(stmt1 != null) stmt1.close();
-				if(stmt2 != null) stmt2.close();
+				if(stmt != null) stmt.close();
+				
 			}catch(SQLException e) 
 			{
 				// java...
