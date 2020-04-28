@@ -11,239 +11,195 @@ import domein.Game;
 import domein.GameBoard;
 import domein.User;
 
-public class GameMapper extends BaseMapper 
-{
+public class GameMapper extends BaseMapper {
 	private GameBoardMapper gameBoardMapper;
 	private UserMapper userMapper;
-	
-	public GameMapper() 
-	{
+
+	public GameMapper() {
 		gameBoardMapper = new GameBoardMapper();
 	}
-	
-	public List<String> getGames()
-	{
+
+	public List<String> getGames() {
 		List<String> games = new ArrayList<String>();
 		PreparedStatement stmt = null;
 		Connection conn = null;
 		final String sql = "select name from GAME order by name";
-		
-		try 
-		{
-			conn = createConnection(); 
+
+		try {
+			conn = createConnection();
 			stmt = conn.prepareStatement(sql);
-						
+
 			ResultSet rs = stmt.executeQuery();
-			
-			while(rs.next()) 
-			{	
+
+			while (rs.next()) {
 				var gameName = rs.getString(1);
 				games.add(gameName);
 			}
-		} catch (SQLException e) 
-		{
+		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally 
-		{
-			try 
-			{
-				if(stmt != null) stmt.close();
-			}catch(SQLException e) 
-			{
+		} finally {
+			try {
+				if (stmt != null)
+					stmt.close();
+			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-			try 
-			{
-				if(conn != null) conn.close();
-			}
-			catch(SQLException e) 
-			{
+			try {
+				if (conn != null)
+					conn.close();
+			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
-		
-		return games;	
+
+		return games;
 	}
-	
-	public List<String> getGames(String username)
-	{
+
+	public List<String> getGames(String username) {
 		List<String> games = new ArrayList<String>();
 		PreparedStatement stmt = null;
 		Connection conn = null;
 		final String sql = "select name from GAME WHERE createdByUser=? order by name";
-		
-		try 
-		{
-			conn = createConnection(); 
+
+		try {
+			conn = createConnection();
 			stmt = conn.prepareStatement(sql);
-			stmt.setString(1,username);
-			
+			stmt.setString(1, username);
+
 			ResultSet rs = stmt.executeQuery();
-			
-			while(rs.next()) 
-			{	
+
+			while (rs.next()) {
 				var gameName = rs.getString(1);
 				games.add(gameName);
 			}
-		} catch (SQLException e) 
-		{
+		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally 
-		{
-			try 
-			{
-				if(stmt != null) stmt.close();
-			}catch(SQLException e) 
-			{
+		} finally {
+			try {
+				if (stmt != null)
+					stmt.close();
+			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-			try 
-			{
-				if(conn != null) conn.close();
-			}
-			catch(SQLException e) 
-			{
+			try {
+				if (conn != null)
+					conn.close();
+			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
-		
-		return games;	
+
+		return games;
 	}
-	
-	public Game getGame(String gameName)
-	{
+
+	public Game getGame(String gameName) {
 		PreparedStatement stmt = null;
 		Connection conn = null;
 		final String sql = "select name from GAME where name = ?";
 		Game game = null;
-		
-		try 
-		{
-			conn = createConnection(); 
+
+		try {
+			conn = createConnection();
 			stmt = conn.prepareStatement(sql);
-			
-			stmt.setString(1,gameName);
-						
+
+			stmt.setString(1, gameName);
+
 			ResultSet rs = stmt.executeQuery();
-			
-			if(rs.next()) 
-			{	
+
+			if (rs.next()) {
 				var gameBoards = gameBoardMapper.getGameBoards(gameName);
 				game = new Game(gameName, gameBoards);
 			}
-		} catch (SQLException e) 
-		{
+		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally 
-		{
-			try 
-			{
-				if(stmt != null) stmt.close();
-			}catch(SQLException e) 
-			{
+		} finally {
+			try {
+				if (stmt != null)
+					stmt.close();
+			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-			try 
-			{
-				if(conn != null) conn.close();
-			}
-			catch(SQLException e) 
-			{
+			try {
+				if (conn != null)
+					conn.close();
+			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
-		
-		return game;	
+
+		return game;
 	}
-	
-	public void saveGame(Game game, String username) 
-	{
-		
-		
+
+	public void saveGame(Game game, String username) {
+
 		PreparedStatement stmt = null;
 		Connection conn = null;
 		final String sql = "INSERT INTO GAME(name,createdByUser) VALUES (?,?)";
-		
-		try 
-		{
-			conn = createConnection(); 
+
+		try {
+			conn = createConnection();
 			stmt = conn.prepareStatement(sql);
-			
+
 			stmt.setString(1, game.getName());
 			stmt.setString(2, username);
-			
+
 			stmt.executeUpdate();
-		
-		} catch (SQLException e) 
-		{
+
+		} catch (SQLException e) {
 			// java...
 			e.printStackTrace();
-		}finally 
-		{
-			try 
-			{
-				if(stmt != null) stmt.close();
-			}catch(SQLException e) 
-			{
+		} finally {
+			try {
+				if (stmt != null)
+					stmt.close();
+			} catch (SQLException e) {
 				// java...
 				e.printStackTrace();
 			}
-			try 
-			{
-				if(conn != null) conn.close();
-			}
-			catch(SQLException e) 
-			{
+			try {
+				if (conn != null)
+					conn.close();
+			} catch (SQLException e) {
 				// java...
 				e.printStackTrace();
 			}
-			
+
 			gameBoardMapper.saveGameBoard(game);
-			
+
 		}
 	}
-	
-	public void deleteSelectedGameBoard(String gamename, int gameboardId) 
-	{
-		
-		
+
+	public void deleteSelectedGameBoard(String gamename, int gameboardId) {
+
 		PreparedStatement stmt = null;
 		Connection conn = null;
 		final String sql = "DELETE FROM GAMEBOARD WHERE GameName=gamename AND id=gameboardId";
-		
-		try 
-		{
-			conn = createConnection(); 
+
+		try {
+			conn = createConnection();
 			stmt = conn.prepareStatement(sql);
-			
-			
+
 			stmt.executeUpdate();
-		
-		} catch (SQLException e) 
-		{
+
+		} catch (SQLException e) {
 			// java...
 			e.printStackTrace();
-		}finally 
-		{
-			try 
-			{
-				if(stmt != null) stmt.close();
-			}catch(SQLException e) 
-			{
+		} finally {
+			try {
+				if (stmt != null)
+					stmt.close();
+			} catch (SQLException e) {
 				// java...
 				e.printStackTrace();
 			}
-			try 
-			{
-				if(conn != null) conn.close();
-			}
-			catch(SQLException e) 
-			{
+			try {
+				if (conn != null)
+					conn.close();
+			} catch (SQLException e) {
 				// java...
 				e.printStackTrace();
 			}
-			
-			
+
 		}
 	}
 }
