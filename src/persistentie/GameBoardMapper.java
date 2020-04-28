@@ -153,13 +153,13 @@ public class GameBoardMapper extends BaseMapper {
 
 	}
 	
-	public void insertGameBoard() {
-		//TODO this should also call TileMapper recursively
+	public void insertGameBoard(GameBoard gameBoard) {
+		//TODO this should also call TileMapper
 		// Same functionality as saveGameBoard but renamed to reflect action that happens
 	}
 	
-	public void updateGameBoard() {
-		//TODO this should also call TileMapper recursively
+	public void updateGameBoard(GameBoard gameBoard) {
+		//TODO this should also call TileMapper
 	}
 
 }

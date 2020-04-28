@@ -57,6 +57,7 @@ public class TileMapper extends BaseMapper {
 		return tiles;
 	}
 
+	// TODO change GameBoard to Tiles[][]
 	public void insertTiles(GameBoard gameboard, int gameboardID) {
 
 		Connection conn = null;
@@ -65,12 +66,14 @@ public class TileMapper extends BaseMapper {
 			conn = createConnection();
 			Statement stmt = conn.createStatement();
 			String[][] tiles = new String[10][10];
+			// TODO why are you using getCurrentState? 
 			tiles = gameboard.getCurrentState();
 			int x = 0;
 			int y = 0;
 			String sql = new String();
 			for (String[] tileRow : tiles) {
 				for (String tile : tileRow) {
+					// TODO code in if-statement is broken
 					if (tiles.equals("Pawn")) {
 						sql = String.format(
 								"INSERT INTO TILE(gameboard_id, row_index, column_index, type, contains_player) VALUES (%d, %d, %d, '%s', %d)",
@@ -96,16 +99,10 @@ public class TileMapper extends BaseMapper {
 		} catch (SQLException e) {
 			// java...
 			e.printStackTrace();
-
 		}
+	}
 
-	}
-	
-	public void insertTile() {
-		//TODO 
-	}
-	
-	public void updateTile() {
-		//TODO 
+	public void updateTiles(int gameBoardId, Tile[][] tiles) {
+		// TODO UC8
 	}
 }
