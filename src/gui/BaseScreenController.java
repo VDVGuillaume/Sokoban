@@ -1,5 +1,6 @@
 package gui;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import domein.DomainController;
@@ -19,7 +20,7 @@ public abstract class BaseScreenController extends GridPane {
 	@FXML
 	protected ComboBox comboBoxLanguage;
 
-	protected BaseScreenController(DomainController domainController, String resource) {
+	protected BaseScreenController(DomainController domainController, String resource)  {
 		this.domainController = domainController;
 
 		languages = FXCollections.observableArrayList();
@@ -39,7 +40,7 @@ public abstract class BaseScreenController extends GridPane {
 	}
 
 	// method to override with child implementation of this class
-	protected abstract void loadData();
+	protected abstract void loadData() throws FileNotFoundException;
 
 	// Event Listener on ComboBox[#comboBoxLanguage].onAction
 	@FXML
@@ -49,7 +50,12 @@ public abstract class BaseScreenController extends GridPane {
 
 		if (domainLanguage != selectedLanguage) {
 			domainController.setLanguage(selectedLanguage);
-			loadData();
+			try {
+				loadData();
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			event.consume();
 		}
 	}

@@ -1,5 +1,7 @@
 package gui;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import domein.DomainController;
@@ -11,6 +13,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Tooltip;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -63,19 +67,27 @@ public class WelcomeScreenController extends BaseScreenController {
 	private TextField txtFirstName;
 	@FXML
 	private TextField txtName;
-
+	
+	private static String imageFilePathDisk = "src\\resources\\images\\disk.png";
+	private static String imageFilePathKey = "src\\resources\\images\\key.png";
+	
 	public WelcomeScreenController(DomainController domainController) {
 		super(domainController, "WelcomeScreen.fxml");
 	}
 
 	@Override
-	protected void loadData() {
+	protected void loadData() throws FileNotFoundException {
 		// set translations
+		FileInputStream isDisk = new FileInputStream(imageFilePathDisk);
+		FileInputStream isKey = new FileInputStream(imageFilePathKey);
+		Image disk = new Image(isDisk,15,15,false, false);
+		Image key = new Image(isKey,15,15,false, false);
 		lblUsername.setText(domainController.translate("Username"));
 		lblPassword.setText(domainController.translate("Password"));
 		lblLogin.setText(domainController.translate("Login"));
 		btnLogin.setText(domainController.translate("Login"));
-
+		btnLogin.setGraphic(new ImageView(key));
+		
 		lblUsernameRegister.setText(domainController.translate("Username"));
 		lblPasswordRegister.setText(domainController.translate("Password"));
 		Tooltip tooltip = new Tooltip();
@@ -84,6 +96,7 @@ public class WelcomeScreenController extends BaseScreenController {
 		lblFirstName.setText(domainController.translate("FirstName"));
 		lblName.setText(domainController.translate("Name"));
 		btnRegister.setText(domainController.translate("Register"));
+		btnRegister.setGraphic(new ImageView(disk));
 		
 	}
 
