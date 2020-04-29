@@ -78,10 +78,13 @@ public class WelcomeScreenController extends BaseScreenController {
 
 		lblUsernameRegister.setText(domainController.translate("Username"));
 		lblPasswordRegister.setText(domainController.translate("Password"));
+		Tooltip tooltip = new Tooltip();
+		tooltip.setText(domainController.translate("TooltipPassword"));
+		txtPasswordRegister.setTooltip(tooltip);
 		lblFirstName.setText(domainController.translate("FirstName"));
 		lblName.setText(domainController.translate("Name"));
 		btnRegister.setText(domainController.translate("Register"));
-
+		
 	}
 
 	private void loggedIn() {
