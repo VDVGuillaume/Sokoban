@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Tooltip;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -28,6 +29,8 @@ public class WelcomeScreenController extends BaseScreenController {
 	private Label lblUsername;
 	@FXML
 	private Label lblPassword;
+	@FXML
+	private Tooltip tooltip;
 	@FXML
 	private Button btnRegister;
 	

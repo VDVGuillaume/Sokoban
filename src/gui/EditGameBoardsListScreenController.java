@@ -1,4 +1,4 @@
-package gui;
+/*package gui;
 
 import javafx.fxml.FXML;
 
@@ -77,4 +77,4 @@ public class EditGameBoardsListScreenController extends BaseScreenController {
 			e.printStackTrace();
 		}
 	}
-}
+}*/
