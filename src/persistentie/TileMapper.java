@@ -119,10 +119,14 @@ public class TileMapper extends BaseMapper {
 					stmt.setInt(3, gameBoardId);
 					stmt.setInt(4, rowIndex);
 					stmt.setInt(5,  columnIndex);
+					stmt.addBatch();
+					
 					columnIndex++;
 				}
 				rowIndex++;
 			}
+			
+			stmt.executeBatch();
 		} catch (SQLException e) {
 			// java...
 			e.printStackTrace();
