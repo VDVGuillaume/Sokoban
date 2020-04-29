@@ -2,6 +2,8 @@ package domein;
 
 
 
+import java.util.ArrayList;
+
 import exceptions.GameException;
 
 public class GameBoard 
@@ -46,7 +48,7 @@ public class GameBoard
             	}
 
             }
-        this.tiles = initialTiles;
+        tiles = initialTiles;
         }
         
 
@@ -80,6 +82,12 @@ public class GameBoard
 		int boxCount = 0;
 		
 		int rowIndex = 0;
+		ArrayList<Integer> wallXCoordinates = new ArrayList<Integer>();
+		ArrayList<Integer> wallYCoordinates = new ArrayList<Integer>();
+		ArrayList<Integer> noneXCoordinates = new ArrayList<Integer>();
+		ArrayList<Integer> noneYCoordinates = new ArrayList<Integer>();
+		
+
 		
 		for(Tile[] tileRow : tiles) 
 		{
@@ -96,6 +104,12 @@ public class GameBoard
 						setPawn(rowIndex, columnIndex);
 						pawnCount++;	
 					}
+					else
+					{
+						noneXCoordinates.add(columnIndex);
+						noneYCoordinates.add(rowIndex);
+						
+						}
 					break;
 				case Goal:
 					goalCount ++;
@@ -103,7 +117,11 @@ public class GameBoard
 				case Box:
 					boxCount++;
 					break;
+				case Wall:
+					wallXCoordinates.add(columnIndex);
+					wallYCoordinates.add(rowIndex);
 				}
+				
 				columnIndex++;
 			}
 			rowIndex++;
@@ -120,6 +138,36 @@ public class GameBoard
 		}
 		
 		//TODO VALIDATE IF ALL FIELDS ARE ACCESSIBLE IN CELLS  
+		//Validation fields and walls:
+		for (int i = 0; i < (noneXCoordinates.size() - 1); i++) {
+			int x = noneXCoordinates.get(i);
+			int y = noneYCoordinates.get(i);
+			boolean trigger = false;
+			for (int scanner = 0; scanner < noneXCoordinates.size(); scanner++) {
+				if ((x + 1) == noneXCoordinates.get(scanner) || (y + 1) == noneYCoordinates.get(scanner) || (x -1) == noneXCoordinates.get(scanner) || (y - 1) == noneYCoordinates.get(scanner)) {
+					trigger = true;
+				}
+			}
+			if (trigger == false) {
+				throw new GameException("ErrorGameBoardInaccesibleSpace");
+			}
+			
+		}
+		
+		for (int i = 0; i < (wallXCoordinates.size() - 1); i++) {
+			int x = wallXCoordinates.get(i);
+			int y = wallYCoordinates.get(i);
+			boolean trigger = false;
+			for (int scanner = 0; scanner < wallXCoordinates.size(); scanner++) {
+				if ((x + 1) == wallXCoordinates.get(scanner) || (y + 1) == wallYCoordinates.get(scanner) || (x -1) == wallXCoordinates.get(scanner) || (y - 1) == wallYCoordinates.get(scanner)) {
+					trigger = true;
+				}
+			}
+			if (trigger == false) {
+				throw new GameException("ErrorGameBoardWallNotClosed");
+			}
+			
+		}
 		
 		this.tiles = tiles;
 	}
@@ -351,6 +399,8 @@ public class GameBoard
 		return this.moves;
 	}
 	
+
+	
 	public void setPositionAction(int xCoord, int yCoord, String action) {
 	
 		if (xCoord > 9 || xCoord < 0 || yCoord > 9 || yCoord < 0) {
@@ -364,24 +414,24 @@ public class GameBoard
 			{
 			case "wall":
 				TileTypes wall = TileTypes.Wall;
-				this.tiles[xCoord][yCoord] = new Tile(wall,false);
+				tiles[xCoord][yCoord] = new Tile(wall,false);
 				
 				break;
 			case "goal":
-				TileTypes goal = TileTypes.Wall;
-				this.tiles[xCoord][yCoord] = new Tile(goal,false);
+				TileTypes goal = TileTypes.Goal;
+				tiles[xCoord][yCoord] = new Tile(goal,false);
 				break;
 			case "box":
 				TileTypes box = TileTypes.Box;
-				this.tiles[xCoord][yCoord] = new Tile(box,false);
+				tiles[xCoord][yCoord] = new Tile(box,false);
 				break;
 			case "pawn":
 				TileTypes pawn = TileTypes.None;
-				this.tiles[xCoord][yCoord] = new Tile(pawn,true);
+				tiles[xCoord][yCoord] = new Tile(pawn,true);
 				break;
 			case "clear":
 				TileTypes none = TileTypes.None;
-				this.tiles[xCoord][yCoord] = new Tile(none,false);
+				tiles[xCoord][yCoord] = new Tile(none,false);
 				break;
 			default:
 				throw new GameException("IncorrectAction");
@@ -390,6 +440,10 @@ public class GameBoard
 		
 		
 	}
+	public void saveTiles() {
+		this.setTiles(tiles);
+	}
+	
 	
 	
 	

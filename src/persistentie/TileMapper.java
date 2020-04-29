@@ -71,19 +71,20 @@ public class TileMapper extends BaseMapper {
 			int x = 0;
 			int y = 0;
 			String sql = new String();
-			for (String[] tileRow : tiles) {
-				for (String tile : tileRow) {
-					// TODO code in if-statement is broken
-					if (tiles.equals("Pawn")) {
-						sql = String.format(
-								"INSERT INTO TILE(gameboard_id, row_index, column_index, type, contains_player) VALUES (%d, %d, %d, '%s', %d)",
-								gameboardID, x, y, "None", 1);
-
-					} else {
-
-						sql = String.format(
-								"INSERT INTO TILE(gameboard_id, row_index, column_index, type, contains_player) VALUES (%d, %d, %d, '%s', %d)",
-								gameboardID, x, y, tile, 0);
+			for(String[] tileRow : tiles) 
+			{
+				for(String tile : tileRow) 
+				{
+					if (tiles.equals("Pawn")){
+					sql = String.format("INSERT INTO TILE(gameboard_id, row_index, column_index, type, contains_player) VALUES (%d, %d, %d, '%s', %d)",gameboardID, x,y,"None",1);
+					
+					}
+					if (tiles.equals("WallBorder")) {
+						sql = String.format("INSERT INTO TILE(gameboard_id, row_index, column_index, type, contains_player) VALUES (%d, %d, %d, '%s', %d)",gameboardID, x,y, "Wall", 0);
+					}
+					else {
+						
+						sql = String.format("INSERT INTO TILE(gameboard_id, row_index, column_index, type, contains_player) VALUES (%d, %d, %d, '%s', %d)",gameboardID, x,y, tile, 0);
 					}
 					stmt.addBatch(sql);
 					if (x == 9) {

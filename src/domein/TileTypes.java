@@ -5,6 +5,5 @@ public enum TileTypes {
 	None,
 	Wall,
 	Goal,
-	Box,
-	Selector
+	Box
 }

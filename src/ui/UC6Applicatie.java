@@ -35,6 +35,7 @@ public class UC6Applicatie {
 		int answer = 0;
 		String[] action = {"clear","wall","pawn","goal","box"};
 		int actionIndex = 0;
+		int multipleGameBoards = 0;
 		String userInput = new String();
 		
 		do{
@@ -92,6 +93,7 @@ public class UC6Applicatie {
 				case 'A':
 				case 'a':
 					userInput = "save";
+					controller.saveTiles();
 					break;
 				case 'T':
 				case 't':
@@ -124,11 +126,17 @@ public class UC6Applicatie {
 				}
 				
 		
-
-			    
-			}while(!userInput.equals("save"));
 			
-			controller.saveGame();
+			
+			}while(!userInput.equals("save"));
+			if (multipleGameBoards == 0) {
+				controller.saveGame();
+				multipleGameBoards ++;
+			}
+			else {
+				controller.addGameboard();
+			}
+			
 			
 			
 			System.out.println(controller.translate("addGameBoard"));
@@ -141,6 +149,7 @@ public class UC6Applicatie {
 			
 			answer = input.nextInt();
 		}while(answer == 1);
+		
 		String gameInfo[] = controller.getSelectedGameInfo();
 		System.out.printf("%s %s%n",gameInfo[2],gameInfo[0]);
 		}

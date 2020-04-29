@@ -324,6 +324,11 @@ public class DomainController {
 
 	}
 	
+	public void saveTiles() {
+		selectedGame.saveTiles();
+	}
+	
+
 
 
 

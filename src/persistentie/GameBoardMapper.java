@@ -84,8 +84,10 @@ public class GameBoardMapper extends BaseMapper {
 			stmt.executeUpdate();
 			ResultSet rs = stmt.getGeneratedKeys();
 			generatedKey = rs.getInt(1);
-
-		} catch (SQLException e) {
+			tileMapper.insertTiles(game.getSelectedGameBoard(), generatedKey);
+			
+		} catch (SQLException e) 
+		{
 			// java...
 			e.printStackTrace();
 		} finally {
@@ -127,7 +129,6 @@ public class GameBoardMapper extends BaseMapper {
 			while (rs.next()) {
 				var gameBoardId = rs.getInt(1);
 				tileMapper.insertTiles(game.getSelectedGameBoard(), gameBoardId);
-
 			}
 
 		} catch (SQLException e) {
@@ -157,6 +158,71 @@ public class GameBoardMapper extends BaseMapper {
 		//TODO this should also call TileMapper
 		// Same functionality as saveGameBoard but renamed to reflect action that happens
 	}
+
+
+public void addTiles(Game game) {
+	
+	
+	
+	PreparedStatement stmt = null;
+
+	Connection conn = null;
+	
+	final String sql =  "select id from GAMEBOARD where GameName = ?";
+
+	
+	try 
+	{
+	
+		conn = createConnection();
+
+		stmt = conn.prepareStatement(sql);
+		
+	
+	
+		stmt.setString(1, game.getName());
+		
+
+		ResultSet rs = stmt.executeQuery();
+		while(rs.next()) 
+		{	
+			var gameBoardId = rs.getInt(1);
+			tileMapper.insertTiles(game.getSelectedGameBoard(), gameBoardId);
+		
+
+		}
+		
+	
+		
+		
+	} catch (SQLException e) 
+	{
+		// java...
+		e.printStackTrace();
+	}finally 
+	{
+		try 
+		{
+			if(stmt != null) stmt.close();
+			
+		}catch(SQLException e) 
+		{
+			// java...
+			e.printStackTrace();
+		}
+		try 
+		{
+			if(conn != null) conn.close();
+		}
+		catch(SQLException e) 
+		{
+			// java...
+			e.printStackTrace();
+		}
+	}
+
+
+}
 	
 	public void updateGameBoard(GameBoard gameBoard) {
 		tileMapper.updateTiles(gameBoard.getId(), gameBoard.getTiles());

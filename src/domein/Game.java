@@ -157,9 +157,14 @@ public class Game {
 		this.selectedGameBoard = gameBoard;
 	}
 	
-	/**UC6 retrieve selected gameboard **/
+	/**UC6 save selected gameBoard **/
+	public void saveTiles() {
+		selectedGameBoard.saveTiles();
+	}
+	
+	/**UC6 Get selected gameBoard **/
 	public GameBoard getSelectedGameBoard() {
-		return this.selectedGameBoard;
+		return selectedGameBoard;
 	}
 	
 	
