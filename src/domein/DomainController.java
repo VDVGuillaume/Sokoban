@@ -20,6 +20,30 @@ public class DomainController {
 	private Game selectedGame;
 	private Language language;
 	private GameBoard selectedGameBoard;
+	
+	/**
+	 * Not bound to UC : setLanguage is used to set the language in which the game
+	 * should be displayed
+	 */
+	public void setLanguage(int languageSelection) {
+		language.setLanguage(languageSelection);
+	}
+
+	/**
+	 * Not bound to UC : getLanguage returns the number related to the selected
+	 * language possible returnvalues: { 1(english), 2(dutch), 3(french) }
+	 */
+	public int getLanguage() {
+		return language.getLanguage();
+	}
+
+	/**
+	 * Not bound to UC : translate method used to translate message to the chosen
+	 * language
+	 */
+	public String translate(String translationKey) {
+		return language.translate(translationKey);
+	}
 
 	public DomainController() {
 		language = new Language();
@@ -188,29 +212,7 @@ public class DomainController {
 		}
 	}
 
-	/**
-	 * Not bound to UC : setLanguage is used to set the language in which the game
-	 * should be displayed
-	 */
-	public void setLanguage(int languageSelection) {
-		language.setLanguage(languageSelection);
-	}
 
-	/**
-	 * Not bound to UC : getLanguage returns the number related to the selected
-	 * language possible returnvalues: { 1(english), 2(dutch), 3(french) }
-	 */
-	public int getLanguage() {
-		return language.getLanguage();
-	}
-
-	/**
-	 * Not bound to UC : translate method used to translate message to the chosen
-	 * language
-	 */
-	public String translate(String translationKey) {
-		return language.translate(translationKey);
-	}
 
 	/**
 	 * UC4 move is used to move the pawn across the board
