@@ -23,7 +23,7 @@ public class UC5Applicatie {
 		controller.createGame(gameName);
 		int answer = 0;
 		do{
-			controller.addGameboard(gameName);
+			controller.addGameboard();
 			System.out.println(controller.translate("addGameBoard"));
 			answer = input.nextInt();
 		}while(answer == 1);
