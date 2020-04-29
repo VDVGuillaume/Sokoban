@@ -1,5 +1,7 @@
 package gui;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import domein.DomainController;
@@ -17,6 +19,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
@@ -33,6 +37,7 @@ public class NewGameScreenController extends BaseScreenController{
 
 	@FXML
 	private Button btnSave;
+	private static String imageFilePathDisk = "src\\resources\\images\\disk.png";
 
 
 	public NewGameScreenController(DomainController domainController) {
@@ -40,11 +45,14 @@ public class NewGameScreenController extends BaseScreenController{
 	}
 
 	@Override
-	protected void loadData() {
+	protected void loadData() throws FileNotFoundException {
 		// set translations
+		FileInputStream isDisk = new FileInputStream(imageFilePathDisk);
+		Image disk = new Image(isDisk,15,15,false, false);
 		lblCreateGame.setText(domainController.translate("CreateGame"));
 		lblGameName.setText(domainController.translate("NameGame"));
 		btnSave.setText(domainController.translate("Save"));
+		btnSave.setGraphic(new ImageView(disk));
 	}
 
 	private void saveNewGame() {
