@@ -25,6 +25,8 @@ public class NewGameScreenController extends BaseScreenController{
 	private Label lblCreateGame;
 	@FXML
 	private Label lblGameName;
+	@FXML
+	private Label lblGameException;
 	
 	@FXML
 	private TextField txtGameNameCreateNewGame;
@@ -61,9 +63,10 @@ public class NewGameScreenController extends BaseScreenController{
 			domainController.createGame(gamename);
 			saveNewGame();
 		} catch (Exception e) {
-			Alert errorAlert = new Alert(AlertType.ERROR);
-			errorAlert.setHeaderText(e.getMessage());
-			errorAlert.showAndWait();
+			lblGameException.setText(e.getMessage());
+			//Alert errorAlert = new Alert(AlertType.ERROR);
+			//errorAlert.setHeaderText(e.getMessage());
+			//errorAlert.showAndWait();
 		}
 	}
 

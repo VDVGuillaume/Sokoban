@@ -58,5 +58,8 @@
          </GridPane.margin></ComboBox>
 
       <Button id="btnSave" fx:id="btnSave" alignment="CENTER" mnemonicParsing="false" onAction="#btnSaveOnAction" prefHeight="26.0" prefWidth="150.0" text="Register" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="10" GridPane.valignment="TOP" />
+      <Label fx:id="lblGameException" prefHeight="30.0" prefWidth="500.0" textFill="RED" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="5"><font>
+            <Font size="14.0" />
+         </font></Label>
    </children>
 </fx:root>
