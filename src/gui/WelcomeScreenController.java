@@ -30,6 +30,12 @@ public class WelcomeScreenController extends BaseScreenController {
 	private Label lblPassword;
 	@FXML
 	private Button btnRegister;
+	
+	@FXML
+	private Label lblLoginException;
+	@FXML
+	private Label lblRegisterException;
+	
 
 	@FXML
 	private TextField txtUsername;
@@ -94,9 +100,7 @@ public class WelcomeScreenController extends BaseScreenController {
 			domainController.register(name, firstName, username, password);
 			loggedIn();
 		} catch (Exception e) {
-			Alert errorAlert = new Alert(AlertType.ERROR);
-			errorAlert.setHeaderText(e.getMessage());
-			errorAlert.showAndWait();
+			lblRegisterException.setText(e.getMessage());
 		}
 	}
 
@@ -110,10 +114,7 @@ public class WelcomeScreenController extends BaseScreenController {
 			loggedIn();
 		} catch (Exception e) { // TODO Auto-generated catch block
 			e.printStackTrace();
-			Alert errorAlert = new Alert(AlertType.ERROR);
-			errorAlert.setHeaderText(e.getMessage());
-			// errorAlert.setContentText(e.getMessage());
-			errorAlert.showAndWait();
+			lblLoginException.setText(e.getMessage());
 		}
 	}
 }
