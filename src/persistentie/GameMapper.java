@@ -209,6 +209,10 @@ public class GameMapper extends BaseMapper {
 	}
 	
 	public void updateGame(Game game) {
-		// TODO this should also call GameBoardMapper recursively
+		// TODO UC7 & UC8
+		
+		for(GameBoard gameBoard : game.getGameBoards()) {
+			gameBoardMapper.updateGameBoard(gameBoard);
+		}
 	}
 }

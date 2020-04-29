@@ -159,7 +159,7 @@ public class GameBoardMapper extends BaseMapper {
 	}
 	
 	public void updateGameBoard(GameBoard gameBoard) {
-		//TODO this should also call TileMapper
+		tileMapper.updateTiles(gameBoard.getId(), gameBoard.getTiles());
 	}
 
 }
