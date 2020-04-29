@@ -66,7 +66,7 @@ public class TileMapper extends BaseMapper {
 			conn = createConnection();
 			Statement stmt = conn.createStatement();
 			String[][] tiles = new String[10][10];
-			// TODO why are you using getCurrentState? 
+			// TODO why are you using getCurrentState?
 			tiles = gameboard.getCurrentState();
 			int x = 0;
 			int y = 0;
@@ -103,6 +103,43 @@ public class TileMapper extends BaseMapper {
 	}
 
 	public void updateTiles(int gameBoardId, Tile[][] tiles) {
-		// TODO UC8
+		Connection conn = null;
+		String sql = "UPDATE TILE SET type = ?, contains_player = ? WHERE  gameboard_id = ? and row_index = ? and column_index = ?";
+		
+		try {
+			conn = createConnection();
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			int rowIndex = 0;
+			for (Tile[] tileRow : tiles) {
+				int columnIndex = 0;
+				
+				for (Tile tile : tileRow) {
+					stmt.setString(1, tile.getTileType().toString());
+					stmt.setBoolean(2,  tile.getContainsPlayer());
+					stmt.setInt(3, gameBoardId);
+					stmt.setInt(4, rowIndex);
+					stmt.setInt(5,  columnIndex);
+					columnIndex++;
+				}
+				rowIndex++;
+			}
+		} catch (SQLException e) {
+			// java...
+			e.printStackTrace();
+		}
+
+		/*
+		 * public void save(List<Entity> entities) throws SQLException { try (
+		 * Connection connection = database.getConnection(); PreparedStatement statement
+		 * = connection.prepareStatement(SQL_INSERT); ) { int i = 0;
+		 * 
+		 * for (Entity entity : entities) { statement.setString(1,
+		 * entity.getSomeProperty()); // ...
+		 * 
+		 * statement.addBatch(); i++;
+		 * 
+		 * if (i % 1000 == 0 || i == entities.size()) { statement.executeBatch(); //
+		 * Execute every 1000 items. } } } }
+		 */
 	}
 }
