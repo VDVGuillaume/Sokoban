@@ -164,21 +164,7 @@ public class DomainController {
 		}
 	}
 
-	/**
-	 * UC3 isSelectedGameBoardCompleted: boolean is returned to indicate whether
-	 * gameboard is completed or not
-	 */
-	public boolean isSelectedGameBoardCompleted() {
-		if (selectedGame == null) {
-			throw new GameException(language.translate("ErrorGameNotFound"));
-		}
-
-		try {
-			return selectedGame.isSelectedGameBoardCompleted();
-		} catch (GameException ex) {
-			throw new GameException(language.translate(ex.getMessage()));
-		}
-	}
+	
 
 	/**
 	 * UC3 isGameCompleted calls method getComplete for a selectedGame, which
@@ -213,6 +199,21 @@ public class DomainController {
 	}
 
 
+	/**
+	 * UC4 isSelectedGameBoardCompleted: boolean is returned to indicate whether
+	 * gameboard is completed or not
+	 */
+	public boolean isSelectedGameBoardCompleted() {
+		if (selectedGame == null) {
+			throw new GameException(language.translate("ErrorGameNotFound"));
+		}
+
+		try {
+			return selectedGame.isSelectedGameBoardCompleted();
+		} catch (GameException ex) {
+			throw new GameException(language.translate(ex.getMessage()));
+		}
+	}
 
 	/**
 	 * UC4 move is used to move the pawn across the board
