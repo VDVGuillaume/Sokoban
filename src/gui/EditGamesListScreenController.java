@@ -66,7 +66,7 @@ public class EditGamesListScreenController extends BaseScreenController {
 
 			// open window
 			Stage stage = (Stage) lstGames.getScene().getWindow();
-			GameScreenController root = new GameScreenController(domainController);
+			EditGameBoardsListScreenController root = new EditGameBoardsListScreenController(domainController);
 			Scene scene = new Scene(root, 1000, 500);
 			stage.setScene(scene);
 
