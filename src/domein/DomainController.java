@@ -274,7 +274,7 @@ public class DomainController {
 		}
 
 			try {
-				List<GameBoard> gameboards = new ArrayList<GameBoard>();
+				List<GameBoard> gameboards = new ArrayList<>();
 				selectedGame = new Game(gameName, gameboards);
 			} catch (GameException ex) {
 				System.err.print(ex.getMessage());
@@ -355,8 +355,8 @@ public class DomainController {
 	 * UC7 method getGameBoardIdsFromGame returns a list of int gameboardid for selected game
 	 */
 	public List<Integer> getGameBoardIdsFromGame() {
-		List<GameBoard> gameboards = new ArrayList<GameBoard>();
-		List<Integer> gameboardIds = new ArrayList<Integer>();
+		List<GameBoard> gameboards = new ArrayList<>();
+		List<Integer> gameboardIds = new ArrayList<>();
 		System.out.println("Game " + selectedGame.getName());
 		gameboards= selectedGame.getGameBoards();
 		

@@ -26,7 +26,7 @@ public class GameBoardMapper extends BaseMapper {
 	 * given gamename
 	 */
 	public List<GameBoard> getGameBoards(String gameName) {
-		List<GameBoard> gameBoards = new ArrayList<GameBoard>();
+		List<GameBoard> gameBoards = new ArrayList<>();
 		PreparedStatement stmt = null;
 		Connection conn = null;
 		final String sql = "select id from GAMEBOARD where GameName = ?";

@@ -20,7 +20,7 @@ public class GameMapper extends BaseMapper {
 	}
 
 	public List<String> getGames() {
-		List<String> games = new ArrayList<String>();
+		List<String> games = new ArrayList<>();
 		PreparedStatement stmt = null;
 		Connection conn = null;
 		final String sql = "select name from GAME order by name";
