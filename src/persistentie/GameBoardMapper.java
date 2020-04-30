@@ -68,7 +68,7 @@ public class GameBoardMapper extends BaseMapper {
 	}
 
 	/** method saveGameBoard(Game game) to save GameObject in DB */
-	public int saveGameBoard(Game game) {
+	public int saveGameBoard(GameBoard gameBoard, String gameName) {
 		int gameboardID = 0;
 		
 		

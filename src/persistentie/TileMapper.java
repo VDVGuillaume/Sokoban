@@ -57,47 +57,41 @@ public class TileMapper extends BaseMapper {
 		return tiles;
 	}
 
-	// TODO change GameBoard to Tiles[][]
 	public void insertTiles(Tile[][] tiles, int gameboardID) {
 
-		
-
-		
-		
 		try {
-			
-			
-			
+
 			Connection conn = createConnection();
 			Statement stmt = conn.createStatement();
-			
-			
-			
-			// TODO why are you using getCurrentState? 
-		
+
 			int x = 0;
 			int y = 0;
 			String sql = new String();
-			
-			for(Tile[] tileRow : tiles) 
-			{
-				for(Tile tile : tileRow) 
-				{
+
+			for (Tile[] tileRow : tiles) {
+				for (Tile tile : tileRow) {
 					TileTypes tileType = tile.getTileType();
-					
-					if(tile.getContainsPlayer())
-					{
-					sql = String.format("INSERT INTO TILE(gameboard_id, row_index, column_index, type, contains_player) VALUES (%d, %d, %d, '%s', %d)",gameboardID, x,y,"None",1);
+
+					if (tile.getContainsPlayer()) {
+						sql = String.format(
+								"INSERT INTO TILE(gameboard_id, row_index, column_index, type, contains_player) VALUES (%d, %d, %d, '%s', %d)",
+								gameboardID, x, y, "None", 1);
 					}
-					if (tileType == TileTypes.None){
-					sql = String.format("INSERT INTO TILE(gameboard_id, row_index, column_index, type, contains_player) VALUES (%d, %d, %d, '%s', %d)",gameboardID, x,y,"None",0);
-					
+					if (tileType == TileTypes.None) {
+						sql = String.format(
+								"INSERT INTO TILE(gameboard_id, row_index, column_index, type, contains_player) VALUES (%d, %d, %d, '%s', %d)",
+								gameboardID, x, y, "None", 0);
+
 					}
 					if (tileType == TileTypes.Wall) {
-						sql = String.format("INSERT INTO TILE(gameboard_id, row_index, column_index, type, contains_player) VALUES (%d, %d, %d, '%s', %d)",gameboardID, x,y, "Wall", 0);
+						sql = String.format(
+								"INSERT INTO TILE(gameboard_id, row_index, column_index, type, contains_player) VALUES (%d, %d, %d, '%s', %d)",
+								gameboardID, x, y, "Wall", 0);
 					}
 					if (tileType == TileTypes.Box) {
-						sql = String.format("INSERT INTO TILE(gameboard_id, row_index, column_index, type, contains_player) VALUES (%d, %d, %d, '%s', %d)",gameboardID, x,y, "Box", 0);
+						sql = String.format(
+								"INSERT INTO TILE(gameboard_id, row_index, column_index, type, contains_player) VALUES (%d, %d, %d, '%s', %d)",
+								gameboardID, x, y, "Box", 0);
 					}
 					stmt.addBatch(sql);
 					if (x == 9) {
@@ -119,27 +113,27 @@ public class TileMapper extends BaseMapper {
 	public void updateTiles(int gameBoardId, Tile[][] tiles) {
 		Connection conn = null;
 		String sql = "UPDATE TILE SET type = ?, contains_player = ? WHERE  gameboard_id = ? and row_index = ? and column_index = ?";
-		
+
 		try {
 			conn = createConnection();
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			int rowIndex = 0;
 			for (Tile[] tileRow : tiles) {
 				int columnIndex = 0;
-				
+
 				for (Tile tile : tileRow) {
 					stmt.setString(1, tile.getTileType().toString());
-					stmt.setBoolean(2,  tile.getContainsPlayer());
+					stmt.setBoolean(2, tile.getContainsPlayer());
 					stmt.setInt(3, gameBoardId);
 					stmt.setInt(4, rowIndex);
-					stmt.setInt(5,  columnIndex);
+					stmt.setInt(5, columnIndex);
 					stmt.addBatch();
-					
+
 					columnIndex++;
 				}
 				rowIndex++;
 			}
-			
+
 			stmt.executeBatch();
 		} catch (SQLException e) {
 			// java...
