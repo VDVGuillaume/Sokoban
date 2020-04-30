@@ -309,7 +309,7 @@ public class DomainController {
 	 * gameboard
 	 */
 	public void addGameboard() {
-		// TODO is this method obsolete?
+		// TODO is this method obsolete? (Mruyloft: this method is needed to add gameboards to game after game is created in db.)
 		int gameboardId = gameBoardRepository.saveGameBoard(selectedGame);
 		System.out.println("addGameBoard DC: " + gameboardId);
 		selectedGameBoard.setId(gameboardId);

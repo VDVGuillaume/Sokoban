@@ -19,8 +19,10 @@ public class GameBoardRepository {
 	}
 	
 	public int saveGameBoard(Game game){
-		System.out.println("saveGameBoard GBRepo:" + mapper.saveGameBoard(game));
-		return mapper.saveGameBoard(game);
+		//edited so mapper.saveGameBoard is executed once
+		int gameboardID = mapper.saveGameBoard(game);
+		System.out.println("saveGameBoard GBRepo:" + gameboardID);
+		return gameboardID;
 		
 	}
 	

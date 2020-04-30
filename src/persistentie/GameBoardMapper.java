@@ -77,21 +77,24 @@ public class GameBoardMapper extends BaseMapper {
 		PreparedStatement stmt = null;
 		Connection conn = null;
 		final String sql = "INSERT INTO GAMEBOARD (GameName) VALUES (?)";
-	
+		final String sqlQuery = "SELECT max(id) FROM GAMEBOARD";
+		PreparedStatement queryStmt = null;
+		Connection conn2 = null;
 		
 
 		try {
 			conn = createConnection();
+			conn2 = createConnection();
 			stmt = conn.prepareStatement(sql);
-
+			queryStmt = conn2.prepareStatement(sqlQuery);
 			stmt.setString(1, game.getName());
 
 			stmt.executeUpdate();
 			
-			String sqlQuery = "SELECT max(id) FROM GAMEBOARD";
-			Connection conn2 = createConnection();
-			Statement queryStmt = conn2.createStatement();
-			ResultSet rs = queryStmt.executeQuery(sqlQuery);
+	
+			
+
+			ResultSet rs = queryStmt.executeQuery();
 			while (rs.next()) {
 				gameboardID = rs.getInt(1);
 				
@@ -117,6 +120,19 @@ public class GameBoardMapper extends BaseMapper {
 					conn.close();
 			} catch (SQLException e) {
 				// java...
+				e.printStackTrace();
+			}
+			try {
+				if (queryStmt != null)
+					queryStmt.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			try {
+				if (conn2 != null)
+					conn2.close();
+				
+			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 	
