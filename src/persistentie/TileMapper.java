@@ -58,33 +58,46 @@ public class TileMapper extends BaseMapper {
 	}
 
 	// TODO change GameBoard to Tiles[][]
-	public void insertTiles(GameBoard gameboard, int gameboardID) {
+	public void insertTiles(Tile[][] tiles, int gameboardID) {
 
-		Connection conn = null;
+		
 
+		
+		
 		try {
-			conn = createConnection();
+			
+			
+			
+			Connection conn = createConnection();
 			Statement stmt = conn.createStatement();
-			String[][] tiles = new String[10][10];
-			// TODO why are you using getCurrentState?
-			tiles = gameboard.getCurrentState();
+			
+			
+			
+			// TODO why are you using getCurrentState? 
+		
 			int x = 0;
 			int y = 0;
 			String sql = new String();
-			for(String[] tileRow : tiles) 
+			
+			for(Tile[] tileRow : tiles) 
 			{
-				for(String tile : tileRow) 
+				for(Tile tile : tileRow) 
 				{
-					if (tiles.equals("Pawn")){
+					TileTypes tileType = tile.getTileType();
+					
+					if(tile.getContainsPlayer())
+					{
 					sql = String.format("INSERT INTO TILE(gameboard_id, row_index, column_index, type, contains_player) VALUES (%d, %d, %d, '%s', %d)",gameboardID, x,y,"None",1);
+					}
+					if (tileType == TileTypes.None){
+					sql = String.format("INSERT INTO TILE(gameboard_id, row_index, column_index, type, contains_player) VALUES (%d, %d, %d, '%s', %d)",gameboardID, x,y,"None",0);
 					
 					}
-					if (tiles.equals("WallBorder")) {
+					if (tileType == TileTypes.Wall) {
 						sql = String.format("INSERT INTO TILE(gameboard_id, row_index, column_index, type, contains_player) VALUES (%d, %d, %d, '%s', %d)",gameboardID, x,y, "Wall", 0);
 					}
-					else {
-						
-						sql = String.format("INSERT INTO TILE(gameboard_id, row_index, column_index, type, contains_player) VALUES (%d, %d, %d, '%s', %d)",gameboardID, x,y, tile, 0);
+					if (tileType == TileTypes.Box) {
+						sql = String.format("INSERT INTO TILE(gameboard_id, row_index, column_index, type, contains_player) VALUES (%d, %d, %d, '%s', %d)",gameboardID, x,y, "Box", 0);
 					}
 					stmt.addBatch(sql);
 					if (x == 9) {

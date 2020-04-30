@@ -131,14 +131,14 @@ public class UC6Applicatie {
 			}while(!userInput.equals("save"));
 			if (multipleGameBoards == 0) {
 				controller.saveGame();
-				multipleGameBoards ++;
+				multipleGameBoards = 1;
 			}
 			else {
 				controller.addGameboard();
 			}
 			
 			
-			
+			userInput = "reset";
 			System.out.println(controller.translate("addGameBoard"));
 			
 			

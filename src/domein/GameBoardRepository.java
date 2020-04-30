@@ -32,10 +32,7 @@ public class GameBoardRepository {
 		//TODO
 	}
 	
-	public void addGameBoardTiles(Game game) {
-		mapper.addGameBoardTiles(game);
-		
-	}
+
 	
 
 	
