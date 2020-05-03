@@ -32,17 +32,13 @@ public class UC7Applicatie {
 				controller.chooseGame(gameName);
 				try {
 					List<Integer> gameBoardIds= controller.getGameBoardIdsFromGame();
-					System.out.println(gameBoardIds.size());
 					System.out.println(controller.translate("GiveGameBoardName"));
 					for (int i = 0; i < gameBoardIds.size(); i++) {
 						String gameBoardId = (i + 1) + ". " + gameBoardIds.get(i);
 						System.out.println(gameBoardId);
 					}
 					gameBoardIdChoice = input.nextInt();
-					System.out.println("gameBoardIdChoice" + gameBoardIdChoice);
 					controller.chooseGameBoardFromGame(gameBoardIds.get(gameBoardIdChoice-1));
-					//controller.deleteSelectedGameBoard();
-					System.out.println("end");
 				}catch (Exception e){
 					System.out.println(e.getMessage());
 					input.nextLine();

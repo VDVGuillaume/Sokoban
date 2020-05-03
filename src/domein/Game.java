@@ -1,5 +1,6 @@
 package domein;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import exceptions.GameException;
@@ -166,6 +167,18 @@ public class Game {
 	public GameBoard getSelectedGameBoard() {
 		return selectedGameBoard;
 	}
+	
+	/**UC7 getGameBoardsIds returns the ids of the gameboards related to selectedgame**/
+	public List<Integer> getGameBoardsIds() {
+		List<GameBoard> gameboards = new ArrayList<>();
+		gameboards = this.getGameBoards();
+		List<Integer> gameboardIds = new ArrayList<>();
+		for(GameBoard gameboard: gameboards) {
+			gameboardIds.add(gameboard.getId());
+		}
+		return gameboardIds;
+	}	
+	
 	
 	
 	
