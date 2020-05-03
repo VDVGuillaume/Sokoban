@@ -17,6 +17,7 @@ public class UC7Applicatie {
 			String gameName;
 			int gameNumber;
 			int gameBoardIdChoice;
+			int gameBoardOption;
 			UiGameBoardConsole gameBoardConsole = new UiGameBoardConsole();
 
 			try {
@@ -39,6 +40,27 @@ public class UC7Applicatie {
 					}
 					gameBoardIdChoice = input.nextInt();
 					controller.chooseGameBoardFromGame(gameBoardIds.get(gameBoardIdChoice-1));
+					System.out.println(controller.translate("OptionsForGameboard"));
+					String option1 = "1." + controller.translate("EditGameboard");
+					System.out.println(option1);
+					String option2 = "2." + controller.translate("SaveGame");
+					System.out.println(option2);
+					String option3 = "3." + controller.translate("DeleteGameboard");
+					System.out.println(option3);
+					
+					gameBoardOption=input.nextInt();
+					
+					switch(gameBoardOption) {
+					   case 1 :
+						   //UC8 edit gameboard
+						   break;
+					   case 2 :
+						   controller.updateGame();
+						   break;
+					   case 3 :
+						   controller.deleteSelectedGameBoard();
+						   break;
+					}
 				}catch (Exception e){
 					System.out.println(e.getMessage());
 					input.nextLine();

@@ -361,7 +361,7 @@ public class DomainController {
 	}
 	
 	public void updateGame() {
-		
+		gameRepository.updateGame(selectedGame);
 	}
 	
 	public void deleteSelectedGameBoard() {

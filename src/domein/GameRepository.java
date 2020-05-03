@@ -39,4 +39,8 @@ public class GameRepository
 	public void deleteSelectedGameBoard(String gamename, int id) {
 		mapper.deleteSelectedGameBoard(gamename, id);
 	}
+	
+	public void updateGame(Game game) {
+		mapper.updateGame(game);
+	}
 }
