@@ -194,7 +194,14 @@ public class Game {
 	}
 	
 	public void deleteSelectedGameBoard() {
-		gameBoards.remove(selectedGameBoard);
+		if(validateGame()==true) {
+			gameBoards.remove(selectedGameBoard);	
+		}
+	}
+	
+	public boolean validateGame() {
+		List<GameBoard> gameBoards= getGameBoards();
+		return !gameBoards.isEmpty();
 	}
 	
 }
