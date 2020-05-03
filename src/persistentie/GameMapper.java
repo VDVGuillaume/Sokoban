@@ -130,7 +130,7 @@ public class GameMapper extends BaseMapper {
 		return game;
 	}
 
-	public void saveGame(Game game, String username) {
+	public void insertGame(Game game, String username) {
 
 		PreparedStatement stmt = null;
 		Connection conn = null;
@@ -164,8 +164,9 @@ public class GameMapper extends BaseMapper {
 				e.printStackTrace();
 			}
 
-			gameBoardMapper.saveGameBoard(game);
-
+			for(GameBoard gameBoard : game.getGameBoards()) {
+				gameBoardMapper.saveGameBoard(gameBoard, game.getName());
+			}
 		}
 	}
 
@@ -201,11 +202,6 @@ public class GameMapper extends BaseMapper {
 			}
 
 		}
-	}
-	
-	public void insertGame(Game game) {
-		// TODO this should also call GameBoardMapper recursively
-		// Same functionality as saveGame but renamed to reflect action		
 	}
 	
 	public void updateGame(Game game) {

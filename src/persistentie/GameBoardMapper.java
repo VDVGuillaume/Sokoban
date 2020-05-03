@@ -68,7 +68,7 @@ public class GameBoardMapper extends BaseMapper {
 	}
 
 	/** method saveGameBoard(Game game) to save GameObject in DB */
-	public int saveGameBoard(Game game) {
+	public int saveGameBoard(GameBoard gameBoard, String gameName) {
 		int gameboardID = 0;
 		
 		
@@ -87,7 +87,7 @@ public class GameBoardMapper extends BaseMapper {
 			conn2 = createConnection();
 			stmt = conn.prepareStatement(sql);
 			queryStmt = conn2.prepareStatement(sqlQuery);
-			stmt.setString(1, game.getName());
+			stmt.setString(1, gameName);
 
 			stmt.executeUpdate();
 			
@@ -100,7 +100,7 @@ public class GameBoardMapper extends BaseMapper {
 				
 			}
 			
-			tileMapper.insertTiles(game.getSelectedGameBoard().getTiles(), gameboardID);
+			tileMapper.insertTiles(gameBoard.getTiles(), gameboardID);
 			
 		} catch (SQLException e) 
 		{

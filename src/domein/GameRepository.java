@@ -33,7 +33,7 @@ public class GameRepository
 	}
 	
 	public void saveGame(Game game, String username) {
-		mapper.saveGame(game,username);
+		mapper.insertGame(game,username);
 	}
 	
 	public void deleteSelectedGameBoard(String gamename, int id) {
