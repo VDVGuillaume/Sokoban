@@ -319,7 +319,7 @@ public class DomainController {
 	 * UC6 method createGameboard creates an empty gameboard
 	 */
 	public void createGameBoard() {
-		this.selectedGameBoard = new GameBoard();
+		selectedGameBoard = new GameBoard();
 		selectedGame.setSelectedGameBoard(selectedGameBoard);
 
 	}

@@ -26,8 +26,28 @@ public abstract class BaseGameBoardScreenController extends BaseScreenController
 	private double itemHeight;
 
 	// create custom ImageView for gameboard UI
-	private class ImageViewSokoban extends ImageView {
+	protected class ImageViewSokoban extends ImageView {
 		private String tileType;
+		private int columnIndex;
+		private int rowIndex;
+		
+		protected void setColumnIndex(int columnIndex) {
+			this.columnIndex = columnIndex;
+			
+		}
+		
+		protected void setRowIndex(int rowIndex) {
+			this.rowIndex = rowIndex;
+			
+		}
+		
+		protected int getColumnIndex() {
+			return columnIndex;
+		}
+		
+		protected int getRowIndex() {
+			return rowIndex;
+		}
 
 		public String getTileType() {
 			return tileType;
@@ -125,7 +145,7 @@ public abstract class BaseGameBoardScreenController extends BaseScreenController
 		return distancePerItem * itemIndex;
 	}
 
-	private Image getImage(String tile) {
+	protected Image getImage(String tile) {
 		switch (tile) {
 		case "Wall":
 			return imageWallNoBorder;

@@ -27,6 +27,7 @@ public class StartUpGui extends Application {
 			primaryStage.setResizable(false);
 			primaryStage.setScene(scene);
 			primaryStage.show();
+			//Set stage on top? stage.setAlwaysOnTop(true);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

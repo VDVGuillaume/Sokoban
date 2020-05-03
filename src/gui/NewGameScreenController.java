@@ -57,9 +57,11 @@ public class NewGameScreenController extends BaseScreenController{
 
 	private void saveNewGame() {
 		Stage stage = (Stage) btnSave.getScene().getWindow();
-		MenuScreenController root = new MenuScreenController(domainController);
+		
+		EditGameBoardScreenController root = new EditGameBoardScreenController(domainController);
 		Scene scene = new Scene(root, 1000, 500);
 		stage.setScene(scene);
+		
 	}
 
 	@FXML
@@ -69,6 +71,7 @@ public class NewGameScreenController extends BaseScreenController{
 
 		try {
 			domainController.createGame(gamename);
+			domainController.createGameBoard();
 			saveNewGame();
 		} catch (Exception e) {
 			lblGameException.setText(e.getMessage());
