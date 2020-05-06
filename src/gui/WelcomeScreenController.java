@@ -109,12 +109,22 @@ public class WelcomeScreenController extends BaseScreenController {
 
 	@FXML
 	private void btnRegisterOnAction(ActionEvent event) {
-
+		
+		
 		var username = txtUsernameRegister.getText();
 		var password = txtPasswordRegister.getText();
 		var name = txtName.getText();
 		var firstName = txtFirstName.getText();
-
+		
+		try {
+		this.emptyFieldCheck(username);
+		this.emptyFieldCheck(password);
+		this.emptyFieldCheck(name);
+		this.emptyFieldCheck(firstName);
+		}catch(Exception e) {
+			lblRegisterException.setText(e.getMessage());	
+		}
+		
 		try {
 			domainController.register(name, firstName, username, password);
 			loggedIn();
@@ -127,13 +137,21 @@ public class WelcomeScreenController extends BaseScreenController {
 	private void btnLoginOnAction(ActionEvent event) {
 		var username = txtUsername.getText();
 		var password = txtPassword.getText();
+		
+		try {
+		this.emptyFieldCheck(username);
+		this.emptyFieldCheck(password);
+		}catch(Exception e) {
+			lblLoginException.setText(e.getMessage());
+		}
 
 		try {
 			domainController.login(username, password);
 			loggedIn();
-		} catch (Exception e) { // TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (Exception e) { // TODO Auto-generated catch block			
 			lblLoginException.setText(e.getMessage());
 		}
 	}
+	
+	
 }

@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import domein.DomainController;
+import exceptions.FieldException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -67,4 +68,11 @@ public abstract class BaseScreenController extends GridPane {
 		comboBoxLanguage.getItems().addAll(languages);
 		comboBoxLanguage.setValue(languages.get(domainLanguage).toString());
 	}
+	
+	protected <T>  void emptyFieldCheck(T field) {
+		if( field == null || field.toString().trim().isEmpty()) 
+			throw new FieldException(domainController.translate("EmptyField"));	
+	}
+	
+	
 }
