@@ -33,7 +33,7 @@ public class Tile
 	}
 	
 	/**UC3 determines whether certain tile contains the player*/
-	public void setContainsPlayer(boolean containsPlayer) 
+	public final void setContainsPlayer(boolean containsPlayer) 
 	{
 		this.containsPlayer = containsPlayer;
 	}
