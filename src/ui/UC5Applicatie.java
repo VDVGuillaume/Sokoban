@@ -1,5 +1,6 @@
 package ui;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import domein.DomainController;
@@ -31,9 +32,12 @@ public class UC5Applicatie {
 				System.out.printf("%s %s%n", gameInfo[2], gameInfo[0]);
 				controller.saveGame();
 			}
-			if (answer == 3) {
+			else if(answer == 3) {
 				System.out.println(controller.translate("GameDeleted"));
 				controller.deleteGame();
+			}
+			else{
+				throw new InputMismatchException();
 			}
 
 		} catch (Exception e) {
