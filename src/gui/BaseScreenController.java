@@ -70,7 +70,7 @@ public abstract class BaseScreenController extends GridPane {
 	}
 	
 	protected <T>  void emptyFieldCheck(T field) {
-		if( field == null || field.toString().trim().isEmpty()) 
+		if( field == null || field.toString().isEmpty()) 
 			throw new FieldException(domainController.translate("EmptyField"));	
 	}
 	

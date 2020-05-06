@@ -120,14 +120,10 @@ public class WelcomeScreenController extends BaseScreenController {
 		this.emptyFieldCheck(username);
 		this.emptyFieldCheck(password);
 		this.emptyFieldCheck(name);
-		this.emptyFieldCheck(firstName);
-		}catch(Exception e) {
-			lblRegisterException.setText(e.getMessage());	
-		}
+		this.emptyFieldCheck(firstName);		
+		domainController.register(name, firstName, username, password);
+		loggedIn();
 		
-		try {
-			domainController.register(name, firstName, username, password);
-			loggedIn();
 		} catch (Exception e) {
 			lblRegisterException.setText(e.getMessage());
 		}
@@ -140,14 +136,10 @@ public class WelcomeScreenController extends BaseScreenController {
 		
 		try {
 		this.emptyFieldCheck(username);
-		this.emptyFieldCheck(password);
-		}catch(Exception e) {
-			lblLoginException.setText(e.getMessage());
-		}
-
-		try {
-			domainController.login(username, password);
-			loggedIn();
+		this.emptyFieldCheck(password);	
+		domainController.login(username, password);
+		loggedIn();
+		
 		} catch (Exception e) { // TODO Auto-generated catch block			
 			lblLoginException.setText(e.getMessage());
 		}
