@@ -171,7 +171,7 @@ public class EditGameBoardScreenController extends BaseGameBoardScreenController
 		String[][] gameBoardState = domainController.getSelectedGameBoardState();
 		refreshGameBoard(gameBoardState);
 		
-		int moves = domainController.getSelectedGameBoardMoves();
+		
 		btnSaveAndQuit.setText("OK");
 	
 	

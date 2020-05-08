@@ -1,5 +1,6 @@
 package domein;
 
+import java.util.ArrayList;
 import java.util.List;
 import persistentie.GameBoardMapper;
 import persistentie.TileMapper;
@@ -12,7 +13,7 @@ public class GameBoardRepository {
 	}
 
 	public List<GameBoard> getGameBoards() {
-		// TODO still necessary? Used in UC6 GUI
+		// TODO still necessary? 
 		return null;
 		// return mapper.getGameBoards();
 	}
@@ -28,5 +29,17 @@ public class GameBoardRepository {
 
 	public void updateGame(Game game) {
 		// TODO
+	}
+	
+	public List<Integer> getGameBoardIds(String gameName) {
+		// TODO still necessary? Used in UC6 GUI
+		List<GameBoard> gameBoards = mapper.getGameBoards(gameName);
+		List<Integer> gameBoardIds = new ArrayList<>();
+		for(GameBoard gameboard : gameBoards) 
+		{
+			gameBoardIds.add(gameboard.getId());
+		}
+		return gameBoardIds ;
+		
 	}
 }
