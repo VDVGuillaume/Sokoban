@@ -30,8 +30,7 @@ public class EditGameBoardScreenController extends BaseGameBoardScreenController
 	@FXML
 	private Label lblPossibleMoves;
 
-	@FXML
-	private Button btnSaveAndAddNewGameboard;
+
 	
 	@FXML
 	private Button btnSaveAndQuit;
@@ -173,42 +172,12 @@ public class EditGameBoardScreenController extends BaseGameBoardScreenController
 		refreshGameBoard(gameBoardState);
 		
 		int moves = domainController.getSelectedGameBoardMoves();
-		btnSaveAndAddNewGameboard.setText("SaveAndAddNewGameboard");
-		btnSaveAndQuit.setText("SaveAndQuit");
+		btnSaveAndQuit.setText("OK");
 	
 	
 	}
 	
-	@FXML
-	private void btnSaveAndAddNewGameboardOnAction(ActionEvent event) {
-		
-		
-		try {
-		domainController.saveTiles();
-		
-		if (multipleGameBoards == 0) {
-			domainController.saveGame();
-			multipleGameBoards = 1;
-		}
-		else {
-			domainController.addGameboard();
-			
-		}
-		domainController.deleteSelectedGameBoard();
-		
-		
-		
-
-
-		} catch (Exception e) {
-			
-		}
-
-		
-			
 	
-		
-	}
 	
 	@FXML
 	private void btnSaveAndQuitOnAction(ActionEvent event) {
@@ -227,10 +196,10 @@ public class EditGameBoardScreenController extends BaseGameBoardScreenController
 			
 			Stage stage = (Stage) btnSaveAndQuit.getScene().getWindow();
 			
-			NewGameScreenController root = new NewGameScreenController(domainController);
+			AddGameboardScreenController root = new AddGameboardScreenController(domainController);
 			Scene scene = new Scene(root, 1000, 500);
 			stage.setScene(scene);
-			
+			System.out.print("test");
 
 			} catch (Exception e) {
 				

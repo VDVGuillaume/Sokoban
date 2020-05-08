@@ -12,7 +12,7 @@ public class GameBoardRepository {
 	}
 
 	public List<GameBoard> getGameBoards() {
-		// TODO still necessary?
+		// TODO still necessary? Used in UC6 GUI
 		return null;
 		// return mapper.getGameBoards();
 	}

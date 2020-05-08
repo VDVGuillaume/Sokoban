@@ -41,7 +41,6 @@
             <Insets bottom="10.0" left="50.0" top="10.0" />
          </GridPane.margin>
       </GridPane>
-      <Button fx:id="btnSaveAndAddNewGameboard" mnemonicParsing="false" onAction="#btnSaveAndAddNewGameboardOnAction" text="btnSaveAndAddNewGameboard" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-      <Button fx:id="btnSaveAndQuit" mnemonicParsing="false" onAction="#btnSaveAndQuitOnAction" text="btnSaveAndQuit" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+      <Button fx:id="btnSaveAndQuit" mnemonicParsing="false" onAction="#btnSaveAndQuitOnAction" text="OK" GridPane.columnIndex="3" GridPane.rowIndex="10" />
    </children>
 </fx:root>
