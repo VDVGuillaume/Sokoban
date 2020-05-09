@@ -57,17 +57,9 @@ public class TileMapper extends BaseMapper {
 		return tiles;
 	}
 
-<<<<<<< HEAD
 	public void insertTiles(Tile[][] tiles, int gameBoardId) {
 		Connection conn = null;
 		String sql = "INSERT INTO TILE(gameboard_id, row_index, column_index, type, contains_player) VALUES (?, ?, ?, ?, ?)";
-=======
-	public void insertTiles(Tile[][] tiles, int gameboardId) {
-		
-		
-		Connection conn = null;
-		String sql = "INSERT INTO TILE(gameboard_id, row_index, column_index, type, contains_player) VALUES (?,?,?,?,?)";
->>>>>>> Troubleshooting AddGameboardScreenController
 
 		try {
 			conn = createConnection();
@@ -77,21 +69,11 @@ public class TileMapper extends BaseMapper {
 				int columnIndex = 0;
 
 				for (Tile tile : tileRow) {
-<<<<<<< HEAD
 					stmt.setInt(1, gameBoardId);
-=======
-					stmt.setInt(1, gameboardId);
->>>>>>> Troubleshooting AddGameboardScreenController
 					stmt.setInt(2, rowIndex);
 					stmt.setInt(3, columnIndex);
 					stmt.setString(4, tile.getTileType().toString());
 					stmt.setBoolean(5, tile.getContainsPlayer());
-<<<<<<< HEAD
-=======
-					
-					
-					
->>>>>>> Troubleshooting AddGameboardScreenController
 					stmt.addBatch();
 
 					columnIndex++;

@@ -150,10 +150,6 @@ public class EditGameBoardScreenController extends BaseGameBoardScreenController
 
 		try {
 			domainController.saveTiles();
-<<<<<<< HEAD
-			domainController.saveGameBoard();
-
-=======
 			List<Integer> gameBoardIds = domainController.getSelectedGameGameBoardIds();
 			if (gameBoardIds.isEmpty()) {
 				domainController.saveGame();
@@ -162,24 +158,15 @@ public class EditGameBoardScreenController extends BaseGameBoardScreenController
 				domainController.addGameboard();
 			}
 			
->>>>>>> Troubleshooting AddGameboardScreenController
 			Stage stage = (Stage) btnSaveAndQuit.getScene().getWindow();
 
 			EditGameBoardsListScreenController root = new EditGameBoardsListScreenController(domainController);
 			Scene scene = new Scene(root, 1000, 500);
 			stage.setScene(scene);
-<<<<<<< HEAD
 		} catch (Exception e) {
 			Alert errorAlert = new Alert(AlertType.ERROR);
 			errorAlert.setHeaderText(e.getMessage());
 			errorAlert.showAndWait();
 		}
-=======
-			System.out.print("test");
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
->>>>>>> Troubleshooting AddGameboardScreenController
 	}
 }
