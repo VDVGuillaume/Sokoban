@@ -54,6 +54,10 @@ public class EditGameBoardsListScreenController extends BaseScreenController {
 	@FXML
 	public void lstGameboardsChooseGameBoard(MouseEvent event) {
 
+		if(lstGameboards.getSelectionModel().getSelectedItem() == null) {
+			return;
+		}
+		
 		// select game
 		int selectedItem = (Integer) lstGameboards.getSelectionModel().getSelectedItem();
 
