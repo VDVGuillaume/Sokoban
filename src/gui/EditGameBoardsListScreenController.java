@@ -29,6 +29,8 @@ public class EditGameBoardsListScreenController extends BaseScreenController {
 	private ListView lstGameboards;
 	@FXML
 	private Hyperlink linkReturn;
+	@FXML
+	private Hyperlink linkCreateGameBoard;
 
 	@Override
 	protected void loadData() {
@@ -50,14 +52,25 @@ public class EditGameBoardsListScreenController extends BaseScreenController {
 		stage.setScene(scene);
 	}
 
+	@FXML
+	public void linkCreateGameBoard(ActionEvent event) {
+		domainController.createGameBoard();
+		
+		// open window
+		Stage stage = (Stage) lstGameboards.getScene().getWindow();
+		EditGameBoardScreenController root = new EditGameBoardScreenController(domainController);
+		Scene scene = new Scene(root, 1000, 500);
+		stage.setScene(scene);
+	}
+
 	// Event Listener on ListView[#lstGames].onMouseClicked
 	@FXML
 	public void lstGameboardsChooseGameBoard(MouseEvent event) {
 
-		if(lstGameboards.getSelectionModel().getSelectedItem() == null) {
+		if (lstGameboards.getSelectionModel().getSelectedItem() == null) {
 			return;
 		}
-		
+
 		// select game
 		int selectedItem = (Integer) lstGameboards.getSelectionModel().getSelectedItem();
 

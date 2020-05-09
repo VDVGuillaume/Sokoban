@@ -57,53 +57,31 @@ public class TileMapper extends BaseMapper {
 		return tiles;
 	}
 
-	public void insertTiles(Tile[][] tiles, int gameboardID) {
+	public void insertTiles(Tile[][] tiles, int gameBoardId) {
+		Connection conn = null;
+		String sql = "INSERT INTO TILE(gameboard_id, row_index, column_index, type, contains_player) VALUES (?, ?, ?, ?, ?)";
 
 		try {
-
-			Connection conn = createConnection();
-			Statement stmt = conn.createStatement();
-
-			int x = 0;
-			int y = 0;
-			String sql = new String();
-
+			conn = createConnection();
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			int rowIndex = 0;
 			for (Tile[] tileRow : tiles) {
+				int columnIndex = 0;
+
 				for (Tile tile : tileRow) {
-					TileTypes tileType = tile.getTileType();
+					stmt.setInt(1, gameBoardId);
+					stmt.setInt(2, rowIndex);
+					stmt.setInt(3, columnIndex);
+					stmt.setString(4, tile.getTileType().toString());
+					stmt.setBoolean(5, tile.getContainsPlayer());
+					stmt.addBatch();
 
-					if (tile.getContainsPlayer()) {
-						sql = String.format(
-								"INSERT INTO TILE(gameboard_id, row_index, column_index, type, contains_player) VALUES (%d, %d, %d, '%s', %d)",
-								gameboardID, x, y, "None", 1);
-					}
-					if (tileType == TileTypes.None) {
-						sql = String.format(
-								"INSERT INTO TILE(gameboard_id, row_index, column_index, type, contains_player) VALUES (%d, %d, %d, '%s', %d)",
-								gameboardID, x, y, "None", 0);
-
-					}
-					if (tileType == TileTypes.Wall) {
-						sql = String.format(
-								"INSERT INTO TILE(gameboard_id, row_index, column_index, type, contains_player) VALUES (%d, %d, %d, '%s', %d)",
-								gameboardID, x, y, "Wall", 0);
-					}
-					if (tileType == TileTypes.Box) {
-						sql = String.format(
-								"INSERT INTO TILE(gameboard_id, row_index, column_index, type, contains_player) VALUES (%d, %d, %d, '%s', %d)",
-								gameboardID, x, y, "Box", 0);
-					}
-					stmt.addBatch(sql);
-					if (x == 9) {
-						x = 0;
-					} else {
-						x++;
-					}
+					columnIndex++;
 				}
-				y++;
+				rowIndex++;
 			}
-			stmt.executeBatch();
 
+			stmt.executeBatch();
 		} catch (SQLException e) {
 			// java...
 			e.printStackTrace();
