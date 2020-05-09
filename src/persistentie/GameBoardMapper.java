@@ -70,8 +70,6 @@ public class GameBoardMapper extends BaseMapper {
 	/** method saveGameBoard(Game game) to save GameObject in DB */
 	public int saveGameBoard(GameBoard gameBoard, String gameName) {
 		int gameboardID = 0;
-		
-		
 
 		int generatedKey = -1;
 		PreparedStatement stmt = null;
@@ -80,7 +78,6 @@ public class GameBoardMapper extends BaseMapper {
 		final String sqlQuery = "SELECT max(id) FROM GAMEBOARD";
 		PreparedStatement queryStmt = null;
 		Connection conn2 = null;
-		
 
 		try {
 			conn = createConnection();
@@ -90,20 +87,16 @@ public class GameBoardMapper extends BaseMapper {
 			stmt.setString(1, gameName);
 
 			stmt.executeUpdate();
-			
-	
-			
 
 			ResultSet rs = queryStmt.executeQuery();
 			while (rs.next()) {
 				gameboardID = rs.getInt(1);
-				
+
 			}
-			
+
 			tileMapper.insertTiles(gameBoard.getTiles(), gameboardID);
-			
-		} catch (SQLException e) 
-		{
+
+		} catch (SQLException e) {
 			// java...
 			e.printStackTrace();
 		} finally {
@@ -116,7 +109,7 @@ public class GameBoardMapper extends BaseMapper {
 			}
 			try {
 				if (conn != null)
-					
+
 					conn.close();
 			} catch (SQLException e) {
 				// java...
@@ -131,25 +124,81 @@ public class GameBoardMapper extends BaseMapper {
 			try {
 				if (conn2 != null)
 					conn2.close();
-				
+
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-	
+
 		}
 		return gameboardID;
 
 	}
 
-	
-	public void insertGameBoard(GameBoard gameBoard) {
-		//TODO this should also call TileMapper
-		// Same functionality as saveGameBoard but renamed to reflect action that happens
+	public int insertGameBoard(GameBoard gameBoard, String gameName) {
+		int gameboardID = 0;
+
+		int generatedKey = -1;
+		PreparedStatement stmt = null;
+		Connection conn = null;
+		final String sql = "INSERT INTO GAMEBOARD (GameName) VALUES (?)";
+		final String sqlQuery = "SELECT max(id) FROM GAMEBOARD";
+		PreparedStatement queryStmt = null;
+		Connection conn2 = null;
+
+		try {
+			conn = createConnection();
+			conn2 = createConnection();
+			stmt = conn.prepareStatement(sql);
+			queryStmt = conn2.prepareStatement(sqlQuery);
+			stmt.setString(1, gameName);
+
+			stmt.executeUpdate();
+
+			ResultSet rs = queryStmt.executeQuery();
+			while (rs.next()) {
+				gameboardID = rs.getInt(1);
+
+			}
+
+			tileMapper.insertTiles(gameBoard.getTiles(), gameboardID);
+
+		} catch (SQLException e) {
+			// java...
+			e.printStackTrace();
+		} finally {
+			try {
+				if (stmt != null)
+					stmt.close();
+			} catch (SQLException e) {
+				// java...
+				e.printStackTrace();
+			}
+			try {
+				if (conn != null)
+
+					conn.close();
+			} catch (SQLException e) {
+				// java...
+				e.printStackTrace();
+			}
+			try {
+				if (queryStmt != null)
+					queryStmt.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			try {
+				if (conn2 != null)
+					conn2.close();
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
+		}
+		return gameboardID;
 	}
 
-
-
-	
 	public void updateGameBoard(GameBoard gameBoard) {
 		tileMapper.updateTiles(gameBoard.getId(), gameBoard.getTiles());
 	}

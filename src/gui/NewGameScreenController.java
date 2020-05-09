@@ -67,17 +67,15 @@ public class NewGameScreenController extends BaseScreenController{
 	@FXML
 	private void btnSaveOnAction(ActionEvent event) {
 
-		var gamename = txtGameNameCreateNewGame.getText();
+		var gameName = txtGameNameCreateNewGame.getText();
 
 		try {
-			domainController.createGame(gamename);
+			domainController.createGame(gameName);
+			domainController.saveGame();
 			domainController.createGameBoard();
 			saveNewGame();
 		} catch (Exception e) {
 			lblGameException.setText(e.getMessage());
-			//Alert errorAlert = new Alert(AlertType.ERROR);
-			//errorAlert.setHeaderText(e.getMessage());
-			//errorAlert.showAndWait();
 		}
 	}
 

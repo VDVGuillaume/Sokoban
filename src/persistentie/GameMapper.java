@@ -163,10 +163,6 @@ public class GameMapper extends BaseMapper {
 				// java...
 				e.printStackTrace();
 			}
-
-			for(GameBoard gameBoard : game.getGameBoards()) {
-				gameBoardMapper.saveGameBoard(gameBoard, game.getName());
-			}
 		}
 	}
 

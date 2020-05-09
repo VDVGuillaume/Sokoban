@@ -40,6 +40,14 @@ public class GameBoardRepository {
 			gameBoardIds.add(gameboard.getId());
 		}
 		return gameBoardIds ;
-		
+	}
+	
+	public void insertGameBoard(GameBoard gameBoard, String gameName) {
+		int id = mapper.insertGameBoard(gameBoard, gameName);
+		gameBoard.setId(id);
+	}
+	
+	public void updateGameBoard(GameBoard gameBoard) {
+		mapper.updateGameBoard(gameBoard);
 	}
 }

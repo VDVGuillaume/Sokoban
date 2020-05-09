@@ -1,6 +1,5 @@
 package gui;
 
-
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -19,64 +18,44 @@ import javafx.stage.Stage;
 import domein.DomainController;
 import gui.BaseGameBoardScreenController.ImageViewSokoban;
 
-
-
-
-
-
-public class EditGameBoardScreenController extends BaseGameBoardScreenController{
+public class EditGameBoardScreenController extends BaseGameBoardScreenController {
 	@FXML
 	private GridPane gridPaneGameBoard;
 	@FXML
 	private Label lblPossibleMoves;
 
-
-	
 	@FXML
 	private Button btnSaveAndQuit;
-	
+
 	private ImageViewSokoban[][] imageViews;
 	private boolean gameBoardIsInitialized;
 	private double itemWidth;
 	private double itemHeight;
 	private int multipleGameBoards = 0;
-	
 
-	
-	private String[] action = {"clear","wall","pawn","goal","box"};
+	private String[] action = { "clear", "wall", "pawn", "goal", "box" };
 	private int actionIndex = 0;
-	private int[] currentIndices = {0,0};
+	private int[] currentIndices = { 0, 0 };
 
-	
-	
 	protected EditGameBoardScreenController(DomainController domainController) {
 		super(domainController, "EditGameBoardScreen.fxml");
-		
+
 		initializeGameBoard(gridPaneGameBoard);
 		loadData();
 	}
-	
-	
-	
-	
 
-	
-	private void quitGameBoard() 
-	{
+	private void quitGameBoard() {
 		// redirecting to previous screen
 		Stage stage = (Stage) gridPaneGameBoard.getScene().getWindow();
 		GameScreenController root = new GameScreenController(domainController);
 		Scene scene = new Scene(root, 1000, 500);
 		stage.setScene(scene);
 	}
-	
+
 	private void saveAndQuit() {
-		
-		
+
 	}
-	
-	
-	
+
 	@Override
 	protected void initializeGameBoard(GridPane gridPaneGameBoard) {
 
@@ -94,8 +73,6 @@ public class EditGameBoardScreenController extends BaseGameBoardScreenController
 			this.getColumnConstraints().add(column);
 			this.getRowConstraints().add(row);
 		}
-		
-
 
 		// initialize ImageView objects in imageviews
 		for (int rowIndex = 0; rowIndex < 10; rowIndex++) {
@@ -112,21 +89,21 @@ public class EditGameBoardScreenController extends BaseGameBoardScreenController
 				imgView.setColumnIndex(columnIndex);
 				imgView.setRowIndex(rowIndex);
 				imgView.addEventHandler(MouseEvent.MOUSE_PRESSED, event -> {
-			         int yCoordinate = imgView.getColumnIndex();
-			         int xCoordinate = imgView.getRowIndex();
-			         if (xCoordinate != currentIndices[0] || yCoordinate != currentIndices[1]) {
-			        	 actionIndex = 0;
-			         }
-			         domainController.setPositionAction(xCoordinate, yCoordinate, action[actionIndex]);
-			         actionIndex ++;
-			         currentIndices[0] = xCoordinate;
-			         currentIndices[1] = yCoordinate;
-			         if (actionIndex == 5) {
-			        	 actionIndex = 0;
-			         }
-			         refreshGameBoard(domainController.getSelectedGameBoardState());
-			         event.consume();
-			     });
+					int yCoordinate = imgView.getColumnIndex();
+					int xCoordinate = imgView.getRowIndex();
+					if (xCoordinate != currentIndices[0] || yCoordinate != currentIndices[1]) {
+						actionIndex = 0;
+					}
+					domainController.setPositionAction(xCoordinate, yCoordinate, action[actionIndex]);
+					actionIndex++;
+					currentIndices[0] = xCoordinate;
+					currentIndices[1] = yCoordinate;
+					if (actionIndex == 5) {
+						actionIndex = 0;
+					}
+					refreshGameBoard(domainController.getSelectedGameBoardState());
+					event.consume();
+				});
 
 				// add ImageView object to GameBoard
 				gridPaneGameBoard.add(imgView, columnIndex, rowIndex);
@@ -135,7 +112,7 @@ public class EditGameBoardScreenController extends BaseGameBoardScreenController
 
 		gameBoardIsInitialized = true;
 	}
-	
+
 	@Override
 	protected void refreshGameBoard(String[][] tilesGrid) {
 
@@ -149,9 +126,9 @@ public class EditGameBoardScreenController extends BaseGameBoardScreenController
 			for (String tile : tilesrow) {
 				ImageViewSokoban imgView = imageViews[rowIndex][columnIndex];
 
-				//if (imgView.tileHasChanged(tile)) {
-					imgView.setImage(getImage(tile));
-				//}
+				// if (imgView.tileHasChanged(tile)) {
+				imgView.setImage(getImage(tile));
+				// }
 
 				columnIndex++;
 			}
@@ -159,48 +136,28 @@ public class EditGameBoardScreenController extends BaseGameBoardScreenController
 			rowIndex++;
 		}
 	}
-	
 
-	
 	@Override
 	protected void loadData() {
 		String[][] gameBoardState = domainController.getSelectedGameBoardState();
 		refreshGameBoard(gameBoardState);
-		
-		
-		btnSaveAndQuit.setText("OK");
-	
-	
+
 	}
-	
-	
-	
+
 	@FXML
 	private void btnSaveAndQuitOnAction(ActionEvent event) {
-		
-	
+
 		try {
 			domainController.saveTiles();
-			
-			if (multipleGameBoards == 0) {
-				domainController.saveGame();
-				multipleGameBoards = 1;
-			}
-			else {
-				domainController.addGameboard();
-			}
-			
+			domainController.saveGameBoard();
+
 			Stage stage = (Stage) btnSaveAndQuit.getScene().getWindow();
-			/*
-			AddGameboardScreenController root = new AddGameboardScreenController(domainController);
+
+			EditGameBoardsListScreenController root = new EditGameBoardsListScreenController(domainController);
 			Scene scene = new Scene(root, 1000, 500);
 			stage.setScene(scene);
-			System.out.print("test");
-*/
-			} catch (Exception e) {
-				
-			}
+		} catch (Exception e) {
+
+		}
 	}
 }
-	
-	

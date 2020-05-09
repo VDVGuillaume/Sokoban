@@ -364,12 +364,28 @@ public class DomainController {
 		return selectedGame.getGameBoardsIds();
 	}
 	
+	public void saveGameBoard() {
+		if(selectedGame == null || selectedGameBoard == null) {
+			throw new GameException(language.translate("ErrorGameNotFound"));
+		}
+
+		if(selectedGameBoard.getId() == 0) {
+			gameBoardRepository.insertGameBoard(selectedGameBoard, selectedGame.getName());
+			selectedGame.addGameBoard(selectedGameBoard);
+		}else {
+			gameBoardRepository.updateGameBoard(selectedGameBoard);
+		}
+	}
+	
 	public void updateGame() {
-		gameRepository.updateGame(selectedGame);
+		//TODO is this method necessary?
 	}
 	
 	public void deleteSelectedGameBoard() {
-		System.out.println(selectedGameBoard.getId());
+		if(selectedGame == null || selectedGameBoard == null) {
+			throw new GameException(language.translate("ErrorGameNotFound"));
+		}
+		
 		selectedGame.deleteSelectedGameBoard();
 		gameRepository.deleteSelectedGameBoard(selectedGame.getName(), selectedGameBoard.getId());
 	}
