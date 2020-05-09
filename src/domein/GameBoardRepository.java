@@ -18,9 +18,11 @@ public class GameBoardRepository {
 		// return mapper.getGameBoards();
 	}
 
-	public int saveGameBoard(Game game) {
+	public int saveGameBoard(String gameName, GameBoard gameBoard) {
 		// TODO still necessary?
-		return -1;
+		int gameboardID = mapper.saveGameBoard(gameBoard, gameName);
+		System.out.println("saveGameBoard GBRepo:" + gameboardID);
+		return gameboardID;
 	}
 
 	public void insertGame(Game game) {
@@ -32,7 +34,7 @@ public class GameBoardRepository {
 	}
 	
 	public List<Integer> getGameBoardIds(String gameName) {
-		// TODO still necessary? Used in UC6 GUI
+		//  Used in UC6 GUI
 		List<GameBoard> gameBoards = mapper.getGameBoards(gameName);
 		List<Integer> gameBoardIds = new ArrayList<>();
 		for(GameBoard gameboard : gameBoards) 

@@ -17,6 +17,7 @@ import javafx.scene.layout.RowConstraints;
 import javafx.stage.Stage;
 import domein.DomainController;
 import gui.BaseGameBoardScreenController.ImageViewSokoban;
+import java.util.List;
 
 public class EditGameBoardScreenController extends BaseGameBoardScreenController {
 	@FXML
@@ -149,17 +150,36 @@ public class EditGameBoardScreenController extends BaseGameBoardScreenController
 
 		try {
 			domainController.saveTiles();
+<<<<<<< HEAD
 			domainController.saveGameBoard();
 
+=======
+			List<Integer> gameBoardIds = domainController.getSelectedGameGameBoardIds();
+			if (gameBoardIds.isEmpty()) {
+				domainController.saveGame();
+			}
+			else {
+				domainController.addGameboard();
+			}
+			
+>>>>>>> Troubleshooting AddGameboardScreenController
 			Stage stage = (Stage) btnSaveAndQuit.getScene().getWindow();
 
 			EditGameBoardsListScreenController root = new EditGameBoardsListScreenController(domainController);
 			Scene scene = new Scene(root, 1000, 500);
 			stage.setScene(scene);
+<<<<<<< HEAD
 		} catch (Exception e) {
 			Alert errorAlert = new Alert(AlertType.ERROR);
 			errorAlert.setHeaderText(e.getMessage());
 			errorAlert.showAndWait();
 		}
+=======
+			System.out.print("test");
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+>>>>>>> Troubleshooting AddGameboardScreenController
 	}
 }
