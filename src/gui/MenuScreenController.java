@@ -85,7 +85,6 @@ public class MenuScreenController extends BaseScreenController {
 		NewGameScreenController root = new NewGameScreenController(domainController);
 		Scene scene = new Scene(root, 1000, 500);
 		stage.setScene(scene);
-		System.out.print("test");
 	}
 
 	// Event Listener on Hyperlink[#linkEditGame].onAction
@@ -95,6 +94,5 @@ public class MenuScreenController extends BaseScreenController {
 		EditGamesListScreenController root = new EditGamesListScreenController(domainController);
 		Scene scene = new Scene(root, 1000, 500);
 		stage.setScene(scene);
-		System.out.print("test");
 	}
 }

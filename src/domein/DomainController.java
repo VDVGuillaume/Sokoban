@@ -354,6 +354,7 @@ public class DomainController {
 	/**UC7 chooseGameBoardFromGame(int gameBoardId) */
 	public void chooseGameBoardFromGame(int gameBoardId) {
 		selectedGame.chooseGameBoard(gameBoardId);
+		selectedGameBoard = selectedGame.getSelectedGameBoard();
 	}
 	
 	/**

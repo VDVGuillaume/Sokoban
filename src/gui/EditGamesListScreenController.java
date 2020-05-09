@@ -63,13 +63,11 @@ public class EditGamesListScreenController extends BaseScreenController {
 
 		try {
 			domainController.chooseGame(selectedItem);
-			System.out.println("You chose this game");
 			// open window
-			//Stage stage = (Stage) lstGames.getScene().getWindow();
-			//EditGameBoardsListScreenController root = new EditGameBoardsListScreenController(domainController);
-			//Scene scene = new Scene(root, 1000, 500);
-			//stage.setScene(scene);
-
+			Stage stage = (Stage) lstGames.getScene().getWindow();
+			EditGameBoardsListScreenController root = new EditGameBoardsListScreenController(domainController);
+			Scene scene = new Scene(root, 1000, 500);
+			stage.setScene(scene);
 		} catch (Exception e) {
 			Alert errorAlert = new Alert(AlertType.ERROR);
 			errorAlert.setHeaderText(e.getMessage());

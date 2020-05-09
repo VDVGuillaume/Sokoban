@@ -195,12 +195,12 @@ public class EditGameBoardScreenController extends BaseGameBoardScreenController
 			}
 			
 			Stage stage = (Stage) btnSaveAndQuit.getScene().getWindow();
-			
+			/*
 			AddGameboardScreenController root = new AddGameboardScreenController(domainController);
 			Scene scene = new Scene(root, 1000, 500);
 			stage.setScene(scene);
 			System.out.print("test");
-
+*/
 			} catch (Exception e) {
 				
 			}

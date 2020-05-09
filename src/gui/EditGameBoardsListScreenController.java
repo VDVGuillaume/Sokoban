@@ -1,4 +1,4 @@
-/*package gui;
+package gui;
 
 import javafx.fxml.FXML;
 
@@ -33,12 +33,12 @@ public class EditGameBoardsListScreenController extends BaseScreenController {
 	@Override
 	protected void loadData() {
 		// set games
-		List<String> gameNames = domainController.getGamesList();
-		ObservableList<String> gameNamesObservLst = FXCollections.observableArrayList(gameNames);
-		lstGames.setItems(gameNamesObservLst);
+		List<Integer> gameBoardIds = domainController.getGameBoardIdsFromGame();
+		ObservableList<Integer> gameBoardIdsObservLst = FXCollections.observableArrayList(gameBoardIds);
+		lstGameboards.setItems(gameBoardIdsObservLst);
 
 		linkReturn.setText(domainController.translate("Return"));
-		lblChooseGame.setText(domainController.translate("ChooseGameToEdit"));
+		lblChooseGameboard.setText(domainController.translate("ChooseGameboardToEdit"));
 	}
 
 	@FXML
@@ -52,21 +52,21 @@ public class EditGameBoardsListScreenController extends BaseScreenController {
 
 	// Event Listener on ListView[#lstGames].onMouseClicked
 	@FXML
-	public void lstGamesChooseGame(MouseEvent event) {
+	public void lstGameboardsChooseGameBoard(MouseEvent event) {
 
 		// select game
-		String selectedItem = (String) lstGames.getSelectionModel().getSelectedItem();
+		int selectedItem = (Integer) lstGameboards.getSelectionModel().getSelectedItem();
 
-		if (selectedItem == null) {
+		if (selectedItem == 0) {
 			return;
 		}
 
 		try {
-			domainController.chooseGame(selectedItem);
+			domainController.chooseGameBoardFromGame(selectedItem);
 
 			// open window
-			Stage stage = (Stage) lstGames.getScene().getWindow();
-			GameScreenController root = new GameScreenController(domainController);
+			Stage stage = (Stage) lstGameboards.getScene().getWindow();
+			EditGameBoardScreenController root = new EditGameBoardScreenController(domainController);
 			Scene scene = new Scene(root, 1000, 500);
 			stage.setScene(scene);
 
@@ -77,4 +77,4 @@ public class EditGameBoardsListScreenController extends BaseScreenController {
 			e.printStackTrace();
 		}
 	}
-}*/
+}
