@@ -377,10 +377,6 @@ public class DomainController {
 		}
 	}
 	
-	public void updateGame() {
-		//TODO is this method necessary?
-	}
-	
 	public void deleteSelectedGameBoard() {
 		if(selectedGame == null || selectedGameBoard == null) {
 			throw new GameException(language.translate("ErrorGameNotFound"));

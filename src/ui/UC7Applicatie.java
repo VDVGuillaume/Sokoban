@@ -69,7 +69,8 @@ public class UC7Applicatie {
 						// UC8 edit gameboard
 						break;
 					case 2:
-						controller.updateGame();
+						//TODO DBOL - method is unnecessary 
+						// controller.updateGame();
 						break;
 					case 3:
 						controller.deleteSelectedGameBoard();

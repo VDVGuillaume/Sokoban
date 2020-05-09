@@ -33,7 +33,7 @@ public class EditGamesListScreenController extends BaseScreenController {
 	@Override
 	protected void loadData() {
 		// set games
-		List<String> gameNames = domainController.getGamesList();
+		List<String> gameNames = domainController.getGamesListCreatedByUser();
 		ObservableList<String> gameNamesObservLst = FXCollections.observableArrayList(gameNames);
 		lstGames.setItems(gameNamesObservLst);
 
