@@ -157,7 +157,9 @@ public class EditGameBoardScreenController extends BaseGameBoardScreenController
 			Scene scene = new Scene(root, 1000, 500);
 			stage.setScene(scene);
 		} catch (Exception e) {
-
+			Alert errorAlert = new Alert(AlertType.ERROR);
+			errorAlert.setHeaderText(e.getMessage());
+			errorAlert.showAndWait();
 		}
 	}
 }

@@ -10,7 +10,7 @@ public class GameBoard {
 	private boolean completed;
 	private Pawn pawn;
 	private int moves;
-	private int id = -2;
+	private int id;
 
 	/** UC3 constructor Gameboard w/ 2D array of tiles */
 	public GameBoard(int id, Tile[][] tiles) {
