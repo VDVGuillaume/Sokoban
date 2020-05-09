@@ -112,22 +112,18 @@ public class EditGameBoardScreenController extends BaseGameBoardScreenController
 				imgView.setColumnIndex(columnIndex);
 				imgView.setRowIndex(rowIndex);
 				imgView.addEventHandler(MouseEvent.MOUSE_PRESSED, event -> {
-			         System.out.println("Tile pressed ");
 			         int yCoordinate = imgView.getColumnIndex();
 			         int xCoordinate = imgView.getRowIndex();
 			         if (xCoordinate != currentIndices[0] || yCoordinate != currentIndices[1]) {
 			        	 actionIndex = 0;
 			         }
 			         domainController.setPositionAction(xCoordinate, yCoordinate, action[actionIndex]);
-			         System.out.printf("%s ", action[actionIndex]);
 			         actionIndex ++;
 			         currentIndices[0] = xCoordinate;
 			         currentIndices[1] = yCoordinate;
 			         if (actionIndex == 5) {
 			        	 actionIndex = 0;
 			         }
-			         System.out.println(imgView.getColumnIndex());
-			         System.out.println(imgView.getRowIndex());
 			         refreshGameBoard(domainController.getSelectedGameBoardState());
 			         event.consume();
 			     });
