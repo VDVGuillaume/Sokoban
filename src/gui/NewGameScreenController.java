@@ -70,8 +70,14 @@ public class NewGameScreenController extends BaseScreenController{
 		var gameName = txtGameNameCreateNewGame.getText();
 
 		try {
+<<<<<<< HEAD
 			domainController.createGame(gameName);
+			domainController.saveGame();
+			domainController.createGameBoard();
+=======
+			domainController.createGame(gamename);
 			
+>>>>>>> Troubleshooting AddGameboardScreenController
 			saveNewGame();
 		} catch (Exception e) {
 			lblGameException.setText(e.getMessage());
