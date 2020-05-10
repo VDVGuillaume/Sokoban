@@ -17,7 +17,7 @@ public class Tile
 	}
 	
 	/**UC3 determines tileType of certain tile*/
-	public void setTileType(TileTypes tileType) 
+	public final void setTileType(TileTypes tileType) 
 	{
 		this.tileType = tileType;
 	}
