@@ -38,7 +38,7 @@ public class EditGameBoardsListScreenController extends BaseScreenController {
 		List<Integer> gameBoardIds = domainController.getGameBoardIdsFromGame();
 		ObservableList<Integer> gameBoardIdsObservLst = FXCollections.observableArrayList(gameBoardIds);
 		lstGameboards.setItems(gameBoardIdsObservLst);
-
+		linkCreateGameBoard.setText(domainController.translate("CreateGameboard"));
 		linkReturn.setText(domainController.translate("Return"));
 		lblChooseGameboard.setText(domainController.translate("ChooseGameboardToEdit"));
 	}
