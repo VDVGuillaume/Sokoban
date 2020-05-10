@@ -57,7 +57,7 @@ public class NewGameScreenController extends BaseScreenController{
 
 	private void saveNewGame() {
 		Stage stage = (Stage) btnSave.getScene().getWindow();
-		domainController.createGameBoard();
+		
 		EditGameBoardScreenController root = new EditGameBoardScreenController(domainController);
 		Scene scene = new Scene(root, 1000, 500);
 		stage.setScene(scene);
@@ -70,14 +70,9 @@ public class NewGameScreenController extends BaseScreenController{
 		var gameName = txtGameNameCreateNewGame.getText();
 
 		try {
-<<<<<<< HEAD
 			domainController.createGame(gameName);
 			domainController.saveGame();
 			domainController.createGameBoard();
-=======
-			domainController.createGame(gamename);
-			
->>>>>>> Troubleshooting AddGameboardScreenController
 			saveNewGame();
 		} catch (Exception e) {
 			lblGameException.setText(e.getMessage());

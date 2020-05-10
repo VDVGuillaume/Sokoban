@@ -161,7 +161,6 @@ public class Game {
 	/**UC6 save selected gameBoard **/
 	public void saveTiles() {
 		selectedGameBoard.saveTiles();
-		gameBoards.add(selectedGameBoard);
 	}
 	
 	/**UC6 Get selected gameBoard **/
