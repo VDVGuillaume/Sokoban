@@ -1,71 +1,64 @@
 package gui;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-
-import domein.DomainController;
-import javafx.collections.FXCollections;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Hyperlink;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
+
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
-public class WelcomeScreenController extends BaseScreenController {
-	
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
+import domein.DomainController;
+import javafx.event.ActionEvent;
+
+import javafx.scene.control.Label;
+
+import javafx.scene.control.PasswordField;
+
+public class LoginScreenController extends BaseScreenController {
 	@FXML
-	private ImageView background;
+	private Label lblLogin;
 	@FXML
 	private Label lblUsername;
 	@FXML
-	private TextField txtUsername;
-	@FXML
 	private Label lblPassword;
+	@FXML
+	private TextField txtUsername;
 	@FXML
 	private PasswordField txtPassword;
 	@FXML
-	private Label lblLoginException;
-	@FXML
 	private Button btnLogin;
 	@FXML
-	private Hyperlink linkRegister;
-	
+	private Label lblLoginException;
 
+	// Event Listener on Button[#btnLogin].onAction
 	private static String imageFilePathKey = "src\\resources\\images\\key.png";
 	
-	public WelcomeScreenController(DomainController domainController) {
-		super(domainController, "WelcomeScreen.fxml");
-		
-		
-		languages = FXCollections.observableArrayList();
-		languages.addAll("English", "Nederlands", "Français");
-		background.fitWidthProperty().bind(this.widthProperty());
-		background.fitHeightProperty().bind(this.heightProperty());		
-		
+	public LoginScreenController(DomainController domainController) {
+		super(domainController, "LoginScreen.fxml");
 	}
-	
-	
 
 	@Override
 	protected void loadData() throws FileNotFoundException {
+		// set translations
 		FileInputStream isKey = new FileInputStream(imageFilePathKey);
 		
 		Image key = new Image(isKey,15,15,false, false);
 		lblUsername.setText(domainController.translate("Username"));
 		lblPassword.setText(domainController.translate("Password"));
+		lblLogin.setText(domainController.translate("Login"));
 		btnLogin.setText(domainController.translate("Login"));
-		linkRegister.setText(domainController.translate("RegisterLink"));
 		btnLogin.setGraphic(new ImageView(key));
+	
 		
 	}
-		
+
+
 
 	@FXML
 	private void btnLoginOnAction(ActionEvent event) {
@@ -82,14 +75,5 @@ public class WelcomeScreenController extends BaseScreenController {
 			lblLoginException.setText(e.getMessage());
 		}
 	}
-	
-	@FXML
-	private void hyperlinkRegister(ActionEvent event) {
-		Stage stage = (Stage) this.getScene().getWindow();
-		RegisterScreenController root = new RegisterScreenController(domainController);
-		Scene scene = new Scene(root, 1000, 500);
-		stage.setScene(scene);
-	}
-	
 	
 }
