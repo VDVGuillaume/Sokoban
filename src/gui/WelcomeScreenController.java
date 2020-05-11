@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -17,12 +18,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class WelcomeScreenController extends BaseScreenController {
-	@FXML
-	private Button btnNederlands;
-	@FXML
-	private Button btnEngels;
-	@FXML
-	private Button btnFrans;
+	
 	@FXML
 	private ImageView background;
 	@FXML
@@ -37,6 +33,8 @@ public class WelcomeScreenController extends BaseScreenController {
 	private Label lblLoginException;
 	@FXML
 	private Button btnLogin;
+	@FXML
+	private Hyperlink linkRegister;
 	
 
 	private static String imageFilePathKey = "src\\resources\\images\\key.png";
@@ -62,6 +60,7 @@ public class WelcomeScreenController extends BaseScreenController {
 		lblUsername.setText(domainController.translate("Username"));
 		lblPassword.setText(domainController.translate("Password"));
 		btnLogin.setText(domainController.translate("Login"));
+		linkRegister.setText(domainController.translate("RegisterLink"));
 		btnLogin.setGraphic(new ImageView(key));
 		
 	}
