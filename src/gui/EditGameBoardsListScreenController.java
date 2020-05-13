@@ -31,6 +31,9 @@ public class EditGameBoardsListScreenController extends BaseScreenController {
 	private Hyperlink linkReturn;
 	@FXML
 	private Hyperlink linkCreateGameBoard;
+	@FXML
+	private Label lblSaveError;
+	
 
 	@Override
 	protected void loadData() {
@@ -88,9 +91,7 @@ public class EditGameBoardsListScreenController extends BaseScreenController {
 			stage.setScene(scene);
 
 		} catch (Exception e) {
-			Alert errorAlert = new Alert(AlertType.ERROR);
-			errorAlert.setHeaderText(e.getMessage());
-			errorAlert.showAndWait();
+			lblSaveError.setText(e.getMessage());
 			e.printStackTrace();
 		}
 	}
