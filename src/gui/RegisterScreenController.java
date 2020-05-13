@@ -14,6 +14,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 import domein.DomainController;
+import exceptions.FieldException;
 import javafx.event.ActionEvent;
 
 import javafx.scene.control.Label;
@@ -66,6 +67,7 @@ public class RegisterScreenController extends BaseScreenController {
 		lblName.setText(domainController.translate("Name"));
 		btnRegister.setText(domainController.translate("Register"));
 		btnRegister.setGraphic(new ImageView(disk));
+		lblRegisterException.setText("");
 		
 	}
 
@@ -82,15 +84,16 @@ public class RegisterScreenController extends BaseScreenController {
 		
 		try {
 		this.emptyFieldCheck(username);
-		this.emptyFieldCheck(password);
-		this.emptyFieldCheck(name);
-		this.emptyFieldCheck(firstName);		
+		this.emptyFieldCheck(password);		
 		domainController.register(name, firstName, username, password);
 		loggedIn(this.getScene());
 		
-		} catch (Exception e) {
+		} catch (FieldException e ) { // TODO Auto-generated catch block			
 			lblRegisterException.setText(e.getMessage());
 		}
+		  catch (Exception e) {
+			  e.printStackTrace();
+		  }
 	}
 
 	

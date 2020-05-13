@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 import domein.DomainController;
+import exceptions.FieldException;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -64,6 +65,7 @@ public class WelcomeScreenController extends BaseScreenController {
 		linkRegister.setText(domainController.translate("RegisterLink"));
 		btnLogin.setGraphic(new ImageView(key));
 		
+		
 	}
 		
 
@@ -78,9 +80,12 @@ public class WelcomeScreenController extends BaseScreenController {
 		domainController.login(username, password);
 		loggedIn(this.getScene());
 		
-		} catch (Exception e) { // TODO Auto-generated catch block			
+		} catch (FieldException e ) { // TODO Auto-generated catch block			
 			lblLoginException.setText(e.getMessage());
 		}
+		  catch (Exception e) {
+			  e.printStackTrace();
+		  }
 	}
 	
 	@FXML
