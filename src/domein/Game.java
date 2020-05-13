@@ -194,14 +194,15 @@ public class Game {
 	}
 	
 	public void deleteSelectedGameBoard() {
-		if(validateGame()==true) {
-			gameBoards.remove(selectedGameBoard);	
+		if(!validateGame()) {
+			throw new GameException("ErrorDeleteGameBoardLimitReached");
 		}
+		
+		gameBoards.remove(selectedGameBoard);	
+		setSelectedGameBoard(null);
 	}
 	
-	public boolean validateGame() {
-		List<GameBoard> gameBoards= getGameBoards();
-		return !gameBoards.isEmpty();
-	}
-	
+	private boolean validateGame() {
+		return gameBoards != null && gameBoards.size() > 1;
+	}	
 }

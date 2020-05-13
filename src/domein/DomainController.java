@@ -377,12 +377,16 @@ public class DomainController {
 	}
 	
 	public void deleteSelectedGameBoard() {
-		if(selectedGame == null || selectedGameBoard == null) {
-			throw new GameException(language.translate("ErrorGameNotFound"));
+		try {
+			if(selectedGame == null || selectedGameBoard == null) {
+				throw new GameException(language.translate("ErrorGameNotFound"));
+			}
+			
+			selectedGame.deleteSelectedGameBoard();
+			gameRepository.deleteSelectedGameBoard(selectedGame.getName(), selectedGameBoard.getId());
+			selectedGameBoard = null;	
+		}catch(GameException ex) {
+			throw new GameException(language.translate(ex.getMessage()));
 		}
-		
-		selectedGame.deleteSelectedGameBoard();
-		gameRepository.deleteSelectedGameBoard(selectedGame.getName(), selectedGameBoard.getId());
 	}
-
 }

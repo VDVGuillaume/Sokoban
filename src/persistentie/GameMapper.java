@@ -167,7 +167,6 @@ public class GameMapper extends BaseMapper {
 	}
 
 	public void deleteSelectedGameBoard(String gamename, int gameboardId) {
-		//TODO why is this in gameMapper?
 		PreparedStatement stmt = null;
 		Connection conn = null;
 		final String sql = "DELETE FROM GAMEBOARD WHERE GameName=gamename AND id=gameboardId";

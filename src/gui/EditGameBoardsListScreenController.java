@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import java.util.List;
 
 import domein.DomainController;
+import exceptions.GameException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -19,6 +20,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class EditGameBoardsListScreenController extends BaseScreenController {
+	
+	private enum ActionModes {
+		update,
+		delete
+	}
+	
 	protected EditGameBoardsListScreenController(DomainController domainController) {
 		super(domainController, "EditGameBoardsListScreen.fxml");
 	}
@@ -33,7 +40,6 @@ public class EditGameBoardsListScreenController extends BaseScreenController {
 	private Hyperlink linkCreateGameBoard;
 	@FXML
 	private Label lblSaveError;
-	
 
 	@Override
 	protected void loadData() {
@@ -58,7 +64,7 @@ public class EditGameBoardsListScreenController extends BaseScreenController {
 	@FXML
 	public void linkCreateGameBoard(ActionEvent event) {
 		domainController.createGameBoard();
-		
+
 		// open window
 		Stage stage = (Stage) lstGameboards.getScene().getWindow();
 		EditGameBoardScreenController root = new EditGameBoardScreenController(domainController);
@@ -93,6 +99,30 @@ public class EditGameBoardsListScreenController extends BaseScreenController {
 		} catch (Exception e) {
 			lblSaveError.setText(e.getMessage());
 			e.printStackTrace();
+		}
+	}
+
+	private void updateGameBoard(int gameBoardId) {
+		try {
+			domainController.chooseGameBoardFromGame(gameBoardId);
+
+			// open window
+			Stage stage = (Stage) lstGameboards.getScene().getWindow();
+			EditGameBoardScreenController root = new EditGameBoardScreenController(domainController);
+			Scene scene = new Scene(root, 1000, 500);
+			stage.setScene(scene);
+		} catch (Exception e) {
+			lblSaveError.setText(e.getMessage());
+		}
+	}
+
+	private void deleteGameBoard(int gameBoardId) {
+		try {
+			domainController.chooseGameBoardFromGame(gameBoardId);
+			domainController.deleteSelectedGameBoard();
+			lstGameboards.getSelectionModel().clearSelection();
+		} catch (Exception e) {
+			lblSaveError.setText(e.getMessage());
 		}
 	}
 }

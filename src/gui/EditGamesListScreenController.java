@@ -72,7 +72,6 @@ public class EditGamesListScreenController extends BaseScreenController {
 			Alert errorAlert = new Alert(AlertType.ERROR);
 			errorAlert.setHeaderText(e.getMessage());
 			errorAlert.showAndWait();
-			e.printStackTrace();
 		}
 	}
 }
