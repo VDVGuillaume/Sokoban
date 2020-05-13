@@ -66,7 +66,7 @@ public class WelcomeScreenController extends BaseScreenController {
 		btnLogin.setText(domainController.translate("Login"));
 		linkRegister.setText(domainController.translate("RegisterLink"));
 		btnLogin.setGraphic(new ImageView(key));
-		
+		lblLoginException.setText("");
 		
 	}
 		
