@@ -1,6 +1,7 @@
 package domein;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import exceptions.GameException;
 
@@ -64,10 +65,10 @@ public class GameBoard {
 		int boxCount = 0;
 
 		int rowIndex = 0;
-		ArrayList<Integer> wallXCoordinates = new ArrayList<Integer>();
-		ArrayList<Integer> wallYCoordinates = new ArrayList<Integer>();
-		ArrayList<Integer> noneXCoordinates = new ArrayList<Integer>();
-		ArrayList<Integer> noneYCoordinates = new ArrayList<Integer>();
+		List<Integer> wallXCoordinates = new ArrayList<>();
+		List<Integer> wallYCoordinates = new ArrayList<>();
+		List<Integer> noneXCoordinates = new ArrayList<>();
+		List<Integer> noneYCoordinates = new ArrayList<>();
 
 		for (Tile[] tileRow : tiles) {
 			int columnIndex = 0;
