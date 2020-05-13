@@ -6,17 +6,21 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="688.0" type="GridPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="688.0" scaleZ="-5.0" type="GridPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="232.0" minWidth="10.0" prefWidth="108.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="309.0" minWidth="10.0" prefWidth="142.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="385.0" minWidth="10.0" prefWidth="157.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="198.0" minWidth="10.0" prefWidth="167.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="146.0" minWidth="10.0" prefWidth="142.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="146.0" minWidth="10.0" prefWidth="142.0" />
       <ColumnConstraints />
   </columnConstraints>
   <rowConstraints>
@@ -30,56 +34,66 @@
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Label text="Sokoban" GridPane.valignment="TOP">
+      <ImageView fx:id="background" fitHeight="938.0" fitWidth="690.0" pickOnBounds="true" scaleZ="-5.0" translateZ="-5.0" GridPane.columnSpan="2147483647" GridPane.hgrow="ALWAYS" GridPane.rowSpan="2147483647" GridPane.vgrow="ALWAYS">
+         <image>
+            <Image url="@../resources/images/Background.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="lblRegister" prefHeight="57.0" prefWidth="281.0" text="Register" textFill="#ddbc28" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.rowIndex="1">
          <font>
-            <Font size="24.0" />
-         </font>
-         <GridPane.margin>
-            <Insets left="10.0" top="5.0" />
-         </GridPane.margin>
-      </Label>
-      <Label fx:id="lblLogin1" text="Register" GridPane.columnIndex="1" GridPane.rowIndex="1">
-         <font>
-            <Font size="24.0" />
+            <Font name="Yu Gothic Medium" size="47.0" />
          </font>
          <GridPane.margin>
             <Insets left="10.0" />
          </GridPane.margin>
       </Label>
-      <Label id="lblUsername" fx:id="lblUsernameRegister" text="Username" GridPane.columnIndex="1" GridPane.rowIndex="2">
+      <Label id="lblUsername" fx:id="lblUsernameRegister" text="Username" GridPane.columnIndex="2" GridPane.rowIndex="2">
          <GridPane.margin>
             <Insets left="10.0" />
          </GridPane.margin>
       </Label>
-      <TextField id="txtUsername" fx:id="txtUsernameRegister" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2" />
-      <Label fx:id="lblPasswordRegister" text="Password" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+      <TextField id="txtUsername" fx:id="txtUsernameRegister" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.hgrow="NEVER" GridPane.rowIndex="2" GridPane.vgrow="NEVER" />
+      <Label fx:id="lblPasswordRegister" text="Password" textFill="#c3a41a" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
          <GridPane.margin>
             <Insets left="10.0" right="20.0" />
          </GridPane.margin>
-      </Label>
-      <PasswordField id="txtPassword" fx:id="txtPasswordRegister" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3" />
-      <Label fx:id="lblFirstName" text="First Name" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
-         <GridPane.margin>
-            <Insets left="10.0" right="20.0" />
-         </GridPane.margin>
-      </Label>
-      <Label fx:id="lblName" text="Name" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
-         <GridPane.margin>
-            <Insets left="10.0" right="20.0" />
-         </GridPane.margin>
-      </Label>
-      <TextField id="txtUsername" fx:id="txtFirstName" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="4" />
-      <TextField id="txtUsername" fx:id="txtName" prefHeight="25.0" prefWidth="370.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="5" />
-      <Button id="btnRegister" fx:id="btnRegister" alignment="CENTER" mnemonicParsing="false" onAction="#btnRegisterOnAction" prefHeight="26.0" prefWidth="150.0" text="Register" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="6" GridPane.valignment="TOP" />
-      <Label fx:id="lblRegisterException" prefHeight="30.0" prefWidth="500.0" textFill="RED" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="7">
          <font>
-            <Font size="14.0" />
+            <Font name="Yu Gothic Medium" size="18.0" />
+         </font>
+      </Label>
+      <PasswordField id="txtPassword" fx:id="txtPasswordRegister" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.hgrow="NEVER" GridPane.rowIndex="3" GridPane.vgrow="NEVER" />
+      <Label fx:id="lblFirstName" text="First Name" textFill="#c3a41a" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
+         <GridPane.margin>
+            <Insets left="10.0" right="20.0" />
+         </GridPane.margin>
+         <font>
+            <Font name="Yu Gothic Medium" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblName" text="Name" textFill="#c3a41a" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
+         <GridPane.margin>
+            <Insets left="10.0" right="20.0" />
+         </GridPane.margin>
+         <font>
+            <Font name="Yu Gothic Medium" size="18.0" />
+         </font>
+      </Label>
+      <TextField id="txtUsername" fx:id="txtFirstName" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.hgrow="NEVER" GridPane.rowIndex="4" GridPane.vgrow="NEVER" />
+      <TextField id="txtUsername" fx:id="txtName" prefHeight="25.0" prefWidth="370.0" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.hgrow="NEVER" GridPane.rowIndex="5" GridPane.vgrow="NEVER" />
+      <Button id="btnRegister" fx:id="btnRegister" alignment="CENTER" mnemonicParsing="false" onAction="#btnRegisterOnAction" prefHeight="25.0" prefWidth="150.0" text="Register" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="6" GridPane.valignment="TOP" />
+      <Label fx:id="lblRegisterException" prefHeight="30.0" prefWidth="500.0" textFill="#ddbc28" GridPane.columnIndex="2" GridPane.columnSpan="4" GridPane.rowIndex="7">
+         <font>
+            <Font name="Yu Gothic Medium" size="20.0" />
          </font></Label>
-      <Label fx:id="lblUsernameRegister" text="Username" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+      <Label fx:id="lblUsernameRegister" text="Username" textFill="#c3a41a" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
          <GridPane.margin>
             <Insets left="10.0" right="20.0" />
-         </GridPane.margin></Label>
-      <ComboBox fx:id="comboBoxLanguage" onAction="#languageChoiceChanged" prefWidth="150.0" GridPane.columnIndex="3" />
+         </GridPane.margin>
+         <font>
+            <Font name="Yu Gothic Medium" size="18.0" />
+         </font></Label>
+      <ComboBox fx:id="comboBoxLanguage" onAction="#languageChoiceChanged" prefWidth="150.0" GridPane.columnIndex="4" />
+      <Button fx:id="btnReturn" alignment="CENTER" mnemonicParsing="false" onAction="#btnReturnToWelcomeScreen" prefHeight="25.0" prefWidth="150.0" text="Button" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="6" GridPane.valignment="TOP" />
       
    </children>
 </fx:root>

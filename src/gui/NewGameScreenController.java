@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import domein.DomainController;
+import exceptions.GameException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -74,7 +75,7 @@ public class NewGameScreenController extends BaseScreenController{
 			domainController.saveGame();
 			domainController.createGameBoard();
 			saveNewGame();
-		} catch (Exception e) {
+		} catch (GameException e) {
 			lblGameException.setText(e.getMessage());
 		}
 	}

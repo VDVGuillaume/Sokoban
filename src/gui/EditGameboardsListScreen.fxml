@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" type="GridPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="406.0" prefWidth="600.0" type="GridPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -36,11 +36,11 @@
          <GridPane.margin>
             <Insets right="10.0" top="10.0" />
          </GridPane.margin></ComboBox>
-      <Label fx:id="lblChooseGameboard" text="\$lblChooseGameBoard" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+      <Hyperlink fx:id="linkChooseGameboard" onAction="#linkChooseGameboard" text="\$linkChooseGameBoard" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
          <GridPane.margin>
             <Insets left="10.0" />
          </GridPane.margin>
-      </Label>
+      </Hyperlink>
       <ListView fx:id="lstGameboards" onMouseClicked="#lstGameboardsChooseGameBoard" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2" GridPane.rowSpan="9" />
       <Hyperlink fx:id="linkReturn" onAction="#linkReturnOnAction" text="\$linkReturn" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="11" GridPane.valignment="CENTER">
          <GridPane.margin>
@@ -48,5 +48,6 @@
          </GridPane.margin>
       </Hyperlink>
       <Hyperlink fx:id="linkCreateGameBoard" onAction="#linkCreateGameBoard" text="\$linkCreateGameBoard" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="11" GridPane.valignment="CENTER" />
+      <Label fx:id="lblSaveError" prefHeight="17.0" prefWidth="263.0" textFill="RED" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="12" />
    </children>
 </fx:root>

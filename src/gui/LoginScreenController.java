@@ -54,6 +54,7 @@ public class LoginScreenController extends BaseScreenController {
 		lblLogin.setText(domainController.translate("Login"));
 		btnLogin.setText(domainController.translate("Login"));
 		btnLogin.setGraphic(new ImageView(key));
+		lblLoginException.setText("");
 	
 		
 	}
@@ -69,7 +70,7 @@ public class LoginScreenController extends BaseScreenController {
 		this.emptyFieldCheck(username);
 		this.emptyFieldCheck(password);	
 		domainController.login(username, password);
-		loggedIn(this.getScene());
+		setMenuScreen(this.getScene());
 		
 		} catch (Exception e) { // TODO Auto-generated catch block			
 			lblLoginException.setText(e.getMessage());

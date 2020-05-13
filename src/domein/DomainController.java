@@ -57,7 +57,7 @@ public class DomainController {
 	 * correct, it displays the menu.
 	 */
 
-	public void login(String username, String password) throws Exception {
+	public void login(String username, String password) throws PasswordException {
 		boolean userCheck = userRepository.checkUser(username, password);
 
 		if (userCheck == false) {
@@ -324,8 +324,8 @@ public class DomainController {
 
 	}
 	
-	public void saveTiles() {
-		selectedGame.saveTiles();
+	public void changeGameboard() {
+		selectedGame.changeGameboard();
 	}
 	
 
@@ -346,9 +346,8 @@ public class DomainController {
 	 * UC7 method getGamesListCreatedByUser returns the list of games created by a certain user
 	 */
 	public List<String> getGamesListCreatedByUser() {
-		String[] userInfo = new String[1];
-		userInfo[0] = selectedUser.getUsername();
-		return gameRepository.getGames(userInfo[0]);
+		String userInfo = new String(selectedUser.getUsername());
+		return gameRepository.getGames(userInfo);
 	}
 	
 	/**UC7 chooseGameBoardFromGame(int gameBoardId) */
@@ -378,12 +377,16 @@ public class DomainController {
 	}
 	
 	public void deleteSelectedGameBoard() {
-		if(selectedGame == null || selectedGameBoard == null) {
-			throw new GameException(language.translate("ErrorGameNotFound"));
+		try {
+			if(selectedGame == null || selectedGameBoard == null) {
+				throw new GameException(language.translate("ErrorGameNotFound"));
+			}
+			
+			selectedGame.deleteSelectedGameBoard();
+			gameRepository.deleteSelectedGameBoard(selectedGame.getName(), selectedGameBoard.getId());
+			selectedGameBoard = null;	
+		}catch(GameException ex) {
+			throw new GameException(language.translate(ex.getMessage()));
 		}
-		
-		selectedGame.deleteSelectedGameBoard();
-		gameRepository.deleteSelectedGameBoard(selectedGame.getName(), selectedGameBoard.getId());
 	}
-
 }

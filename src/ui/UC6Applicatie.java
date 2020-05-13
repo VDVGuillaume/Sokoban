@@ -93,7 +93,7 @@ public class UC6Applicatie {
 				case 'A':
 				case 'a':
 					userInput = "save";
-					controller.saveTiles();
+					controller.changeGameboard();
 					break;
 				case 'T':
 				case 't':
