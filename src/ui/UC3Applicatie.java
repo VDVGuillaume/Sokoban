@@ -1,6 +1,7 @@
 package ui;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -32,9 +33,29 @@ public class UC3Applicatie {
 				System.out.println(gamename);
 			}
 
-			gameNumber = input.nextInt();
-			gameName = names.get(gameNumber - 1);
-			controller.chooseGame(gameName);
+			gameNumber = -1;
+			boolean flag = true;
+			do {
+				try {
+					gameNumber = input.nextInt();
+					System.out.println("size" + names.size());
+					if (gameNumber < 1 || gameNumber >= names.size()+1) {
+						throw new IllegalArgumentException(
+								controller.translate("ChoiceBetween").replace("$param1", Integer.toString(1))
+										.replace("$param2", Integer.toString(names.size())));
+					}
+
+					gameName = names.get(gameNumber - 1);
+					controller.chooseGame(gameName);
+					flag = false;
+				} catch (InputMismatchException ex) {
+					System.out.println("Please enter an integer.");
+					input.nextLine();
+
+				} catch (IllegalArgumentException ex) {
+					System.out.println(ex.getMessage());
+				}
+			} while (flag);
 
 			while (true) {
 				String[] gameInfo = controller.getSelectedGameInfo();
@@ -43,12 +64,11 @@ public class UC3Applicatie {
 
 				System.out.println(completedAmountGameBoards + " "
 						+ controller.translate("NumberGameboardsCompletedOutofTotal") + " " + totalAmountGameBoards);
-				
-				if(controller.isGameCompleted()) 
-				{
+
+				if (controller.isGameCompleted()) {
 					break;
 				}
-				
+
 				System.out.println(controller.translate("GiveGameboardAction"));
 				String option1 = "1." + controller.translate("PlayNextGameboard");
 				System.out.println(option1);
@@ -58,7 +78,7 @@ public class UC3Applicatie {
 
 				if (gameboardActionNumber == 1) {
 					controller.playNextGameBoard();
-					gameBoardConsole.drawConsole(controller.getSelectedGameBoardState());					
+					gameBoardConsole.drawConsole(controller.getSelectedGameBoardState());
 				} else if (gameboardActionNumber == 2) {
 					break;
 				}
