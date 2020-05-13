@@ -26,6 +26,9 @@ public class EditGameBoardScreenController extends BaseGameBoardScreenController
 
 	@FXML
 	private Button btnSaveAndQuit;
+	
+	@FXML
+	private Label lblSaveError;
 
 	private ImageViewSokoban[][] imageViews;
 	private boolean gameBoardIsInitialized;
@@ -157,9 +160,7 @@ public class EditGameBoardScreenController extends BaseGameBoardScreenController
 			Scene scene = new Scene(root, 1000, 500);
 			stage.setScene(scene);
 		} catch (Exception e) {
-			Alert errorAlert = new Alert(AlertType.ERROR);
-			errorAlert.setHeaderText(e.getMessage());
-			errorAlert.showAndWait();
+			lblSaveError.setText(e.getMessage());
 		}
 	}
 }
