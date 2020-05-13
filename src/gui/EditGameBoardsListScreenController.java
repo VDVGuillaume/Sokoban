@@ -9,6 +9,7 @@ import exceptions.GameException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventType;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
@@ -20,18 +21,18 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class EditGameBoardsListScreenController extends BaseScreenController {
-	
+
 	private enum ActionModes {
-		update,
-		delete
+		update, delete
 	}
-	
+
 	protected EditGameBoardsListScreenController(DomainController domainController) {
 		super(domainController, "EditGameBoardsListScreen.fxml");
+		actionMode = ActionModes.update;
 	}
 
 	@FXML
-	private Label lblChooseGameboard;
+	private Hyperlink linkChooseGameboard;
 	@FXML
 	private ListView lstGameboards;
 	@FXML
@@ -40,16 +41,26 @@ public class EditGameBoardsListScreenController extends BaseScreenController {
 	private Hyperlink linkCreateGameBoard;
 	@FXML
 	private Label lblSaveError;
+	private ActionModes actionMode;
 
 	@Override
 	protected void loadData() {
-		// set games
+		if(actionMode == null) {
+			actionMode = ActionModes.update;
+		}
+		lblSaveError.setText("");
+
 		List<Integer> gameBoardIds = domainController.getGameBoardIdsFromGame();
 		ObservableList<Integer> gameBoardIdsObservLst = FXCollections.observableArrayList(gameBoardIds);
 		lstGameboards.setItems(gameBoardIdsObservLst);
 		linkCreateGameBoard.setText(domainController.translate("CreateGameboard"));
 		linkReturn.setText(domainController.translate("Return"));
-		lblChooseGameboard.setText(domainController.translate("ChooseGameboardToEdit"));
+
+		if (actionMode.equals(ActionModes.update)) {
+			linkChooseGameboard.setText(domainController.translate("ChooseGameboardToEdit"));
+		} else if (actionMode.equals(ActionModes.delete)) {
+			linkChooseGameboard.setText(domainController.translate("ChooseGameboardToDelete"));
+		}
 	}
 
 	@FXML
@@ -72,6 +83,26 @@ public class EditGameBoardsListScreenController extends BaseScreenController {
 		stage.setScene(scene);
 	}
 
+	/**
+	 * Change action mode. 2 options: update/delete
+	 */
+	@FXML
+	public void linkChooseGameboard(ActionEvent event) {
+		switch (actionMode) {
+		case update:
+			// switch to delete
+			actionMode = ActionModes.delete;
+			break;
+		case delete:
+			// switch to update
+			actionMode = ActionModes.update;
+			break;
+		}
+
+		loadData();
+		event.consume();
+	}
+
 	// Event Listener on ListView[#lstGames].onMouseClicked
 	@FXML
 	public void lstGameboardsChooseGameBoard(MouseEvent event) {
@@ -87,18 +118,14 @@ public class EditGameBoardsListScreenController extends BaseScreenController {
 			return;
 		}
 
-		try {
-			domainController.chooseGameBoardFromGame(selectedItem);
-
-			// open window
-			Stage stage = (Stage) lstGameboards.getScene().getWindow();
-			EditGameBoardScreenController root = new EditGameBoardScreenController(domainController);
-			Scene scene = new Scene(root, 1000, 500);
-			stage.setScene(scene);
-
-		} catch (Exception e) {
-			lblSaveError.setText(e.getMessage());
-			e.printStackTrace();
+		// update or delete?
+		switch (actionMode) {
+		case update:
+			updateGameBoard(selectedItem);
+			break;
+		case delete:
+			deleteGameBoard(selectedItem);
+			break;
 		}
 	}
 
@@ -121,8 +148,9 @@ public class EditGameBoardsListScreenController extends BaseScreenController {
 			domainController.chooseGameBoardFromGame(gameBoardId);
 			domainController.deleteSelectedGameBoard();
 			lstGameboards.getSelectionModel().clearSelection();
+			loadData();
 		} catch (Exception e) {
 			lblSaveError.setText(e.getMessage());
-		}
+		}		
 	}
 }

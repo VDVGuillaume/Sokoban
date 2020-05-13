@@ -36,11 +36,11 @@
          <GridPane.margin>
             <Insets right="10.0" top="10.0" />
          </GridPane.margin></ComboBox>
-      <Label fx:id="lblChooseGameboard" text="\$lblChooseGameBoard" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+      <Hyperlink fx:id="linkChooseGameboard" onAction="#linkChooseGameboard" text="\$linkChooseGameBoard" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
          <GridPane.margin>
             <Insets left="10.0" />
          </GridPane.margin>
-      </Label>
+      </Hyperlink>
       <ListView fx:id="lstGameboards" onMouseClicked="#lstGameboardsChooseGameBoard" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2" GridPane.rowSpan="9" />
       <Hyperlink fx:id="linkReturn" onAction="#linkReturnOnAction" text="\$linkReturn" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="11" GridPane.valignment="CENTER">
          <GridPane.margin>
