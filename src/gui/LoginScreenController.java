@@ -54,6 +54,7 @@ public class LoginScreenController extends BaseScreenController {
 		lblLogin.setText(domainController.translate("Login"));
 		btnLogin.setText(domainController.translate("Login"));
 		btnLogin.setGraphic(new ImageView(key));
+		lblLoginException.setText("");
 	
 		
 	}
