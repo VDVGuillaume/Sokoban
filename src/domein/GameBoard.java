@@ -395,7 +395,7 @@ public class GameBoard {
 
 	}
 
-	public void saveTiles() {
+	public void changeGameboard() {
 		this.setTiles(tiles);
 	}
 

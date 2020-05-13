@@ -324,8 +324,8 @@ public class DomainController {
 
 	}
 	
-	public void saveTiles() {
-		selectedGame.saveTiles();
+	public void changeGameboard() {
+		selectedGame.changeGameboard();
 	}
 	
 

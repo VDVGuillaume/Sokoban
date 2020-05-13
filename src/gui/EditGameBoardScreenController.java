@@ -148,7 +148,7 @@ public class EditGameBoardScreenController extends BaseGameBoardScreenController
 	private void btnSaveAndQuitOnAction(ActionEvent event) {
 
 		try {
-			domainController.saveTiles();
+			domainController.changeGameboard();
 			domainController.saveGameBoard();
 
 			Stage stage = (Stage) btnSaveAndQuit.getScene().getWindow();
