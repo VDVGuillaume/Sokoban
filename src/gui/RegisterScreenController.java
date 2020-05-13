@@ -45,6 +45,8 @@ public class RegisterScreenController extends BaseScreenController {
 	private Label lblRegisterException;
 	@FXML
 	private ImageView background;
+	@FXML
+	private Label lblRegister;
 
 	private static String imageFilePathDisk = "src\\resources\\images\\disk.png";
 
@@ -71,7 +73,7 @@ public class RegisterScreenController extends BaseScreenController {
 		btnRegister.setText(domainController.translate("Register"));
 		btnRegister.setGraphic(new ImageView(disk));
 		lblRegisterException.setText("");
-		
+		lblRegister.setText(domainController.translate("Register"));
 	}
 
 
@@ -97,6 +99,11 @@ public class RegisterScreenController extends BaseScreenController {
 		  catch (Exception e) {
 			  e.printStackTrace();
 		  }
+	}
+	
+	@FXML
+	private void btnReturnToWelcomeScreen(ActionEvent event) {		
+		setWelcomeScreen(this.getScene());
 	}
 
 	

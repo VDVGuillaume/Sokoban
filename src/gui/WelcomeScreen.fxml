@@ -71,7 +71,10 @@
       <PasswordField id="txtPassword" fx:id="txtPassword" GridPane.columnIndex="1" GridPane.rowIndex="2" />
       <Label fx:id="lblLoginException" prefHeight="17.0" prefWidth="344.0" textFill="YELLOW" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="3" />
       <Button id="btnLogin" fx:id="btnLogin" alignment="CENTER" mnemonicParsing="false" onAction="#btnLoginOnAction" prefHeight="26.0" prefWidth="150.0" text="Log in" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
-      <Hyperlink fx:id="linkRegister" onAction="#hyperlinkRegister" prefHeight="23.0" prefWidth="383.0" text="Don't have an account yet? Register here." GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="6" />
+      <Hyperlink fx:id="linkRegister" onAction="#hyperlinkRegister" prefHeight="23.0" prefWidth="383.0" text="Don't have an account yet? Register here." textFill="#a48a15" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="6">
+         <font>
+            <Font name="Yu Gothic Medium" size="18.0" />
+         </font></Hyperlink>
       <ComboBox fx:id="comboBoxLanguage" onAction="#languageChoiceChanged" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="7" />
    </children>
 </fx:root>
