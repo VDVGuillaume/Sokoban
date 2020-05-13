@@ -79,11 +79,23 @@ public abstract class BaseScreenController extends GridPane {
 			throw new FieldException(domainController.translate("EmptyField"));	
 	}
 	
-	protected void loggedIn(Scene currentScene) {
+	protected void setMenuScreen(Scene currentScene) {
 		Stage stage = (Stage) currentScene.getWindow();
 		MenuScreenController root = new MenuScreenController(domainController);
 		Scene scene = new Scene(root, 1000, 500);
 		stage.setScene(scene);
 	}
+	
+	protected void setWelcomeScreen(Scene currentScene) {
+		Stage stage = (Stage) currentScene.getWindow();
+		WelcomeScreenController root = new WelcomeScreenController(domainController);
+		Scene scene = new Scene(root, 1000, 500);
+		stage.setScene(scene);
+		
+	}
+	
+	
+	
+	
 	
 }

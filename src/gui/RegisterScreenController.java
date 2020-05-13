@@ -43,13 +43,16 @@ public class RegisterScreenController extends BaseScreenController {
 	private Button btnRegister;
 	@FXML
 	private Label lblRegisterException;
-	
+	@FXML
+	private ImageView background;
 
 	private static String imageFilePathDisk = "src\\resources\\images\\disk.png";
 
 	
 	public RegisterScreenController(DomainController domainController) {
 		super(domainController, "RegisterScreen.fxml");
+		background.fitWidthProperty().bind(this.widthProperty());
+		background.fitHeightProperty().bind(this.heightProperty());	
 	}
 
 	@Override
@@ -86,7 +89,7 @@ public class RegisterScreenController extends BaseScreenController {
 		this.emptyFieldCheck(username);
 		this.emptyFieldCheck(password);		
 		domainController.register(name, firstName, username, password);
-		loggedIn(this.getScene());
+		setMenuScreen(this.getScene());
 		
 		} catch (FieldException e ) { // TODO Auto-generated catch block			
 			lblRegisterException.setText(e.getMessage());

@@ -80,7 +80,7 @@ public class WelcomeScreenController extends BaseScreenController {
 		this.emptyFieldCheck(username);
 		this.emptyFieldCheck(password);	
 		domainController.login(username, password);
-		loggedIn(this.getScene());
+		setMenuScreen(this.getScene());
 		
 		} catch (FieldException | PasswordException |UsernameException e) { // TODO Auto-generated catch block			
 			lblLoginException.setText(e.getMessage());
