@@ -57,7 +57,7 @@ public class DomainController {
 	 * correct, it displays the menu.
 	 */
 
-	public void login(String username, String password) throws Exception {
+	public void login(String username, String password) throws PasswordException {
 		boolean userCheck = userRepository.checkUser(username, password);
 
 		if (userCheck == false) {

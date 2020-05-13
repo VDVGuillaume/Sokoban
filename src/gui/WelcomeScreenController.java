@@ -5,6 +5,8 @@ import java.io.FileNotFoundException;
 
 import domein.DomainController;
 import exceptions.FieldException;
+import exceptions.PasswordException;
+import exceptions.UsernameException;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -80,11 +82,8 @@ public class WelcomeScreenController extends BaseScreenController {
 		domainController.login(username, password);
 		loggedIn(this.getScene());
 		
-		} catch (FieldException e ) { // TODO Auto-generated catch block			
+		} catch (FieldException | PasswordException |UsernameException e) { // TODO Auto-generated catch block			
 			lblLoginException.setText(e.getMessage());
-		}
-		  catch (Exception e) {
-			  e.printStackTrace();
 		  }
 	}
 	
