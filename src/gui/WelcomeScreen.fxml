@@ -19,13 +19,14 @@
 <fx:root prefHeight="368.0" prefWidth="600.0" type="GridPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <rowConstraints>
       <RowConstraints maxHeight="149.0" minHeight="10.0" prefHeight="103.0" />
-      <RowConstraints maxHeight="303.0" minHeight="0.0" prefHeight="55.0" />
-      <RowConstraints maxHeight="195.0" minHeight="9.0" prefHeight="33.0" />
-      <RowConstraints maxHeight="195.0" minHeight="10.0" prefHeight="33.0" />
+      <RowConstraints maxHeight="303.0" minHeight="0.0" prefHeight="72.0" />
+      <RowConstraints maxHeight="195.0" minHeight="9.0" prefHeight="29.0" />
+      <RowConstraints maxHeight="195.0" minHeight="0.0" prefHeight="37.0" />
+      <RowConstraints maxHeight="195.0" minHeight="0.0" prefHeight="14.0" />
+      <RowConstraints maxHeight="195.0" minHeight="0.0" prefHeight="39.0" />
       <RowConstraints maxHeight="195.0" minHeight="0.0" prefHeight="0.0" />
-      <RowConstraints maxHeight="195.0" minHeight="10.0" prefHeight="58.0" />
-      <RowConstraints maxHeight="195.0" minHeight="10.0" prefHeight="55.0" />
-      <RowConstraints maxHeight="195.0" minHeight="10.0" prefHeight="75.0" />
+      <RowConstraints maxHeight="195.0" minHeight="10.0" prefHeight="40.0" />
+      <RowConstraints maxHeight="195.0" minHeight="10.0" prefHeight="36.0" />
    </rowConstraints>
    <columnConstraints>
       <ColumnConstraints maxWidth="1.7976931348623157E308" minWidth="10.0" percentWidth="33.33" />
@@ -69,12 +70,15 @@
          </GridPane.margin>
       </Label>
       <PasswordField id="txtPassword" fx:id="txtPassword" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-      <Label fx:id="lblLoginException" prefHeight="17.0" prefWidth="344.0" textFill="YELLOW" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="3" />
+      <Label fx:id="lblLoginException" prefHeight="30.0" prefWidth="428.0" textFill="#a48a15" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.vgrow="NEVER">
+         <font>
+            <Font size="15.0" />
+         </font></Label>
       <Button id="btnLogin" fx:id="btnLogin" alignment="CENTER" mnemonicParsing="false" onAction="#btnLoginOnAction" prefHeight="26.0" prefWidth="150.0" text="Log in" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
-      <Hyperlink fx:id="linkRegister" onAction="#hyperlinkRegister" prefHeight="23.0" prefWidth="383.0" text="Don't have an account yet? Register here." textFill="#a48a15" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="6">
+      <Hyperlink fx:id="linkRegister" onAction="#hyperlinkRegister" prefHeight="38.0" prefWidth="400.0" text="Don't have an account yet? Register here." textFill="#a48a15" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.hgrow="ALWAYS" GridPane.rowIndex="6" GridPane.rowSpan="2">
          <font>
             <Font name="Yu Gothic Medium" size="18.0" />
          </font></Hyperlink>
-      <ComboBox fx:id="comboBoxLanguage" onAction="#languageChoiceChanged" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+      <ComboBox fx:id="comboBoxLanguage" onAction="#languageChoiceChanged" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="8" />
    </children>
 </fx:root>
