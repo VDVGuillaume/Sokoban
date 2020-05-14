@@ -22,19 +22,30 @@ public class UC5Applicatie {
 			controller.createGame(gameName);
 			int answer = 0;
 			do {
-				controller.addGameboard();
+				controller.createGameBoard();
 				System.out.println(controller.translate("addGameBoard"));
-				answer = input.nextInt();
+				try {
+					answer = input.nextInt();
+					if (answer < 0 || answer > 1) {
+						throw new IllegalArgumentException(controller.translate("ChoiceBetween")
+								.replace("$param1", Integer.toString(0)).replace("$param2", Integer.toString(1)));
+					}
+					controller.createGameBoard();
+				} catch (InputMismatchException ex) {
+					System.out.println(controller.translate("GiveIntegerNumber"));
+					input.nextLine();
+				} catch (IllegalArgumentException ex) {
+					System.out.println(ex.getMessage());
+				} catch (Exception e) {
+					System.out.println(e.getMessage());
+					input.nextLine();
+				}	
 			} while (answer == 1);
-			if (answer == 2) {
+			if (answer == 0) {
 				String gameInfo[] = controller.getSelectedGameInfo();
-				System.out.println(controller.translate("GameCreated"));
+				//System.out.println(controller.translate("GameCreated"));
 				System.out.printf("%s %s%n", gameInfo[2], gameInfo[0]);
 				controller.saveGame();
-			}
-			else if(answer == 3) {
-				System.out.println(controller.translate("GameDeleted"));
-				controller.deleteGame();
 			}
 			else{
 				throw new InputMismatchException();
