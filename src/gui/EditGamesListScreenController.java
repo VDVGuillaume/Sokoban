@@ -81,11 +81,7 @@ public class EditGamesListScreenController extends BaseScreenController {
 	
 	@FXML
 	private void btnExitOnAction(ActionEvent event) {
-		Stage stage = (Stage) btnExit.getScene().getWindow();
-		
-		MenuScreenController root = new MenuScreenController(domainController);
-		Scene scene = new Scene(root, 1000, 500);
-		stage.setScene(scene);
+		setMenuScreen(this.getScene());
 	
 	}
 }

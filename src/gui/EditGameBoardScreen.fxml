@@ -38,19 +38,15 @@
    <children>
       <ComboBox id="comboBoxLanguage" fx:id="comboBoxLanguage" onAction="#languageChoiceChanged" prefWidth="150.0" promptText="languageChoice" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
          <GridPane.margin>
-            <Insets right="10.0" top="6.0" />
+            <Insets right="10.0" top="10.0" />
          </GridPane.margin></ComboBox>
       <GridPane fx:id="gridPaneGameBoard" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.rowSpan="9">
          <GridPane.margin>
             <Insets bottom="10.0" left="50.0" top="10.0" />
          </GridPane.margin>
       </GridPane>
-      <Button fx:id="btnSaveAndQuit" mnemonicParsing="false" onAction="#btnSaveAndQuitOnAction" text="Opslaan" GridPane.columnIndex="3" GridPane.rowIndex="9" />
-      <Label fx:id="lblSaveError" prefHeight="58.0" prefWidth="180.0" textFill="RED" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.rowIndex="10" GridPane.rowSpan="2" />
-      <Button fx:id="btnExit" mnemonicParsing="false" onAction="#btnExitOnAction" text="Button" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
-         <GridPane.margin>
-            <Insets right="10.0" />
-         </GridPane.margin>
-      </Button>
+      <Button fx:id="btnSaveAndQuit" mnemonicParsing="false" onAction="#btnSaveAndQuitOnAction" text="Opslaan" GridPane.columnIndex="4" GridPane.rowIndex="10" />
+      <Label fx:id="lblSaveError" prefHeight="58.0" prefWidth="180.0" textFill="RED" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="11" GridPane.rowSpan="2" />
+      <Button fx:id="btnReturn" mnemonicParsing="false" onAction="#btnReturnToMenu" GridPane.columnIndex="5" GridPane.rowIndex="10" />
    </children>
 </fx:root>

@@ -25,7 +25,7 @@ public abstract class BaseScreenController extends GridPane {
 	@FXML
 	protected ComboBox comboBoxLanguage;
 	
-
+	
 
 
 	protected BaseScreenController(DomainController domainController, String resource)  {	
@@ -98,7 +98,10 @@ public abstract class BaseScreenController extends GridPane {
 		stage.setScene(scene);
 		
 	}
+	
 
+	
+	
 	
 	
 	
