@@ -112,19 +112,22 @@ public class GameBoard {
 
 		// TODO VALIDATE IF ALL FIELDS ARE ACCESSIBLE IN CELLS
 		// Validation fields and walls:
-		for (int i = 0; i < (noneXCoordinates.size() - 1); i++) {
+		for (int i = 0; i < noneXCoordinates.size(); i++) {
 			int x = noneXCoordinates.get(i);
 			int y = noneYCoordinates.get(i);
 			boolean trigger = false;
 			for (int scanner = 0; scanner < noneXCoordinates.size(); scanner++) {
 				if ((x + 1) == noneXCoordinates.get(scanner) || (y + 1) == noneYCoordinates.get(scanner)
 						|| (x - 1) == noneXCoordinates.get(scanner) || (y - 1) == noneYCoordinates.get(scanner)) {
+					
 					trigger = true;
 				}
+
 			}
 			if (trigger == false) {
 				throw new GameException("ErrorGameBoardInaccesibleSpace");
 			}
+	
 
 		}
 

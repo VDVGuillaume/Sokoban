@@ -329,10 +329,6 @@ public class DomainController {
 	}
 	
 
-	public List<Integer> getSelectedGameGameBoardIds(){
-		String gameName = selectedGame.getName();
-		return gameBoardRepository.getGameBoardIds(gameName);
-	}
 
 
 	public void setPositionAction(int xCoord, int yCoord, String action) {
