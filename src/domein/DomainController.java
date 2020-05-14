@@ -325,7 +325,11 @@ public class DomainController {
 	}
 	
 	public void changeGameboard() {
-		selectedGame.changeGameboard();
+		try {
+			selectedGame.changeGameboard();
+		}catch(GameException ex){
+			throw new GameException(language.translate(ex.getMessage()));
+		}
 	}
 	
 
@@ -363,12 +367,16 @@ public class DomainController {
 		if(selectedGame == null || selectedGameBoard == null) {
 			throw new GameException(language.translate("ErrorGameNotFound"));
 		}
-
-		if(selectedGameBoard.getId() == 0) {
-			gameBoardRepository.insertGameBoard(selectedGameBoard, selectedGame.getName());
-			selectedGame.addGameBoard(selectedGameBoard);
-		}else {
-			gameBoardRepository.updateGameBoard(selectedGameBoard);
+		
+		try {
+			if(selectedGameBoard.getId() == 0) {
+				gameBoardRepository.insertGameBoard(selectedGameBoard, selectedGame.getName());
+				selectedGame.addGameBoard(selectedGameBoard);
+			}else {
+				gameBoardRepository.updateGameBoard(selectedGameBoard);
+			}	
+		}catch(GameException ex){
+			throw new GameException(language.translate(ex.getMessage()));
 		}
 	}
 	
