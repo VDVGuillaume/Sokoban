@@ -50,4 +50,8 @@ public class GameBoardRepository {
 	public void updateGameBoard(GameBoard gameBoard) {
 		mapper.updateGameBoard(gameBoard);
 	}
+	
+	public void deleteGameBoard(String gamename, int id) {
+		mapper.deleteGameBoard(gamename, id);
+	}
 }
