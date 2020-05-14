@@ -203,4 +203,38 @@ public class GameBoardMapper extends BaseMapper {
 		tileMapper.updateTiles(gameBoard.getId(), gameBoard.getTiles());
 	}
 
+	public void deleteGameBoard(String gamename, int gameboardId) {
+		PreparedStatement stmt = null;
+		Connection conn = null;
+		final String sql = "DELETE FROM GAMEBOARD WHERE GameName=? AND id=?";
+
+		try {
+			conn = createConnection();
+			stmt = conn.prepareStatement(sql);
+
+			stmt.setString(1, gamename);
+			stmt.setInt(2, gameboardId);
+
+			stmt.executeUpdate();
+
+		} catch (SQLException e) {
+			// java...
+			e.printStackTrace();
+		} finally {
+			try {
+				if (stmt != null)
+					stmt.close();
+			} catch (SQLException e) {
+				// java...
+				e.printStackTrace();
+			}
+			try {
+				if (conn != null)
+					conn.close();
+			} catch (SQLException e) {
+				// java...
+				e.printStackTrace();
+			}
+		}
+	}
 }

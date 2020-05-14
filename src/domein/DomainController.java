@@ -379,7 +379,7 @@ public class DomainController {
 			}
 			
 			selectedGame.deleteSelectedGameBoard();
-			gameRepository.deleteSelectedGameBoard(selectedGame.getName(), selectedGameBoard.getId());
+			gameBoardRepository.deleteGameBoard(selectedGame.getName(), selectedGameBoard.getId());
 			selectedGameBoard = null;	
 		}catch(GameException ex) {
 			throw new GameException(language.translate(ex.getMessage()));
