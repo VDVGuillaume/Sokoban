@@ -1,8 +1,10 @@
 package gui;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
@@ -19,6 +21,8 @@ public class GameBoardScreenController extends BaseGameBoardScreenController {
 	private Label lblPossibleMoves;
 	@FXML
 	private Label lblMovesMade;
+	@FXML
+	private Button btnExit;
 	
 	protected GameBoardScreenController(DomainController domainController) {
 		super(domainController, "GameBoardScreen.fxml");
@@ -84,5 +88,16 @@ public class GameBoardScreenController extends BaseGameBoardScreenController {
 				.replace(',', '\n')
 				.replace(":", ":\n"));
 		lblMovesMade.setText(domainController.translate("GameBoardMovesMade") + moves);
+		btnExit.setText("Menu");
+	}
+	
+	@FXML
+	private void btnExitOnAction(ActionEvent event) {
+		Stage stage = (Stage) btnExit.getScene().getWindow();
+		
+		MenuScreenController root = new MenuScreenController(domainController);
+		Scene scene = new Scene(root, 1000, 500);
+		stage.setScene(scene);
+	
 	}
 }

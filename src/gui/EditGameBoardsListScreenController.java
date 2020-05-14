@@ -12,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventType;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
 import javafx.scene.control.ListView;
@@ -42,6 +43,8 @@ public class EditGameBoardsListScreenController extends BaseScreenController {
 	@FXML
 	private Label lblSaveError;
 	private ActionModes actionMode;
+	@FXML
+	private Button btnExit;
 
 	@Override
 	protected void loadData() {
@@ -49,6 +52,7 @@ public class EditGameBoardsListScreenController extends BaseScreenController {
 			actionMode = ActionModes.update;
 		}
 		lblSaveError.setText("");
+		btnExit.setText("Menu");
 
 		List<Integer> gameBoardIds = domainController.getGameBoardIdsFromGame();
 		ObservableList<Integer> gameBoardIdsObservLst = FXCollections.observableArrayList(gameBoardIds);
@@ -152,5 +156,15 @@ public class EditGameBoardsListScreenController extends BaseScreenController {
 		} catch (Exception e) {
 			lblSaveError.setText(e.getMessage());
 		}		
+	}
+	
+	@FXML
+	private void btnExitOnAction(ActionEvent event) {
+		Stage stage = (Stage) btnExit.getScene().getWindow();
+		
+		MenuScreenController root = new MenuScreenController(domainController);
+		Scene scene = new Scene(root, 1000, 500);
+		stage.setScene(scene);
+	
 	}
 }

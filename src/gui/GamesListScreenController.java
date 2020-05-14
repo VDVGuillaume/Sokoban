@@ -10,6 +10,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
 import javafx.scene.control.ListView;
@@ -29,6 +30,8 @@ public class GamesListScreenController extends BaseScreenController {
 	private ListView lstGames;
 	@FXML
 	private Hyperlink linkReturn;
+	@FXML
+	private Button btnExit;
 
 	@Override
 	protected void loadData() {
@@ -39,6 +42,7 @@ public class GamesListScreenController extends BaseScreenController {
 
 		linkReturn.setText(domainController.translate("Return"));
 		lblChooseGame.setText(domainController.translate("ChooseGameToPlay"));
+		btnExit.setText("Menu");
 	}
 
 	@FXML
@@ -76,5 +80,15 @@ public class GamesListScreenController extends BaseScreenController {
 			errorAlert.showAndWait();
 			e.printStackTrace();
 		}
+	}
+	
+	@FXML
+	private void btnExitOnAction(ActionEvent event) {
+		Stage stage = (Stage) btnExit.getScene().getWindow();
+		
+		MenuScreenController root = new MenuScreenController(domainController);
+		Scene scene = new Scene(root, 1000, 500);
+		stage.setScene(scene);
+	
 	}
 }

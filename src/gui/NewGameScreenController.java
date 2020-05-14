@@ -42,6 +42,9 @@ public class NewGameScreenController extends BaseScreenController{
 	@FXML
 	private Button btnSave;
 	private static String imageFilePathDisk = "src\\resources\\images\\disk.png";
+	
+	@FXML
+	private Button btnExit;
 
 
 	public NewGameScreenController(DomainController domainController) {
@@ -56,6 +59,7 @@ public class NewGameScreenController extends BaseScreenController{
 		lblCreateGame.setText(domainController.translate("CreateGame"));
 		lblGameName.setText(domainController.translate("NameGame"));
 		btnSave.setText(domainController.translate("Save"));
+		btnExit.setText("Menu");
 		btnSave.setGraphic(new ImageView(disk));
 		btnReturn.setText(domainController.translate("Return"));
 	}
@@ -85,9 +89,13 @@ public class NewGameScreenController extends BaseScreenController{
 	}
 	
 	@FXML
-	private void btnReturnToMenu(ActionEvent event) {
-
-		setMenuScreen(this.getScene());
+	private void btnExitOnAction(ActionEvent event) {
+		Stage stage = (Stage) btnExit.getScene().getWindow();
+		
+		MenuScreenController root = new MenuScreenController(domainController);
+		Scene scene = new Scene(root, 1000, 500);
+		stage.setScene(scene);
+	
 	}
 
 	

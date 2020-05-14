@@ -10,6 +10,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 
 import javafx.scene.control.Hyperlink;
@@ -27,6 +28,8 @@ public class GameScreenController extends BaseScreenController {
 	private Hyperlink linkQuit;
 	@FXML
 	private Label lblCompletedGameBoardsCount;
+	@FXML
+	private Button btnExit;
 
 	@Override
 	protected void loadData() {
@@ -34,6 +37,7 @@ public class GameScreenController extends BaseScreenController {
 		int gameBoardsCount = Integer.valueOf(gameInfo[0]);
 		int gameBoardsCompletedCount = Integer.valueOf(gameInfo[1]);
 		String gameName = gameInfo[2];
+		btnExit.setText("Menu");
 				
 		lblPlayingGame.setText(domainController.translate("PlayingGame").replace("$gameName", gameName));
 		lblCompletedGameBoardsCount.setText(gameBoardsCompletedCount + " " + domainController.translate("NumberGameboardsCompletedOutofTotal") + " " + gameBoardsCount);
@@ -83,5 +87,15 @@ public class GameScreenController extends BaseScreenController {
 		GamesListScreenController root = new GamesListScreenController(domainController);
 		Scene scene = new Scene(root, 1000, 500);
 		stage.setScene(scene);
+	}
+	
+	@FXML
+	private void btnExitOnAction(ActionEvent event) {
+		Stage stage = (Stage) btnExit.getScene().getWindow();
+		
+		MenuScreenController root = new MenuScreenController(domainController);
+		Scene scene = new Scene(root, 1000, 500);
+		stage.setScene(scene);
+	
 	}
 }

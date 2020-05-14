@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
@@ -47,5 +48,10 @@
             <Insets />
          </GridPane.margin>
       </Hyperlink>
+      <Button fx:id="btnExit" mnemonicParsing="false" onAction="#btnExitOnAction" text="Button" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets right="10.0" />
+         </GridPane.margin>
+      </Button>
    </children>
 </fx:root>

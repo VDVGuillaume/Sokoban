@@ -5,12 +5,19 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import domein.DomainController;
+import exceptions.GameException;
 import javafx.embed.swing.SwingFXUtils;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
+import javafx.stage.Stage;
 
 public abstract class BaseGameBoardScreenController extends BaseScreenController {
 
@@ -24,6 +31,9 @@ public abstract class BaseGameBoardScreenController extends BaseScreenController
 	private boolean gameBoardIsInitialized;
 	private double itemWidth;
 	private double itemHeight;
+
+	
+	
 
 	// create custom ImageView for gameboard UI
 	protected class ImageViewSokoban extends ImageView {
@@ -185,4 +195,9 @@ public abstract class BaseGameBoardScreenController extends BaseScreenController
 			rowIndex++;
 		}
 	}
+	
+	
+	
+	
+	
 }

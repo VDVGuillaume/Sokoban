@@ -5,12 +5,14 @@ import java.io.IOException;
 
 import domein.DomainController;
 import exceptions.FieldException;
+import exceptions.GameException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -22,6 +24,9 @@ public abstract class BaseScreenController extends GridPane {
 
 	@FXML
 	protected ComboBox comboBoxLanguage;
+	
+
+
 
 	protected BaseScreenController(DomainController domainController, String resource)  {	
 		
@@ -93,8 +98,7 @@ public abstract class BaseScreenController extends GridPane {
 		stage.setScene(scene);
 		
 	}
-	
-	
+
 	
 	
 	

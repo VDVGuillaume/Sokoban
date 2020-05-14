@@ -31,6 +31,8 @@ public class MenuScreenController extends BaseScreenController {
 	private Hyperlink linkCreateNewGame;
 	@FXML
 	private Hyperlink linkEditGame;
+	@FXML
+	private Hyperlink linkLogOut;
 
 	public MenuScreenController(DomainController domainController) {
 		super(domainController, "MenuScreen.fxml");
@@ -46,6 +48,8 @@ public class MenuScreenController extends BaseScreenController {
 		lblWelcomeUsername.setText(domainController.translate("WelcomeUser").replace("$username", username));
 		linkPlay.setText(domainController.translate("Menu_PlayGame"));
 		linkQuit.setText(domainController.translate("Menu_Quit"));
+		linkLogOut.setText(domainController.translate("Log_Out"));
+		
 		if (isAdmin) {
 			linkCreateNewGame.setDisable(false);
 			linkCreateNewGame.setVisible(true);
@@ -59,6 +63,8 @@ public class MenuScreenController extends BaseScreenController {
 			linkCreateNewGame.setVisible(false);
 			linkEditGame.setDisable(true);
 			linkEditGame.setVisible(false);
+			GridPane.setRowIndex(linkLogOut, 4);
+			GridPane.setRowIndex(linkQuit, 5);
 		}
 	}
 
@@ -92,6 +98,14 @@ public class MenuScreenController extends BaseScreenController {
 	public void linkEditGameOnAction(ActionEvent event) {
 		Stage stage = (Stage) linkEditGame.getScene().getWindow();
 		EditGamesListScreenController root = new EditGamesListScreenController(domainController);
+		Scene scene = new Scene(root, 1000, 500);
+		stage.setScene(scene);
+	}
+	// Event Listener on Hyperlink[#linkLogOut].onAction
+	@FXML
+	public void linkLogOutOnAction(ActionEvent event) {
+		Stage stage = (Stage) linkLogOut.getScene().getWindow();
+		RegisterScreenController root = new RegisterScreenController(domainController);
 		Scene scene = new Scene(root, 1000, 500);
 		stage.setScene(scene);
 	}
