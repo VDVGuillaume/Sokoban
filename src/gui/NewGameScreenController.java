@@ -32,6 +32,9 @@ public class NewGameScreenController extends BaseScreenController{
 	private Label lblGameName;
 	@FXML
 	private Label lblGameException;
+	@FXML
+	private Button btnReturn;
+	
 	
 	@FXML
 	private TextField txtGameNameCreateNewGame;
@@ -54,6 +57,7 @@ public class NewGameScreenController extends BaseScreenController{
 		lblGameName.setText(domainController.translate("NameGame"));
 		btnSave.setText(domainController.translate("Save"));
 		btnSave.setGraphic(new ImageView(disk));
+		btnReturn.setText(domainController.translate("Return"));
 	}
 
 	private void saveNewGame() {
@@ -78,6 +82,12 @@ public class NewGameScreenController extends BaseScreenController{
 		} catch (GameException e) {
 			lblGameException.setText(e.getMessage());
 		}
+	}
+	
+	@FXML
+	private void btnReturnToMenu(ActionEvent event) {
+
+		setMenuScreen(this.getScene());
 	}
 
 	

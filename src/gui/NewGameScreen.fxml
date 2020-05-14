@@ -12,10 +12,11 @@
 
 <fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" type="GridPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="235.0" minWidth="10.0" prefWidth="143.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="207.0" minWidth="10.0" prefWidth="162.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="198.0" minWidth="10.0" prefWidth="142.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="295.0" minWidth="10.0" prefWidth="153.0" />
+      <ColumnConstraints />
   </columnConstraints>
   <rowConstraints>
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -42,7 +43,7 @@
          </GridPane.margin>
       </Label>
       
-      <Label fx:id="lblGameName" text="gameName" GridPane.rowIndex="1" GridPane.valignment="TOP">
+      <Label fx:id="lblGameName" text="gameName" GridPane.rowIndex="2" GridPane.valignment="TOP">
          <font>
             <Font size="15.0" />
          </font>
@@ -50,7 +51,7 @@
             <Insets left="10.0" top="5.0" />
          </GridPane.margin>
       </Label>
-      <TextField id="txtGameName" fx:id="txtGameNameCreateNewGame" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+      <TextField id="txtGameName" fx:id="txtGameNameCreateNewGame" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2" />
       
       <ComboBox id="comboBoxLanguage" fx:id="comboBoxLanguage" onAction="#languageChoiceChanged" prefWidth="150.0" promptText="languageChoice" GridPane.columnIndex="3" GridPane.halignment="RIGHT">
          <GridPane.margin>
@@ -61,5 +62,6 @@
       <Label fx:id="lblGameException" prefHeight="30.0" prefWidth="500.0" textFill="RED" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="5"><font>
             <Font size="14.0" />
          </font></Label>
+      <Button fx:id="btnReturn" mnemonicParsing="false" onAction="#btnReturnToMenu" prefHeight="26.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="10" GridPane.valignment="TOP" />
    </children>
 </fx:root>
