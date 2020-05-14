@@ -1,6 +1,7 @@
 package ui;
 
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import domein.DomainController;
@@ -32,7 +33,7 @@ public class UC6Applicatie {
 		System.out.println(controller.translate("GiveGameName"));
 		String gameName = input.nextLine();		
 		controller.createGame(gameName);
-		int answer = 0;
+		int answer=0;
 		String[] action = {"clear","wall","pawn","goal","box"};
 		int actionIndex = 0;
 		int multipleGameBoards = 0;
@@ -141,13 +142,25 @@ public class UC6Applicatie {
 			userInput = "reset";
 			System.out.println(controller.translate("addGameBoard"));
 			
-			
-			
-			
-			
-			
-			
-			answer = input.nextInt();
+			boolean flag=true;
+			do {
+				try {
+					answer = input.nextInt();	
+					if (answer < 0 || answer > 1) {
+						throw new IllegalArgumentException(controller.translate("ChoiceBetween")
+								.replace("$param1", Integer.toString(0)).replace("$param2", Integer.toString(1)));
+					}
+					flag=false;
+				}catch (InputMismatchException ex) {
+					System.out.println(controller.translate("GiveIntegerNumber"));
+					input.nextLine();
+				} catch (IllegalArgumentException ex) {
+					System.out.println(ex.getMessage());
+				} catch (Exception e) {
+					System.out.println(e.getMessage());
+					input.nextLine();
+				}	
+			}while(flag);
 		}while(answer == 1);
 		
 		String gameInfo[] = controller.getSelectedGameInfo();
