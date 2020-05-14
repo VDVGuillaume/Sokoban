@@ -101,86 +101,87 @@ public class UC7Applicatie {
 
 			switch (gameBoardOption) {
 			case 1:
-				String gameboardInfo[][] = controller.getSelectedGameBoardState();
-				String[][] gameboardInfoWithSelector = gameboardInfo;
-				gameboardInfoWithSelector[selectorYCoordinate][selectorXCoordinate] = "Selector";
-				gameBoardConsole.drawConsole(gameboardInfoWithSelector);
-
-				do {
-
-					System.out.println(controller.translate("GameBoardCreationPossibleMoves"));
-					char c = input.next().charAt(0);
-
-					switch (c) {
-					case 'Q':
-					case 'q':
-						selectorYCoordinate--;
-
-						selector[2] = 0;
-						break;
-					case 'Z':
-					case 'z':
-						selectorXCoordinate--;
-
-						selector[2] = 0;
-						break;
-					case 'S':
-					case 's':
-						selectorXCoordinate++;
-						selector[2] = 0;
-						break;
-					case 'D':
-					case 'd':
-						selectorYCoordinate++;
-
-						selector[2] = 0;
-						break;
-					case 'E':
-					case 'e':
-						String piece = new String();
-						piece = action[actionIndex];
-						controller.setPositionAction(selectorXCoordinate, selectorYCoordinate, piece);
-						actionIndex++;
-						if (actionIndex > 4) {
-							actionIndex = 0;
-						}
-						selector[2] = 1;
-
-						break;
-					case 'A':
-					case 'a':
-						userInput = "save";
-						controller.changeGameboard();
-						break;
-					case 'T':
-					case 't':
-						return;
-					default:
-						break;
-					}
-
-					if (selectorYCoordinate > 9 || selectorYCoordinate < 0 || selectorXCoordinate > 9
-							|| selectorXCoordinate < 0) {
-						selectorYCoordinate = selector[1];
-						selectorXCoordinate = selector[0];
-						continue;
-					} else {
-						selector[0] = selectorXCoordinate;
-						selector[1] = selectorYCoordinate;
-					}
-
-					gameboardInfo = controller.getSelectedGameBoardState();
-
-					if (selector[2] == 0) {
-						gameboardInfoWithSelector = gameboardInfo;
-						gameboardInfoWithSelector[selectorXCoordinate][selectorYCoordinate] = "Selector";
-						gameBoardConsole.drawConsole(gameboardInfoWithSelector);
-					} else {
-
-						gameBoardConsole.drawConsole(gameboardInfo);
-					}
-
-				} while (!userInput.equals("save"));
+				//UC8
+//				String gameboardInfo[][] = controller.getSelectedGameBoardState();
+//				String[][] gameboardInfoWithSelector = gameboardInfo;
+//				gameboardInfoWithSelector[selectorYCoordinate][selectorXCoordinate] = "Selector";
+//				gameBoardConsole.drawConsole(gameboardInfoWithSelector);
+//
+//				do {
+//
+//					System.out.println(controller.translate("GameBoardCreationPossibleMoves"));
+//					char c = input.next().charAt(0);
+//
+//					switch (c) {
+//					case 'Q':
+//					case 'q':
+//						selectorYCoordinate--;
+//
+//						selector[2] = 0;
+//						break;
+//					case 'Z':
+//					case 'z':
+//						selectorXCoordinate--;
+//
+//						selector[2] = 0;
+//						break;
+//					case 'S':
+//					case 's':
+//						selectorXCoordinate++;
+//						selector[2] = 0;
+//						break;
+//					case 'D':
+//					case 'd':
+//						selectorYCoordinate++;
+//
+//						selector[2] = 0;
+//						break;
+//					case 'E':
+//					case 'e':
+//						String piece = new String();
+//						piece = action[actionIndex];
+//						controller.setPositionAction(selectorXCoordinate, selectorYCoordinate, piece);
+//						actionIndex++;
+//						if (actionIndex > 4) {
+//							actionIndex = 0;
+//						}
+//						selector[2] = 1;
+//
+//						break;
+//					case 'A':
+//					case 'a':
+//						userInput = "save";
+//						controller.changeGameboard();
+//						break;
+//					case 'T':
+//					case 't':
+//						return;
+//					default:
+//						break;
+//					}
+//
+//					if (selectorYCoordinate > 9 || selectorYCoordinate < 0 || selectorXCoordinate > 9
+//							|| selectorXCoordinate < 0) {
+//						selectorYCoordinate = selector[1];
+//						selectorXCoordinate = selector[0];
+//						continue;
+//					} else {
+//						selector[0] = selectorXCoordinate;
+//						selector[1] = selectorYCoordinate;
+//					}
+//
+//					gameboardInfo = controller.getSelectedGameBoardState();
+//
+//					if (selector[2] == 0) {
+//						gameboardInfoWithSelector = gameboardInfo;
+//						gameboardInfoWithSelector[selectorXCoordinate][selectorYCoordinate] = "Selector";
+//						gameBoardConsole.drawConsole(gameboardInfoWithSelector);
+//					} else {
+//
+//						gameBoardConsole.drawConsole(gameboardInfo);
+//					}
+//
+//				} while (!userInput.equals("save"));
 				break;
 			case 2:
 				controller.changeGameboard();
