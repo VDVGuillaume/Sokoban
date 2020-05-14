@@ -29,6 +29,9 @@ public class EditGameBoardScreenController extends BaseGameBoardScreenController
 	
 	@FXML
 	private Label lblSaveError;
+	
+	@FXML
+	private Button btnReturn;
 
 	private ImageViewSokoban[][] imageViews;
 	private boolean gameBoardIsInitialized;
@@ -144,7 +147,8 @@ public class EditGameBoardScreenController extends BaseGameBoardScreenController
 	protected void loadData() {
 		String[][] gameBoardState = domainController.getSelectedGameBoardState();
 		refreshGameBoard(gameBoardState);
-
+		btnReturn.setText(domainController.translate("Return"));
+		btnSaveAndQuit.setText(domainController.translate("SaveGame"));
 	}
 
 	@FXML
@@ -163,4 +167,11 @@ public class EditGameBoardScreenController extends BaseGameBoardScreenController
 			lblSaveError.setText(e.getMessage());
 		}
 	}
+	
+	@FXML
+	private void btnReturnToMenu(ActionEvent event) {
+
+		setMenuScreen(this.getScene());
+	}
+	
 }
