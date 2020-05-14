@@ -17,8 +17,8 @@ public class Pawn
 	/**UC3 movePawn method moves the pawn to certain (rowindex, columnindex)*/
 	public void movePawn(int newRowIndex, int newColumnIndex) 
 	{
-		setRowIndex(rowIndex);
-		setColumnIndex(columnIndex);
+		setRowIndex(newRowIndex);
+		setColumnIndex(newColumnIndex);
 	}
 	
 	/**UC3 returns rowindex (int)*/
