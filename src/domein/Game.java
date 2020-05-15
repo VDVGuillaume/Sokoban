@@ -158,7 +158,7 @@ public class Game {
 		this.selectedGameBoard = gameBoard;
 	}
 	
-	/**UC6 save selected gameBoard **/
+	/**UC6 method changeGameboard saves the changes to the tiles of a gameboard**/
 	public void changeGameboard() {
 		selectedGameBoard.changeGameboard();
 	}

@@ -361,6 +361,7 @@ public class GameBoard {
 		return this.moves;
 	}
 
+	/** UC6 tile at (x,y) coordinates is updated to contain wall, goal, box, pawn or nothing**/
 	public void setPositionAction(int xCoord, int yCoord, String action) {
 
 		if (xCoord > 9 || xCoord < 0 || yCoord > 9 || yCoord < 0) {

@@ -324,6 +324,10 @@ public class DomainController {
 
 	}
 	
+	/**
+	 * 
+	 * UC6 method changeGameboard saves the changes to the tiles of a gameboard
+	 */
 	public void changeGameboard() {
 		try {
 			selectedGame.changeGameboard();
@@ -334,7 +338,7 @@ public class DomainController {
 	
 
 
-
+	/** UC6 tile at (x,y) coordinates is updated to contain wall, goal, box, pawn or nothing**/
 	public void setPositionAction(int xCoord, int yCoord, String action) {
 		selectedGameBoard.setPositionAction(xCoord, yCoord, action);
 
@@ -363,6 +367,7 @@ public class DomainController {
 		return selectedGame.getGameBoardsIds();
 	}
 	
+	/**UC6 Save gameboard**/
 	public void saveGameBoard() {
 		if(selectedGame == null || selectedGameBoard == null) {
 			throw new GameException(language.translate("ErrorGameNotFound"));
@@ -380,6 +385,7 @@ public class DomainController {
 		}
 	}
 	
+	/**UC8 delete selected gameboard**/
 	public void deleteSelectedGameBoard() {
 		try {
 			if(selectedGame == null || selectedGameBoard == null) {
