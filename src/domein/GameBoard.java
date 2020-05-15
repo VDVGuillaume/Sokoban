@@ -399,7 +399,8 @@ public class GameBoard {
 		}
 
 	}
-
+	
+	/** save gameboard by saving the changes to the tiles of the gameboard**/
 	public void changeGameboard() {
 		this.setTiles(tiles);
 	}

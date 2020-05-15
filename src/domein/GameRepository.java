@@ -20,7 +20,7 @@ public class GameRepository
 		return mapper.getGames();
 	}
 	
-	
+	/** UC7 getGames method that returns list of string gamenames of the games that where created by the currently logged in user*/
 	public List<String> getGames(String username)
 	{
 		return mapper.getGames(username);
@@ -32,9 +32,11 @@ public class GameRepository
 		return mapper.getGame(gameName);
 	}
 	
+	/** UC5 SaveGame saves game (name) & username of user that created it**/
 	public void saveGame(Game game, String username) {
 		mapper.insertGame(game,username);
 	}
+	
 	
 	public void updateGame(Game game) {
 		mapper.updateGame(game);

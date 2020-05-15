@@ -22,6 +22,7 @@ public class Tile
 		this.tileType = tileType;
 	}
 	
+	/**movePlayerToTile moves player to tile by using the setContainsPlayer and updating tiletype**/
 	public void movePlayerToTile() 
 	{
 		setContainsPlayer(true);

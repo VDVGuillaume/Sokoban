@@ -193,6 +193,7 @@ public class Game {
 		}	
 	}
 	
+	/**method deleteSelectedGameBoard deletes selected gameboard**/
 	public void deleteSelectedGameBoard() {
 		if(!validateGame()) {
 			throw new GameException("ErrorDeleteGameBoardLimitReached");
@@ -202,6 +203,7 @@ public class Game {
 		setSelectedGameBoard(null);
 	}
 	
+	/**ValidateGame checks whether there is at least 1 gameboard**/
 	private boolean validateGame() {
 		return gameBoards != null && gameBoards.size() > 1;
 	}	
