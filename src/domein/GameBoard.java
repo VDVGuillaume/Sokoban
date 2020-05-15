@@ -73,10 +73,10 @@ public class GameBoard {
 
 				if(tileType != TileTypes.Wall) {
 					Tile tileLeft, tileRight, tileDown, tileUp;
-					tileLeft = getTile(rowIndex - 1, columnIndex);
-					tileRight = getTile(rowIndex + 1, columnIndex);
-					tileDown = getTile(rowIndex, columnIndex + 1);
-					tileUp = getTile(rowIndex, columnIndex - 1);
+					tileLeft = getTile(rowIndex - 1, columnIndex, tiles);
+					tileRight = getTile(rowIndex + 1, columnIndex, tiles);
+					tileDown = getTile(rowIndex, columnIndex + 1, tiles);
+					tileUp = getTile(rowIndex, columnIndex - 1, tiles);
 					
 					if(tileLeft == null || tileRight == null || tileDown == null || tileUp == null) {
 						throw new GameException("ErrorGameBoardWallNotClosed");
@@ -276,6 +276,14 @@ public class GameBoard {
 	}
 
 	private Tile getTile(int rowIndex, int columnIndex) {
+		if (rowIndex < 0 || columnIndex < 0 || rowIndex > 9 || columnIndex > 9) {
+			return null;
+		}
+
+		return tiles[rowIndex][columnIndex];
+	}
+	
+	private Tile getTile(int rowIndex, int columnIndex, Tile[][] tiles) {
 		if (rowIndex < 0 || columnIndex < 0 || rowIndex > 9 || columnIndex > 9) {
 			return null;
 		}
