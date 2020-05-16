@@ -32,7 +32,7 @@ public class TileMapper extends BaseMapper {
 				TileTypes type = TileTypes.valueOf(rs.getString(3));
 				var containsPlayer = rs.getBoolean(4);
 
-				tiles[rowIndex][columnIndex] = new Tile(type, containsPlayer);
+				tiles[rowIndex][columnIndex] = new Tile(type, containsPlayer, columnIndex, rowIndex);
 			}
 		} catch (SQLException e) {
 			// java...

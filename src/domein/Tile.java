@@ -5,15 +5,19 @@ public class Tile
 	private TileTypes tileType;
 	private boolean containsPlayer;
 	private boolean isGoal;
+	private int columnIndex;
+	private int rowIndex;
 	
 	/**UC3 constructor Tile w/ tileType & containsplayer attributes*/
-	public Tile(TileTypes tileType, boolean containsPlayer) 
+	public Tile(TileTypes tileType, boolean containsPlayer, int columnIndex, int rowIndex) 
 	{
 		if(tileType == TileTypes.Goal) {
 			isGoal = true;
 		}
 		setTileType(tileType);
 		setContainsPlayer(containsPlayer);
+		this.columnIndex = columnIndex;
+		this.rowIndex = rowIndex;
 	}
 	
 	/**UC3 determines tileType of certain tile*/
@@ -52,6 +56,14 @@ public class Tile
 	
 	public Tile clone() 
 	{
-		return new Tile(tileType, containsPlayer);
+		return new Tile(tileType, containsPlayer, columnIndex, rowIndex);
+	}
+	
+	public int getColumnIndex() {
+		return columnIndex;
+	}
+	
+	public int getRowIndex() {
+		return rowIndex;
 	}
 }

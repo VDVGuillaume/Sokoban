@@ -31,9 +31,9 @@ public class GameBoard {
 		for (int row = 0; row < initialTiles.length; row++) {
 			for (int col = 0; col < initialTiles[row].length; col++) {
 				if (col == 5 && row == 5) {
-					initialTiles[row][col] = new Tile(none, false);
+					initialTiles[row][col] = new Tile(none, false, col, row);
 				} else {
-					initialTiles[row][col] = new Tile(wall, false);
+					initialTiles[row][col] = new Tile(wall, false, col, row);
 				}
 
 			}
@@ -51,6 +51,71 @@ public class GameBoard {
 	}
 
 	/**
+	 * validate if tile groups are connected to each other in nested function
+	 */
+	private boolean validateTileGroupsNested(ArrayList<Tile> tilesConnected, ArrayList<ArrayList<Tile>> tileGroupsNotYetConnected, Tile[][] tiles) {
+		ArrayList<ArrayList<Tile>> tileGroupsStillNotConnected = new ArrayList<ArrayList<Tile>>();
+		boolean tilesConnectedHasChanged = false;
+		
+		for (ArrayList<Tile> tileGroup : tileGroupsNotYetConnected) {
+
+			// copy first tile group
+			if (tilesConnected.size() == 0) {
+				tilesConnected.addAll(tileGroup);
+				tilesConnectedHasChanged = true;
+				continue;
+			}
+
+			// control for connectivity
+			boolean tileGroupIsConnected = false;
+			for (Tile tile : tilesConnected) {
+				int rowIndex = tile.getRowIndex();
+				int columnIndex = tile.getColumnIndex();
+				Tile tileLeft, tileRight, tileDown, tileUp;
+				tileLeft = getTile(rowIndex - 1, columnIndex, tiles);
+				tileRight = getTile(rowIndex + 1, columnIndex, tiles);
+				tileDown = getTile(rowIndex, columnIndex + 1, tiles);
+				tileUp = getTile(rowIndex, columnIndex - 1, tiles);
+
+				if (tileGroup.contains(tileLeft) || tileGroup.contains(tileRight)
+						|| tileGroup.contains(tileUp) || tileGroup.contains(tileDown)) {
+					tileGroupIsConnected = true;
+					break;
+				}
+			}
+
+			// if connected, add tiles to tilesConnectedList
+			if (tileGroupIsConnected) {
+				tilesConnected.addAll(tileGroup);
+				tilesConnectedHasChanged = true;
+				continue;
+			}
+			
+			// if not connected, add tileGroup to list of groups not yet connected
+			tileGroupsStillNotConnected.add(tileGroup);
+		}
+		
+		if(tileGroupsStillNotConnected.size() == 0) {
+			// if no groups are left unconnected
+			return true;
+		}else if(tilesConnectedHasChanged && tileGroupsStillNotConnected.size() != 0) {
+			// if connectedTiles has changed and there are still tile groups left to be connected
+			return validateTileGroupsNested(tilesConnected, tileGroupsStillNotConnected, tiles);
+		}else {
+			// there remainder tile groups can't be connected
+			return false;
+		}
+	}
+
+	/**
+	 * Validate if tile groups are connected to each other in some way
+	 */
+	private boolean validateTileGroups(ArrayList<ArrayList<Tile>> tileGroups, Tile[][] tiles) {
+		ArrayList<Tile> tilesConnected = new ArrayList<Tile>();
+		return validateTileGroupsNested(tilesConnected, tileGroups, tiles);
+	}
+
+	/**
 	 * UC3 setTiles set the Tiletypes of the gameboard and perform checks such as
 	 * there should be one and only one pawn, the number of boxes should be equal to
 	 * the number of goals
@@ -63,35 +128,46 @@ public class GameBoard {
 		int pawnCount = 0;
 		int goalCount = 0;
 		int boxCount = 0;
-
 		int rowIndex = 0;
+
+		int tileGroupsCount = 0;
+		ArrayList<ArrayList<Tile>> tileGroups = new ArrayList<ArrayList<Tile>>();
+		tileGroups.add(new ArrayList<Tile>());
 
 		for (Tile[] tileRow : tiles) {
 			int columnIndex = 0;
 			for (Tile tile : tileRow) {
 				TileTypes tileType = tile.getTileType();
 
-				if(tileType != TileTypes.Wall) {
+				if (tileType != TileTypes.Wall) {
 					Tile tileLeft, tileRight, tileDown, tileUp;
 					tileLeft = getTile(rowIndex - 1, columnIndex, tiles);
 					tileRight = getTile(rowIndex + 1, columnIndex, tiles);
 					tileDown = getTile(rowIndex, columnIndex + 1, tiles);
 					tileUp = getTile(rowIndex, columnIndex - 1, tiles);
-					
-					if(tileLeft == null || tileRight == null || tileDown == null || tileUp == null) {
+
+					if (tileLeft == null || tileRight == null || tileDown == null || tileUp == null) {
 						throw new GameException("ErrorGameBoardWallNotClosed");
 					}
-					
-					if(tileLeft.getTileType() == TileTypes.Wall
-							&& tileRight.getTileType() == TileTypes.Wall
-							&& tileDown.getTileType() == TileTypes.Wall
-							&& tileUp.getTileType() == TileTypes.Wall
-							) {
-						throw new GameException("ErrorGameBoardInaccesibleSpace");
+
+					// group tiles based on connectivity to each other
+					boolean tileConnectedToGroup = false;
+					for (ArrayList<Tile> tileGroup : tileGroups) {
+						if (tileGroup.contains(tileLeft) || tileGroup.contains(tileRight) || tileGroup.contains(tileUp)
+								|| tileGroup.contains(tileDown)) {
+							tileConnectedToGroup = true;
+							tileGroup.add(tile);
+							break;
+						}
+					}
+
+					if (!tileConnectedToGroup) {
+						ArrayList<Tile> tileGroup = new ArrayList<Tile>();
+						tileGroup.add(tile);
+						tileGroups.add(tileGroup);
 					}
 				}
-				
-				
+
 				switch (tileType) {
 				case None:
 					if (tile.getContainsPlayer()) {
@@ -120,6 +196,10 @@ public class GameBoard {
 
 		if (goalCount != boxCount) {
 			throw new GameException("ErrorGameBoardGoalBoxCount");
+		}
+		
+		if(!validateTileGroups(tileGroups, tiles)) {
+			throw new GameException("ErrorGameBoardInaccesibleSpace");
 		}
 
 		this.tiles = tiles;
@@ -276,13 +356,9 @@ public class GameBoard {
 	}
 
 	private Tile getTile(int rowIndex, int columnIndex) {
-		if (rowIndex < 0 || columnIndex < 0 || rowIndex > 9 || columnIndex > 9) {
-			return null;
-		}
-
-		return tiles[rowIndex][columnIndex];
+		return getTile(rowIndex, columnIndex, this.tiles);
 	}
-	
+
 	private Tile getTile(int rowIndex, int columnIndex, Tile[][] tiles) {
 		if (rowIndex < 0 || columnIndex < 0 || rowIndex > 9 || columnIndex > 9) {
 			return null;
@@ -360,24 +436,24 @@ public class GameBoard {
 		switch (action) {
 		case "wall":
 			TileTypes wall = TileTypes.Wall;
-			tiles[xCoord][yCoord] = new Tile(wall, false);
+			tiles[xCoord][yCoord] = new Tile(wall, false, xCoord, yCoord);
 
 			break;
 		case "goal":
 			TileTypes goal = TileTypes.Goal;
-			tiles[xCoord][yCoord] = new Tile(goal, false);
+			tiles[xCoord][yCoord] = new Tile(goal, false, xCoord, yCoord);
 			break;
 		case "box":
 			TileTypes box = TileTypes.Box;
-			tiles[xCoord][yCoord] = new Tile(box, false);
+			tiles[xCoord][yCoord] = new Tile(box, false, xCoord, yCoord);
 			break;
 		case "pawn":
 			TileTypes pawn = TileTypes.None;
-			tiles[xCoord][yCoord] = new Tile(pawn, true);
+			tiles[xCoord][yCoord] = new Tile(pawn, true, xCoord, yCoord);
 			break;
 		case "clear":
 			TileTypes none = TileTypes.None;
-			tiles[xCoord][yCoord] = new Tile(none, false);
+			tiles[xCoord][yCoord] = new Tile(none, false, xCoord, yCoord);
 			break;
 		default:
 			throw new GameException("IncorrectAction");
