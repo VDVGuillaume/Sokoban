@@ -65,25 +65,38 @@ public class GameBoard {
 		int boxCount = 0;
 
 		int rowIndex = 0;
-		List<Integer> wallXCoordinates = new ArrayList<>();
-		List<Integer> wallYCoordinates = new ArrayList<>();
-		List<Integer> noneXCoordinates = new ArrayList<>();
-		List<Integer> noneYCoordinates = new ArrayList<>();
 
 		for (Tile[] tileRow : tiles) {
 			int columnIndex = 0;
 			for (Tile tile : tileRow) {
 				TileTypes tileType = tile.getTileType();
 
+				if(tileType != TileTypes.Wall) {
+					Tile tileLeft, tileRight, tileDown, tileUp;
+					tileLeft = getTile(rowIndex - 1, columnIndex, tiles);
+					tileRight = getTile(rowIndex + 1, columnIndex, tiles);
+					tileDown = getTile(rowIndex, columnIndex + 1, tiles);
+					tileUp = getTile(rowIndex, columnIndex - 1, tiles);
+					
+					if(tileLeft == null || tileRight == null || tileDown == null || tileUp == null) {
+						throw new GameException("ErrorGameBoardWallNotClosed");
+					}
+					
+					if(tileLeft.getTileType() == TileTypes.Wall
+							&& tileRight.getTileType() == TileTypes.Wall
+							&& tileDown.getTileType() == TileTypes.Wall
+							&& tileUp.getTileType() == TileTypes.Wall
+							) {
+						throw new GameException("ErrorGameBoardInaccesibleSpace");
+					}
+				}
+				
+				
 				switch (tileType) {
 				case None:
 					if (tile.getContainsPlayer()) {
 						setPawn(rowIndex, columnIndex);
 						pawnCount++;
-					} else {
-						noneXCoordinates.add(columnIndex);
-						noneYCoordinates.add(rowIndex);
-
 					}
 					break;
 				case Goal:
@@ -93,8 +106,7 @@ public class GameBoard {
 					boxCount++;
 					break;
 				case Wall:
-					wallXCoordinates.add(columnIndex);
-					wallYCoordinates.add(rowIndex);
+					break;
 				}
 
 				columnIndex++;
@@ -108,43 +120,6 @@ public class GameBoard {
 
 		if (goalCount != boxCount) {
 			throw new GameException("ErrorGameBoardGoalBoxCount");
-		}
-
-		// TODO VALIDATE IF ALL FIELDS ARE ACCESSIBLE IN CELLS
-		// Validation fields and walls:
-		for (int i = 0; i < noneXCoordinates.size(); i++) {
-			int x = noneXCoordinates.get(i);
-			int y = noneYCoordinates.get(i);
-			boolean trigger = false;
-			for (int scanner = 0; scanner < noneXCoordinates.size(); scanner++) {
-				if ((x + 1) == noneXCoordinates.get(scanner) || (y + 1) == noneYCoordinates.get(scanner)
-						|| (x - 1) == noneXCoordinates.get(scanner) || (y - 1) == noneYCoordinates.get(scanner)) {
-					
-					trigger = true;
-				}
-
-			}
-			if (trigger == false) {
-				throw new GameException("ErrorGameBoardInaccesibleSpace");
-			}
-	
-
-		}
-
-		for (int i = 0; i < (wallXCoordinates.size() - 1); i++) {
-			int x = wallXCoordinates.get(i);
-			int y = wallYCoordinates.get(i);
-			boolean trigger = false;
-			for (int scanner = 0; scanner < wallXCoordinates.size(); scanner++) {
-				if ((x + 1) == wallXCoordinates.get(scanner) || (y + 1) == wallYCoordinates.get(scanner)
-						|| (x - 1) == wallXCoordinates.get(scanner) || (y - 1) == wallYCoordinates.get(scanner)) {
-					trigger = true;
-				}
-			}
-			if (trigger == false) {
-				throw new GameException("ErrorGameBoardWallNotClosed");
-			}
-
 		}
 
 		this.tiles = tiles;
@@ -307,6 +282,14 @@ public class GameBoard {
 
 		return tiles[rowIndex][columnIndex];
 	}
+	
+	private Tile getTile(int rowIndex, int columnIndex, Tile[][] tiles) {
+		if (rowIndex < 0 || columnIndex < 0 || rowIndex > 9 || columnIndex > 9) {
+			return null;
+		}
+
+		return tiles[rowIndex][columnIndex];
+	}
 
 	/**
 	 * UC4 validateMove returns true if pawn can be moved in that direction (no
@@ -361,7 +344,10 @@ public class GameBoard {
 		return this.moves;
 	}
 
-	/** UC6 tile at (x,y) coordinates is updated to contain wall, goal, box, pawn or nothing**/
+	/**
+	 * UC6 tile at (x,y) coordinates is updated to contain wall, goal, box, pawn or
+	 * nothing
+	 **/
 	public void setPositionAction(int xCoord, int yCoord, String action) {
 
 		if (xCoord > 9 || xCoord < 0 || yCoord > 9 || yCoord < 0) {
@@ -399,8 +385,8 @@ public class GameBoard {
 		}
 
 	}
-	
-	/** save gameboard by saving the changes to the tiles of the gameboard**/
+
+	/** save gameboard by saving the changes to the tiles of the gameboard **/
 	public void changeGameboard() {
 		this.setTiles(tiles);
 	}
