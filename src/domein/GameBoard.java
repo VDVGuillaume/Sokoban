@@ -130,9 +130,7 @@ public class GameBoard {
 		int boxCount = 0;
 		int rowIndex = 0;
 
-		int tileGroupsCount = 0;
 		ArrayList<ArrayList<Tile>> tileGroups = new ArrayList<ArrayList<Tile>>();
-		tileGroups.add(new ArrayList<Tile>());
 
 		for (Tile[] tileRow : tiles) {
 			int columnIndex = 0;
@@ -432,34 +430,31 @@ public class GameBoard {
 		}
 
 		action = action.toLowerCase();
-
+		TileTypes tileType;
+		boolean containsPlayer = false;
+		
 		switch (action) {
 		case "wall":
-			TileTypes wall = TileTypes.Wall;
-			tiles[xCoord][yCoord] = new Tile(wall, false, xCoord, yCoord);
-
+			tileType = TileTypes.Wall;
 			break;
 		case "goal":
-			TileTypes goal = TileTypes.Goal;
-			tiles[xCoord][yCoord] = new Tile(goal, false, xCoord, yCoord);
+			tileType = TileTypes.Goal;
 			break;
 		case "box":
-			TileTypes box = TileTypes.Box;
-			tiles[xCoord][yCoord] = new Tile(box, false, xCoord, yCoord);
+			tileType = TileTypes.Box;
 			break;
 		case "pawn":
-			TileTypes pawn = TileTypes.None;
-			tiles[xCoord][yCoord] = new Tile(pawn, true, xCoord, yCoord);
+			tileType = TileTypes.None;
+			containsPlayer = true;
 			break;
 		case "clear":
-			TileTypes none = TileTypes.None;
-			tiles[xCoord][yCoord] = new Tile(none, false, xCoord, yCoord);
+			tileType = TileTypes.None;
 			break;
 		default:
 			throw new GameException("IncorrectAction");
-
 		}
-
+		
+		tiles[xCoord][yCoord] = new Tile(tileType, containsPlayer, yCoord, xCoord);
 	}
 
 	/** save gameboard by saving the changes to the tiles of the gameboard **/
