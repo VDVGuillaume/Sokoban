@@ -422,9 +422,9 @@ public class GameBoard {
 	 * UC6 tile at (x,y) coordinates is updated to contain wall, goal, box, pawn or
 	 * nothing
 	 **/
-	public void setPositionAction(int xCoord, int yCoord, String action) {
+	public void setPositionAction(int yCoord, int xCoord, String action) {
 
-		if (xCoord > 9 || xCoord < 0 || yCoord > 9 || yCoord < 0) {
+		if (yCoord > 9 || yCoord < 0 || xCoord > 9 || xCoord < 0) {
 
 			throw new GameException("ErrorSelectionOutOfBounds");
 		}
@@ -454,7 +454,7 @@ public class GameBoard {
 			throw new GameException("IncorrectAction");
 		}
 		
-		tiles[xCoord][yCoord] = new Tile(tileType, containsPlayer, yCoord, xCoord);
+		tiles[yCoord][xCoord] = new Tile(tileType, containsPlayer, xCoord, yCoord);
 	}
 
 	/** save gameboard by saving the changes to the tiles of the gameboard **/
