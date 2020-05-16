@@ -46,7 +46,7 @@
          </GridPane.margin>
       </GridPane>
       <Button fx:id="btnSaveAndQuit" mnemonicParsing="false" onAction="#btnSaveAndQuitOnAction" text="Opslaan" GridPane.columnIndex="4" GridPane.rowIndex="10" />
-      <Label fx:id="lblSaveError" prefHeight="58.0" prefWidth="180.0" textFill="RED" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="11" GridPane.rowSpan="2" />
+      <Label fx:id="lblSaveError" textFill="RED" GridPane.columnIndex="4" GridPane.columnSpan="3" GridPane.rowIndex="11" GridPane.rowSpan="2" />
       <Button fx:id="btnReturn" mnemonicParsing="false" onAction="#btnReturnToMenu" GridPane.columnIndex="5" GridPane.rowIndex="10" />
    </children>
 </fx:root>
