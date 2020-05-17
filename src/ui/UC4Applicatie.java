@@ -73,14 +73,22 @@ public class UC4Applicatie
 		boolean gameboardCompleted;
 
 		try {
+			
 			List<String> names = controller.getGamesList();
 			System.out.println(controller.translate("GiveGameName"));
+			
 			for (int i = 0; i < names.size(); i++) {
 				String gamename = (i + 1) + ". " + names.get(i);
 				System.out.println(gamename);
 			}
 
-			gameNumber = input.nextInt();
+			
+			if(input.hasNextInt()) {
+				gameNumber = input.nextInt();			
+			}else{
+				throw new IllegalArgumentException(controller.translate("GiveIntegerNumber"));		
+				}
+			
 			gameName = names.get(gameNumber - 1);
 			controller.chooseGame(gameName);
 
@@ -113,8 +121,9 @@ public class UC4Applicatie
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
-			UI(input);
 		} finally {
+			input.next();
+			UI(input);
 		}
 
 	}

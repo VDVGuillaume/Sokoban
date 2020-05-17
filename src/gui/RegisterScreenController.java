@@ -100,7 +100,7 @@ public class RegisterScreenController extends BaseScreenController {
 			lblRegisterException.setText(e.getMessage());
 		}
 		  catch (Exception e) {
-			  e.printStackTrace();
+			  lblRegisterException.setText(e.getMessage());
 		  }
 	}
 	
