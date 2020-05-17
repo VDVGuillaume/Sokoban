@@ -34,7 +34,7 @@ public class UC1Applicatie {
 		info = controller.getInfoUser();
 		}catch (Exception e) {
 			e.printStackTrace();		
-			UI();		
+			info = UI();		
 		}
 		finally {
 			
