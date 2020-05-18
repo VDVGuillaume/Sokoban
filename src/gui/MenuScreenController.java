@@ -104,9 +104,6 @@ public class MenuScreenController extends BaseScreenController {
 	// Event Listener on Hyperlink[#linkLogOut].onAction
 	@FXML
 	public void linkLogOutOnAction(ActionEvent event) {
-		Stage stage = (Stage) linkLogOut.getScene().getWindow();
-		WelcomeScreenController root = new WelcomeScreenController(domainController);
-		Scene scene = new Scene(root, 1000, 500);
-		stage.setScene(scene);
+		setWelcomeScreen(this.getScene());
 	}
 }
